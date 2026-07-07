@@ -140,6 +140,7 @@ manifest_source="$repo_root/STS2AIAgent/mod_manifest.json"
 dll_source="$build_output_dir/$mod_name.dll"
 pck_output="$staging_dir/$mod_name.pck"
 dll_target="$staging_dir/$mod_name.dll"
+manifest_target="$staging_dir/$mod_name.json"
 builder_project_dir="$repo_root/tools/pck_builder"
 builder_script="$builder_project_dir/build_pck.gd"
 
@@ -243,6 +244,8 @@ if [[ ! -f "$manifest_source" ]]; then
   exit 1
 fi
 
+cp -f "$manifest_source" "$manifest_target"
+
 echo "[build-mod] Packing mod_manifest.json into PCK..."
 "$godot_exe" --headless --path "$builder_project_dir" --script "$builder_script" -- "$manifest_source" "$pck_output"
 
@@ -254,6 +257,7 @@ fi
 echo "[build-mod] Preparing game mods directory..."
 cp -f "$dll_target" "$mods_dir/$mod_name.dll"
 cp -f "$pck_output" "$mods_dir/$mod_name.pck"
+cp -f "$manifest_target" "$mods_dir/$mod_name.json"
 
 echo "[build-mod] Done."
 echo "[build-mod] Using data dir: $data_dir"
@@ -262,3 +266,4 @@ echo "[build-mod] Using Godot: $godot_exe"
 echo "[build-mod] Installed files:"
 echo "  $mods_dir/$mod_name.dll"
 echo "  $mods_dir/$mod_name.pck"
+echo "  $mods_dir/$mod_name.json"
