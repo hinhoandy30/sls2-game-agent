@@ -107,9 +107,13 @@ class AgentRuntime:
                     break
 
                 error_count = 0
-            except (ValidationError, GameClientError) as exc:
+            except Exception as exc:
                 error_count += 1
-                error = exc.to_error() if hasattr(exc, "to_error") else {"code": "runtime_error", "message": str(exc)}
+                error = exc.to_error() if hasattr(exc, "to_error") else {
+                    "code": "policy_error",
+                    "message": str(exc),
+                    "details": {"exception_type": exc.__class__.__name__},
+                }
                 record = self._record(
                     step_index,
                     state,

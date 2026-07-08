@@ -5,7 +5,9 @@ STS2AIAgent/local.props
 build/
 extraction/decompiled/
 .venv/
+.env
 mcp_server/.venv/
+mcp_server/.env
 mcp_server/runs/
 __pycache__/
 *.pyc

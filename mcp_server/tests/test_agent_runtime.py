@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import os
 import tempfile
 import unittest
 from pathlib import Path
 from typing import Any
 
 from sts2_agent_runtime.client import is_actionable_state
+from sts2_agent_runtime.cli import _load_env_file
 from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
@@ -81,6 +83,16 @@ class DummyClient:
     def wait_until_actionable(self, timeout_seconds: float) -> dict[str, Any]:
         self.wait_calls += 1
         return self.get_state()
+
+
+class RaisingPolicy:
+    def decide(self, state: GameStateSnapshot, knowledge: Any) -> Any:
+        raise RuntimeError("model returned invalid JSON")
+
+
+class StaticRouter:
+    def select(self, state: GameStateSnapshot) -> RaisingPolicy:
+        return RaisingPolicy()
 
 
 class AgentRuntimeTests(unittest.TestCase):
@@ -198,6 +210,58 @@ class AgentRuntimeTests(unittest.TestCase):
 
         self.assertEqual(decision.action.action, "choose_event_option")
         self.assertEqual(decision.action.option_index, 1)
+
+    def test_runtime_records_policy_error_instead_of_crashing(self) -> None:
+        client = DummyClient(
+            [
+                state_payload(
+                    screen="MAP",
+                    actions=["choose_map_node"],
+                    run={"floor": 1, "potions": []},
+                )
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=StaticRouter(),
+                config=RuntimeConfig(max_steps=3, output_dir=Path(tmp), max_consecutive_errors=2),
+            )
+            summary = runtime.run()
+
+        self.assertEqual(summary.terminal_reason, "too_many_errors:policy_error")
+        self.assertEqual(summary.error_count, 2)
+
+    def test_load_env_file_does_not_override_existing_environment(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            env_path = Path(tmp) / ".env"
+            env_path.write_text(
+                "\n".join(
+                    [
+                        "OPENAI_MODEL=from-file",
+                        "OPENAI_API_BASE='https://example.test/v1'",
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            old_model = os.environ.get("OPENAI_MODEL")
+            old_base = os.environ.get("OPENAI_API_BASE")
+            try:
+                os.environ["OPENAI_MODEL"] = "from-env"
+                os.environ.pop("OPENAI_API_BASE", None)
+                _load_env_file(env_path)
+
+                self.assertEqual(os.environ["OPENAI_MODEL"], "from-env")
+                self.assertEqual(os.environ["OPENAI_API_BASE"], "https://example.test/v1")
+            finally:
+                if old_model is None:
+                    os.environ.pop("OPENAI_MODEL", None)
+                else:
+                    os.environ["OPENAI_MODEL"] = old_model
+                if old_base is None:
+                    os.environ.pop("OPENAI_API_BASE", None)
+                else:
+                    os.environ["OPENAI_API_BASE"] = old_base
 
 
 if __name__ == "__main__":

@@ -2,12 +2,25 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from typing import Any
 from urllib import request
 
 from .contracts import AgentAction, GameStateSnapshot, KnowledgeContext, PolicyDecision
+from .policies import Policy, ScreenRouter
 
 DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
+GAMEPLAY_LLM_SCREENS = {
+    "MAP",
+    "COMBAT",
+    "REWARD",
+    "CARD_SELECTION",
+    "CHEST",
+    "EVENT",
+    "SHOP",
+    "REST",
+    "MODAL",
+}
 
 
 class OpenAICompatiblePolicy:
@@ -20,14 +33,31 @@ class OpenAICompatiblePolicy:
 
     def decide(self, state: GameStateSnapshot, knowledge: KnowledgeContext) -> PolicyDecision:
         prompt = {
-            "instruction": "Return one legal PolicyDecision JSON. Prefer simple legal actions. Do not call tools.",
+            "instruction": (
+                "Return exactly one legal PolicyDecision JSON object. Do not call tools. "
+                "Choose only from available_actions and only use indices present in state. "
+                "For play_card, use combat.hand[].index and obey requires_target/valid_target_indices. "
+                "For option actions, set option_index. For potion actions, set potion_index."
+            ),
+            "response_schema": {
+                "type": "action|wait|stop|needs_human",
+                "action": {
+                    "action": "string from available_actions",
+                    "card_index": "integer|null",
+                    "target_index": "integer|null",
+                    "option_index": "integer|null",
+                    "potion_index": "integer|null",
+                },
+                "reason": "short reason",
+                "confidence": "number 0..1",
+            },
             "screen": state.screen,
             "available_actions": state.available_actions,
             "state": _compact_state(state.state),
             "knowledge_refs": knowledge.refs,
         }
         response = self._chat(prompt)
-        parsed = json.loads(response)
+        parsed = _parse_json_object(response)
         if parsed.get("type") != "action":
             return PolicyDecision(type=parsed.get("type", "needs_human"), reason=parsed.get("reason", "LLM non-action decision."))
         action_payload = parsed.get("action") or {}
@@ -63,16 +93,57 @@ class OpenAICompatiblePolicy:
         return str(data["choices"][0]["message"]["content"])
 
 
+class LLMScreenRouter:
+    def __init__(
+        self,
+        *,
+        llm_policy: Policy,
+        base_router: ScreenRouter | None = None,
+        llm_screens: set[str] | None = None,
+    ) -> None:
+        self.llm_policy = llm_policy
+        self.base_router = base_router or ScreenRouter()
+        self.llm_screens = llm_screens or GAMEPLAY_LLM_SCREENS
+
+    def select(self, state: GameStateSnapshot) -> Policy:
+        if state.screen in self.llm_screens:
+            return self.llm_policy
+        return self.base_router.select(state)
+
+
 def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:
     return {
         "run_id": raw.get("run_id"),
         "screen": raw.get("screen"),
         "session": raw.get("session"),
         "turn": raw.get("turn"),
+        "character_select": raw.get("character_select"),
         "combat": raw.get("combat"),
         "run": raw.get("run"),
         "map": raw.get("map"),
         "reward": raw.get("reward"),
         "selection": raw.get("selection"),
+        "event": raw.get("event"),
         "modal": raw.get("modal"),
+        "shop": raw.get("shop"),
+        "rest": raw.get("rest"),
+        "chest": raw.get("chest"),
     }
+
+
+def _parse_json_object(text: str) -> dict[str, Any]:
+    try:
+        parsed = json.loads(text)
+    except json.JSONDecodeError:
+        match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, flags=re.DOTALL)
+        if match:
+            parsed = json.loads(match.group(1))
+        else:
+            start = text.find("{")
+            end = text.rfind("}")
+            if start < 0 or end <= start:
+                raise
+            parsed = json.loads(text[start : end + 1])
+    if not isinstance(parsed, dict):
+        raise ValueError("LLM response must be a JSON object.")
+    return parsed
