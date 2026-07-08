@@ -88,7 +88,7 @@ class OpenAICompatiblePolicy:
             option_index=action_payload.get("option_index"),
             potion_index=action_payload.get("potion_index"),
         )
-        _normalize_llm_action(action)
+        _normalize_llm_action(action, state)
         return PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
 
     def _chat(self, prompt: dict[str, Any]) -> str:
@@ -198,10 +198,36 @@ def _has_useful_action(actions: list[str]) -> bool:
     return any(action not in passive for action in actions)
 
 
-def _normalize_llm_action(action: AgentAction) -> None:
+def _normalize_llm_action(action: AgentAction, state: GameStateSnapshot) -> None:
     if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.card_index is not None:
         action.option_index = action.card_index
         action.card_index = None
     if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.target_index is not None:
         action.option_index = action.target_index
         action.target_index = None
+    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None:
+        action.option_index = _infer_option_index(action.action, state.state)
+
+
+def _infer_option_index(action_name: str, raw: dict[str, Any]) -> int | None:
+    candidates: list[dict[str, Any]] = []
+    if action_name == "choose_map_node":
+        candidates = (raw.get("map") or {}).get("available_nodes") or []
+    elif action_name == "choose_event_option":
+        candidates = (raw.get("event") or {}).get("options") or []
+    elif action_name == "select_deck_card":
+        candidates = (raw.get("selection") or {}).get("cards") or (raw.get("selection") or {}).get("options") or []
+    elif action_name in {"claim_reward", "choose_reward_card", "choose_treasure_relic"}:
+        candidates = (raw.get("reward") or {}).get("rewards") or (raw.get("reward") or {}).get("cards") or []
+    elif action_name in {"buy_card", "buy_relic", "buy_potion"}:
+        candidates = (raw.get("shop") or {}).get("items") or []
+    elif action_name in {"choose_rest_option", "choose_bundle", "choose_capstone_option"}:
+        candidates = (raw.get("selection") or {}).get("options") or (raw.get("event") or {}).get("options") or []
+
+    for candidate in candidates:
+        if candidate.get("is_locked", False):
+            continue
+        index = candidate.get("index")
+        if isinstance(index, int):
+            return index
+    return None
