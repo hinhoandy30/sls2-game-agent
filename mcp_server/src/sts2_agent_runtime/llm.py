@@ -35,6 +35,7 @@ class OpenAICompatiblePolicy:
         prompt = {
             "instruction": (
                 "Return exactly one legal PolicyDecision JSON object. Do not call tools. "
+                "If any useful available action exists, type must be action. Never return needs_human, stop, or wait during combat. "
                 "Choose only from available_actions and only use indices present in state. "
                 "For play_card, use combat.hand[].index and obey requires_target/valid_target_indices. "
                 "For option actions, set option_index. For potion actions, set potion_index."
@@ -58,9 +59,13 @@ class OpenAICompatiblePolicy:
         }
         response = self._chat(prompt)
         parsed = _parse_json_object(response)
-        if parsed.get("type") != "action":
+        action_payload = _extract_action_payload(parsed)
+        if parsed.get("type") != "action" and action_payload is None:
+            if _has_useful_action(state.available_actions):
+                raise ValueError(f"LLM returned non-action decision while actions are available: {parsed.get('type')!r}")
             return PolicyDecision(type=parsed.get("type", "needs_human"), reason=parsed.get("reason", "LLM non-action decision."))
-        action_payload = parsed.get("action") or {}
+        if action_payload is None:
+            raise ValueError("LLM action decision did not include an action payload.")
         action = AgentAction(
             action=str(action_payload.get("action")),
             card_index=action_payload.get("card_index"),
@@ -147,3 +152,31 @@ def _parse_json_object(text: str) -> dict[str, Any]:
     if not isinstance(parsed, dict):
         raise ValueError("LLM response must be a JSON object.")
     return parsed
+
+
+def _extract_action_payload(parsed: dict[str, Any]) -> dict[str, Any] | None:
+    action_payload = parsed.get("action")
+    if isinstance(action_payload, str):
+        return {
+            "action": action_payload,
+            "card_index": parsed.get("card_index"),
+            "target_index": parsed.get("target_index"),
+            "option_index": parsed.get("option_index"),
+            "potion_index": parsed.get("potion_index"),
+        }
+    if isinstance(action_payload, dict) and action_payload.get("action"):
+        return action_payload
+    if isinstance(parsed.get("action_name"), str):
+        return {
+            "action": parsed["action_name"],
+            "card_index": parsed.get("card_index"),
+            "target_index": parsed.get("target_index"),
+            "option_index": parsed.get("option_index"),
+            "potion_index": parsed.get("potion_index"),
+        }
+    return None
+
+
+def _has_useful_action(actions: list[str]) -> bool:
+    passive = {"save_and_quit", "discard_potion"}
+    return any(action not in passive for action in actions)

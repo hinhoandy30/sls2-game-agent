@@ -9,6 +9,7 @@ from typing import Any
 from sts2_agent_runtime.client import is_actionable_state
 from sts2_agent_runtime.cli import _load_env_file
 from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot
+from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
 
@@ -93,6 +94,14 @@ class RaisingPolicy:
 class StaticRouter:
     def select(self, state: GameStateSnapshot) -> RaisingPolicy:
         return RaisingPolicy()
+
+
+class FakeLLMPolicy(OpenAICompatiblePolicy):
+    def __init__(self, response: str) -> None:
+        self.response = response
+
+    def _chat(self, prompt: dict[str, Any]) -> str:
+        return self.response
 
 
 class AgentRuntimeTests(unittest.TestCase):
@@ -262,6 +271,29 @@ class AgentRuntimeTests(unittest.TestCase):
                     os.environ.pop("OPENAI_API_BASE", None)
                 else:
                     os.environ["OPENAI_API_BASE"] = old_base
+
+    def test_llm_non_action_raises_when_actions_are_available(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn", "save_and_quit"],
+                hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+
+        with self.assertRaises(ValueError):
+            FakeLLMPolicy('{"type":"needs_human","reason":"not sure"}').decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+    def test_llm_accepts_action_shorthand(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(actions=["end_turn"], hand=[]),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy('{"action":"end_turn","reason":"done"}').decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.type, "action")
+        self.assertEqual(decision.action.action, "end_turn")
 
 
 if __name__ == "__main__":
