@@ -60,18 +60,25 @@ the C# Mod may need another compatibility pass before the agent can run safely.
 
 ### .NET 9 SDK
 
-The Mod is built with .NET 9. On this machine we used a local SDK install:
+The Mod is built with .NET 9. A local SDK install is recommended so the team can
+avoid depending on machine-global .NET state:
 
 ```bash
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+export DOTNET_CLI_HOME="$WORKSPACE_ROOT/.dotnet-home"
+
 curl -sSL https://dot.net/v1/dotnet-install.sh -o /private/tmp/dotnet-install.sh
-bash /private/tmp/dotnet-install.sh --channel 9.0 --install-dir /Users/liuzhen/Documents/sls2/.dotnet
+bash /private/tmp/dotnet-install.sh --channel 9.0 --install-dir "$DOTNET_INSTALL_DIR"
 ```
 
 Shell environment:
 
 ```bash
-export PATH="/Users/liuzhen/Documents/sls2/.dotnet:$PATH"
-export DOTNET_CLI_HOME="/Users/liuzhen/Documents/sls2/.dotnet-home"
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+export DOTNET_CLI_HOME="$WORKSPACE_ROOT/.dotnet-home"
+export PATH="$DOTNET_INSTALL_DIR:$PATH"
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 ```
 
@@ -106,16 +113,17 @@ Recommended team install:
 npm install -g @fission-ai/openspec@latest
 ```
 
-This workspace also has a checked-out official OpenSpec source tree at:
+If you are developing OpenSpec itself locally or using a source checkout instead
+of the global CLI, set:
 
 ```text
-/Users/liuzhen/Documents/sls2/OpenSpec-main
+OPENSPEC_ROOT="$HOME/path/to/OpenSpec"
 ```
 
 If the global `openspec` command is not available, use:
 
 ```bash
-node /Users/liuzhen/Documents/sls2/OpenSpec-main/bin/openspec.js validate --all
+node "$OPENSPEC_ROOT/bin/openspec.js" validate --all
 ```
 
 OpenSpec files for this project live under:
