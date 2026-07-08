@@ -21,7 +21,7 @@
 项目目录：
 
 ```bash
-/Users/liuzhen/Documents/sls2/STS2-Agent-main
+$WORKSPACE_ROOT/STS2-Agent-main
 ```
 
 Steam 游戏目录：
@@ -55,7 +55,8 @@ macOS arm64 游戏数据目录：
 如果拿到的是 GitHub zip 包，先初始化 Git 并保存原始版本：
 
 ```bash
-cd /Users/liuzhen/Documents/sls2/STS2-Agent-main
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+cd "$WORKSPACE_ROOT/STS2-Agent-main"
 git init
 git add .
 git commit -m "Initial STS2 agent project import"
@@ -80,14 +81,18 @@ git switch -c macos-v0.107.1-adaptation
 
 ```bash
 curl -sSL https://dot.net/v1/dotnet-install.sh -o /private/tmp/dotnet-install.sh
-bash /private/tmp/dotnet-install.sh --channel 9.0 --install-dir /Users/liuzhen/Documents/sls2/.dotnet
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+bash /private/tmp/dotnet-install.sh --channel 9.0 --install-dir "$DOTNET_INSTALL_DIR"
 ```
 
 本项目当前使用本地 SDK，不依赖全局安装：
 
 ```bash
-export PATH="/Users/liuzhen/Documents/sls2/.dotnet:$PATH"
-export DOTNET_CLI_HOME="/Users/liuzhen/Documents/sls2/.dotnet-home"
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+export DOTNET_CLI_HOME="$WORKSPACE_ROOT/.dotnet-home"
+export PATH="$DOTNET_INSTALL_DIR:$PATH"
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 ```
 
@@ -184,14 +189,14 @@ user has not yet seen the mods warning
 本机设置文件示例：
 
 ```bash
-~/Library/Application Support/SlayTheSpire2/steam/76561199527957431/settings.save
+~/Library/Application Support/SlayTheSpire2/steam/<steam-user-id>/settings.save
 ```
 
 修改前先备份：
 
 ```bash
-cp "$HOME/Library/Application Support/SlayTheSpire2/steam/76561199527957431/settings.save" \
-   "$HOME/Library/Application Support/SlayTheSpire2/steam/76561199527957431/settings.save.bak-sts2-agent"
+cp "$HOME/Library/Application Support/SlayTheSpire2/steam/<steam-user-id>/settings.save" \
+   "$HOME/Library/Application Support/SlayTheSpire2/steam/<steam-user-id>/settings.save.bak-sts2-agent"
 ```
 
 确保 JSON 中有：

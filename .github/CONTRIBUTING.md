@@ -44,7 +44,8 @@ openspec validate --all
 If `openspec` is not installed globally, use the local checked-out CLI:
 
 ```bash
-node /Users/liuzhen/Documents/sls2/OpenSpec-main/bin/openspec.js validate --all
+export OPENSPEC_ROOT="$HOME/path/to/OpenSpec"
+node "$OPENSPEC_ROOT/bin/openspec.js" validate --all
 ```
 
 ## Validation expectations

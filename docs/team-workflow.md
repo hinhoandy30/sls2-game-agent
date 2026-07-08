@@ -102,6 +102,6 @@ git status
 If OpenSpec is not globally installed, use:
 
 ```bash
-node /Users/liuzhen/Documents/sls2/OpenSpec-main/bin/openspec.js validate --all
+export OPENSPEC_ROOT="$HOME/path/to/OpenSpec"
+node "$OPENSPEC_ROOT/bin/openspec.js" validate --all
 ```
-

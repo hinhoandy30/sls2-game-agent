@@ -1,187 +1,267 @@
-# STS2 AI Agent
+# SLS2 Game Agent
 
-https://github.com/user-attachments/assets/89353468-a299-4315-9516-e520bcbfbd4b
+`sls2-game-agent` is a team project for building a dedicated AI agent that can
+play Slay the Spire 2 through a structured game API. The current repository
+contains:
 
-中文版说明请见 [README.zh-CN.md](./README.zh-CN.md).
+- a C# STS2 Mod that exposes game state and actions through local HTTP;
+- a Python MCP wrapper for AI clients;
+- OpenSpec contracts for team collaboration;
+- local macOS adaptation notes for STS2 `v0.107.1`;
+- the first planning artifacts for a dedicated agent runner.
 
-`STS2 AI Agent` is a Slay the Spire 2 mod + MCP server bundle:
+## Attribution
 
-- `STS2AIAgent`: exposes game state and actions through a local HTTP API
-- `mcp_server`: wraps that local API as an MCP server for AI clients
+This repository is not a from-scratch original project. It is developed from the
+upstream open-source project
+[CharTyr/STS2-Agent](https://github.com/CharTyr/STS2-Agent), which provided the
+Mod, MCP server, scripts, and documentation foundation.
 
-Detailed MCP tool documentation lives in [mcp_server/README.md](./mcp_server/README.md). If you want an agent workflow on top of it, start with [skills/sts2-mcp-player/SKILL.md](./skills/sts2-mcp-player/SKILL.md).
+Do not describe this repository as fully original work. Keep the existing
+license and upstream-origin history visible, and preserve attribution to the
+upstream project in public releases, forks, and derived documentation.
 
-## Quick Start
+License: AGPL-3.0-only. See [LICENSE](./LICENSE).
 
-### 1. Install The Mod
+Project notice: [NOTICE.md](./NOTICE.md).
 
-After downloading and extracting the release package, copy these files into your game's `mods/` directory:
+## Repository Status
+
+Verified locally:
+
+- macOS Apple Silicon;
+- Steam Slay the Spire 2 `v0.107.1`;
+- game runtime `MegaDot/Godot 4.5.1` Mono custom build;
+- Mod loads and exposes `http://127.0.0.1:8080/health`;
+- HTTP control chain reached: main menu -> Ironclad -> first combat -> reward.
+
+Detailed local adaptation record:
+
+- [docs/macos-v0.107.1-local-adaptation.md](./docs/macos-v0.107.1-local-adaptation.md)
+
+## Install Slay the Spire 2
+
+Install Slay the Spire 2 through Steam first.
+
+Common paths:
 
 ```text
-STS2AIAgent.dll
-STS2AIAgent.pck
-mod_id.json
-```
+macOS:
+~/Library/Application Support/Steam/steamapps/common/Slay the Spire 2
 
-The default Steam install path is usually:
-
-```text
+Windows:
 C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2
 ```
 
-Your final layout should look like this:
+For the current team baseline, use STS2 `v0.107.1`. If Steam updates the game,
+the C# Mod may need another compatibility pass before the agent can run safely.
 
-```text
-Slay the Spire 2/
-  mods/
-    STS2AIAgent.dll
-    STS2AIAgent.pck
-    mod_id.json
+## Install Local Tooling
+
+### .NET 9 SDK
+
+The Mod is built with .NET 9. A local SDK install is recommended so the team can
+avoid depending on machine-global .NET state:
+
+```bash
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+export DOTNET_CLI_HOME="$WORKSPACE_ROOT/.dotnet-home"
+
+curl -sSL https://dot.net/v1/dotnet-install.sh -o /private/tmp/dotnet-install.sh
+bash /private/tmp/dotnet-install.sh --channel 9.0 --install-dir "$DOTNET_INSTALL_DIR"
 ```
 
-### 2. Start The Game And Confirm The Mod Is Loaded
+Shell environment:
 
-Launch the game normally so the mod can load with it.
-
-Then open:
-
-```text
-http://127.0.0.1:8080/health
+```bash
+export WORKSPACE_ROOT="$HOME/path/to/your/workspace"
+export DOTNET_INSTALL_DIR="$WORKSPACE_ROOT/.dotnet"
+export DOTNET_CLI_HOME="$WORKSPACE_ROOT/.dotnet-home"
+export PATH="$DOTNET_INSTALL_DIR:$PATH"
+export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 ```
 
-If the endpoint responds, the mod is running.
+### Godot / MegaDot
 
-### 3. Start The MCP Server
+No standalone Godot editor is required for normal Mod build and validation.
+STS2 ships its own `MegaDot/Godot 4.5.1` Mono runtime and data assemblies.
 
-Prepare the environment first:
+### Python and uv
 
-1. Install `Python 3.11+`
-2. Install `uv`
-
-Install `uv` on Windows:
-
-```powershell
-powershell -ExecutionPolicy Bypass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-On macOS:
+Install `uv` for the MCP server:
 
 ```bash
 brew install uv
 ```
 
-Then start the default `stdio` MCP server.
+Then:
 
-Windows:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File ".\scripts\start-mcp-stdio.ps1"
+```bash
+cd mcp_server
+uv sync
+uv run pytest
 ```
 
-macOS / Linux:
+### OpenSpec
+
+OpenSpec is used for team contracts and planning.
+
+Recommended team install:
+
+```bash
+npm install -g @fission-ai/openspec@latest
+```
+
+If you are developing OpenSpec itself locally or using a source checkout instead
+of the global CLI, set:
+
+```text
+OPENSPEC_ROOT="$HOME/path/to/OpenSpec"
+```
+
+If the global `openspec` command is not available, use:
+
+```bash
+node "$OPENSPEC_ROOT/bin/openspec.js" validate --all
+```
+
+OpenSpec files for this project live under:
+
+```text
+openspec/
+```
+
+Current shared contract:
+
+- [openspec/specs/agent-collaboration-contracts/spec.md](./openspec/specs/agent-collaboration-contracts/spec.md)
+
+## Build and Install the Mod
+
+Set the STS2 data directory on macOS:
+
+```bash
+export STS2_DATA_DIR="$HOME/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_arm64"
+```
+
+Build the Mod:
+
+```bash
+dotnet build STS2AIAgent/STS2AIAgent.csproj -c Release
+```
+
+Install it into the local Steam game:
+
+```bash
+./scripts/build-mod.sh \
+  --configuration Release \
+  --game-root "$HOME/Library/Application Support/Steam/steamapps/common/Slay the Spire 2"
+```
+
+The macOS install target is:
+
+```text
+SlayTheSpire2.app/Contents/MacOS/mods/
+  STS2AIAgent.dll
+  STS2AIAgent.pck
+  STS2AIAgent.json
+```
+
+## Enable and Verify the Mod
+
+Start STS2, then verify:
+
+```bash
+curl -s http://127.0.0.1:8080/health
+```
+
+Expected result includes:
+
+```json
+{
+  "service": "sts2-ai-agent",
+  "game_version": "v0.107.1",
+  "status": "ready"
+}
+```
+
+For a scripted smoke test:
+
+```bash
+./scripts/test-mod-load.sh \
+  --game-root "$HOME/Library/Application Support/Steam/steamapps/common/Slay the Spire 2"
+```
+
+## Start the MCP Server
+
+Default stdio MCP:
 
 ```bash
 ./scripts/start-mcp-stdio.sh
 ```
 
-This is the recommended default. Most desktop AI clients prefer `stdio` MCP integration.
-
-### 4. Connect Your MCP Client
-
-If your client supports command-based MCP startup, point its working directory at `mcp_server/` and use:
-
-```text
-uv run sts2-mcp-server
-```
-
-If your client works better over HTTP, start the network server instead.
-
-Windows:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File ".\scripts\start-mcp-network.ps1"
-```
-
-macOS / Linux:
+Network MCP:
 
 ```bash
 ./scripts/start-mcp-network.sh
 ```
 
-Default MCP endpoint:
+Default network endpoint:
 
 ```text
 http://127.0.0.1:8765/mcp
 ```
 
-## What The Project Can Do
+For normal agent development, prefer the guided MCP surface:
 
-The current `main` branch provides a playable MCP integration for STS2, including:
+- `health_check`
+- `get_game_state`
+- `act`
+- `wait_until_actionable`
+- `get_relevant_game_data`
 
-- reading live game state
-- listing currently legal actions
-- driving combat, rewards, shops, map routing, events, rest sites, chests, capstone selection, and bundle selection
-- enriched combat and run payloads (Ascension, act/boss ID, enemy/move ID) for AlphaZero training
-- `resolve_rewards` atomic action for controlled reward resolution
-- reducing polling through SSE events
-- exposing MCP over `stdio` or HTTP
-- serving live game metadata for cards, relics, monsters, potions, and events via the Mod API
-- supporting layered planner / combat agent handoff flows
-- `increase_ascension` / `decrease_ascension` controls in character select
+## Team Collaboration
 
-See [mcp_server/README.md](./mcp_server/README.md) for the detailed tool surface.
+Enterprise-style workflow documentation:
 
-## FAQ
+- [docs/team-workflow.md](./docs/team-workflow.md)
+- [.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md)
+- [.github/pull_request_template.md](./.github/pull_request_template.md)
 
-### `http://127.0.0.1:8080/health` Does Not Open
+Short version:
 
-Check these first:
-
-1. The game is actually running
-2. `STS2AIAgent.dll`, `STS2AIAgent.pck`, and `mod_id.json` are all inside the game's `mods/` directory
-3. The files were not duplicated or renamed by the OS
-4. You copied them into the Steam game directory, not the repository directory
-
-### The MCP Server Starts But Cannot Read Game State
-
-That usually means `mcp_server` is running, but the in-game mod is not connected. Confirm:
-
-1. The game is running
-2. `http://127.0.0.1:8080/health` is reachable
-3. The MCP server is still pointing at `http://127.0.0.1:8080`
-
-### Should I Enable Debug Actions?
-
-Usually no.
-
-Developer-only actions such as `run_console_command` are disabled by default and should stay disabled in normal use and releases.
-
-## Building From Source
-
-If you are building from source instead of using a release package:
-
-Windows:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File ".\scripts\build-mod.ps1" -Configuration Release
+```text
+idea -> OpenSpec change -> spec review -> implementation PR -> validation -> archive
 ```
 
-macOS / Linux:
+Rules:
 
-```bash
-./scripts/build-mod.sh --configuration Release
-```
+- `main` is the protected release branch.
+- `dev` is the integration branch.
+- Feature branches merge into `dev`.
+- Cross-team contracts must be described in OpenSpec before implementation.
+- Runtime, Policy, Knowledge, Evaluation, and Mod/API boundaries are defined in
+  `agent-collaboration-contracts`.
 
-More complete environment, path-discovery, and validation notes are in [build-and-env.md](./build-and-env.md).
+## MVP0
+
+MVP0 is the dedicated runner foundation. The first planned work items are:
+
+1. `add-agent-runtime-loop`
+2. `add-trajectory-logging`
+3. `add-knowledge-provider`
+4. `add-combat-policy-v0`
+
+These changes should let the team build a first runner that can read live state,
+choose legal actions, log every step, retrieve compact knowledge, and make
+basic combat decisions against fixtures before full live integration.
 
 ## Repository Layout
 
-- `STS2AIAgent/`: game mod source
-- `mcp_server/`: MCP server source
-- `scripts/`: startup, build, and validation scripts
-- `docs/`: supporting documentation
-- `skills/`: companion skills
-
-## License
-
-This project is licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only).
+- `STS2AIAgent/`: C# game Mod source.
+- `mcp_server/`: Python FastMCP wrapper and game-data exports.
+- `scripts/`: build, startup, and validation helpers.
+- `docs/`: setup, workflow, troubleshooting, and game knowledge docs.
+- `openspec/`: team contracts and change plans.
+- `skills/`: optional Codex/AI-client skill instructions from the upstream
+  project. The dedicated runner should not depend on these at runtime.
