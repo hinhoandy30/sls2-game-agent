@@ -6,6 +6,7 @@ build/
 extraction/decompiled/
 .venv/
 mcp_server/.venv/
+mcp_server/runs/
 __pycache__/
 *.pyc
 # docs are part of the project knowledge base and should be tracked.
