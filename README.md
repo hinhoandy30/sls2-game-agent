@@ -12,16 +12,14 @@ contains:
 
 ## Attribution
 
-This repository is not a from-scratch original project. It is developed from an
-upstream open-source project named `STS2 AI Agent`, which provided the Mod, MCP
-server, scripts, and documentation foundation.
+This repository is not a from-scratch original project. It is developed from the
+upstream open-source project
+[CharTyr/STS2-Agent](https://github.com/CharTyr/STS2-Agent), which provided the
+Mod, MCP server, scripts, and documentation foundation.
 
-The current local source package did not preserve the original upstream remote
-URL. Before public release, the repository owner MUST add the exact upstream
-GitHub URL to this section and, if needed, a dedicated `NOTICE.md`.
-
-Until then, do not describe this repository as fully original work. Keep the
-existing license and upstream-origin history visible.
+Do not describe this repository as fully original work. Keep the existing
+license and upstream-origin history visible, and preserve attribution to the
+upstream project in public releases, forks, and derived documentation.
 
 License: AGPL-3.0-only. See [LICENSE](./LICENSE).
 
