@@ -1,255 +1,163 @@
-# Agent Collaboration Contracts
+# Agent Collaboration Contracts Specification
 
 ## Purpose
 
-Define the shared interfaces that allow Agent Runtime, Combat/Planner Policy,
-Knowledge, and Evaluation teams to work independently while targeting one
-dedicated STS2 agent runner.
+This specification defines the observable contracts that let the STS2 agent
+team build a dedicated runner in parallel. It covers the boundaries between
+Runtime, Policy, Knowledge, Evaluation, and Mod/API maintenance.
 
-## Module Boundaries
+## Requirements
 
 ### Requirement: Runtime Owns Game I/O
 
-The Agent Runtime SHALL be the only module that calls the STS2 HTTP/MCP action
+Runtime SHALL be the only module that calls the live STS2 HTTP or MCP action
 surface.
 
-#### Scenario: Policy wants to play a card
+#### Scenario: Policy requests a legal action
 
-- GIVEN Policy receives a `GameStateSnapshot` and `KnowledgeContext`
-- WHEN Policy decides to play a card
-- THEN Policy returns an `AgentAction`
-- AND Runtime validates that `AgentAction.action` is in `available_actions`
-- AND Runtime executes the action through `act` or `/action`
-- AND Policy does not call the game API directly
+- **GIVEN** Runtime has produced a fresh `GameStateSnapshot`
+- **AND** Policy has returned an `AgentAction`
+- **WHEN** Runtime receives the action
+- **THEN** Runtime validates that `AgentAction.action` appears in
+  `GameStateSnapshot.available_actions`
+- **AND** Runtime sends the action to the game only after validation passes
 
-### Requirement: Policy Is Pure Decision Logic
+#### Scenario: Policy must not call the game
 
-Policy modules SHALL implement deterministic or LLM-backed decision functions
-that accept state and knowledge and return an action or stop reason.
+- **GIVEN** Policy is deciding a combat, reward, map, event, shop, or rest step
+- **WHEN** Policy needs game information
+- **THEN** Policy receives it through `GameStateSnapshot` and `KnowledgeContext`
+- **AND** Policy does not call `/state`, `/action`, MCP `act`, or other live game
+  APIs directly
 
-Required interface:
+### Requirement: GameStateSnapshot Contract
 
-```python
-class Policy:
-    def decide(
-        self,
-        state: "GameStateSnapshot",
-        knowledge: "KnowledgeContext",
-        memory: "RunMemory",
-    ) -> "PolicyDecision":
-        ...
-```
+Runtime SHALL hand Policy a normalized `GameStateSnapshot` before every
+decision.
 
-### Requirement: Knowledge Is Retrieved By ID
+#### Scenario: Snapshot contains routing data
 
-Knowledge modules SHALL retrieve compact relevant context using IDs present in
-the live state. Knowledge SHALL NOT load full documentation files into an LLM
-prompt by default.
+- **WHEN** Runtime creates `GameStateSnapshot`
+- **THEN** it includes `schema_version`, `source`, `observed_at`, `run_id`,
+  `screen`, `session`, `turn`, `available_actions`, and `state`
+- **AND** `state` contains the compact guided state payload for the current
+  screen
 
-#### Scenario: Combat starts against a known monster
+#### Scenario: Snapshot prevents stale indexes
 
-- GIVEN `state.screen == "COMBAT"`
-- AND `state.combat.enemies[].enemy_id` contains `SLUDGE_SPINNER`
-- WHEN Runtime builds decision context
-- THEN Knowledge returns a compact monster entry for `SLUDGE_SPINNER`
-- AND the returned entry contains source references
-- AND Runtime passes only the compact entry to Policy
+- **GIVEN** a previous decision used a card, map, reward, shop, event, rest, or
+  selection index
+- **WHEN** Runtime asks Policy for the next decision
+- **THEN** Runtime provides a newly observed `GameStateSnapshot`
+- **AND** Policy recomputes indexes from that snapshot
 
-### Requirement: Evaluation Consumes Logs Only
+### Requirement: AgentAction Contract
 
-Evaluation SHALL depend on `StepRecord` and `RunSummary`, not on live game APIs.
-It MAY use fixture trajectories before Runtime is complete.
+Policy SHALL express game-control intent with one `AgentAction`.
 
-## Shared Schemas
+#### Scenario: Combat card action
 
-### GameStateSnapshot
+- **GIVEN** the latest state exposes `play_card` as available
+- **WHEN** Policy chooses a card
+- **THEN** the `AgentAction` includes `action = "play_card"` and `card_index`
+- **AND** it includes `target_index` only when the latest hand card marks a target
+  as required
 
-`GameStateSnapshot` is the normalized state object handed from Runtime to Policy.
-For the first implementation it may wrap the guided MCP `get_game_state` payload
-without loss.
+#### Scenario: Option-index action
 
-Required fields:
+- **GIVEN** the latest state exposes a map, reward, shop, event, rest, timeline,
+  character-select, or selection action
+- **WHEN** Policy chooses an option
+- **THEN** the `AgentAction` includes `option_index` from the latest state
+- **AND** Runtime rejects option indexes that are absent from the current payload
 
-```json
-{
-  "schema_version": "agent-state.v1",
-  "source": "mcp.get_game_state",
-  "observed_at": "2026-07-07T00:00:00Z",
-  "run_id": "string",
-  "screen": "COMBAT",
-  "session": {
-    "mode": "singleplayer",
-    "phase": "run",
-    "control_scope": "local_player"
-  },
-  "turn": 1,
-  "available_actions": ["play_card", "end_turn"],
-  "state": {}
-}
-```
+### Requirement: PolicyDecision Contract
 
-Rules:
+Policy SHALL return a `PolicyDecision` object rather than executing game actions
+itself.
 
-- `state` SHALL contain the compact guided payload for the current screen.
-- Runtime SHALL refresh this object before every decision.
-- Runtime SHALL not reuse card, reward, shop, map, event, or selection indexes
-  across decisions.
+#### Scenario: Policy can act, wait, or stop
 
-### AgentAction
+- **WHEN** Policy finishes evaluating a state
+- **THEN** it returns a decision with type `action`, `wait`, `stop`, or
+  `needs_human`
+- **AND** `action` decisions contain exactly one `AgentAction`
+- **AND** `wait`, `stop`, and `needs_human` decisions include a concise reason
 
-`AgentAction` is the only object Policy returns for game control.
+### Requirement: Knowledge Uses Live IDs
 
-```json
-{
-  "schema_version": "agent-action.v1",
-  "action": "play_card",
-  "card_index": 0,
-  "target_index": 0,
-  "option_index": null,
-  "reason": "Strike is legal and advances lethal setup.",
-  "policy_id": "combat-v0",
-  "confidence": 0.72
-}
-```
+Knowledge retrieval SHALL be keyed from stable IDs present in the latest live
+state.
 
-Rules:
+#### Scenario: Combat knowledge retrieval
 
-- `action` SHALL match a current `available_actions` entry.
-- `card_index` SHALL be used only for `play_card`.
-- `option_index` SHALL be used for map, reward, shop, event, rest, selection,
-  timeline, and character-select actions.
-- `target_index` SHALL be used only when the latest state marks the card,
-  potion, or rest option as requiring a target.
-- Runtime SHALL reject or re-plan invalid actions before sending them to the
-  game.
+- **GIVEN** `GameStateSnapshot.screen` is `COMBAT`
+- **AND** the state contains enemy IDs and hand card IDs
+- **WHEN** Runtime builds context for Policy
+- **THEN** Knowledge returns compact entries for the current enemy IDs and card
+  IDs
+- **AND** Knowledge includes source references for returned entries
 
-### PolicyDecision
+#### Scenario: Knowledge does not stuff full docs
 
-```json
-{
-  "schema_version": "policy-decision.v1",
-  "type": "action",
-  "action": {},
-  "alternatives": [],
-  "notes": ["short rationale"],
-  "requires_human": false
-}
-```
+- **GIVEN** documentation and extracted game data are available locally
+- **WHEN** Policy needs context for one decision
+- **THEN** Knowledge returns a compact `KnowledgeContext`
+- **AND** it does not load entire markdown indexes into the decision prompt by
+  default
 
-`type` values:
+### Requirement: Evaluation Consumes Trajectories
 
-- `action`: execute the contained `AgentAction`.
-- `wait`: call `wait_until_actionable`.
-- `stop`: stop the run loop with a reason.
-- `needs_human`: stop and request operator input.
+Evaluation SHALL consume append-only trajectory records and run summaries instead
+of live game APIs.
 
-### KnowledgeContext
+#### Scenario: Runtime records an attempted action
 
-```json
-{
-  "schema_version": "knowledge-context.v1",
-  "state_ref": {
-    "run_id": "string",
-    "screen": "COMBAT",
-    "turn": 1
-  },
-  "cards": {},
-  "monsters": {},
-  "relics": {},
-  "potions": {},
-  "events": {},
-  "runtime_notes": [],
-  "sources": []
-}
-```
+- **WHEN** Runtime attempts any game action
+- **THEN** Runtime appends one `StepRecord`
+- **AND** the record includes state summary, knowledge references, decision,
+  action request, action result, and error information
 
-Rules:
+#### Scenario: Evaluation runs before Runtime is complete
 
-- Knowledge entries SHALL be keyed by stable IDs from live state.
-- Entries SHOULD be compact summaries, not full markdown dumps.
-- Each entry SHOULD include source metadata such as file path, data collection,
-  or runtime note path.
-- Knowledge MAY cache static lookups per run.
+- **GIVEN** fixture trajectories exist
+- **WHEN** Evaluation computes metrics
+- **THEN** it reads `StepRecord` JSONL files and `RunSummary` objects
+- **AND** it does not require a running STS2 process
 
-### StepRecord
+### Requirement: Fixtures Unblock Parallel Work
 
-`StepRecord` is the JSONL unit consumed by Evaluation.
+The project SHALL maintain representative state fixtures so teams can build
+before live integration is complete.
 
-```json
-{
-  "schema_version": "step-record.v1",
-  "run_id": "string",
-  "step_id": 12,
-  "timestamp": "2026-07-07T00:00:00Z",
-  "repo_commit": "string",
-  "game_version": "v0.107.1",
-  "screen": "COMBAT",
-  "floor": 1,
-  "state_summary": {},
-  "knowledge_refs": [],
-  "decision": {},
-  "action_request": {},
-  "action_result": {
-    "ok": true,
-    "status": "completed",
-    "stable": true,
-    "next_screen": "COMBAT"
-  },
-  "metrics_delta": {},
-  "error": null
-}
-```
+#### Scenario: Policy tests with fixtures
 
-Rules:
+- **GIVEN** a fixture for `COMBAT`, `MAP`, or `REWARD`
+- **WHEN** a Policy module is tested
+- **THEN** the test can call `Policy.decide` with fixture state and expected
+  knowledge
+- **AND** it can assert the returned `PolicyDecision` without launching the game
 
-- Runtime SHALL append one `StepRecord` for every attempted action.
-- Runtime SHOULD also append records for stop conditions and unrecoverable
-  invalid states.
-- Evaluation SHALL treat this file as append-only input.
+#### Scenario: Evaluation tests with fixture runs
 
-### RunSummary
+- **GIVEN** a fixture trajectory
+- **WHEN** Evaluation computes metrics
+- **THEN** it reports invalid actions, floor reached, terminal result, and
+  recoverable errors from the fixture
 
-```json
-{
-  "schema_version": "run-summary.v1",
-  "run_id": "string",
-  "seed": "string",
-  "character": "IRONCLAD",
-  "ascension": 0,
-  "started_at": "2026-07-07T00:00:00Z",
-  "ended_at": "2026-07-07T00:30:00Z",
-  "result": "in_progress",
-  "floor_reached": 1,
-  "act_reached": "ACT_1",
-  "invalid_action_count": 0,
-  "recoverable_error_count": 0,
-  "token_estimate": null,
-  "notes": []
-}
-```
+### Requirement: Module Boundaries Stay Independent
 
-## Collaboration Order
+Runtime, Policy, Knowledge, Evaluation, and Mod/API work SHALL stay independently
+testable through shared contracts.
 
-Teams MAY work in parallel after this spec is accepted.
+#### Scenario: Teams work in parallel
 
-- Runtime team implements `GameClient`, `ScreenRouter`, and `RunLoop` against
-  the schemas above.
-- Policy team implements `Policy.decide` against fixtures without a live game.
-- Knowledge team implements `KnowledgeProvider.for_state` using game data and
-  docs indexes.
-- Evaluation team implements `StepRecord` readers, metrics, and reports using
-  mock trajectories.
-- Mod/API team fixes missing game controls and state-contract bugs discovered
-  by Runtime or Evaluation.
-
-## Minimum Fixture Set
-
-The repository SHOULD include fixtures for:
-
-- `MAIN_MENU` with `open_character_select`.
-- `CHARACTER_SELECT` with at least one unlocked character.
-- `MAP` with two node options.
-- `COMBAT` against one enemy with attack and block choices.
-- `REWARD` with a card reward and proceed option.
-- `EVENT`, `SHOP`, `REST`, and `CHEST` once those screens enter scope.
+- **GIVEN** this specification is accepted
+- **WHEN** teams implement their modules
+- **THEN** Runtime builds `GameClient`, `ScreenRouter`, and run-loop behavior
+- **AND** Policy builds decision functions against fixtures
+- **AND** Knowledge builds retrieval by stable IDs
+- **AND** Evaluation builds metrics from trajectory records
+- **AND** Mod/API work fixes missing controls and state-contract defects found by
+  other teams
 

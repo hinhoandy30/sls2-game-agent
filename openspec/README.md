@@ -1,23 +1,33 @@
-# STS2 Agent OpenSpec Store
+# STS2 Agent OpenSpec
 
-This directory is the team contract store for the dedicated STS2 agent project.
-It follows the OpenSpec-style workflow: write the intended behavior and shared
-interfaces before implementation, then let each team build against the same
-contract.
+This directory follows the official Fission-AI/OpenSpec shape:
 
-## How We Use It
+```text
+openspec/
+  project.md
+  AGENTS.md
+  config.yaml
+  specs/
+  changes/
+```
 
-- Stable contracts live under `openspec/specs/`.
-- Proposed changes live under `openspec/changes/<change-id>/`.
-- A change should include `proposal.md`, `design.md`, `tasks.md`, and one or
-  more spec deltas under `specs/`.
-- Runtime, Policy, Knowledge, and Evaluation work can proceed in parallel once
-  the contract fields in `agent-collaboration-contracts` are agreed.
+Use it as the team-facing source of truth for the dedicated STS2 agent runner.
 
-## Current Baseline
+## Current Spec
 
-- `specs/agent-collaboration-contracts/spec.md`: shared module boundaries,
-  data contracts, and handoff rules for the first dedicated agent runner.
-- `changes/define-agent-collaboration-contracts/`: initial proposal and rollout
-  checklist for adopting these contracts.
+- `specs/agent-collaboration-contracts/spec.md`
+  - Current contract for Runtime, Policy, Knowledge, Evaluation, and Mod/API
+    collaboration.
 
+## Current Change
+
+- `changes/define-agent-collaboration-contracts/`
+  - Initial change proposal that introduced the shared contracts.
+
+## Workflow
+
+1. Discuss unclear work in chat or a short exploration note.
+2. Create or update a change under `openspec/changes/<change-id>/`.
+3. Review `proposal.md`, spec deltas, `design.md`, and `tasks.md` before code.
+4. Build against the accepted contracts.
+5. Archive completed changes once implementation and verification are done.

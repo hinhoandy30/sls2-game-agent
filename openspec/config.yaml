@@ -1,0 +1,29 @@
+schema: spec-driven
+
+context: |
+  Project: Dedicated Slay the Spire 2 agent runner.
+
+  Current foundation:
+  - STS2AIAgent is a C# game Mod exposing live game state and actions over HTTP.
+  - mcp_server wraps the HTTP API as guided MCP tools.
+  - The dedicated runner will not depend on Codex skills at runtime.
+  - Team coordination should use OpenSpec artifacts as the shared source of truth.
+
+  Team language:
+  - Write specs as observable contracts between Runtime, Policy, Knowledge, Evaluation, and Mod/API work.
+  - Put implementation details in design.md and tasks.md.
+  - Keep behavior specs stable enough for independent teams and AI coding agents to build against.
+
+rules:
+  specs:
+    - Use `### Requirement:` and `#### Scenario:` headings.
+    - Requirements must describe externally observable contracts and team-facing interfaces.
+    - Include data contract fields only when they are part of the interface.
+    - Avoid tying behavior specs to Codex, Claude Code, or any one LLM orchestrator.
+  design:
+    - Document why a boundary belongs in Runtime, Policy, Knowledge, Evaluation, or Mod/API.
+    - Record tradeoffs between HTTP, MCP, and future multi-agent orchestration.
+  tasks:
+    - Split work so teams can build against fixtures before live game integration is complete.
+    - Include verification steps for schema consumers, not only producers.
+
