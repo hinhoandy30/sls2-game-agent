@@ -21,6 +21,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--wait-timeout", type=float, default=20.0)
     parser.add_argument("--launch-steam", action="store_true")
     parser.add_argument("--steam-url", default="steam://run/2868840")
+    parser.add_argument("--resume", action="store_true", help="Connect to the current game state and continue from there.")
     parser.add_argument("--stop-after-first-combat", action="store_true")
     parser.add_argument("--stop-on-reward-after-combat", action="store_true")
     parser.add_argument("--policy", choices=["heuristic", "llm"], default="heuristic")

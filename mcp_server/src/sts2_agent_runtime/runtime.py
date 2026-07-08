@@ -66,6 +66,7 @@ class AgentRuntime:
         terminal_reason = "max_steps_reached"
 
         for step_index in range(self.config.max_steps):
+            decision: PolicyDecision | None = None
             try:
                 state = self._ensure_actionable(state)
                 if state.screen == "GAME_OVER":
@@ -118,8 +119,8 @@ class AgentRuntime:
                     step_index,
                     state,
                     [],
-                    PolicyDecision.stop("runtime error"),
-                    None,
+                    decision or PolicyDecision.stop("runtime error"),
+                    decision.action if decision is not None else None,
                     None,
                     error=error,
                 )

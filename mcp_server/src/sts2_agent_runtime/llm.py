@@ -21,6 +21,21 @@ GAMEPLAY_LLM_SCREENS = {
     "REST",
     "MODAL",
 }
+OPTION_INDEX_ACTIONS = {
+    "choose_map_node",
+    "resolve_rewards",
+    "claim_reward",
+    "choose_reward_card",
+    "select_deck_card",
+    "choose_treasure_relic",
+    "choose_event_option",
+    "choose_capstone_option",
+    "choose_bundle",
+    "choose_rest_option",
+    "buy_card",
+    "buy_relic",
+    "buy_potion",
+}
 
 
 class OpenAICompatiblePolicy:
@@ -73,6 +88,7 @@ class OpenAICompatiblePolicy:
             option_index=action_payload.get("option_index"),
             potion_index=action_payload.get("potion_index"),
         )
+        _normalize_llm_action(action)
         return PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
 
     def _chat(self, prompt: dict[str, Any]) -> str:
@@ -180,3 +196,9 @@ def _extract_action_payload(parsed: dict[str, Any]) -> dict[str, Any] | None:
 def _has_useful_action(actions: list[str]) -> bool:
     passive = {"save_and_quit", "discard_potion"}
     return any(action not in passive for action in actions)
+
+
+def _normalize_llm_action(action: AgentAction) -> None:
+    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.card_index is not None:
+        action.option_index = action.card_index
+        action.card_index = None

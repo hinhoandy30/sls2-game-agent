@@ -8,7 +8,7 @@ from typing import Any
 
 from sts2_agent_runtime.client import is_actionable_state
 from sts2_agent_runtime.cli import _load_env_file
-from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot
+from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, PolicyDecision
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
@@ -294,6 +294,53 @@ class AgentRuntimeTests(unittest.TestCase):
 
         self.assertEqual(decision.type, "action")
         self.assertEqual(decision.action.action, "end_turn")
+
+    def test_llm_maps_option_action_card_index_to_option_index(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="CARD_SELECTION",
+                actions=["select_deck_card"],
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy(
+            '{"type":"action","action":{"action":"select_deck_card","card_index":5},"reason":"transform a defend"}'
+        ).decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.action.action, "select_deck_card")
+        self.assertIsNone(decision.action.card_index)
+        self.assertEqual(decision.action.option_index, 5)
+
+    def test_runtime_validation_error_keeps_attempted_action_record(self) -> None:
+        class MissingOptionPolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> Any:
+                return PolicyDecision.action_decision(AgentAction("select_deck_card"), reason="missing option")
+
+        class MissingOptionRouter:
+            def select(self, state: GameStateSnapshot) -> MissingOptionPolicy:
+                return MissingOptionPolicy()
+
+        client = DummyClient(
+            [
+                state_payload(
+                    screen="CARD_SELECTION",
+                    actions=["select_deck_card"],
+                    run={"floor": 1, "potions": []},
+                )
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=MissingOptionRouter(),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp), max_consecutive_errors=1),
+            )
+            runtime.run()
+
+        self.assertEqual(runtime.records[0].error["code"], "missing_option_index")
+        self.assertEqual(runtime.records[0].action_request["action"], "select_deck_card")
 
 
 if __name__ == "__main__":
