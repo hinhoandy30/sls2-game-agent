@@ -3,8 +3,20 @@
 - What changed in this PR?
 - Why is this change needed?
 
+## OpenSpec
+
+- Related change: `openspec/changes/<change-id>` or `N/A`
+- Contracts touched:
+  - [ ] Runtime
+  - [ ] Policy
+  - [ ] Knowledge
+  - [ ] Evaluation
+  - [ ] Mod/API
+  - [ ] None
+
 ## Validation
 
+- [ ] `openspec validate --all`
 - [ ] `dotnet build "STS2AIAgent/STS2AIAgent.csproj"`
 - [ ] `powershell -ExecutionPolicy Bypass -File "scripts/build-mod.ps1"`
 - [ ] `powershell -ExecutionPolicy Bypass -File "scripts/test-mod-load.ps1"`
