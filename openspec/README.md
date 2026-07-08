@@ -19,10 +19,13 @@ Use it as the team-facing source of truth for the dedicated STS2 agent runner.
   - Current contract for Runtime, Policy, Knowledge, Evaluation, and Mod/API
     collaboration.
 
-## Current Change
+## Current Changes
 
 - `changes/define-agent-collaboration-contracts/`
   - Initial change proposal that introduced the shared contracts.
+- `changes/define-mvp0-shared-contract-schemas/`
+  - MVP0 具体字段契约，覆盖 `GameClient`、`GameStateSnapshot`、`AgentAction`、
+    `PolicyDecision`、`KnowledgeContext`、`StepRecord`、fixtures 和 `RunSummary`。
 
 ## Workflow
 
