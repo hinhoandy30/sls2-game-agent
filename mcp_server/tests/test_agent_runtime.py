@@ -313,6 +313,24 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertIsNone(decision.action.card_index)
         self.assertEqual(decision.action.option_index, 5)
 
+    def test_llm_maps_option_action_target_index_to_option_index(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node"],
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy(
+            '{"type":"action","action":{"action":"choose_map_node","target_index":2},"reason":"take node 2"}'
+        ).decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.action.action, "choose_map_node")
+        self.assertIsNone(decision.action.target_index)
+        self.assertEqual(decision.action.option_index, 2)
+
     def test_runtime_validation_error_keeps_attempted_action_record(self) -> None:
         class MissingOptionPolicy:
             def decide(self, state: GameStateSnapshot, knowledge: Any) -> Any:

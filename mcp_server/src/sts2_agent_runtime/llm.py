@@ -202,3 +202,6 @@ def _normalize_llm_action(action: AgentAction) -> None:
     if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.card_index is not None:
         action.option_index = action.card_index
         action.card_index = None
+    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.target_index is not None:
+        action.option_index = action.target_index
+        action.target_index = None
