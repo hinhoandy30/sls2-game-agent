@@ -7,7 +7,7 @@ from urllib import request
 
 from .contracts import AgentAction, GameStateSnapshot, KnowledgeContext, PolicyDecision
 
-DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
+DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
 
 
 class OpenAICompatiblePolicy:
