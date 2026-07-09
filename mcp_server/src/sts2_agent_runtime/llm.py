@@ -7,7 +7,8 @@ import time
 from typing import Any
 from urllib import request
 
-from .contracts import AgentAction, GameStateSnapshot, KnowledgeContext, PolicyDecision
+from .action_spec import action_spec_prompt_options, parse_llm_action_payload
+from .contracts import GameStateSnapshot, KnowledgeContext, PolicyDecision
 from .policies import Policy, ScreenRouter
 
 DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
@@ -21,21 +22,6 @@ GAMEPLAY_LLM_SCREENS = {
     "SHOP",
     "REST",
     "MODAL",
-}
-OPTION_INDEX_ACTIONS = {
-    "choose_map_node",
-    "resolve_rewards",
-    "claim_reward",
-    "choose_reward_card",
-    "select_deck_card",
-    "choose_treasure_relic",
-    "choose_event_option",
-    "choose_capstone_option",
-    "choose_bundle",
-    "choose_rest_option",
-    "buy_card",
-    "buy_relic",
-    "buy_potion",
 }
 
 
@@ -71,6 +57,7 @@ class OpenAICompatiblePolicy:
             },
             "screen": state.screen,
             "available_actions": state.available_actions,
+            "available_action_options": action_spec_prompt_options(state),
             "state": _compact_state(state.state),
             "knowledge_refs": knowledge.refs,
         }
@@ -83,14 +70,7 @@ class OpenAICompatiblePolicy:
             return PolicyDecision(type=parsed.get("type", "needs_human"), reason=parsed.get("reason", "LLM non-action decision."))
         if action_payload is None:
             raise ValueError("LLM action decision did not include an action payload.")
-        action = AgentAction(
-            action=str(action_payload.get("action")),
-            card_index=action_payload.get("card_index"),
-            target_index=action_payload.get("target_index"),
-            option_index=action_payload.get("option_index"),
-            potion_index=action_payload.get("potion_index"),
-        )
-        _normalize_llm_action(action, state)
+        action = parse_llm_action_payload(action_payload, state)
         decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
         decision.metadata["llm"] = dict(getattr(self, "last_call_metadata", {}) or {})
         return decision
@@ -224,38 +204,3 @@ def _normalize_usage(raw_usage: Any) -> dict[str, int]:
     if isinstance(cached, dict) and isinstance(cached.get("cached_tokens"), int):
         usage["cached_tokens"] = cached["cached_tokens"]
     return usage
-
-
-def _normalize_llm_action(action: AgentAction, state: GameStateSnapshot) -> None:
-    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.card_index is not None:
-        action.option_index = action.card_index
-        action.card_index = None
-    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None and action.target_index is not None:
-        action.option_index = action.target_index
-        action.target_index = None
-    if action.action in OPTION_INDEX_ACTIONS and action.option_index is None:
-        action.option_index = _infer_option_index(action.action, state.state)
-
-
-def _infer_option_index(action_name: str, raw: dict[str, Any]) -> int | None:
-    candidates: list[dict[str, Any]] = []
-    if action_name == "choose_map_node":
-        candidates = (raw.get("map") or {}).get("available_nodes") or []
-    elif action_name == "choose_event_option":
-        candidates = (raw.get("event") or {}).get("options") or []
-    elif action_name == "select_deck_card":
-        candidates = (raw.get("selection") or {}).get("cards") or (raw.get("selection") or {}).get("options") or []
-    elif action_name in {"claim_reward", "choose_reward_card", "choose_treasure_relic"}:
-        candidates = (raw.get("reward") or {}).get("rewards") or (raw.get("reward") or {}).get("cards") or []
-    elif action_name in {"buy_card", "buy_relic", "buy_potion"}:
-        candidates = (raw.get("shop") or {}).get("items") or []
-    elif action_name in {"choose_rest_option", "choose_bundle", "choose_capstone_option"}:
-        candidates = (raw.get("selection") or {}).get("options") or (raw.get("event") or {}).get("options") or []
-
-    for candidate in candidates:
-        if candidate.get("is_locked", False):
-            continue
-        index = candidate.get("index")
-        if isinstance(index, int):
-            return index
-    return None

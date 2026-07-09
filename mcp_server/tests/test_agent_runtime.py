@@ -7,8 +7,9 @@ from pathlib import Path
 from typing import Any
 
 from sts2_agent_runtime.client import is_actionable_state
-from sts2_agent_runtime.cli import _load_env_file
+from sts2_agent_runtime.cli import _load_env_file, _port_from_base_url, enable_instant_mode
 from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, PolicyDecision
+from sts2_agent_runtime.action_spec import action_spec_prompt_options, parse_llm_action_payload
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
@@ -84,6 +85,15 @@ class DummyClient:
     def wait_until_actionable(self, timeout_seconds: float) -> dict[str, Any]:
         self.wait_calls += 1
         return self.get_state()
+
+
+class ConsoleClient:
+    def __init__(self) -> None:
+        self.commands: list[str] = []
+
+    def run_console_command(self, command: str) -> ActionResult:
+        self.commands.append(command)
+        return ActionResult(ok=True, action="run_console_command", status="completed", stable=True, message="ok")
 
 
 class RaisingPolicy:
@@ -373,6 +383,51 @@ class AgentRuntimeTests(unittest.TestCase):
 
         self.assertEqual(decision.action.action, "choose_map_node")
         self.assertEqual(decision.action.option_index, 7)
+
+    def test_action_spec_rejects_wrong_map_index_field_after_normalization_if_forbidden_remains(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node"],
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+
+        with self.assertRaises(ValueError):
+            parse_llm_action_payload(
+                {"action": "choose_map_node", "option_index": 0, "potion_index": 0},
+                snapshot,
+            )
+
+    def test_action_spec_renders_available_map_options(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node", "save_and_quit"],
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+        snapshot.state["map"] = {"available_nodes": [{"index": 3, "node_type": "Monster", "row": 2, "col": 1}]}
+
+        options = action_spec_prompt_options(snapshot)
+
+        self.assertEqual(options[0]["action"], "choose_map_node")
+        self.assertEqual(options[0]["required_params"], ["option_index"])
+        self.assertEqual(options[0]["options"][0]["option_index"], 3)
+
+    def test_enable_instant_mode_runs_console_command(self) -> None:
+        client = ConsoleClient()
+
+        result = enable_instant_mode(client, "instant")
+
+        self.assertEqual(client.commands, ["instant"])
+        self.assertEqual(result.action, "run_console_command")
+
+    def test_debug_session_port_comes_from_base_url(self) -> None:
+        self.assertEqual(_port_from_base_url("http://127.0.0.1:8080"), 8080)
+        self.assertEqual(_port_from_base_url("http://127.0.0.1"), 80)
 
     def test_runtime_validation_error_keeps_attempted_action_record(self) -> None:
         class MissingOptionPolicy:

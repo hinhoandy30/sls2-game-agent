@@ -6,6 +6,7 @@ import subprocess
 import time
 from contextlib import suppress
 from pathlib import Path
+from urllib.parse import urlparse
 
 from .contracts import AgentAction
 from .client import HttpGameClient
@@ -20,7 +21,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-steps", type=int, default=100)
     parser.add_argument("--wait-timeout", type=float, default=20.0)
     parser.add_argument("--launch-steam", action="store_true")
+    parser.add_argument("--launch-debug-session", action="store_true")
     parser.add_argument("--steam-url", default="steam://run/2868840")
+    parser.add_argument("--enable-instant", action="store_true")
+    parser.add_argument("--instant-command", default="instant")
     parser.add_argument("--resume", action="store_true", help="Connect to the current game state and continue from there.")
     parser.add_argument("--stop-after-first-combat", action="store_true")
     parser.add_argument("--stop-on-reward-after-combat", action="store_true")
@@ -33,12 +37,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     _load_env_files()
 
-    if args.launch_steam:
+    if args.launch_debug_session:
+        _launch_debug_session(args.base_url)
+    elif args.launch_steam:
         subprocess.run(["open", args.steam_url], check=False)
 
     client = HttpGameClient(base_url=args.base_url)
     if args.launch_steam:
         _wait_for_health(client, timeout_seconds=120)
+    if args.enable_instant:
+        enable_instant_mode(client, args.instant_command)
 
     if args.cleanup_only:
         if args.abandon_run:
@@ -80,6 +88,25 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
+def _launch_debug_session(base_url: str) -> None:
+    repo_root = Path(__file__).resolve().parents[3]
+    script = repo_root / "scripts" / "start-game-session.sh"
+    port = _port_from_base_url(base_url)
+    subprocess.run(
+        [str(script), "--enable-debug-actions", "--api-port", str(port)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
+def _port_from_base_url(base_url: str) -> int:
+    parsed = urlparse(base_url)
+    if parsed.port is not None:
+        return parsed.port
+    return 443 if parsed.scheme == "https" else 80
+
+
 def _wait_for_health(client: HttpGameClient, *, timeout_seconds: float) -> None:
     deadline = time.monotonic() + timeout_seconds
     last_error: Exception | None = None
@@ -91,6 +118,10 @@ def _wait_for_health(client: HttpGameClient, *, timeout_seconds: float) -> None:
             last_error = exc
             time.sleep(2)
     raise RuntimeError(f"Timed out waiting for STS2 health: {last_error}")
+
+
+def enable_instant_mode(client: HttpGameClient, command: str = "instant") -> ActionResult:
+    return client.run_console_command(command)
 
 
 def _load_env_files() -> None:

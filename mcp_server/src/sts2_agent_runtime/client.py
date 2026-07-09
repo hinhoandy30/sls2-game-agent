@@ -14,6 +14,7 @@ class GameClient(Protocol):
     def get_state(self) -> dict[str, Any]: ...
     def get_available_actions(self) -> list[dict[str, Any]]: ...
     def act(self, action: AgentAction) -> ActionResult: ...
+    def run_console_command(self, command: str) -> ActionResult: ...
     def wait_until_actionable(self, timeout_seconds: float) -> dict[str, Any]: ...
 
 
@@ -114,6 +115,19 @@ class HttpGameClient:
             timeout=self.action_timeout,
         )
         return ActionResult.from_payload(payload, action=action.action)
+
+    def run_console_command(self, command: str) -> ActionResult:
+        payload = self._request(
+            "POST",
+            "/action",
+            payload={
+                "action": "run_console_command",
+                "command": command,
+                "client_context": {"source": "agent-runtime", "tool_name": "run_console_command"},
+            },
+            timeout=self.action_timeout,
+        )
+        return ActionResult.from_payload(payload, action="run_console_command")
 
     def wait_until_actionable(self, timeout_seconds: float) -> dict[str, Any]:
         deadline = time.monotonic() + max(0.1, timeout_seconds)
