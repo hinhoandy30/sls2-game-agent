@@ -104,6 +104,7 @@ class PolicyDecision:
     reason: str = ""
     confidence: float | None = None
     used_knowledge: list[str] = field(default_factory=list)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
     def action_decision(
@@ -191,6 +192,7 @@ class StepRecord:
     action_request: dict[str, Any] | None
     action_result: dict[str, Any] | None
     error: dict[str, Any] | None = None
+    metrics: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)
@@ -207,6 +209,8 @@ class RunSummary:
     step_count: int
     error_count: int
     observed_at: str
+    duration_seconds: float | None = None
+    token_usage: dict[str, int] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)

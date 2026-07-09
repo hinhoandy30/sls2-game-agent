@@ -56,8 +56,11 @@ class AgentRuntime:
         self.router = router or ScreenRouter()
         self.health_payload: dict[str, Any] = {}
         self.records: list[StepRecord] = []
+        self.token_usage: dict[str, int] = {}
+        self.run_started_at: float | None = None
 
     def run(self) -> RunSummary:
+        self.run_started_at = time.perf_counter()
         self.health_payload = self.client.health()
         state = self._snapshot(self.client.get_state())
         run_dir = self._run_dir(state.run_id)
@@ -67,6 +70,7 @@ class AgentRuntime:
 
         for step_index in range(self.config.max_steps):
             decision: PolicyDecision | None = None
+            step_started_at = time.perf_counter()
             try:
                 state = self._ensure_actionable(state)
                 if state.screen == "GAME_OVER":
@@ -75,15 +79,16 @@ class AgentRuntime:
 
                 knowledge = self.knowledge.for_state(state)
                 decision = self.router.select(state).decide(state, knowledge)
+                self._accumulate_decision_usage(decision)
                 if decision.type in {"stop", "needs_human"}:
                     terminal_reason = decision.reason or decision.type
-                    record = self._record(step_index, state, knowledge.refs, decision, None, None)
+                    record = self._record(step_index, state, knowledge.refs, decision, None, None, step_started_at=step_started_at)
                     self._append_record(trajectory_path, record)
                     break
                 if decision.type == "wait":
                     waited = self.client.wait_until_actionable(self.config.wait_timeout_seconds)
                     state = self._snapshot(waited)
-                    record = self._record(step_index, state, knowledge.refs, decision, None, None)
+                    record = self._record(step_index, state, knowledge.refs, decision, None, None, step_started_at=step_started_at)
                     self._append_record(trajectory_path, record)
                     continue
                 if decision.action is None:
@@ -96,7 +101,7 @@ class AgentRuntime:
                     next_state_payload = self.client.wait_until_actionable(self.config.wait_timeout_seconds)
                 next_state = self._snapshot(next_state_payload)
 
-                record = self._record(step_index, state, knowledge.refs, decision, decision.action, result)
+                record = self._record(step_index, state, knowledge.refs, decision, decision.action, result, step_started_at=step_started_at)
                 self._append_record(trajectory_path, record)
                 state = next_state
 
@@ -122,6 +127,7 @@ class AgentRuntime:
                     decision or PolicyDecision.stop("runtime error"),
                     decision.action if decision is not None else None,
                     None,
+                    step_started_at=step_started_at,
                     error=error,
                 )
                 self._append_record(trajectory_path, record)
@@ -130,7 +136,8 @@ class AgentRuntime:
                     break
                 time.sleep(0.5)
 
-        summary = self._summary(state, terminal_reason, len(self.records), error_count)
+        duration_seconds = round(time.perf_counter() - self.run_started_at, 6) if self.run_started_at is not None else None
+        summary = self._summary(state, terminal_reason, len(self.records), error_count, duration_seconds=duration_seconds)
         self._write_summary(run_dir, summary)
         return summary
 
@@ -199,8 +206,10 @@ class AgentRuntime:
         action: AgentAction | None,
         result: ActionResult | None,
         *,
+        step_started_at: float | None = None,
         error: dict[str, Any] | None = None,
     ) -> StepRecord:
+        metrics = _step_metrics(step_started_at, decision)
         record = StepRecord(
             schema_version=SCHEMA_VERSION,
             run_id=state.run_id,
@@ -213,6 +222,7 @@ class AgentRuntime:
             action_request=action.to_request() if action is not None else None,
             action_result=result.to_dict() if result is not None else None,
             error=error,
+            metrics=metrics,
         )
         self.records.append(record)
         return record
@@ -222,7 +232,15 @@ class AgentRuntime:
         with path.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(record.to_dict(), ensure_ascii=False, separators=(",", ":")) + "\n")
 
-    def _summary(self, state: GameStateSnapshot, reason: str, step_count: int, error_count: int) -> RunSummary:
+    def _summary(
+        self,
+        state: GameStateSnapshot,
+        reason: str,
+        step_count: int,
+        error_count: int,
+        *,
+        duration_seconds: float | None,
+    ) -> RunSummary:
         run = state.state.get("run") if isinstance(state.state.get("run"), dict) else {}
         return RunSummary(
             schema_version=SCHEMA_VERSION,
@@ -234,6 +252,8 @@ class AgentRuntime:
             step_count=step_count,
             error_count=error_count,
             observed_at=utc_now_iso(),
+            duration_seconds=duration_seconds,
+            token_usage=dict(self.token_usage),
         )
 
     def _write_summary(self, run_dir: Path, summary: RunSummary) -> None:
@@ -244,6 +264,17 @@ class AgentRuntime:
         timestamp = utc_now_iso().replace(":", "").replace("-", "").split(".")[0].replace("Z", "")
         safe_run_id = "".join(ch if ch.isalnum() or ch in {"_", "-"} else "_" for ch in run_id)
         return self.config.output_dir / f"{timestamp}_{safe_run_id}"
+
+    def _accumulate_decision_usage(self, decision: PolicyDecision) -> None:
+        llm = decision.metadata.get("llm") if isinstance(decision.metadata, dict) else None
+        if not isinstance(llm, dict):
+            return
+        usage = llm.get("usage")
+        if not isinstance(usage, dict):
+            return
+        for key, value in usage.items():
+            if isinstance(value, int):
+                self.token_usage[key] = self.token_usage.get(key, 0) + value
 
 
 _OPTION_ACTIONS = {
@@ -274,3 +305,13 @@ def _state_summary(raw: dict[str, Any]) -> dict[str, Any]:
         "available_actions": action_names(raw),
         "enemy_ids": [enemy.get("enemy_id") for enemy in (combat.get("enemies") or []) if enemy.get("enemy_id")],
     }
+
+
+def _step_metrics(step_started_at: float | None, decision: PolicyDecision) -> dict[str, Any]:
+    metrics: dict[str, Any] = {}
+    if step_started_at is not None:
+        metrics["step_duration_seconds"] = round(time.perf_counter() - step_started_at, 6)
+    llm = decision.metadata.get("llm") if isinstance(decision.metadata, dict) else None
+    if isinstance(llm, dict) and llm:
+        metrics["llm"] = llm
+    return metrics

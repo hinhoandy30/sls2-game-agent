@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 from typing import Any
 from urllib import request
 
@@ -43,6 +44,7 @@ class OpenAICompatiblePolicy:
         self.model = model or os.getenv("OPENAI_MODEL") or DEFAULT_OPENAI_MODEL
         self.api_base = (api_base or os.getenv("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.last_call_metadata: dict[str, Any] = {}
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required for OpenAICompatiblePolicy.")
 
@@ -89,9 +91,12 @@ class OpenAICompatiblePolicy:
             potion_index=action_payload.get("potion_index"),
         )
         _normalize_llm_action(action, state)
-        return PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
+        decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
+        decision.metadata["llm"] = dict(getattr(self, "last_call_metadata", {}) or {})
+        return decision
 
     def _chat(self, prompt: dict[str, Any]) -> str:
+        started_at = time.perf_counter()
         payload = {
             "model": self.model,
             "messages": [
@@ -111,6 +116,12 @@ class OpenAICompatiblePolicy:
         )
         with request.urlopen(req, timeout=60) as resp:
             data = json.loads(resp.read().decode("utf-8"))
+        self.last_call_metadata = {
+            "provider": "openai-compatible",
+            "model": str(data.get("model") or self.model),
+            "duration_seconds": round(time.perf_counter() - started_at, 6),
+            "usage": _normalize_usage(data.get("usage")),
+        }
         return str(data["choices"][0]["message"]["content"])
 
 
@@ -196,6 +207,23 @@ def _extract_action_payload(parsed: dict[str, Any]) -> dict[str, Any] | None:
 def _has_useful_action(actions: list[str]) -> bool:
     passive = {"save_and_quit", "discard_potion"}
     return any(action not in passive for action in actions)
+
+
+def _normalize_usage(raw_usage: Any) -> dict[str, int]:
+    if not isinstance(raw_usage, dict):
+        return {}
+    usage: dict[str, int] = {}
+    for key in ("prompt_tokens", "completion_tokens", "total_tokens"):
+        value = raw_usage.get(key)
+        if isinstance(value, int):
+            usage[key] = value
+    details = raw_usage.get("completion_tokens_details")
+    if isinstance(details, dict) and isinstance(details.get("reasoning_tokens"), int):
+        usage["reasoning_tokens"] = details["reasoning_tokens"]
+    cached = raw_usage.get("prompt_tokens_details")
+    if isinstance(cached, dict) and isinstance(cached.get("cached_tokens"), int):
+        usage["cached_tokens"] = cached["cached_tokens"]
+    return usage
 
 
 def _normalize_llm_action(action: AgentAction, state: GameStateSnapshot) -> None:

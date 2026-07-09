@@ -96,11 +96,35 @@ class StaticRouter:
         return RaisingPolicy()
 
 
+class SinglePolicyRouter:
+    def __init__(self, policy: Any) -> None:
+        self.policy = policy
+
+    def select(self, state: GameStateSnapshot) -> Any:
+        return self.policy
+
+
 class FakeLLMPolicy(OpenAICompatiblePolicy):
     def __init__(self, response: str) -> None:
         self.response = response
 
     def _chat(self, prompt: dict[str, Any]) -> str:
+        return self.response
+
+
+class MeteredFakeLLMPolicy(FakeLLMPolicy):
+    def _chat(self, prompt: dict[str, Any]) -> str:
+        self.last_call_metadata = {
+            "provider": "test",
+            "model": "fake-model",
+            "duration_seconds": 0.25,
+            "usage": {
+                "prompt_tokens": 10,
+                "completion_tokens": 4,
+                "total_tokens": 14,
+                "reasoning_tokens": 2,
+            },
+        }
         return self.response
 
 
@@ -378,6 +402,30 @@ class AgentRuntimeTests(unittest.TestCase):
 
         self.assertEqual(runtime.records[0].error["code"], "missing_option_index")
         self.assertEqual(runtime.records[0].action_request["action"], "select_deck_card")
+
+    def test_runtime_records_duration_and_token_usage(self) -> None:
+        client = DummyClient(
+            [
+                combat_payload(
+                    actions=["end_turn"],
+                    hand=[],
+                )
+            ]
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(MeteredFakeLLMPolicy('{"action":"end_turn","reason":"done"}')),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp)),
+            )
+            summary = runtime.run()
+
+        self.assertGreaterEqual(summary.duration_seconds, 0)
+        self.assertEqual(summary.token_usage["prompt_tokens"], 10)
+        self.assertEqual(summary.token_usage["completion_tokens"], 4)
+        self.assertEqual(summary.token_usage["total_tokens"], 14)
+        self.assertEqual(runtime.records[0].metrics["llm"]["model"], "fake-model")
+        self.assertIn("step_duration_seconds", runtime.records[0].metrics)
 
 
 if __name__ == "__main__":
