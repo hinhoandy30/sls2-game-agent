@@ -101,6 +101,7 @@ class AgentAction:
 class PolicyDecision:
     type: DecisionType
     action: AgentAction | None = None
+    action_plan: list[AgentAction] = field(default_factory=list)
     reason: str = ""
     confidence: float | None = None
     used_knowledge: list[str] = field(default_factory=list)
@@ -116,6 +117,26 @@ class PolicyDecision:
         used_knowledge: list[str] | None = None,
     ) -> "PolicyDecision":
         return cls("action", action=action, reason=reason, confidence=confidence, used_knowledge=used_knowledge or [])
+
+    @classmethod
+    def action_plan_decision(
+        cls,
+        actions: list[AgentAction],
+        *,
+        reason: str,
+        confidence: float | None = None,
+        used_knowledge: list[str] | None = None,
+        metadata: dict[str, Any] | None = None,
+    ) -> "PolicyDecision":
+        return cls(
+            "action",
+            action=actions[0] if actions else None,
+            action_plan=actions,
+            reason=reason,
+            confidence=confidence,
+            used_knowledge=used_knowledge or [],
+            metadata=metadata or {},
+        )
 
     @classmethod
     def wait(cls, reason: str) -> "PolicyDecision":

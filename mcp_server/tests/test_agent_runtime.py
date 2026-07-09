@@ -9,7 +9,7 @@ from typing import Any
 from sts2_agent_runtime.client import is_actionable_state
 from sts2_agent_runtime.cli import _load_env_file, _port_from_base_url, enable_instant_mode
 from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, PolicyDecision
-from sts2_agent_runtime.action_spec import action_spec_prompt_options, parse_llm_action_payload
+from sts2_agent_runtime.action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
@@ -115,10 +115,16 @@ class SinglePolicyRouter:
 
 
 class FakeLLMPolicy(OpenAICompatiblePolicy):
-    def __init__(self, response: str) -> None:
+    def __init__(self, response: str | list[str], *, enable_action_plan: bool = False, max_plan_actions: int = 5) -> None:
         self.response = response
+        self.enable_action_plan = enable_action_plan
+        self.max_plan_actions = max_plan_actions
+        self.max_retries = 2
+        self.last_call_metadata = {}
 
     def _chat(self, prompt: dict[str, Any]) -> str:
+        if isinstance(self.response, list):
+            return self.response.pop(0)
         return self.response
 
 
@@ -329,6 +335,21 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(decision.type, "action")
         self.assertEqual(decision.action.action, "end_turn")
 
+    def test_llm_repairs_malformed_json_response(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(actions=["end_turn"], hand=[]),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy(['{"type": action', '{"action":"end_turn","reason":"repaired"}']).decide(
+            snapshot,
+            knowledge=type("K", (), {"refs": []})(),
+        )
+
+        self.assertEqual(decision.type, "action")
+        self.assertEqual(decision.action.action, "end_turn")
+        self.assertEqual(decision.reason, "repaired")
+
     def test_llm_maps_option_action_card_index_to_option_index(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             state_payload(
@@ -417,6 +438,48 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(options[0]["required_params"], ["option_index"])
         self.assertEqual(options[0]["options"][0]["option_index"], 3)
 
+    def test_action_plan_payload_validates_and_normalizes_actions(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node"],
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+
+        actions, stop_conditions = parse_llm_action_plan_payload(
+            {
+                "actions": [{"action": "choose_map_node", "target_index": 2}],
+                "stop_conditions": ["screen_changes"],
+            },
+            snapshot,
+        )
+
+        self.assertEqual(actions[0].action, "choose_map_node")
+        self.assertIsNone(actions[0].target_index)
+        self.assertEqual(actions[0].option_index, 2)
+        self.assertEqual(stop_conditions, ["screen_changes"])
+
+    def test_llm_action_plan_decision_for_combat(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy(
+            '{"type":"action","action_plan":{"actions":[{"action":"play_card","card_index":0,"target_index":0},{"action":"end_turn"}],"stop_conditions":["screen_changes"]},"reason":"attack then pass"}',
+            enable_action_plan=True,
+        ).decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.type, "action")
+        self.assertEqual(len(decision.action_plan), 2)
+        self.assertEqual(decision.action_plan[0].action, "play_card")
+        self.assertEqual(decision.action.action, "play_card")
+
     def test_enable_instant_mode_runs_console_command(self) -> None:
         client = ConsoleClient()
 
@@ -481,6 +544,67 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(summary.token_usage["total_tokens"], 14)
         self.assertEqual(runtime.records[0].metrics["llm"]["model"], "fake-model")
         self.assertIn("step_duration_seconds", runtime.records[0].metrics)
+
+    def test_runtime_executes_combat_action_plan_sequentially(self) -> None:
+        first = combat_payload(
+            actions=["play_card", "end_turn"],
+            hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+        )
+        second = combat_payload(actions=["end_turn"], hand=[])
+        third = combat_payload(actions=["play_card", "end_turn"], hand=[])
+
+        class PlanPolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> PolicyDecision:
+                return PolicyDecision.action_plan_decision(
+                    [
+                        AgentAction("play_card", card_index=0, target_index=0),
+                        AgentAction("end_turn"),
+                    ],
+                    reason="play a short combat plan",
+                )
+
+        client = DummyClient([first, second, third])
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(PlanPolicy()),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp), wait_timeout_seconds=1.0),
+            )
+            runtime.run()
+
+        self.assertEqual([action.action for action in client.actions], ["play_card", "end_turn"])
+        self.assertEqual(len(runtime.records[0].action_request["action_plan"]), 2)
+        self.assertEqual(len(runtime.records[0].action_result["action_results"]), 2)
+
+    def test_runtime_stops_action_plan_when_next_action_is_stale(self) -> None:
+        first = combat_payload(
+            actions=["play_card", "end_turn"],
+            hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+        )
+        second = combat_payload(actions=["end_turn"], hand=[])
+
+        class StalePlanPolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> PolicyDecision:
+                return PolicyDecision.action_plan_decision(
+                    [
+                        AgentAction("play_card", card_index=0, target_index=0),
+                        AgentAction("play_card", card_index=1, target_index=0),
+                    ],
+                    reason="second action becomes stale",
+                )
+
+        client = DummyClient([first, second])
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(StalePlanPolicy()),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp), wait_timeout_seconds=1.0),
+            )
+            summary = runtime.run()
+
+        self.assertEqual([action.action for action in client.actions], ["play_card"])
+        self.assertEqual(summary.error_count, 0)
+        self.assertEqual(runtime.records[0].decision["metadata"]["plan_stop_reason"], "validation_stopped:unavailable_action")
 
 
 if __name__ == "__main__":

@@ -112,6 +112,16 @@ class ActionModel(BaseModel):
         )
 
 
+class ActionPlanModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    actions: list[ActionModel] = Field(min_length=1, max_length=8)
+    stop_conditions: list[str] = Field(default_factory=list)
+
+    def to_agent_actions(self) -> list[AgentAction]:
+        return [action.to_agent_action() for action in self.actions]
+
+
 def action_spec_prompt_options(state: GameStateSnapshot) -> list[dict[str, Any]]:
     return [
         {
@@ -131,6 +141,24 @@ def parse_llm_action_payload(action_payload: dict[str, Any], state: GameStateSna
         return ActionModel.model_validate(normalized).to_agent_action()
     except PydanticValidationError as exc:
         raise ValueError(f"Invalid action payload for ActionSpec: {exc}") from exc
+
+
+def parse_llm_action_plan_payload(plan_payload: dict[str, Any], state: GameStateSnapshot) -> tuple[list[AgentAction], list[str]]:
+    raw_actions = plan_payload.get("actions")
+    if not isinstance(raw_actions, list):
+        raise ValueError("Action plan must include an actions list.")
+
+    normalized_actions = [_normalize_payload(dict(action), state) for action in raw_actions if isinstance(action, dict)]
+    try:
+        model = ActionPlanModel.model_validate(
+            {
+                "actions": normalized_actions,
+                "stop_conditions": plan_payload.get("stop_conditions") or [],
+            }
+        )
+    except PydanticValidationError as exc:
+        raise ValueError(f"Invalid action plan payload for ActionSpec: {exc}") from exc
+    return model.to_agent_actions(), model.stop_conditions
 
 
 def _normalize_payload(payload: dict[str, Any], state: GameStateSnapshot) -> dict[str, Any]:

@@ -91,6 +91,32 @@ class AgentRuntime:
                     record = self._record(step_index, state, knowledge.refs, decision, None, None, step_started_at=step_started_at)
                     self._append_record(trajectory_path, record)
                     continue
+                if decision.action_plan:
+                    next_state, executed_actions, results, plan_stop_reason = self._execute_action_plan(state, decision.action_plan)
+                    if plan_stop_reason:
+                        decision.metadata["plan_stop_reason"] = plan_stop_reason
+                    record = self._record(
+                        step_index,
+                        state,
+                        knowledge.refs,
+                        decision,
+                        executed_actions,
+                        results,
+                        step_started_at=step_started_at,
+                    )
+                    self._append_record(trajectory_path, record)
+                    state = next_state
+
+                    if self.config.stop_on_reward_after_combat and state.screen == "REWARD":
+                        terminal_reason = "reached_reward_after_combat"
+                        break
+                    if self.config.stop_after_first_combat and state.screen == "COMBAT":
+                        terminal_reason = "entered_combat"
+                        break
+
+                    error_count = 0
+                    continue
+
                 if decision.action is None:
                     raise ValidationError("missing_action", "Action decision did not include AgentAction.")
 
@@ -125,7 +151,7 @@ class AgentRuntime:
                     state,
                     [],
                     decision or PolicyDecision.stop("runtime error"),
-                    decision.action if decision is not None else None,
+                    _decision_actions(decision) if decision is not None else None,
                     None,
                     step_started_at=step_started_at,
                     error=error,
@@ -189,6 +215,45 @@ class AgentRuntime:
         if selected.get("requires_target") and action.target_index not in valid_targets:
             raise ValidationError("invalid_potion_target", "target_index is not valid for selected potion.", details={"target_index": action.target_index, "valid_target_indices": valid_targets})
 
+    def _execute_action_plan(
+        self,
+        state: GameStateSnapshot,
+        actions: list[AgentAction],
+    ) -> tuple[GameStateSnapshot, list[AgentAction], list[ActionResult], str | None]:
+        current_state = state
+        initial_screen = state.screen
+        executed_actions: list[AgentAction] = []
+        results: list[ActionResult] = []
+        stop_reason: str | None = None
+
+        for action_index, action in enumerate(actions):
+            try:
+                self.validate_action(current_state, action)
+            except ValidationError as exc:
+                if action_index == 0:
+                    raise
+                stop_reason = f"validation_stopped:{exc.code}"
+                break
+
+            result = self.client.act(action)
+            next_state_payload = result.state if result.state is not None else self.client.get_state()
+            if not is_actionable_state(next_state_payload):
+                next_state_payload = self.client.wait_until_actionable(self.config.wait_timeout_seconds)
+            current_state = self._snapshot(next_state_payload)
+            executed_actions.append(action)
+            results.append(result)
+
+            if current_state.screen != initial_screen:
+                stop_reason = f"screen_changed:{current_state.screen}"
+                break
+            if current_state.screen != "COMBAT":
+                stop_reason = f"non_combat_screen:{current_state.screen}"
+                break
+
+        if not executed_actions:
+            raise ValidationError("empty_action_plan", "Action plan did not execute any actions.")
+        return current_state, executed_actions, results, stop_reason
+
     def _ensure_actionable(self, state: GameStateSnapshot) -> GameStateSnapshot:
         if is_actionable_state(state.state):
             return state
@@ -203,8 +268,8 @@ class AgentRuntime:
         state: GameStateSnapshot,
         knowledge_refs: list[str],
         decision: PolicyDecision,
-        action: AgentAction | None,
-        result: ActionResult | None,
+        action: AgentAction | list[AgentAction] | None,
+        result: ActionResult | list[ActionResult] | None,
         *,
         step_started_at: float | None = None,
         error: dict[str, Any] | None = None,
@@ -219,8 +284,8 @@ class AgentRuntime:
             state_summary=_state_summary(state.state),
             knowledge_refs=knowledge_refs,
             decision=decision.to_dict(),
-            action_request=action.to_request() if action is not None else None,
-            action_result=result.to_dict() if result is not None else None,
+            action_request=_action_request_payload(action),
+            action_result=_action_result_payload(result),
             error=error,
             metrics=metrics,
         )
@@ -315,3 +380,25 @@ def _step_metrics(step_started_at: float | None, decision: PolicyDecision) -> di
     if isinstance(llm, dict) and llm:
         metrics["llm"] = llm
     return metrics
+
+
+def _decision_actions(decision: PolicyDecision) -> AgentAction | list[AgentAction] | None:
+    if decision.action_plan:
+        return decision.action_plan
+    return decision.action
+
+
+def _action_request_payload(action: AgentAction | list[AgentAction] | None) -> dict[str, Any] | None:
+    if action is None:
+        return None
+    if isinstance(action, list):
+        return {"action_plan": [item.to_request() for item in action]}
+    return action.to_request()
+
+
+def _action_result_payload(result: ActionResult | list[ActionResult] | None) -> dict[str, Any] | None:
+    if result is None:
+        return None
+    if isinstance(result, list):
+        return {"action_results": [item.to_dict() for item in result]}
+    return result.to_dict()

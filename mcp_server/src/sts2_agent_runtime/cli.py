@@ -31,6 +31,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--policy", choices=["heuristic", "llm"], default="heuristic")
     parser.add_argument("--llm-model", default=None)
     parser.add_argument("--llm-screens", choices=["gameplay", "all"], default="gameplay")
+    parser.add_argument("--llm-action-plan", action="store_true", help="Allow the LLM to return a short combat action plan.")
+    parser.add_argument("--max-plan-actions", type=int, default=5, help="Maximum actions to execute from one LLM combat plan.")
     parser.add_argument("--cleanup-only", action="store_true")
     parser.add_argument("--abandon-run", action="store_true")
     parser.add_argument("--shutdown-game", action="store_true")
@@ -64,7 +66,11 @@ def main(argv: list[str] | None = None) -> int:
             "GAME_OVER",
         }
         router = LLMScreenRouter(
-            llm_policy=OpenAICompatiblePolicy(model=args.llm_model),
+            llm_policy=OpenAICompatiblePolicy(
+                model=args.llm_model,
+                enable_action_plan=args.llm_action_plan,
+                max_plan_actions=args.max_plan_actions,
+            ),
             llm_screens=screens,
         )
 

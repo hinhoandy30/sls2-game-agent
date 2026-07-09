@@ -5,9 +5,9 @@ import os
 import re
 import time
 from typing import Any
-from urllib import request
+from urllib import error as urlerror, request
 
-from .action_spec import action_spec_prompt_options, parse_llm_action_payload
+from .action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
 from .contracts import GameStateSnapshot, KnowledgeContext, PolicyDecision
 from .policies import Policy, ScreenRouter
 
@@ -26,10 +26,24 @@ GAMEPLAY_LLM_SCREENS = {
 
 
 class OpenAICompatiblePolicy:
-    def __init__(self, *, model: str | None = None, api_base: str | None = None, api_key: str | None = None) -> None:
+    def __init__(
+        self,
+        *,
+        model: str | None = None,
+        api_base: str | None = None,
+        api_key: str | None = None,
+        enable_action_plan: bool = False,
+        max_plan_actions: int = 5,
+        max_retries: int = 2,
+        request_timeout_seconds: float = 60.0,
+    ) -> None:
         self.model = model or os.getenv("OPENAI_MODEL") or DEFAULT_OPENAI_MODEL
         self.api_base = (api_base or os.getenv("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.enable_action_plan = enable_action_plan
+        self.max_plan_actions = max(1, min(max_plan_actions, 8))
+        self.max_retries = max(0, max_retries)
+        self.request_timeout_seconds = request_timeout_seconds
         self.last_call_metadata: dict[str, Any] = {}
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required for OpenAICompatiblePolicy.")
@@ -55,6 +69,37 @@ class OpenAICompatiblePolicy:
                 "reason": "short reason",
                 "confidence": "number 0..1",
             },
+            "planning_mode": "action_plan" if self.enable_action_plan and state.screen == "COMBAT" else "single_action",
+            "action_plan_rules": (
+                {
+                    "enabled": True,
+                    "max_actions": self.max_plan_actions,
+                    "use_only_on_screen": "COMBAT",
+                    "schema": {
+                        "type": "action",
+                        "action_plan": {
+                            "actions": [
+                                {
+                                    "action": "string from available_actions",
+                                    "card_index": "integer|null",
+                                    "target_index": "integer|null",
+                                    "option_index": "integer|null",
+                                    "potion_index": "integer|null",
+                                }
+                            ],
+                            "stop_conditions": ["screen_changes", "card_index_not_available", "new_selection_or_reward_opens"],
+                        },
+                        "reason": "short reason",
+                        "confidence": "number 0..1",
+                    },
+                    "important": (
+                        "When planning multiple combat actions, remember card indices can become stale after each played card. "
+                        "Only include later actions that are likely to remain legal; the runtime will validate after every action."
+                    ),
+                }
+                if self.enable_action_plan and state.screen == "COMBAT"
+                else {"enabled": False}
+            ),
             "screen": state.screen,
             "available_actions": state.available_actions,
             "available_action_options": action_spec_prompt_options(state),
@@ -62,7 +107,20 @@ class OpenAICompatiblePolicy:
             "knowledge_refs": knowledge.refs,
         }
         response = self._chat(prompt)
-        parsed = _parse_json_object(response)
+        llm_metadata = dict(getattr(self, "last_call_metadata", {}) or {})
+        parsed = self._parse_or_repair_json(response, prompt, llm_metadata)
+        plan_payload = _extract_action_plan_payload(parsed)
+        if self.enable_action_plan and state.screen == "COMBAT" and plan_payload is not None:
+            actions, stop_conditions = parse_llm_action_plan_payload(plan_payload, state)
+            actions = actions[: self.max_plan_actions]
+            decision = PolicyDecision.action_plan_decision(
+                actions,
+                reason=str(parsed.get("reason") or "LLM action plan."),
+                confidence=parsed.get("confidence"),
+                metadata={"stop_conditions": stop_conditions},
+            )
+            decision.metadata["llm"] = llm_metadata
+            return decision
         action_payload = _extract_action_payload(parsed)
         if parsed.get("type") != "action" and action_payload is None:
             if _has_useful_action(state.available_actions):
@@ -72,8 +130,28 @@ class OpenAICompatiblePolicy:
             raise ValueError("LLM action decision did not include an action payload.")
         action = parse_llm_action_payload(action_payload, state)
         decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
-        decision.metadata["llm"] = dict(getattr(self, "last_call_metadata", {}) or {})
+        decision.metadata["llm"] = llm_metadata
         return decision
+
+    def _parse_or_repair_json(self, response: str, original_prompt: dict[str, Any], aggregate_metadata: dict[str, Any]) -> dict[str, Any]:
+        last_error: Exception | None = None
+        current_response = response
+        for attempt in range(self.max_retries + 1):
+            try:
+                return _parse_json_object(current_response)
+            except (json.JSONDecodeError, ValueError) as exc:
+                last_error = exc
+                if attempt >= self.max_retries:
+                    raise
+                repair_prompt = {
+                    "instruction": "Repair the previous response into exactly one valid JSON object. Output JSON only.",
+                    "original_decision_prompt": original_prompt,
+                    "invalid_response": current_response[:12000],
+                    "parse_error": str(exc),
+                }
+                current_response = self._chat(repair_prompt)
+                _merge_llm_metadata(aggregate_metadata, getattr(self, "last_call_metadata", {}) or {})
+        raise last_error or ValueError("Unable to parse LLM JSON response.")
 
     def _chat(self, prompt: dict[str, Any]) -> str:
         started_at = time.perf_counter()
@@ -94,8 +172,20 @@ class OpenAICompatiblePolicy:
             },
             method="POST",
         )
-        with request.urlopen(req, timeout=60) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
+        last_error: Exception | None = None
+        for attempt in range(self.max_retries + 1):
+            try:
+                with request.urlopen(req, timeout=self.request_timeout_seconds) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                break
+            except (TimeoutError, urlerror.URLError) as exc:
+                last_error = exc
+                if attempt >= self.max_retries:
+                    raise
+                time.sleep(0.5 * (attempt + 1))
+        else:
+            raise last_error or RuntimeError("LLM request failed.")
+
         self.last_call_metadata = {
             "provider": "openai-compatible",
             "model": str(data.get("model") or self.model),
@@ -184,6 +274,19 @@ def _extract_action_payload(parsed: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
+def _extract_action_plan_payload(parsed: dict[str, Any]) -> dict[str, Any] | None:
+    action_plan = parsed.get("action_plan")
+    if isinstance(action_plan, dict) and isinstance(action_plan.get("actions"), list):
+        return action_plan
+    actions = parsed.get("actions")
+    if isinstance(actions, list):
+        return {
+            "actions": actions,
+            "stop_conditions": parsed.get("stop_conditions") or [],
+        }
+    return None
+
+
 def _has_useful_action(actions: list[str]) -> bool:
     passive = {"save_and_quit", "discard_potion"}
     return any(action not in passive for action in actions)
@@ -204,3 +307,21 @@ def _normalize_usage(raw_usage: Any) -> dict[str, int]:
     if isinstance(cached, dict) and isinstance(cached.get("cached_tokens"), int):
         usage["cached_tokens"] = cached["cached_tokens"]
     return usage
+
+
+def _merge_llm_metadata(base: dict[str, Any], extra: dict[str, Any]) -> None:
+    if not extra:
+        return
+    if extra.get("model"):
+        base["model"] = extra["model"]
+    if extra.get("provider"):
+        base["provider"] = extra["provider"]
+    if isinstance(extra.get("duration_seconds"), (int, float)):
+        base["duration_seconds"] = round(float(base.get("duration_seconds") or 0) + float(extra["duration_seconds"]), 6)
+
+    base_usage = base.setdefault("usage", {})
+    extra_usage = extra.get("usage")
+    if isinstance(base_usage, dict) and isinstance(extra_usage, dict):
+        for key, value in extra_usage.items():
+            if isinstance(value, int):
+                base_usage[key] = int(base_usage.get(key, 0)) + value
