@@ -6,6 +6,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError as PydanticValidationError, model_validator
 
 from .contracts import AgentAction, GameStateSnapshot
+from .legal_actions import action_from_legal_action_id
 
 IndexParam = Literal["card_index", "target_index", "option_index", "potion_index"]
 
@@ -148,17 +149,21 @@ def parse_llm_action_plan_payload(plan_payload: dict[str, Any], state: GameState
     if not isinstance(raw_actions, list):
         raise ValueError("Action plan must include an actions list.")
 
-    normalized_actions = [_normalize_payload(dict(action), state) for action in raw_actions if isinstance(action, dict)]
-    try:
-        model = ActionPlanModel.model_validate(
-            {
-                "actions": normalized_actions,
-                "stop_conditions": plan_payload.get("stop_conditions") or [],
-            }
-        )
-    except PydanticValidationError as exc:
-        raise ValueError(f"Invalid action plan payload for ActionSpec: {exc}") from exc
-    return model.to_agent_actions(), model.stop_conditions
+    actions: list[AgentAction] = []
+    for action in raw_actions:
+        if not isinstance(action, dict):
+            continue
+        legal_action_id = action.get("legal_action_id")
+        if isinstance(legal_action_id, str) and legal_action_id:
+            actions.append(action_from_legal_action_id(legal_action_id, state))
+        else:
+            try:
+                actions.append(ActionModel.model_validate(_normalize_payload(dict(action), state)).to_agent_action())
+            except PydanticValidationError as exc:
+                raise ValueError(f"Invalid action plan payload for ActionSpec: {exc}") from exc
+    if not actions:
+        raise ValueError("Action plan must include at least one action.")
+    return actions, plan_payload.get("stop_conditions") or []
 
 
 def _normalize_payload(payload: dict[str, Any], state: GameStateSnapshot) -> dict[str, Any]:

@@ -9,6 +9,7 @@ from urllib import error as urlerror, request
 
 from .action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
 from .contracts import GameStateSnapshot, KnowledgeContext, PolicyDecision
+from .legal_actions import action_from_legal_action_id, build_legal_actions
 from .policies import Policy, ScreenRouter
 
 DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
@@ -49,16 +50,17 @@ class OpenAICompatiblePolicy:
             raise RuntimeError("OPENAI_API_KEY is required for OpenAICompatiblePolicy.")
 
     def decide(self, state: GameStateSnapshot, knowledge: KnowledgeContext) -> PolicyDecision:
+        legal_actions = build_legal_actions(state)
         prompt = {
             "instruction": (
                 "Return exactly one legal PolicyDecision JSON object. Do not call tools. "
                 "If any useful available action exists, type must be action. Never return needs_human, stop, or wait during combat. "
-                "Choose only from available_actions and only use indices present in state. "
-                "For play_card, use combat.hand[].index and obey requires_target/valid_target_indices. "
-                "For option actions, set option_index. For potion actions, set potion_index."
+                "Prefer selecting one id from legal_actions and return it as legal_action_id. "
+                "Do not invent card_index, potion_index, option_index, or target_index when a legal_action_id is available."
             ),
             "response_schema": {
                 "type": "action|wait|stop|needs_human",
+                "legal_action_id": "string id from legal_actions|null",
                 "action": {
                     "action": "string from available_actions",
                     "card_index": "integer|null",
@@ -80,6 +82,7 @@ class OpenAICompatiblePolicy:
                         "action_plan": {
                             "actions": [
                                 {
+                                    "legal_action_id": "string id from legal_actions|null",
                                     "action": "string from available_actions",
                                     "card_index": "integer|null",
                                     "target_index": "integer|null",
@@ -102,6 +105,7 @@ class OpenAICompatiblePolicy:
             ),
             "screen": state.screen,
             "available_actions": state.available_actions,
+            "legal_actions": legal_actions,
             "available_action_options": action_spec_prompt_options(state),
             "state": _compact_state(state.state),
             "knowledge_refs": knowledge.refs,
@@ -121,6 +125,13 @@ class OpenAICompatiblePolicy:
             )
             decision.metadata["llm"] = llm_metadata
             return decision
+        legal_action_id = parsed.get("legal_action_id")
+        if isinstance(legal_action_id, str) and legal_action_id:
+            action = action_from_legal_action_id(legal_action_id, state)
+            decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM legal action decision."), confidence=parsed.get("confidence"))
+            decision.metadata["llm"] = llm_metadata
+            return decision
+
         action_payload = _extract_action_payload(parsed)
         if parsed.get("type") != "action" and action_payload is None:
             if _has_useful_action(state.available_actions):

@@ -72,6 +72,7 @@ class GameStateSnapshot:
 @dataclass(slots=True)
 class AgentAction:
     action: str
+    legal_action_id: str | None = None
     card_index: int | None = None
     target_index: int | None = None
     option_index: int | None = None
@@ -204,9 +205,12 @@ class KnowledgeContext:
 class StepRecord:
     schema_version: str
     run_id: str
+    segment_id: str
     step_index: int
     observed_at: str
     screen_before: str
+    state_hash_before: str
+    state_hash_after: str | None
     state_summary: dict[str, Any]
     knowledge_refs: list[str]
     decision: dict[str, Any]
@@ -214,6 +218,23 @@ class StepRecord:
     action_result: dict[str, Any] | None
     error: dict[str, Any] | None = None
     metrics: dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        return dataclasses.asdict(self)
+
+
+@dataclass(slots=True)
+class TrajectorySegment:
+    schema_version: str
+    segment_id: str
+    run_id: str
+    start_reason: str
+    checkpoint_hash: str
+    start_floor: int | None
+    start_screen: str
+    start_hp: int | None
+    observed_at: str
+    parent_segment_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)
@@ -232,6 +253,7 @@ class RunSummary:
     observed_at: str
     duration_seconds: float | None = None
     token_usage: dict[str, int] = field(default_factory=dict)
+    segment_count: int = 0
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)

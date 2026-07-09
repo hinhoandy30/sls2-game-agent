@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import time
+import uuid
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .client import GameClient, GameClientError, action_names, is_actionable_state, unwrap_data
+from .client import GameClient, action_names, is_actionable_state
 from .contracts import (
     SCHEMA_VERSION,
     ActionResult,
@@ -15,9 +17,11 @@ from .contracts import (
     PolicyDecision,
     RunSummary,
     StepRecord,
+    TrajectorySegment,
     utc_now_iso,
 )
 from .knowledge import KnowledgeProvider
+from .legal_actions import build_legal_actions
 from .policies import ScreenRouter
 
 
@@ -56,6 +60,8 @@ class AgentRuntime:
         self.router = router or ScreenRouter()
         self.health_payload: dict[str, Any] = {}
         self.records: list[StepRecord] = []
+        self.segments: list[TrajectorySegment] = []
+        self.current_segment: TrajectorySegment | None = None
         self.token_usage: dict[str, int] = {}
         self.run_started_at: float | None = None
 
@@ -65,6 +71,13 @@ class AgentRuntime:
         state = self._snapshot(self.client.get_state())
         run_dir = self._run_dir(state.run_id)
         trajectory_path = run_dir / "trajectory.jsonl"
+        segments_path = run_dir / "segments.jsonl"
+        self._start_segment(
+            state,
+            segments_path,
+            start_reason="continue_run" if state.screen != "MAIN_MENU" else "new_run",
+            parent_segment_id=None,
+        )
         error_count = 0
         terminal_reason = "max_steps_reached"
 
@@ -86,9 +99,10 @@ class AgentRuntime:
                     self._append_record(trajectory_path, record)
                     break
                 if decision.type == "wait":
+                    previous_state = state
                     waited = self.client.wait_until_actionable(self.config.wait_timeout_seconds)
                     state = self._snapshot(waited)
-                    record = self._record(step_index, state, knowledge.refs, decision, None, None, step_started_at=step_started_at)
+                    record = self._record(step_index, previous_state, knowledge.refs, decision, None, None, step_started_at=step_started_at, next_state=state)
                     self._append_record(trajectory_path, record)
                     continue
                 if decision.action_plan:
@@ -103,8 +117,10 @@ class AgentRuntime:
                         executed_actions,
                         results,
                         step_started_at=step_started_at,
+                        next_state=next_state,
                     )
                     self._append_record(trajectory_path, record)
+                    self._maybe_start_segment_after_continue(state, next_state, executed_actions, segments_path)
                     state = next_state
 
                     if self.config.stop_on_reward_after_combat and state.screen == "REWARD":
@@ -127,8 +143,9 @@ class AgentRuntime:
                     next_state_payload = self.client.wait_until_actionable(self.config.wait_timeout_seconds)
                 next_state = self._snapshot(next_state_payload)
 
-                record = self._record(step_index, state, knowledge.refs, decision, decision.action, result, step_started_at=step_started_at)
+                record = self._record(step_index, state, knowledge.refs, decision, decision.action, result, step_started_at=step_started_at, next_state=next_state)
                 self._append_record(trajectory_path, record)
+                self._maybe_start_segment_after_continue(state, next_state, decision.action, segments_path)
                 state = next_state
 
                 if self.config.stop_on_reward_after_combat and state.screen == "REWARD":
@@ -168,6 +185,15 @@ class AgentRuntime:
         return summary
 
     def validate_action(self, state: GameStateSnapshot, action: AgentAction) -> None:
+        if action.legal_action_id is not None:
+            legal_ids = {str(legal.get("id")) for legal in build_legal_actions(state)}
+            if action.legal_action_id not in legal_ids:
+                raise ValidationError(
+                    "unavailable_legal_action",
+                    "legal_action_id is not available in the latest state.",
+                    details={"legal_action_id": action.legal_action_id},
+                )
+
         if action.action not in state.available_actions:
             raise ValidationError(
                 "unavailable_action",
@@ -273,14 +299,18 @@ class AgentRuntime:
         *,
         step_started_at: float | None = None,
         error: dict[str, Any] | None = None,
+        next_state: GameStateSnapshot | None = None,
     ) -> StepRecord:
         metrics = _step_metrics(step_started_at, decision)
         record = StepRecord(
             schema_version=SCHEMA_VERSION,
             run_id=state.run_id,
+            segment_id=self.current_segment.segment_id if self.current_segment is not None else "segment_unknown",
             step_index=step_index,
             observed_at=utc_now_iso(),
             screen_before=state.screen,
+            state_hash_before=_state_hash(state.state),
+            state_hash_after=_state_hash(next_state.state) if next_state is not None else None,
             state_summary=_state_summary(state.state),
             knowledge_refs=knowledge_refs,
             decision=decision.to_dict(),
@@ -319,6 +349,7 @@ class AgentRuntime:
             observed_at=utc_now_iso(),
             duration_seconds=duration_seconds,
             token_usage=dict(self.token_usage),
+            segment_count=len(self.segments),
         )
 
     def _write_summary(self, run_dir: Path, summary: RunSummary) -> None:
@@ -341,6 +372,52 @@ class AgentRuntime:
             if isinstance(value, int):
                 self.token_usage[key] = self.token_usage.get(key, 0) + value
 
+    def _start_segment(
+        self,
+        state: GameStateSnapshot,
+        path: Path,
+        *,
+        start_reason: str,
+        parent_segment_id: str | None,
+    ) -> None:
+        run = state.state.get("run") if isinstance(state.state.get("run"), dict) else {}
+        segment = TrajectorySegment(
+            schema_version=SCHEMA_VERSION,
+            segment_id=f"seg_{uuid.uuid4().hex[:12]}",
+            run_id=state.run_id,
+            parent_segment_id=parent_segment_id,
+            start_reason=start_reason,
+            checkpoint_hash=_state_hash(state.state),
+            start_floor=run.get("floor"),
+            start_screen=state.screen,
+            start_hp=run.get("current_hp") or ((state.state.get("combat") or {}).get("player") or {}).get("current_hp"),
+            observed_at=utc_now_iso(),
+        )
+        self.current_segment = segment
+        self.segments.append(segment)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(segment.to_dict(), ensure_ascii=False, separators=(",", ":")) + "\n")
+
+    def _maybe_start_segment_after_continue(
+        self,
+        before: GameStateSnapshot,
+        after: GameStateSnapshot,
+        action: AgentAction | list[AgentAction],
+        segments_path: Path,
+    ) -> None:
+        actions = action if isinstance(action, list) else [action]
+        if not any(item.action == "continue_run" for item in actions):
+            return
+        if _state_hash(before.state) == _state_hash(after.state):
+            return
+        self._start_segment(
+            after,
+            segments_path,
+            start_reason="retry_from_checkpoint",
+            parent_segment_id=self.current_segment.segment_id if self.current_segment is not None else None,
+        )
+
 
 _OPTION_ACTIONS = {
     "choose_map_node",
@@ -362,12 +439,15 @@ _OPTION_ACTIONS = {
 def _state_summary(raw: dict[str, Any]) -> dict[str, Any]:
     run = raw.get("run") if isinstance(raw.get("run"), dict) else {}
     combat = raw.get("combat") if isinstance(raw.get("combat"), dict) else {}
+    snapshot = GameStateSnapshot.from_raw({"data": raw}, source="summary")
+    legal_actions = build_legal_actions(snapshot)
     return {
         "screen": raw.get("screen"),
         "floor": run.get("floor"),
         "player_hp": run.get("current_hp") or (combat.get("player") or {}).get("current_hp"),
         "turn": raw.get("turn"),
         "available_actions": action_names(raw),
+        "legal_action_ids": [str(action.get("id")) for action in legal_actions],
         "enemy_ids": [enemy.get("enemy_id") for enemy in (combat.get("enemies") or []) if enemy.get("enemy_id")],
     }
 
@@ -392,8 +472,8 @@ def _action_request_payload(action: AgentAction | list[AgentAction] | None) -> d
     if action is None:
         return None
     if isinstance(action, list):
-        return {"action_plan": [item.to_request() for item in action]}
-    return action.to_request()
+        return {"action_plan": [_action_to_log_request(item) for item in action]}
+    return _action_to_log_request(action)
 
 
 def _action_result_payload(result: ActionResult | list[ActionResult] | None) -> dict[str, Any] | None:
@@ -402,3 +482,54 @@ def _action_result_payload(result: ActionResult | list[ActionResult] | None) -> 
     if isinstance(result, list):
         return {"action_results": [item.to_dict() for item in result]}
     return result.to_dict()
+
+
+def _action_to_log_request(action: AgentAction) -> dict[str, Any]:
+    payload = action.to_request()
+    if action.legal_action_id is not None:
+        payload["legal_action_id"] = action.legal_action_id
+    return payload
+
+
+def _state_hash(raw: dict[str, Any]) -> str:
+    canonical = json.dumps(_hashable_state(raw), ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:16]
+
+
+def _hashable_state(raw: dict[str, Any]) -> dict[str, Any]:
+    run = raw.get("run") if isinstance(raw.get("run"), dict) else {}
+    combat = raw.get("combat") if isinstance(raw.get("combat"), dict) else {}
+    return {
+        "run_id": raw.get("run_id"),
+        "screen": raw.get("screen"),
+        "turn": raw.get("turn"),
+        "available_actions": action_names(raw),
+        "run": {
+            "floor": run.get("floor"),
+            "hp": run.get("current_hp"),
+            "max_hp": run.get("max_hp"),
+            "gold": run.get("gold"),
+            "deck": [(card.get("card_id"), card.get("upgraded")) for card in run.get("deck") or [] if isinstance(card, dict)],
+            "potions": [(potion.get("index"), potion.get("potion_id"), potion.get("occupied")) for potion in run.get("potions") or [] if isinstance(potion, dict)],
+            "relics": [relic.get("relic_id") for relic in run.get("relics") or [] if isinstance(relic, dict)],
+        },
+        "combat": {
+            "player": {
+                "hp": (combat.get("player") or {}).get("current_hp"),
+                "block": (combat.get("player") or {}).get("block"),
+                "energy": (combat.get("player") or {}).get("energy"),
+            },
+            "hand": [
+                (card.get("index"), card.get("card_id"), card.get("upgraded"), card.get("playable"))
+                for card in combat.get("hand") or []
+                if isinstance(card, dict)
+            ],
+            "enemies": [
+                (enemy.get("index"), enemy.get("enemy_id"), enemy.get("current_hp"), enemy.get("block"), enemy.get("is_alive"), enemy.get("intent"))
+                for enemy in combat.get("enemies") or []
+                if isinstance(enemy, dict)
+            ],
+        },
+        "map": (raw.get("map") or {}).get("current_node") if isinstance(raw.get("map"), dict) else None,
+        "selection": (raw.get("selection") or {}).get("kind") if isinstance(raw.get("selection"), dict) else None,
+    }

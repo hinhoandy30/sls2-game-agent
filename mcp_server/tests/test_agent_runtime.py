@@ -10,6 +10,7 @@ from sts2_agent_runtime.client import is_actionable_state
 from sts2_agent_runtime.cli import _load_env_file, _port_from_base_url, enable_instant_mode
 from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, PolicyDecision
 from sts2_agent_runtime.action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
+from sts2_agent_runtime.legal_actions import build_legal_actions
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
@@ -335,6 +336,18 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(decision.type, "action")
         self.assertEqual(decision.action.action, "end_turn")
 
+    def test_llm_accepts_legal_action_id(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(actions=["end_turn"], hand=[]),
+            source="test",
+        )
+
+        decision = FakeLLMPolicy('{"legal_action_id":"end_turn","reason":"legal"}').decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.type, "action")
+        self.assertEqual(decision.action.action, "end_turn")
+        self.assertEqual(decision.action.legal_action_id, "end_turn")
+
     def test_llm_repairs_malformed_json_response(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             combat_payload(actions=["end_turn"], hand=[]),
@@ -461,6 +474,30 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(actions[0].option_index, 2)
         self.assertEqual(stop_conditions, ["screen_changes"])
 
+    def test_legal_actions_include_only_usable_potion_slots(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="COMBAT",
+                actions=["use_potion", "discard_potion", "end_turn"],
+                run={
+                    "floor": 1,
+                    "current_hp": 70,
+                    "potions": [
+                        {"index": 0, "potion_id": "STABLE_SERUM", "name": "稳定血清", "occupied": True, "can_use": False, "can_discard": True},
+                        {"index": 1, "potion_id": "FYSH_OIL", "name": "异鱼之油", "occupied": True, "can_use": True, "can_discard": True},
+                    ],
+                },
+                combat={"player": {"current_hp": 70, "energy": 3}, "hand": [], "enemies": []},
+                turn=1,
+            ),
+            source="test",
+        )
+
+        legal = build_legal_actions(snapshot)
+
+        self.assertIn("use_potion_potion_1_FYSH-OIL", {item["id"] for item in legal})
+        self.assertNotIn("use_potion_potion_0_STABLE-SERUM", {item["id"] for item in legal})
+
     def test_llm_action_plan_decision_for_combat(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             combat_payload(
@@ -544,6 +581,30 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(summary.token_usage["total_tokens"], 14)
         self.assertEqual(runtime.records[0].metrics["llm"]["model"], "fake-model")
         self.assertIn("step_duration_seconds", runtime.records[0].metrics)
+        self.assertRegex(runtime.records[0].state_hash_before, r"^[0-9a-f]{16}$")
+        self.assertRegex(runtime.records[0].state_hash_after, r"^[0-9a-f]{16}$")
+        self.assertTrue(runtime.records[0].segment_id.startswith("seg_"))
+
+    def test_continue_run_starts_retry_segment(self) -> None:
+        main_menu = state_payload(screen="MAIN_MENU", actions=["continue_run"], run=None)
+        combat = combat_payload(actions=["end_turn"], hand=[])
+
+        class ContinuePolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> PolicyDecision:
+                return PolicyDecision.action_decision(AgentAction("continue_run"), reason="resume")
+
+        client = DummyClient([main_menu, combat])
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(ContinuePolicy()),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp)),
+            )
+            summary = runtime.run()
+
+        self.assertEqual(summary.segment_count, 2)
+        self.assertEqual(runtime.segments[1].start_reason, "retry_from_checkpoint")
+        self.assertEqual(runtime.segments[1].parent_segment_id, runtime.segments[0].segment_id)
 
     def test_runtime_executes_combat_action_plan_sequentially(self) -> None:
         first = combat_payload(
