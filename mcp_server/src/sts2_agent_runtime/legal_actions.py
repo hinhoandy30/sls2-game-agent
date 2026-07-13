@@ -11,6 +11,11 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
     legal: list[dict[str, Any]] = []
 
     if "play_card" in available:
+        enemies_by_index = {
+            enemy.get("index"): enemy
+            for enemy in ((raw.get("combat") or {}).get("enemies") or [])
+            if isinstance(enemy, dict) and isinstance(enemy.get("index"), int)
+        }
         for card in ((raw.get("combat") or {}).get("hand") or []):
             if not isinstance(card, dict) or not card.get("playable", False):
                 continue
@@ -20,6 +25,7 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
             base = {
                 "action": "play_card",
                 "card_index": card_index,
+                "card_instance_id": card.get("card_instance_id"),
                 "card_id": card.get("card_id"),
                 "name": card.get("name"),
                 "energy_cost": card.get("energy_cost"),
@@ -27,7 +33,16 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
             if card.get("requires_target"):
                 for target_index in card.get("valid_target_indices") or []:
                     if isinstance(target_index, int):
-                        legal.append(_with_id({**base, "target_index": target_index}))
+                        target = enemies_by_index.get(target_index) or {}
+                        legal.append(
+                            _with_id(
+                                {
+                                    **base,
+                                    "target_index": target_index,
+                                    "target_instance_id": target.get("enemy_instance_id"),
+                                }
+                            )
+                        )
             else:
                 legal.append(_with_id(base))
 
@@ -86,7 +101,9 @@ def action_from_legal_action_id(legal_action_id: str, state: GameStateSnapshot) 
             return AgentAction(
                 action=str(legal["action"]),
                 card_index=legal.get("card_index") if isinstance(legal.get("card_index"), int) else None,
+                card_instance_id=legal.get("card_instance_id") if isinstance(legal.get("card_instance_id"), str) else None,
                 target_index=legal.get("target_index") if isinstance(legal.get("target_index"), int) else None,
+                target_instance_id=legal.get("target_instance_id") if isinstance(legal.get("target_instance_id"), str) else None,
                 option_index=legal.get("option_index") if isinstance(legal.get("option_index"), int) else None,
                 potion_index=legal.get("potion_index") if isinstance(legal.get("potion_index"), int) else None,
                 legal_action_id=legal_action_id,
@@ -116,7 +133,13 @@ def _add_option_actions(legal: list[dict[str, Any]], available: set[str], action
 
 def _with_id(action: dict[str, Any]) -> dict[str, Any]:
     parts = [str(action["action"])]
-    for key in ("card_index", "potion_index", "option_index", "target_index"):
+    for instance_key, index_key in (("card_instance_id", "card_index"), ("target_instance_id", "target_index")):
+        instance_id = action.get(instance_key)
+        if instance_id:
+            parts.append(_safe_id(str(instance_id)))
+        elif action.get(index_key) is not None:
+            parts.append(f"{index_key.removesuffix('_index')}_{action[index_key]}")
+    for key in ("potion_index", "option_index"):
         value = action.get(key)
         if value is not None:
             parts.append(f"{key.removesuffix('_index')}_{value}")

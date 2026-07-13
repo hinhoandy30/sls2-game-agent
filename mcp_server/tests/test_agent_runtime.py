@@ -56,7 +56,7 @@ def combat_payload(*, actions: list[str], hand: list[dict[str, Any]], enemy_hp: 
         combat={
             "player": {"current_hp": 70, "max_hp": 80, "energy": energy, "block": 0},
             "hand": hand,
-            "enemies": [{"index": 0, "enemy_id": "TEST_ENEMY", "current_hp": enemy_hp, "is_alive": True, "is_hittable": True}],
+            "enemies": [{"index": 0, "enemy_instance_id": "enemy_1", "enemy_id": "TEST_ENEMY", "current_hp": enemy_hp, "is_alive": True, "is_hittable": True}],
         },
     )
 
@@ -498,17 +498,35 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertIn("use_potion_potion_1_FYSH-OIL", {item["id"] for item in legal})
         self.assertNotIn("use_potion_potion_0_STABLE-SERUM", {item["id"] for item in legal})
 
-    def test_llm_action_plan_decision_for_combat(self) -> None:
+    def test_legal_actions_distinguish_identical_card_instances(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             combat_payload(
-                actions=["play_card", "end_turn"],
-                hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+                actions=["play_card"],
+                hand=[
+                    {"index": 0, "card_instance_id": "card_101", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]},
+                    {"index": 1, "card_instance_id": "card_102", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]},
+                ],
             ),
             source="test",
         )
 
+        legal = [item for item in build_legal_actions(snapshot) if item["action"] == "play_card"]
+
+        self.assertEqual({item["card_instance_id"] for item in legal}, {"card_101", "card_102"})
+        self.assertEqual(len({item["id"] for item in legal}), 2)
+
+    def test_llm_action_plan_decision_for_combat(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_101", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        legal_action_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+
         decision = FakeLLMPolicy(
-            '{"type":"action","action_plan":{"actions":[{"action":"play_card","card_index":0,"target_index":0},{"action":"end_turn"}],"stop_conditions":["screen_changes"]},"reason":"attack then pass"}',
+            '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + legal_action_id + '"},{"legal_action_id":"end_turn"}],"stop_conditions":["screen_changes"]},"reason":"attack then pass"}',
             enable_action_plan=True,
         ).decide(snapshot, knowledge=type("K", (), {"refs": []})())
 
@@ -666,6 +684,42 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual([action.action for action in client.actions], ["play_card"])
         self.assertEqual(summary.error_count, 0)
         self.assertEqual(runtime.records[0].decision["metadata"]["plan_stop_reason"], "validation_stopped:unavailable_action")
+
+    def test_runtime_relocates_planned_card_by_instance_id(self) -> None:
+        first = combat_payload(
+            actions=["play_card", "end_turn"],
+            hand=[
+                {"index": 0, "card_instance_id": "card_a", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]},
+                {"index": 1, "card_instance_id": "card_b", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]},
+            ],
+        )
+        second = combat_payload(
+            actions=["play_card", "end_turn"],
+            hand=[{"index": 0, "card_instance_id": "card_b", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+        )
+        third = combat_payload(actions=["end_turn"], hand=[])
+
+        class StablePlanPolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> PolicyDecision:
+                return PolicyDecision.action_plan_decision(
+                    [
+                        AgentAction("play_card", card_instance_id="card_a", target_instance_id="enemy_1"),
+                        AgentAction("play_card", card_instance_id="card_b", target_instance_id="enemy_1"),
+                    ],
+                    reason="execute two specific card instances",
+                )
+
+        client = DummyClient([first, second, third])
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(StablePlanPolicy()),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp), wait_timeout_seconds=1.0),
+            )
+            runtime.run()
+
+        self.assertEqual([action.card_instance_id for action in client.actions], ["card_a", "card_b"])
+        self.assertEqual([action.card_index for action in client.actions], [0, 0])
 
 
 if __name__ == "__main__":

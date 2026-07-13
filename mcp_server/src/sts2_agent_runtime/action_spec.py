@@ -144,7 +144,12 @@ def parse_llm_action_payload(action_payload: dict[str, Any], state: GameStateSna
         raise ValueError(f"Invalid action payload for ActionSpec: {exc}") from exc
 
 
-def parse_llm_action_plan_payload(plan_payload: dict[str, Any], state: GameStateSnapshot) -> tuple[list[AgentAction], list[str]]:
+def parse_llm_action_plan_payload(
+    plan_payload: dict[str, Any],
+    state: GameStateSnapshot,
+    *,
+    require_legal_action_ids: bool = False,
+) -> tuple[list[AgentAction], list[str]]:
     raw_actions = plan_payload.get("actions")
     if not isinstance(raw_actions, list):
         raise ValueError("Action plan must include an actions list.")
@@ -157,6 +162,8 @@ def parse_llm_action_plan_payload(plan_payload: dict[str, Any], state: GameState
         if isinstance(legal_action_id, str) and legal_action_id:
             actions.append(action_from_legal_action_id(legal_action_id, state))
         else:
+            if require_legal_action_ids:
+                raise ValueError("Combat action plans must use legal_action_id for every action.")
             try:
                 actions.append(ActionModel.model_validate(_normalize_payload(dict(action), state)).to_agent_action())
             except PydanticValidationError as exc:

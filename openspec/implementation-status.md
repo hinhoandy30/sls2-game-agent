@@ -24,6 +24,8 @@
   游戏，不改变 Runtime 的“每次动作后等待可行动状态”规则。
 - `--llm-action-plan` 是可选实验：每项动作之后都重新读状态并验证；一旦 index/target
   失效或 screen 改变，就停止余下计划。
+- combat `card_instance_id` / `enemy_instance_id` 与 instance-ID-first `play_card` 已写入
+  Mod 和 Runtime，并已通过 Steam 实机 smoke test；ID 只在当前 Mod 进程内有效。
 
 ## 最近实现记录
 
@@ -33,6 +35,7 @@
 | `94b67c2` | Pydantic `ActionSpec`、instant 启动、CLI 生命周期控制 | LLM 参数错误更早失败；实机测试可加速并可清理。 |
 | `42cc190` | 可选短 action plan、LLM JSON 修复/读取重试 | 可做吞吐实验，但不应作为严谨战术规划依赖。 |
 | `eeda540` | `legal_actions`、trajectory segment、state hash | 减少 index 猜测；checkpoint 重打不再伪装成同一线性轨迹。 |
+| `add-stable-combat-action-identities` | stable combat action identities | Mod/API 与 Runtime 以实体 ID 而不是手牌位置衔接多步计划。 |
 
 ## 输出文件与消费者
 
@@ -56,8 +59,8 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
 
 - `legal_actions` 是 Python Runtime 派生层，不是 C# Mod/API 返回的唯一真相；Mod/API
   组后续应将等价字段下沉到 bridge。
-- `legal_action_id` 内部仍可能包含当前的 card/enemy index，因此只对**当前 snapshot**有效。
-  不能把一个 ID 带到下一次 draw、出牌、击杀或 screen 切换后重用。
+- 安装本轮 Mod 后，combat card/enemy `legal_action_id` 将以 instance ID 为核心，可跨 index
+  变化重新解析；旧 Mod 或非 combat action 仍可能依赖当前 index，不能跨 snapshot 复用。
 - 多步 LLM plan 在 index 变化时会安全地停止，但不会自动重规划。高质量连招需要
   tactical solver，或每一步由 Policy 用 fresh state 单独决策。
 - `continue_run` 的 segment 检测只覆盖同一 Runtime 进程。不同命令、不同 output 目录
@@ -71,9 +74,12 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
 
 ## 验证证据
 
-- `mcp_server/tests` 当前有 53 个 unittest，覆盖 ActionSpec、参数归一化、stale card
-  index、药水 slot 合法性、legal action ID、action plan 截断、运行时间/token 汇总及
-  checkpoint segment。
+- `mcp_server/tests` 当前有 55 个 unittest，覆盖 ActionSpec、参数归一化、stale card
+  index、药水 slot 合法性、legal action ID、action plan 截断、稳定 card instance ID、
+  运行时间/token 汇总及 checkpoint segment。
+- 本轮 C# Mod 已使用项目级 .NET 9 SDK 干净构建；Steam 实机验证确认：`card_1` 出牌后，
+  同名 `card_2` 从 index 1 移到 0 但 ID 保持不变，并且可仅按 ID 继续出牌；已离开手牌的
+  `card_1` 被安全拒绝为 HTTP 409 `stale_card_instance_id`。
 - 最近一次实机短测在 STS2 正式版 `v0.107.1` 上到达第 8 层并自然结束，记录
   `error_count = 0`。这证明 Runtime 链路能运行；不代表策略强度或连胜能力已验证。
 - 当前 shell 未找到 `openspec` CLI，因此本次尚未重新执行 `openspec validate --all`；

@@ -59,9 +59,14 @@ Policy SHALL express game-control intent with one `AgentAction`.
 
 - **GIVEN** the latest state exposes `play_card` as available
 - **WHEN** Policy chooses a card
-- **THEN** the `AgentAction` includes `action = "play_card"` and `card_index`
-- **AND** it includes `target_index` only when the latest hand card marks a target
-  as required
+- **THEN** the `AgentAction` includes `action = "play_card"` and the current
+  `card_instance_id` when the bridge exposes one
+- **AND** it includes `target_instance_id` for an enemy target when the bridge
+  exposes one
+- **AND** Runtime resolves the current indexes from the fresh state before
+  execution
+- **AND** index-only requests remain the compatibility fallback for older bridge
+  versions
 
 #### Scenario: Option-index action
 
@@ -110,6 +115,17 @@ the latest state and stop the remaining plan when it becomes unsafe to continue.
 - **AND** it validates the next action again
 - **AND** it stops the rest of the plan on stale indexes, invalid targets, or a
   screen change
+
+#### Scenario: A combat plan uses stable entity IDs
+
+- **GIVEN** the current bridge exposes `card_instance_id` and
+  `enemy_instance_id`
+- **WHEN** an LLM creates a combat action plan
+- **THEN** each combat card action SHALL be selected through a
+  `legal_action_id` that resolves to those entity IDs
+- **AND** Runtime SHALL not correct hand indexes with index arithmetic
+- **AND** a missing card or target ID stops the remaining plan without playing a
+  different entity
 
 #### Scenario: Policy needs reliable tactical sequencing
 

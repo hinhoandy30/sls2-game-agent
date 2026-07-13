@@ -74,7 +74,9 @@ class AgentAction:
     action: str
     legal_action_id: str | None = None
     card_index: int | None = None
+    card_instance_id: str | None = None
     target_index: int | None = None
+    target_instance_id: str | None = None
     option_index: int | None = None
     potion_index: int | None = None
     payload: dict[str, Any] = field(default_factory=dict)
@@ -88,7 +90,9 @@ class AgentAction:
         return {
             "action": self.action,
             "card_index": self.card_index,
+            "card_instance_id": self.card_instance_id,
             "target_index": self.target_index,
+            "target_instance_id": self.target_instance_id,
             "option_index": option_index,
             "client_context": self.client_context or {"source": "agent-runtime"},
             **self.payload,

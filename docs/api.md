@@ -1,7 +1,7 @@
 # STS2 AI Agent Mod — HTTP API
 
 状态：可实现
-协议版本：`2026-03-10-v0`
+协议版本：`2026-03-11-v1`
 
 ---
 
@@ -51,6 +51,8 @@
 | `not_found` | 404 | 路由不存在 | 否 |
 | `invalid_action` | 409 | 当前状态下不能执行该动作 | 否 |
 | `invalid_target` | 409 | 目标索引超出范围 | 否 |
+| `stale_card_instance_id` | 409 | 指定卡牌实例已不在当前手牌 | 否 |
+| `stale_target_instance_id` | 409 | 指定敌人实例已不在当前战斗目标中 | 否 |
 | `state_unavailable` | 503 | 游戏状态暂时不可安全读取（如正在过渡） | 是 |
 | `internal_error` | 500 | 服务内部异常 | 否 |
 
@@ -115,7 +117,7 @@
 
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
-| `state_version` | number | 状态模型版本（当前固定为 6） |
+| `state_version` | number | 状态模型版本（当前固定为 11；不是随每个动作递增的局面 revision） |
 | `run_id` | string | 本局运行标识（种子字符串） |
 | `screen` | string | 当前逻辑界面（见 Screen 枚举） |
 | `in_combat` | boolean | 是否处于战斗流程 |
@@ -162,6 +164,7 @@
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `index` | number | 手牌索引（用于 `play_card` 的 `card_index`） |
+| `card_instance_id` | string | 当前 Mod 进程内的稳定卡牌实例 ID；优先用于多步 combat plan，不跨重启/continue 保留 |
 | `card_id` | string | 卡牌内部 ID |
 | `name` | string | 卡牌显示名称 |
 | `upgraded` | boolean | 是否已升级 |
@@ -193,6 +196,7 @@
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `index` | number | 敌人索引（用于 `play_card` 的 `target_index`） |
+| `enemy_instance_id` | string | 当前 Mod 进程内的稳定敌人实例 ID；优先用于多步 combat plan，不跨重启/continue 保留 |
 | `enemy_id` | string | 敌人内部 ID |
 | `name` | string | 敌人显示名称 |
 | `current_hp` | number | 当前生命值 |
@@ -874,8 +878,10 @@
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `action` | string | **必填**。动作名称 |
-| `card_index` | number \| null | 手牌索引（`play_card` 时使用） |
-| `target_index` | number \| null | 目标索引（需要指定目标的卡牌使用） |
+| `card_index` | number \| null | 兼容字段：手牌索引（`play_card` 时使用） |
+| `card_instance_id` | string \| null | `play_card` 的首选卡牌引用；提供时优先于 `card_index` |
+| `target_index` | number \| null | 兼容字段：需要指定目标的卡牌使用 |
+| `target_instance_id` | string \| null | enemy target 的首选目标引用；提供时优先于 `target_index` |
 | `option_index` | number \| null | 选项索引（地图/奖励/选牌等使用） |
 | `client_context` | object \| null | 可选的客户端上下文（如调用来源标识） |
 
@@ -926,16 +932,17 @@
 
 - **前提**：`screen = "COMBAT"`，手牌中有 `playable = true` 的卡
 - **参数**：
-  - `card_index`（必填）：`combat.hand[]` 的索引
-  - `target_index`（条件必填）：当卡牌 `requires_target = true` 时，为 `combat.enemies[]` 的索引
+  - `card_instance_id`（首选）：`combat.hand[]` 的当前实例 ID
+  - `target_instance_id`（enemy target 首选）：`combat.enemies[]` 的当前实例 ID
+  - `card_index` / `target_index`：兼容旧客户端的 fallback；若同时提供 instance ID，Mod 以 instance ID 为准
 - **稳定条件**：卡牌离开手牌 且 玩家驱动的动作队列清空
 - **超时**：5 秒
 
 ```json
 {
   "action": "play_card",
-  "card_index": 0,
-  "target_index": 0
+  "card_instance_id": "card_1",
+  "target_instance_id": "enemy_1"
 }
 ```
 
@@ -943,10 +950,12 @@
 
 | 场景 | 错误码 | 说明 |
 | --- | --- | --- |
-| 缺少 `card_index` | `invalid_request` | "play_card requires card_index." |
+| 缺少 card 引用 | `invalid_request` | "play_card requires card_instance_id or card_index." |
 | `card_index` 越界 | `invalid_target` | "card_index is out of range." |
-| 卡牌需要目标但未传 `target_index` | `invalid_target` | "This card requires target_index." |
+| `card_instance_id` 已离开手牌 | `stale_card_instance_id` | 不会改打当前同位置的另一张牌 |
+| 卡牌需要目标但未传目标引用 | `invalid_target` | "This card requires target_instance_id or target_index." |
 | `target_index` 越界 | `invalid_target` | "target_index is out of range." |
+| `target_instance_id` 已死亡或离场 | `stale_target_instance_id` | 不会改打当前同位置的另一只敌人 |
 | 卡牌不可打出 | `invalid_action` | "Card cannot be played in the current state." |
 
 ### `choose_map_node`

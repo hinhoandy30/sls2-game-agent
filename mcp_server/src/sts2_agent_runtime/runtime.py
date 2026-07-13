@@ -211,16 +211,45 @@ class AgentRuntime:
                 raise ValidationError("missing_option_index", f"{action.action} requires option_index.")
 
     def _validate_card_action(self, raw: dict[str, Any], action: AgentAction) -> None:
-        if action.card_index is None:
-            raise ValidationError("missing_card_index", "play_card requires card_index.")
         hand = ((raw.get("combat") or {}).get("hand") or [])
-        selected = next((card for card in hand if card.get("index") == action.card_index), None)
+        if action.card_instance_id is not None:
+            selected = next((card for card in hand if card.get("card_instance_id") == action.card_instance_id), None)
+            if selected is None:
+                raise ValidationError(
+                    "stale_card_instance_id",
+                    "card_instance_id is absent from latest combat.hand.",
+                    details={"card_instance_id": action.card_instance_id},
+                )
+            selected_index = selected.get("index")
+            if isinstance(selected_index, int):
+                action.card_index = selected_index
+        else:
+            if action.card_index is None:
+                raise ValidationError("missing_card_index", "play_card requires card_instance_id or card_index.")
+            selected = next((card for card in hand if card.get("index") == action.card_index), None)
         if selected is None:
             raise ValidationError("stale_card_index", "card_index is absent from latest combat.hand.", details={"card_index": action.card_index})
         if not selected.get("playable", False):
             raise ValidationError("unplayable_card", "Selected card is not playable.", details={"card_index": action.card_index, "reason": selected.get("unplayable_reason")})
         valid_targets = selected.get("valid_target_indices") or []
         if selected.get("requires_target"):
+            if action.target_instance_id is not None:
+                enemies = ((raw.get("combat") or {}).get("enemies") or [])
+                target = next((enemy for enemy in enemies if enemy.get("enemy_instance_id") == action.target_instance_id), None)
+                if target is None:
+                    raise ValidationError(
+                        "stale_target_instance_id",
+                        "target_instance_id is absent from latest combat.enemies.",
+                        details={"target_instance_id": action.target_instance_id},
+                    )
+                target_index = target.get("index")
+                if not isinstance(target_index, int) or target_index not in valid_targets:
+                    raise ValidationError(
+                        "invalid_target_instance_id",
+                        "target_instance_id is not a valid target for selected card.",
+                        details={"target_instance_id": action.target_instance_id, "valid_target_indices": valid_targets},
+                    )
+                action.target_index = target_index
             if action.target_index not in valid_targets:
                 raise ValidationError("invalid_target_index", "target_index is not valid for selected card.", details={"target_index": action.target_index, "valid_target_indices": valid_targets})
         elif action.target_index is not None:

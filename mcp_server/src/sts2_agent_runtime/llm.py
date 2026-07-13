@@ -96,8 +96,8 @@ class OpenAICompatiblePolicy:
                         "confidence": "number 0..1",
                     },
                     "important": (
-                        "When planning multiple combat actions, remember card indices can become stale after each played card. "
-                        "Only include later actions that are likely to remain legal; the runtime will validate after every action."
+                        "When planning multiple combat actions, every plan item MUST use legal_action_id, never raw card_index or target_index. "
+                        "The runtime will fresh-read and validate after every action, and stops the remaining plan when an entity disappears or the screen changes."
                     ),
                 }
                 if self.enable_action_plan and state.screen == "COMBAT"
@@ -115,7 +115,11 @@ class OpenAICompatiblePolicy:
         parsed = self._parse_or_repair_json(response, prompt, llm_metadata)
         plan_payload = _extract_action_plan_payload(parsed)
         if self.enable_action_plan and state.screen == "COMBAT" and plan_payload is not None:
-            actions, stop_conditions = parse_llm_action_plan_payload(plan_payload, state)
+            actions, stop_conditions = parse_llm_action_plan_payload(
+                plan_payload,
+                state,
+                require_legal_action_ids=True,
+            )
             actions = actions[: self.max_plan_actions]
             decision = PolicyDecision.action_plan_decision(
                 actions,

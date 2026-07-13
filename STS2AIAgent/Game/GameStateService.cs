@@ -52,8 +52,8 @@ namespace STS2AIAgent.Game;
 
 internal static class GameStateService
 {
-    private const int StateVersion = 10;
-    private const int AgentViewVersion = 4;
+    private const int StateVersion = 11;
+    private const int AgentViewVersion = 5;
     private static readonly TimeSpan CombatActionSnapshotStableDelay = TimeSpan.FromMilliseconds(200);
     private static string? _lastCombatActionReadinessSignature;
     private static DateTime _lastCombatActionReadinessSinceUtc = DateTime.MinValue;
@@ -2474,6 +2474,7 @@ internal static class GameStateService
             enemies = combat.enemies.Select(enemy => new
             {
                 i = enemy.index,
+                enemy_instance_id = enemy.enemy_instance_id,
                 enemy_id = enemy.enemy_id,
                 name = enemy.name,
                 hp = $"{enemy.current_hp}/{enemy.max_hp}",
@@ -2857,6 +2858,7 @@ internal static class GameStateService
         return new
         {
             i = card.index,
+            card_instance_id = card.card_instance_id,
             line = FormatCardLine(card.name, card.upgraded, 1, card.energy_cost, card.star_cost, card.costs_x, card.star_costs_x, displayRulesText),
             playable = card.playable,
             target = card.requires_target ? NormalizeTargetHint(card.target_index_space ?? card.target_type) : null,
@@ -4003,6 +4005,7 @@ internal static class GameStateService
         return new CombatHandCardPayload
         {
             index = index,
+            card_instance_id = CombatInstanceIdentityService.GetCardInstanceId(card),
             card_id = card.Id.Entry,
             name = card.Title,
             upgraded = card.IsUpgraded,
@@ -4032,6 +4035,7 @@ internal static class GameStateService
         return new CombatEnemyPayload
         {
             index = index,
+            enemy_instance_id = CombatInstanceIdentityService.GetEnemyInstanceId(enemy),
             enemy_id = enemy.ModelId.Entry,
             name = enemy.Name,
             current_hp = enemy.CurrentHp,
@@ -5990,6 +5994,8 @@ internal sealed class CombatHandCardPayload
 {
     public int index { get; init; }
 
+    public string card_instance_id { get; init; } = string.Empty;
+
     public string card_id { get; init; } = string.Empty;
 
     public string name { get; init; } = string.Empty;
@@ -6026,6 +6032,8 @@ internal sealed class CombatHandCardPayload
 internal sealed class CombatEnemyPayload
 {
     public int index { get; init; }
+
+    public string enemy_instance_id { get; init; } = string.Empty;
 
     public string enemy_id { get; init; } = string.Empty;
 

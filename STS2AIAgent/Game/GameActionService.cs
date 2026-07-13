@@ -267,14 +267,6 @@ internal static class GameActionService
             });
         }
 
-        if (request.card_index == null)
-        {
-            throw new ApiException(400, "invalid_request", "play_card requires card_index.", new
-            {
-                action = "play_card"
-            });
-        }
-
         var me = GameStateService.GetLocalPlayer(combatState)
             ?? throw new ApiException(503, "state_unavailable", "Local player is unavailable.", new
             {
@@ -289,17 +281,7 @@ internal static class GameActionService
                 screen
             }, retryable: true);
 
-        if (request.card_index < 0 || request.card_index >= hand.Count)
-        {
-            throw new ApiException(409, "invalid_target", "card_index is out of range.", new
-            {
-                action = "play_card",
-                card_index = request.card_index,
-                hand_count = hand.Count
-            });
-        }
-
-        var card = hand[request.card_index.Value];
+        var card = ResolveHandCard(request, hand);
         if (!GameStateService.IsCardTargetSupported(card))
         {
             throw new ApiException(409, "invalid_action", "This target type is not supported by the API.", new
@@ -689,9 +671,9 @@ internal static class GameActionService
             }, retryable: true);
         }
 
-        if (request.target_index == null)
+        if (request.target_index == null && string.IsNullOrWhiteSpace(request.target_instance_id))
         {
-            throw new ApiException(409, "invalid_target", "This card requires target_index.", new
+            throw new ApiException(409, "invalid_target", "This card requires target_instance_id or target_index.", new
             {
                 action = "play_card",
                 card_id = card.Id.Entry,
@@ -702,7 +684,7 @@ internal static class GameActionService
 
         if (card.TargetType == TargetType.AnyEnemy)
         {
-            var enemy = GameStateService.ResolveEnemyTarget(combatState, request.target_index.Value);
+            var enemy = ResolveEnemyTarget(request, combatState);
             if (enemy == null)
             {
                 throw new ApiException(409, "invalid_target", "target_index is out of range for combat.enemies[].", new
@@ -719,8 +701,18 @@ internal static class GameActionService
 
         if (card.TargetType == TargetType.AnyAlly)
         {
+            if (request.target_index is not int targetIndex)
+            {
+                throw new ApiException(409, "invalid_target", "Ally targets require target_index; target_instance_id currently supports enemies only.", new
+                {
+                    action = "play_card",
+                    card_id = card.Id.Entry,
+                    target_index_space = "players"
+                });
+            }
+
             var allyTargetIndices = GameStateService.GetTargetablePlayerIndices(combatState, card.Owner, allowSelf: false);
-            if (!allyTargetIndices.Contains(request.target_index.Value))
+            if (!allyTargetIndices.Contains(targetIndex))
             {
                 throw new ApiException(409, "invalid_target", "target_index is out of range for combat.players[].", new
                 {
@@ -731,7 +723,7 @@ internal static class GameActionService
                 });
             }
 
-            return GameStateService.ResolvePlayerTarget(combatState, request.target_index.Value);
+            return GameStateService.ResolvePlayerTarget(combatState, targetIndex);
         }
 
         throw new ApiException(409, "invalid_action", "This target type is not supported yet.", new
@@ -740,6 +732,71 @@ internal static class GameActionService
             card_id = card.Id.Entry,
             target_type = card.TargetType.ToString()
         });
+    }
+
+    private static CardModel ResolveHandCard(ActionRequest request, IReadOnlyList<CardModel> hand)
+    {
+        if (!string.IsNullOrWhiteSpace(request.card_instance_id))
+        {
+            var card = hand.FirstOrDefault(candidate => string.Equals(
+                CombatInstanceIdentityService.GetCardInstanceId(candidate),
+                request.card_instance_id,
+                StringComparison.Ordinal));
+            if (card != null)
+            {
+                return card;
+            }
+
+            throw new ApiException(409, "stale_card_instance_id", "card_instance_id is absent from the current hand.", new
+            {
+                action = "play_card",
+                card_instance_id = request.card_instance_id,
+                hand_count = hand.Count
+            });
+        }
+
+        if (request.card_index == null)
+        {
+            throw new ApiException(400, "invalid_request", "play_card requires card_instance_id or card_index.", new
+            {
+                action = "play_card"
+            });
+        }
+
+        if (request.card_index < 0 || request.card_index >= hand.Count)
+        {
+            throw new ApiException(409, "invalid_target", "card_index is out of range.", new
+            {
+                action = "play_card",
+                card_index = request.card_index,
+                hand_count = hand.Count
+            });
+        }
+
+        return hand[request.card_index.Value];
+    }
+
+    private static Creature? ResolveEnemyTarget(ActionRequest request, CombatState combatState)
+    {
+        if (!string.IsNullOrWhiteSpace(request.target_instance_id))
+        {
+            var enemy = combatState.Enemies.FirstOrDefault(candidate => string.Equals(
+                CombatInstanceIdentityService.GetEnemyInstanceId(candidate),
+                request.target_instance_id,
+                StringComparison.Ordinal));
+            if (enemy != null)
+            {
+                return enemy;
+            }
+
+            throw new ApiException(409, "stale_target_instance_id", "target_instance_id is absent from current combat enemies.", new
+            {
+                action = "play_card",
+                target_instance_id = request.target_instance_id
+            });
+        }
+
+        return GameStateService.ResolveEnemyTarget(combatState, request.target_index!.Value);
     }
 
     private static async Task<bool> WaitForPlayCardTransitionAsync(CardModel card, TimeSpan timeout)
@@ -4706,7 +4763,11 @@ internal sealed class ActionRequest
 
     public int? card_index { get; init; }
 
+    public string? card_instance_id { get; init; }
+
     public int? target_index { get; init; }
+
+    public string? target_instance_id { get; init; }
 
     public int? option_index { get; init; }
 

@@ -36,6 +36,8 @@ Use it as the team-facing source of truth for the dedicated STS2 agent runner.
   - 专用 Runtime 主循环、Pydantic `ActionSpec`、即时模式启动和 LLM 动作计划的实现记录。
 - `changes/add-trajectory-logging/`
   - append-only 轨迹、分支 segment、运行时间和 token 统计的实现记录。
+- `changes/add-stable-combat-action-identities/`
+  - combat 卡牌/敌人稳定实例 ID，以及多步计划在 fresh state 中重新定位实体的跨端改动。
 
 ## Workflow
 
