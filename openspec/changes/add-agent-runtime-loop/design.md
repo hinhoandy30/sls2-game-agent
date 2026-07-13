@@ -120,6 +120,38 @@ Runtime 在执行任何动作前验证：
 - `potion_index` 必须来自最新 `run.potions`，且对应 potion `occupied=true`，并满足 `can_use` 或 `can_discard`。
 - 如果 action response 和 fresh state 冲突，Runtime 以 fresh state 作为下一步决策依据。
 
+### 已实现的 ActionSpec 和 Legal Actions（2026-07）
+
+LLM 输出先经过 Pydantic `ActionSpec`：它限定已支持的 action 名称，检查每种 action
+必须或允许的 `card_index`、`target_index`、`option_index`、`potion_index`。这是对 LLM
+JSON 形状的第一道校验；Runtime 随后仍以 live state 做第二道语义校验。
+
+为了消除“模型自己拼 index 参数”的主要来源，Runtime 还会从最新 snapshot 派生
+`legal_actions`。每项包含一个 `legal_action_id` 及执行所需的参数，例如：
+
+```json
+{
+  "id": "play_card_card_2_target_0_STRIKE_IRONCLAD",
+  "action": "play_card",
+  "card_index": 2,
+  "target_index": 0,
+  "card_id": "STRIKE_IRONCLAD"
+}
+```
+
+`OpenAICompatiblePolicy` 现在优先返回这个 ID；Runtime 立即用同一份 fresh state 解析它，
+再发送常规 `/action` 请求。该 ID 当前仍由 Python 根据游戏 payload 派生，尚不是 Mod 原生
+稳定 instance ID，所以不能跨状态保存或复用。
+
+### 可选 LLM Action Plan 的边界
+
+CLI 的 `--llm-action-plan` 允许模型在 COMBAT 返回有限的动作列表。Runtime 每执行一个动作
+都会 fresh-read/wait、重新验证下一个动作；一旦 hand index、target 或 screen 改变导致验证失败，
+它以 `validation_stopped:*` 结束余下计划。这是一个吞吐量实验，而不是已解决的战术规划系统。
+
+默认评测路径应优先使用“一次一个 legal action”。需要保证抽牌、击杀或随机效果后的连招时，后续
+应新增 tactical solver，并以每一步的最新 state 重新解析 card/enemy instance。
+
 ## Retry And Failure Handling
 
 Runtime 需要有限重试，但不能把所有错误都重试：

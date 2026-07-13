@@ -2,16 +2,20 @@
 
 ## 1. Schemas
 
-- [ ] Define `StepRecord`.
-- [ ] Define `RunSummary`.
-- [ ] Define compact `state_summary`.
+- [x] Define `StepRecord`.
+- [x] Define `RunSummary`.
+- [x] Define compact `state_summary`.
+- [x] Define `TrajectorySegment`、`state_hash_before` 和 `state_hash_after`，用于标识 checkpoint 回退分支。
 
 ## 2. Logger
 
-- [ ] Implement append-only JSONL writer.
-- [ ] Implement summary writer.
-- [ ] Add run directory creation.
-- [ ] Include repo commit and game version when available.
+- [x] Implement append-only JSONL writer.
+- [x] Implement summary writer.
+- [x] Add run directory creation.
+- [x] Include game version when available.
+- [ ] Include repo commit in every record。（当前 `StepRecord` 尚未写入 commit；不要误以为已实现。）
+- [x] 写入 `segments.jsonl`，并在同一 Runtime 进程内检测 `continue_run` 后的 checkpoint 回退。
+- [x] 在 `RunSummary` 写入 `duration_seconds`、`token_usage` 和 `segment_count`。
 
 ## 3. Evaluation Fixtures
 
@@ -22,6 +26,5 @@
 ## 4. Verification
 
 - [ ] Add parser tests for JSONL logs.
-- [ ] Add summary metric tests.
-- [ ] Run `openspec validate --all`.
-
+- [x] Add summary metric tests for duration, token usage, state hashes, and segment count.
+- [ ] Run `openspec validate --all`。（当前开发 shell 未找到 `openspec` CLI；上传前需按 README 安装/恢复该命令后执行。）

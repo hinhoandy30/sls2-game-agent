@@ -4,30 +4,30 @@
 
 - [ ] Review `openspec/specs/agent-collaboration-contracts/spec.md` with all
       team leads.
-- [ ] Confirm whether first runner uses MCP guided tools or direct HTTP.
+- [x] Confirm whether first runner uses MCP guided tools or direct HTTP.（MVP0 使用直接 HTTP `HttpGameClient`；MCP 保留给人工调试。）
 - [ ] Confirm JSON schema filenames and fixture locations.
-- [ ] Record accepted changes in the project planning document.
+- [x] Record current implementation status in `openspec/implementation-status.md`。（仍待团队正式评审共享契约。）
 
 ## 2. Runtime Work
 
-- [ ] Implement `GameClient.health`.
-- [ ] Implement `GameClient.get_state`.
-- [ ] Implement `GameClient.act`.
-- [ ] Implement `GameClient.wait_until_actionable`.
-- [ ] Implement action validation against `available_actions`.
-- [ ] Emit `StepRecord` for every attempted action.
+- [x] Implement `GameClient.health`.
+- [x] Implement `GameClient.get_state`.
+- [x] Implement `GameClient.act`.
+- [x] Implement `GameClient.wait_until_actionable`.
+- [x] Implement action validation against `available_actions`.
+- [x] Emit `StepRecord` for every attempted action.
 
 ## 3. Policy Work
 
-- [ ] Implement `Policy.decide` interface.
-- [ ] Implement `CombatPolicyV0` from mock combat fixtures.
-- [ ] Implement `MapPolicyV0`.
-- [ ] Implement `RewardPolicyV0`.
-- [ ] Add tests that assert expected `AgentAction` for fixtures.
+- [x] Implement `Policy.decide` interface.
+- [x] Implement `CombatPolicyV0`。（当前基于 in-test mock payload；可运行但不是完整策略。）
+- [x] Implement `MapPolicyV0`.
+- [x] Implement `RewardPolicyV0`.
+- [x] Add tests that assert expected `AgentAction` for mock states.
 
 ## 4. Knowledge Work
 
-- [ ] Implement `KnowledgeProvider.for_state`.
+- [x] Implement `KnowledgeProvider.for_state`。（当前仅提取 monster/card/potion refs，不进行资料查询。）
 - [ ] Implement card lookup by `card_id`.
 - [ ] Implement monster lookup by `enemy_id`.
 - [ ] Implement relic, potion, and event lookup stubs.
@@ -36,7 +36,7 @@
 ## 5. Evaluation Work
 
 - [ ] Implement `StepRecord` JSONL reader.
-- [ ] Implement `RunSummary` writer.
+- [x] Implement `RunSummary` writer in Runtime。（Evaluation 仍缺 JSONL reader 和 metrics/report。）
 - [ ] Implement metrics for invalid actions, floor reached, damage taken, and
       terminal result.
 - [ ] Build reports from mock trajectories before live runtime is ready.
@@ -48,4 +48,3 @@
 - [ ] Add `MAP` fixture.
 - [ ] Add first `COMBAT` fixture.
 - [ ] Add `REWARD` fixture.
-

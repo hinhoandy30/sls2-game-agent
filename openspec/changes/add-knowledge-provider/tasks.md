@@ -2,8 +2,8 @@
 
 ## 1. Interface
 
-- [ ] Define `KnowledgeContext`.
-- [ ] Implement `KnowledgeProvider.for_state`.
+- [x] Define `KnowledgeContext`.
+- [x] Implement `KnowledgeProvider.for_state`。（当前只根据 live state 提取 refs；完整资料检索仍未实现。）
 - [ ] Add source reference shape.
 
 ## 2. Static Data Lookup
@@ -23,5 +23,4 @@
 
 - [ ] Add fixture tests for combat state.
 - [ ] Add fixture tests for reward/event state.
-- [ ] Run `openspec validate --all`.
-
+- [ ] Run `openspec validate --all`。（当前开发 shell 未找到 `openspec` CLI。）

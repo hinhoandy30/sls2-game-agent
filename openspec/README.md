@@ -19,6 +19,12 @@ Use it as the team-facing source of truth for the dedicated STS2 agent runner.
   - Current contract for Runtime, Policy, Knowledge, Evaluation, and Mod/API
     collaboration.
 
+## Current Implementation Status
+
+- `implementation-status.md`
+  - 团队当前可以依赖的 Runtime 能力、最近实现记录、日志产物和明确未完成项。
+  - 开始 Policy、Knowledge 或 Evaluation 工作前先读这一页；它避免把设计目标误认为已经可用的功能。
+
 ## Current Changes
 
 - `changes/define-agent-collaboration-contracts/`
@@ -26,6 +32,10 @@ Use it as the team-facing source of truth for the dedicated STS2 agent runner.
 - `changes/define-mvp0-shared-contract-schemas/`
   - MVP0 具体字段契约，覆盖 `GameClient`、`GameStateSnapshot`、`AgentAction`、
     `PolicyDecision`、`KnowledgeContext`、`StepRecord`、fixtures 和 `RunSummary`。
+- `changes/add-agent-runtime-loop/`
+  - 专用 Runtime 主循环、Pydantic `ActionSpec`、即时模式启动和 LLM 动作计划的实现记录。
+- `changes/add-trajectory-logging/`
+  - append-only 轨迹、分支 segment、运行时间和 token 统计的实现记录。
 
 ## Workflow
 

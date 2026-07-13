@@ -71,17 +71,69 @@ Policy SHALL express game-control intent with one `AgentAction`.
 - **THEN** the `AgentAction` includes `option_index` from the latest state
 - **AND** Runtime rejects option indexes that are absent from the current payload
 
+### Requirement: Runtime Provides A Derived Legal Action View
+
+Runtime SHALL derive a `legal_actions` view from the latest snapshot before an
+LLM Policy decides. This is a runtime-derived compatibility layer in MVP0; it is
+not yet a native C# Mod/API field.
+
+#### Scenario: LLM selects a concrete legal action
+
+- **GIVEN** the latest snapshot contains `available_actions` and the current
+  screen payload
+- **WHEN** Runtime prepares an LLM prompt
+- **THEN** it provides concrete legal action entries with an `id`, action name,
+  and any required card, target, potion, or option index
+- **AND** the LLM MAY return one `legal_action_id` instead of inventing indexes
+- **AND** Runtime resolves that ID against the same snapshot before it calls the
+  live game
+
+#### Scenario: A legal action becomes stale
+
+- **GIVEN** a previous card play, kill, draw, or screen transition changed the
+  current state
+- **WHEN** Runtime validates a later action
+- **THEN** it rebuilds `legal_actions` from the fresh snapshot
+- **AND** it rejects an unavailable `legal_action_id` without calling the game
+
+### Requirement: Multi-action Plans Remain Conservative
+
+Runtime MAY execute a short action plan, but SHALL validate each member against
+the latest state and stop the remaining plan when it becomes unsafe to continue.
+
+#### Scenario: A combat action changes hand indexes
+
+- **GIVEN** an LLM returned more than one combat action
+- **WHEN** one action is executed
+- **THEN** Runtime reads or waits for a fresh actionable state before the next
+  action
+- **AND** it validates the next action again
+- **AND** it stops the rest of the plan on stale indexes, invalid targets, or a
+  screen change
+
+#### Scenario: Policy needs reliable tactical sequencing
+
+- **GIVEN** a policy needs to guarantee a sequence after draws or enemy deaths
+- **WHEN** the team implements that policy
+- **THEN** it SHALL use a future tactical solver or make one decision per fresh
+  state
+- **AND** it SHALL NOT assume MVP0 raw-index action plans are stable
+
 ### Requirement: PolicyDecision Contract
 
 Policy SHALL return a `PolicyDecision` object rather than executing game actions
-itself.
+itself. The normal MVP0 form contains one `AgentAction`; the explicitly enabled
+experimental combat-plan form also contains a bounded `action_plan` whose first
+member remains `PolicyDecision.action` for backwards compatibility.
 
 #### Scenario: Policy can act, wait, or stop
 
 - **WHEN** Policy finishes evaluating a state
 - **THEN** it returns a decision with type `action`, `wait`, `stop`, or
   `needs_human`
-- **AND** `action` decisions contain exactly one `AgentAction`
+- **AND** normal `action` decisions contain one `AgentAction`
+- **AND** an explicitly enabled experimental combat plan contains a bounded
+  ordered `action_plan` and is subject to Runtime revalidation after every member
 - **AND** `wait`, `stop`, and `needs_human` decisions include a concise reason
 
 ### Requirement: Knowledge Uses Live IDs
@@ -125,6 +177,31 @@ of live game APIs.
 - **THEN** it reads `StepRecord` JSONL files and `RunSummary` objects
 - **AND** it does not require a running STS2 process
 
+### Requirement: Trajectories Preserve Checkpoint Branches And Telemetry
+
+Runtime SHALL record enough information to distinguish a continued timeline
+from a checkpoint retry, and SHALL include runtime cost telemetry when it is
+available.
+
+#### Scenario: continue_run returns a different checkpoint state
+
+- **GIVEN** Runtime executes `continue_run` in the same runtime process
+- **WHEN** the state hash after the action differs from the prior state hash
+- **THEN** Runtime appends a new `TrajectorySegment` with
+  `start_reason = "retry_from_checkpoint"`
+- **AND** the segment includes a parent segment ID, checkpoint hash, start floor,
+  screen, and HP
+- **AND** subsequent `StepRecord` entries carry that segment ID
+
+#### Scenario: Runtime writes an LLM-backed run summary
+
+- **WHEN** a run ends or stops
+- **THEN** `RunSummary` includes elapsed `duration_seconds` and `segment_count`
+- **AND** it includes aggregated token usage when the configured LLM provider
+  returned usage metadata
+- **AND** a missing provider usage field does not prevent the summary from being
+  written
+
 ### Requirement: Fixtures Unblock Parallel Work
 
 The project SHALL maintain representative state fixtures so teams can build
@@ -160,4 +237,3 @@ testable through shared contracts.
 - **AND** Evaluation builds metrics from trajectory records
 - **AND** Mod/API work fixes missing controls and state-contract defects found by
   other teams
-

@@ -5,7 +5,7 @@
 - [ ] Runtime、Policy、Knowledge、Evaluation 负责人一起评审这个 change。
 - [x] 确认 MVP0 所有记录统一使用 `schema_version = "mvp0.v1"`。
 - [x] 确认第一版 runner 使用 `GameClient`，而不是让 Policy 直接调用 MCP 或 HTTP。
-- [x] 确认第一版 `GameClient` adapter 使用 MCP guided tools、直接 HTTP，还是两者都支持但藏在同一个接口后面。
+- [x] 确认第一版 `GameClient` adapter 使用 MCP guided tools、直接 HTTP，还是两者都支持但藏在同一个接口后面。（当前选择直接 HTTP；MCP wrapper 仍可供人工调试。）
 
 ## Schema 产物
 

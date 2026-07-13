@@ -8,7 +8,7 @@
 - [x] 实现 `GameClient.get_available_actions`。
 - [x] 实现 `GameClient.act`。
 - [x] 实现 `GameClient.wait_until_actionable`。
-- [x] 决定 MVP0 默认 adapter 是 `HttpGameClient`、`McpGuidedGameClient`，还是两者都保留。
+- [x] 决定 MVP0 默认 adapter 是 `HttpGameClient`、`McpGuidedGameClient`，还是两者都保留。（当前选择 `HttpGameClient`；MCP guided adapter 尚未实现。）
 
 ## 2. Contracts And Models
 
@@ -44,6 +44,8 @@
 ## 5. Validation
 
 - [x] Validate `action` against latest `available_actions`。
+- [x] 为 LLM 提供由 fresh state 派生的 concrete `legal_actions`，并验证 `legal_action_id`。
+- [x] 用 Pydantic `ActionSpec` 校验 LLM action JSON 的动作名、必填参数和禁止参数。
 - [x] Validate `card_index` against latest `combat.hand`。
 - [x] Validate `target_index` against selected card/potion target fields。
 - [ ] Validate `option_index` against latest screen payload。
@@ -67,4 +69,14 @@
 - [x] Add fixture test proving `use_potion` can be valid outside combat when live state exposes it。
 - [ ] Add fixture test for `end_turn` waiting until next actionable turn。
 - [x] Add smoke test against a Steam-launched STS2 Mod when available。
-- [x] Run `openspec validate --all`。
+- [ ] Run `openspec validate --all`。（当前开发 shell 未找到 `openspec` CLI；上传前需按 README 安装/恢复该命令后执行。）
+
+## 8. 本轮已实现的扩展（2026-07）
+
+- [x] CLI 支持 `--enable-instant`，通过工作台 Mod console 发送 `instant`。
+- [x] LLM Policy 支持单动作 `legal_action_id`；运行时从最新状态解析成实际 HTTP action。
+- [x] LLM 可选短 action plan；每个动作后 fresh-read/wait 并再次校验，失败时停止余下计划。
+- [x] 记录 LLM 请求耗时与 provider 返回的 token usage，并汇总到 `RunSummary`。
+- [x] 为 `continue_run` 的 checkpoint 回退记录 trajectory segment、前后 state hash 和父 segment。
+- [ ] 将 `legal_actions` 下沉为 C# Mod/API 原生字段，替代 Python 运行时派生。
+- [ ] 用卡牌/敌人 instance ID 或 tactical solver 取代多步计划中的易失 index。
