@@ -180,6 +180,18 @@
 | `playable` | boolean | **当前是否可打出** |
 | `unplayable_reason` | string \| null | 不可打出原因（`not_enough_energy`, `not_enough_stars`, `no_living_allies`, `blocked_by_hook`, `unplayable`） |
 
+#### `combat.draw_cards[]`、`combat.discard_cards[]`、`combat.exhaust_cards[]`
+
+这三类是战斗牌堆的结构化条目；compact `agent_view.combat` 与 raw `combat` 均提供同名字段。
+它们用于观察卡牌生命周期，不能直接作为 `play_card` 的可执行集合。
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `card_instance_id` | string | 当前 Mod 进程内的稳定卡牌实例 ID；同一对象在 hand、draw、discard、exhaust 间移动时保持不变 |
+| `card_id` | string | 卡牌内部 ID |
+| `upgraded` | boolean | 是否已升级 |
+| `card_type` | string | 卡牌类型 |
+
 #### `*.dynamic_values[]`（适用于 `combat.hand[]`、`run.deck[]`、`selection.cards[]`、`reward.card_options[]`、`shop.cards[]`）
 
 | 字段 | 类型 | 说明 |

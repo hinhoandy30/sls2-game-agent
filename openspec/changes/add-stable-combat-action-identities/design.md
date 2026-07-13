@@ -23,6 +23,12 @@ enemy_1, enemy_2, ...
     "hand": [
       {"index": 2, "card_instance_id": "card_7", "card_id": "STRIKE_IRONCLAD"}
     ],
+    "discard_cards": [
+      {"card_instance_id": "card_7", "card_id": "STRIKE_IRONCLAD"}
+    ],
+    "exhaust_cards": [
+      {"card_instance_id": "card_9", "card_id": "ASCENDERS_BANE"}
+    ],
     "enemies": [
       {"index": 0, "enemy_instance_id": "enemy_3", "enemy_id": "SLUDGE_SPINNER"}
     ]
@@ -74,6 +80,5 @@ Policy。它不会猜测新的 index，也不会重放上一条 action。
 1. 先增加 Mod 输出与 `play_card` 的 ID 解析，保留 index input/output。
 2. Runtime 增加字段、legal action ID 与 validation，旧 LLM JSON 仍可使用 index 单动作。
 3. LLM plan prompt 优先要求 `legal_action_id`。
-4. 用实机测试验证出牌、烧牌、弃牌/抽牌后，存活 card 的 ID 不变；失败则停止 rollout，重新确认
+4. 用实机测试验证出牌、烧牌、弃牌/抽牌后，存活 card 的 ID 不变；在 draw/discard/exhaust 的结构化条目中保留 ID 作为可复盘证据。失败则停止 rollout，重新确认
    CardModel 生命周期。
-

@@ -5,7 +5,8 @@
 ### Requirement: Combat State Exposes Process-local Entity Identities
 
 The Mod SHALL expose a stable, process-local instance ID for each current combat
-hand card and enemy, in addition to existing index fields.
+hand card, structured draw/discard/exhaust pile card, and enemy, in addition to
+existing index fields.
 
 #### Scenario: Two identical cards occupy the hand
 
@@ -21,6 +22,14 @@ hand card and enemy, in addition to existing index fields.
 - **WHEN** the Runtime later tries to resolve that entity ID from current state
 - **THEN** the entity is absent
 - **AND** the Runtime does not substitute a different index or a same-name entity
+
+#### Scenario: A card moves between combat piles
+
+- **GIVEN** a live card moves from hand to discard, draw, or exhaust
+- **WHEN** the Mod returns a later combat state
+- **THEN** the destination pile's structured card entry exposes the same
+  `card_instance_id`
+- **AND** a newly generated card exposes a different `card_instance_id`
 
 ### Requirement: play_card Accepts Stable Instance References
 
@@ -55,4 +64,3 @@ revalidate the next action after every completed action.
 - **THEN** it resolves the intended card by `card_instance_id`
 - **AND** it either executes that specific card or stops the remaining plan
 - **AND** it never applies an index arithmetic correction
-

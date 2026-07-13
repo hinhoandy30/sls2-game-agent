@@ -3082,6 +3082,7 @@ internal static class GameStateService
     {
         return cards.Select(card => new
         {
+            card_instance_id = CombatInstanceIdentityService.GetCardInstanceId(card),
             card_id = card.Id.Entry,
             upgraded = card.IsUpgraded,
             card_type = card.Type.ToString()

@@ -27,7 +27,8 @@
 - LLM Runtime 现在默认在 combat stable identity 可用时一次规划多张 `legal_action_id`；每张
   牌后 Runtime 重新读 state 并重新定位实体。`--single-action` 可用于排障或旧 bridge。
 - combat `card_instance_id` / `enemy_instance_id` 与 instance-ID-first `play_card` 已写入
-  Mod 和 Runtime，并已通过 Steam 实机 smoke test；ID 只在当前 Mod 进程内有效。
+  Mod 和 Runtime。结构化 draw/discard/exhaust pile card 同样携带 `card_instance_id`，可复盘
+  卡牌跨堆移动；ID 只在当前 Mod 进程内有效。
 
 ## 最近实现记录
 
@@ -78,16 +79,18 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
 
 ## 验证证据
 
-- `mcp_server/tests` 当前有 55 个 unittest，覆盖 ActionSpec、参数归一化、stale card
+- `mcp_server/tests` 当前有 57 个 unittest，覆盖 ActionSpec、参数归一化、stale card
   index、药水 slot 合法性、legal action ID、action plan 截断、稳定 card instance ID、
   运行时间/token 汇总及 checkpoint segment。
 - 本轮 C# Mod 已使用项目级 .NET 9 SDK 干净构建；Steam 实机验证确认：`card_1` 出牌后，
   同名 `card_2` 从 index 1 移到 0 但 ID 保持不变，并且可仅按 ID 继续出牌；已离开手牌的
-  `card_1` 被安全拒绝为 HTTP 409 `stale_card_instance_id`。
+  `card_1` 被安全拒绝为 HTTP 409 `stale_card_instance_id`。后续生命周期采样确认：`card_2`
+  从手牌 -> 弃牌 -> 抽牌堆 -> 手牌始终为同一个 ID；`ASCENDERS_BANE` 从手牌进入穷尽堆仍为
+  `card_4`；死亡的 `enemy_1` 会触发 HTTP 409 `stale_target_instance_id`。
 - 最近一次实机短测在 STS2 正式版 `v0.107.1` 上到达第 8 层并自然结束，记录
   `error_count = 0`。这证明 Runtime 链路能运行；不代表策略强度或连胜能力已验证。
-- 当前 shell 未找到 `openspec` CLI，因此本次尚未重新执行 `openspec validate --all`；
-  这项在各 change 的 checklist 中保持未完成，恢复 CLI 后应优先补跑。
+- 已通过 `npx @fission-ai/openspec@latest validate --all` 验证全部 9 项 OpenSpec 文档，
+ 结果为 9 passed、0 failed（2026-07-13）。
 
 ## 接下来按组开工
 

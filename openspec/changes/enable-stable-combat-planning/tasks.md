@@ -16,4 +16,4 @@
 - [x] 添加 unit test：stable plan 的后续 action 在 fresh state 重新定位后执行。
 - [x] Run Python unit tests。（57 tests。）
 - [x] 以 Steam STS2 对 LLM plan 做一次实机 smoke test。（第 1 回合 4 项、第 2 回合 3 项，均完整执行且无 plan validation error。）
-- [ ] Run `openspec validate --all`。
+- [x] Run `openspec validate --all`。（2026-07-13：9 passed, 0 failed。）
