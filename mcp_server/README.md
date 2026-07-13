@@ -114,6 +114,9 @@ Modal：
 2. 每次决策前都调 `get_game_state`。
 3. 只调用当前 `available_actions` 里出现的动作。
 4. 每次动作后重新读取状态，不复用旧索引。
+5. 专用 Runtime 的 combat plan 只引用 `legal_action_id`；不要用 `card_index - 1` 之类的
+   相对位置修正。Mod 提供 `card_instance_id` / `enemy_instance_id` 时，Runtime 会在每步
+   fresh state 中重新定位实体。
 5. 优先用高层动作，不要把可合并流程拆碎。
 
 高层动作优先级：

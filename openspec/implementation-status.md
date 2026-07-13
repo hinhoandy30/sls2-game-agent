@@ -22,8 +22,10 @@
   `legal_action_id`，无需自己拼 `card_index`、`option_index` 或 `potion_index`。
 - CLI 可用 `--enable-instant` 向工作台 Mod console 发送 `instant`；它只负责加快
   游戏，不改变 Runtime 的“每次动作后等待可行动状态”规则。
-- `--llm-action-plan` 是可选实验：每项动作之后都重新读状态并验证；一旦 index/target
-  失效或 screen 改变，就停止余下计划。
+- `--llm-action-plan` 保留为兼容 flag；stable identity 可用的 combat 默认会使用短 plan。每项
+  动作之后都重新读状态并验证；实体失效或 screen 改变就停止余下计划。
+- LLM Runtime 现在默认在 combat stable identity 可用时一次规划多张 `legal_action_id`；每张
+  牌后 Runtime 重新读 state 并重新定位实体。`--single-action` 可用于排障或旧 bridge。
 - combat `card_instance_id` / `enemy_instance_id` 与 instance-ID-first `play_card` 已写入
   Mod 和 Runtime，并已通过 Steam 实机 smoke test；ID 只在当前 Mod 进程内有效。
 
@@ -36,6 +38,7 @@
 | `42cc190` | 可选短 action plan、LLM JSON 修复/读取重试 | 可做吞吐实验，但不应作为严谨战术规划依赖。 |
 | `eeda540` | `legal_actions`、trajectory segment、state hash | 减少 index 猜测；checkpoint 重打不再伪装成同一线性轨迹。 |
 | `add-stable-combat-action-identities` | stable combat action identities | Mod/API 与 Runtime 以实体 ID 而不是手牌位置衔接多步计划。 |
+| `enable-stable-combat-planning` | 默认 LLM combat plan | Steam smoke 中连续完整执行 4 项与 3 项 instance-ID action plan。 |
 
 ## 输出文件与消费者
 
@@ -62,7 +65,8 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
 - 安装本轮 Mod 后，combat card/enemy `legal_action_id` 将以 instance ID 为核心，可跨 index
   变化重新解析；旧 Mod 或非 combat action 仍可能依赖当前 index，不能跨 snapshot 复用。
 - 多步 LLM plan 在 index 变化时会安全地停止，但不会自动重规划。高质量连招需要
-  tactical solver，或每一步由 Policy 用 fresh state 单独决策。
+  tactical solver；当前 Runtime 会在 plan 停止后回到外层 loop 并用 fresh state 重新调用
+  Policy，但尚未有专门的战术搜索器。
 - `continue_run` 的 segment 检测只覆盖同一 Runtime 进程。不同命令、不同 output 目录
   的 run 尚未自动关联为同一存档树。
 - option payload 的“索引必须属于对应 option 列表”仍未完整验证；目前 `ActionSpec` 保证

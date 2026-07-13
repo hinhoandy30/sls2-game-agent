@@ -38,6 +38,8 @@ Use it as the team-facing source of truth for the dedicated STS2 agent runner.
   - append-only 轨迹、分支 segment、运行时间和 token 统计的实现记录。
 - `changes/add-stable-combat-action-identities/`
   - combat 卡牌/敌人稳定实例 ID，以及多步计划在 fresh state 中重新定位实体的跨端改动。
+- `changes/enable-stable-combat-planning/`
+  - LLM combat 默认一次规划多张稳定实体动作、Runtime 逐步执行与安全重规划的改动。
 
 ## Workflow
 

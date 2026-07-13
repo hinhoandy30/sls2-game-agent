@@ -149,6 +149,7 @@ def parse_llm_action_plan_payload(
     state: GameStateSnapshot,
     *,
     require_legal_action_ids: bool = False,
+    allowed_legal_action_ids: set[str] | None = None,
 ) -> tuple[list[AgentAction], list[str]]:
     raw_actions = plan_payload.get("actions")
     if not isinstance(raw_actions, list):
@@ -160,6 +161,8 @@ def parse_llm_action_plan_payload(
             continue
         legal_action_id = action.get("legal_action_id")
         if isinstance(legal_action_id, str) and legal_action_id:
+            if allowed_legal_action_ids is not None and legal_action_id not in allowed_legal_action_ids:
+                raise ValueError("Action plan selected a legal_action_id outside the plan-allowed action set.")
             actions.append(action_from_legal_action_id(legal_action_id, state))
         else:
             if require_legal_action_ids:
@@ -170,6 +173,8 @@ def parse_llm_action_plan_payload(
                 raise ValueError(f"Invalid action plan payload for ActionSpec: {exc}") from exc
     if not actions:
         raise ValueError("Action plan must include at least one action.")
+    if any(action.action == "end_turn" for action in actions[:-1]):
+        raise ValueError("end_turn must be the final action in an action plan.")
     return actions, plan_payload.get("stop_conditions") or []
 
 

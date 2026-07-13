@@ -122,8 +122,10 @@ class FakeLLMPolicy(OpenAICompatiblePolicy):
         self.max_plan_actions = max_plan_actions
         self.max_retries = 2
         self.last_call_metadata = {}
+        self.last_prompt: dict[str, Any] = {}
 
     def _chat(self, prompt: dict[str, Any]) -> str:
+        self.last_prompt = prompt
         if isinstance(self.response, list):
             return self.response.pop(0)
         return self.response
@@ -534,6 +536,48 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(len(decision.action_plan), 2)
         self.assertEqual(decision.action_plan[0].action, "play_card")
         self.assertEqual(decision.action.action, "play_card")
+
+    def test_llm_stable_combat_plan_prompt_uses_only_instance_legal_actions(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_101", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy(
+            '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"},{"legal_action_id":"end_turn"}]},"reason":"two-step plan"}',
+            enable_action_plan=True,
+        )
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.metadata["planning"]["mode"], "stable_action_plan")
+        self.assertEqual(policy.last_prompt["planning_mode"], "stable_action_plan")
+        self.assertEqual(policy.last_prompt["response_schema"]["action_plan"]["actions"], [{"legal_action_id": "required string id from plan_legal_actions"}])
+        self.assertEqual({item["action"] for item in policy.last_prompt["plan_legal_actions"]}, {"play_card", "end_turn"})
+        self.assertEqual(policy.last_prompt["legal_actions"], policy.last_prompt["plan_legal_actions"])
+        self.assertNotIn("card_index", policy.last_prompt["response_schema"]["action_plan"])
+        self.assertEqual(len(decision.action_plan), 2)
+
+    def test_llm_falls_back_to_single_action_without_card_instance_id(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        legal_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy('{"legal_action_id":"' + legal_id + '","reason":"legacy bridge"}', enable_action_plan=True)
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(policy.last_prompt["planning_mode"], "single_action")
+        self.assertEqual(policy.last_prompt["action_plan_rules"]["reason"], "card_instance_id_missing")
+        self.assertEqual(decision.metadata["planning"]["gate_reason"], "card_instance_id_missing")
+        self.assertTrue(decision.metadata["planning"]["fallback_from_stable_plan"])
 
     def test_enable_instant_mode_runs_console_command(self) -> None:
         client = ConsoleClient()

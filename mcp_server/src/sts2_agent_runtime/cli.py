@@ -31,7 +31,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--policy", choices=["heuristic", "llm"], default="heuristic")
     parser.add_argument("--llm-model", default=None)
     parser.add_argument("--llm-screens", choices=["gameplay", "all"], default="gameplay")
-    parser.add_argument("--llm-action-plan", action="store_true", help="Allow the LLM to return a short combat action plan.")
+    parser.add_argument(
+        "--llm-action-plan",
+        dest="llm_action_plan",
+        action="store_true",
+        help="Compatibility flag; stable combat planning is enabled by default for the LLM policy.",
+    )
+    parser.add_argument(
+        "--single-action",
+        dest="llm_action_plan",
+        action="store_false",
+        help="Disable combat action plans and ask the LLM for one action at a time.",
+    )
+    parser.set_defaults(llm_action_plan=True)
     parser.add_argument("--max-plan-actions", type=int, default=5, help="Maximum actions to execute from one LLM combat plan.")
     parser.add_argument("--cleanup-only", action="store_true")
     parser.add_argument("--abandon-run", action="store_true")

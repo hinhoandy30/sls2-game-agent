@@ -33,7 +33,7 @@ class OpenAICompatiblePolicy:
         model: str | None = None,
         api_base: str | None = None,
         api_key: str | None = None,
-        enable_action_plan: bool = False,
+        enable_action_plan: bool = True,
         max_plan_actions: int = 5,
         max_retries: int = 2,
         request_timeout_seconds: float = 60.0,
@@ -51,62 +51,18 @@ class OpenAICompatiblePolicy:
 
     def decide(self, state: GameStateSnapshot, knowledge: KnowledgeContext) -> PolicyDecision:
         legal_actions = build_legal_actions(state)
+        stable_plan_enabled, plan_reason = _stable_combat_plan_gate(state, legal_actions, self.enable_action_plan)
+        plan_legal_actions = _stable_plan_legal_actions(legal_actions) if stable_plan_enabled else []
         prompt = {
-            "instruction": (
-                "Return exactly one legal PolicyDecision JSON object. Do not call tools. "
-                "If any useful available action exists, type must be action. Never return needs_human, stop, or wait during combat. "
-                "Prefer selecting one id from legal_actions and return it as legal_action_id. "
-                "Do not invent card_index, potion_index, option_index, or target_index when a legal_action_id is available."
-            ),
-            "response_schema": {
-                "type": "action|wait|stop|needs_human",
-                "legal_action_id": "string id from legal_actions|null",
-                "action": {
-                    "action": "string from available_actions",
-                    "card_index": "integer|null",
-                    "target_index": "integer|null",
-                    "option_index": "integer|null",
-                    "potion_index": "integer|null",
-                },
-                "reason": "short reason",
-                "confidence": "number 0..1",
-            },
-            "planning_mode": "action_plan" if self.enable_action_plan and state.screen == "COMBAT" else "single_action",
-            "action_plan_rules": (
-                {
-                    "enabled": True,
-                    "max_actions": self.max_plan_actions,
-                    "use_only_on_screen": "COMBAT",
-                    "schema": {
-                        "type": "action",
-                        "action_plan": {
-                            "actions": [
-                                {
-                                    "legal_action_id": "string id from legal_actions|null",
-                                    "action": "string from available_actions",
-                                    "card_index": "integer|null",
-                                    "target_index": "integer|null",
-                                    "option_index": "integer|null",
-                                    "potion_index": "integer|null",
-                                }
-                            ],
-                            "stop_conditions": ["screen_changes", "card_index_not_available", "new_selection_or_reward_opens"],
-                        },
-                        "reason": "short reason",
-                        "confidence": "number 0..1",
-                    },
-                    "important": (
-                        "When planning multiple combat actions, every plan item MUST use legal_action_id, never raw card_index or target_index. "
-                        "The runtime will fresh-read and validate after every action, and stops the remaining plan when an entity disappears or the screen changes."
-                    ),
-                }
-                if self.enable_action_plan and state.screen == "COMBAT"
-                else {"enabled": False}
-            ),
+            "instruction": _decision_instruction(stable_plan_enabled),
+            "response_schema": _response_schema(stable_plan_enabled),
+            "planning_mode": "stable_action_plan" if stable_plan_enabled else "single_action",
+            "action_plan_rules": _action_plan_rules(stable_plan_enabled, self.max_plan_actions, plan_reason),
             "screen": state.screen,
             "available_actions": state.available_actions,
-            "legal_actions": legal_actions,
-            "available_action_options": action_spec_prompt_options(state),
+            "legal_actions": plan_legal_actions if stable_plan_enabled else legal_actions,
+            "plan_legal_actions": plan_legal_actions,
+            "available_action_options": [] if stable_plan_enabled else action_spec_prompt_options(state),
             "state": _compact_state(state.state),
             "knowledge_refs": knowledge.refs,
         }
@@ -114,18 +70,22 @@ class OpenAICompatiblePolicy:
         llm_metadata = dict(getattr(self, "last_call_metadata", {}) or {})
         parsed = self._parse_or_repair_json(response, prompt, llm_metadata)
         plan_payload = _extract_action_plan_payload(parsed)
-        if self.enable_action_plan and state.screen == "COMBAT" and plan_payload is not None:
+        if stable_plan_enabled and plan_payload is not None:
             actions, stop_conditions = parse_llm_action_plan_payload(
                 plan_payload,
                 state,
                 require_legal_action_ids=True,
+                allowed_legal_action_ids={str(action["id"]) for action in plan_legal_actions},
             )
             actions = actions[: self.max_plan_actions]
             decision = PolicyDecision.action_plan_decision(
                 actions,
                 reason=str(parsed.get("reason") or "LLM action plan."),
                 confidence=parsed.get("confidence"),
-                metadata={"stop_conditions": stop_conditions},
+                metadata={
+                    "stop_conditions": stop_conditions,
+                    "planning": {"mode": "stable_action_plan", "gate_reason": plan_reason},
+                },
             )
             decision.metadata["llm"] = llm_metadata
             return decision
@@ -133,6 +93,11 @@ class OpenAICompatiblePolicy:
         if isinstance(legal_action_id, str) and legal_action_id:
             action = action_from_legal_action_id(legal_action_id, state)
             decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM legal action decision."), confidence=parsed.get("confidence"))
+            decision.metadata["planning"] = {
+                "mode": "single_action",
+                "gate_reason": plan_reason,
+                "fallback_from_stable_plan": self.enable_action_plan and state.screen == "COMBAT",
+            }
             decision.metadata["llm"] = llm_metadata
             return decision
 
@@ -145,6 +110,11 @@ class OpenAICompatiblePolicy:
             raise ValueError("LLM action decision did not include an action payload.")
         action = parse_llm_action_payload(action_payload, state)
         decision = PolicyDecision.action_decision(action, reason=str(parsed.get("reason") or "LLM decision."), confidence=parsed.get("confidence"))
+        decision.metadata["planning"] = {
+            "mode": "single_action",
+            "gate_reason": plan_reason,
+            "fallback_from_stable_plan": self.enable_action_plan and state.screen == "COMBAT",
+        }
         decision.metadata["llm"] = llm_metadata
         return decision
 
@@ -226,6 +196,93 @@ class LLMScreenRouter:
         if state.screen in self.llm_screens:
             return self.llm_policy
         return self.base_router.select(state)
+
+
+def _stable_combat_plan_gate(
+    state: GameStateSnapshot,
+    legal_actions: list[dict[str, Any]],
+    enabled: bool,
+) -> tuple[bool, str]:
+    if not enabled:
+        return False, "disabled_by_configuration"
+    if state.screen != "COMBAT":
+        return False, "not_combat"
+
+    card_actions = [item for item in legal_actions if item.get("action") == "play_card"]
+    for action in card_actions:
+        if not isinstance(action.get("card_instance_id"), str):
+            return False, "card_instance_id_missing"
+        if action.get("target_index") is not None and not isinstance(action.get("target_instance_id"), str):
+            return False, "target_instance_id_missing"
+    return True, "stable_combat_identity_available"
+
+
+def _stable_plan_legal_actions(legal_actions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Only card plays and a final end-turn are identity-safe in MVP0 plans."""
+    return [
+        action
+        for action in legal_actions
+        if action.get("action") in {"play_card", "end_turn"}
+    ]
+
+
+def _decision_instruction(stable_plan_enabled: bool) -> str:
+    if stable_plan_enabled:
+        return (
+            "Return exactly one legal combat PolicyDecision JSON object. Do not call tools. "
+            "Plan this combat action window once: choose an ordered sequence of up to the allowed number of actions, then let the runtime execute it. "
+            "Every action_plan item MUST contain exactly one legal_action_id from plan_legal_actions. "
+            "card_index and target_index are old snapshot-relative positions: never output them, never reason with them, and never adjust them with arithmetic. "
+            "The legal_action_id identifies the specific card and enemy instance. Include only actions that are sensible from the current hand and energy; include end_turn when appropriate and only as the final item. "
+            "The runtime re-reads state after every action and will stop/replan if a card, target, or screen changes."
+        )
+    return (
+        "Return exactly one legal PolicyDecision JSON object. Do not call tools. "
+        "If any useful available action exists, type must be action. Never return needs_human, stop, or wait during combat. "
+        "Prefer selecting one id from legal_actions and return it as legal_action_id. "
+        "Do not invent card_index, potion_index, option_index, or target_index when a legal_action_id is available."
+    )
+
+
+def _response_schema(stable_plan_enabled: bool) -> dict[str, Any]:
+    if stable_plan_enabled:
+        return {
+            "type": "action",
+            "action_plan": {
+                "actions": [{"legal_action_id": "required string id from plan_legal_actions"}],
+                "stop_conditions": ["entity_missing", "screen_changed", "new_selection"],
+            },
+            "reason": "short reason",
+            "confidence": "number 0..1",
+        }
+    return {
+        "type": "action|wait|stop|needs_human",
+        "legal_action_id": "string id from legal_actions|null",
+        "action": {
+            "action": "string from available_actions",
+            "card_index": "integer|null",
+            "target_index": "integer|null",
+            "option_index": "integer|null",
+            "potion_index": "integer|null",
+        },
+        "reason": "short reason",
+        "confidence": "number 0..1",
+    }
+
+
+def _action_plan_rules(stable_plan_enabled: bool, max_actions: int, reason: str) -> dict[str, Any]:
+    if not stable_plan_enabled:
+        return {"enabled": False, "reason": reason}
+    return {
+        "enabled": True,
+        "max_actions": max_actions,
+        "use_only_on_screen": "COMBAT",
+        "plan_item_schema": {"legal_action_id": "required string id from plan_legal_actions"},
+        "important": (
+            "Use the stable legal_action_id only. Do not include action, card_index, target_index, option_index, or potion_index in action_plan items. "
+            "A plan is valid only while its referenced entities still exist in fresh state."
+        ),
+    }
 
 
 def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:

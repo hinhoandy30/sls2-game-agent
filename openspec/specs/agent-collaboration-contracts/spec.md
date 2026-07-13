@@ -127,6 +127,13 @@ the latest state and stop the remaining plan when it becomes unsafe to continue.
 - **AND** a missing card or target ID stops the remaining plan without playing a
   different entity
 
+#### Scenario: Stable combat planning is unavailable
+
+- **GIVEN** the bridge omits a required combat card or enemy instance ID
+- **WHEN** Runtime prepares the LLM decision prompt
+- **THEN** it falls back to the single-action contract
+- **AND** it records the fallback reason in `PolicyDecision.metadata`
+
 #### Scenario: Policy needs reliable tactical sequencing
 
 - **GIVEN** a policy needs to guarantee a sequence after draws or enemy deaths
