@@ -23,6 +23,7 @@ from .contracts import (
 from .knowledge import KnowledgeProvider
 from .legal_actions import build_legal_actions
 from .policies import ScreenRouter
+from .route_planning import build_route_planning_payload
 
 
 @dataclass(slots=True)
@@ -281,8 +282,26 @@ class AgentRuntime:
         if not selected.get(expected_flag, False):
             raise ValidationError("potion_action_unavailable", f"Potion does not satisfy {expected_flag}.", details={"potion_index": index})
         valid_targets = selected.get("valid_target_indices") or []
-        if selected.get("requires_target") and action.target_index not in valid_targets:
-            raise ValidationError("invalid_potion_target", "target_index is not valid for selected potion.", details={"target_index": action.target_index, "valid_target_indices": valid_targets})
+        if selected.get("requires_target"):
+            if action.target_instance_id is not None:
+                enemies = ((raw.get("combat") or {}).get("enemies") or [])
+                target = next((enemy for enemy in enemies if enemy.get("enemy_instance_id") == action.target_instance_id), None)
+                if target is None:
+                    raise ValidationError(
+                        "stale_target_instance_id",
+                        "target_instance_id is absent from latest combat.enemies.",
+                        details={"target_instance_id": action.target_instance_id},
+                    )
+                target_index = target.get("index")
+                if not isinstance(target_index, int) or target_index not in valid_targets:
+                    raise ValidationError(
+                        "invalid_target_instance_id",
+                        "target_instance_id is not a valid target for selected potion.",
+                        details={"target_instance_id": action.target_instance_id, "valid_target_indices": valid_targets},
+                    )
+                action.target_index = target_index
+            if action.target_index not in valid_targets:
+                raise ValidationError("invalid_potion_target", "target_index is not valid for selected potion.", details={"target_index": action.target_index, "valid_target_indices": valid_targets})
 
     def _execute_action_plan(
         self,
@@ -526,7 +545,7 @@ def _state_summary(raw: dict[str, Any]) -> dict[str, Any]:
     combat = raw.get("combat") if isinstance(raw.get("combat"), dict) else {}
     snapshot = GameStateSnapshot.from_raw({"data": raw}, source="summary")
     legal_actions = build_legal_actions(snapshot)
-    return {
+    summary = {
         "screen": raw.get("screen"),
         "floor": run.get("floor"),
         "player_hp": run.get("current_hp") or (combat.get("player") or {}).get("current_hp"),
@@ -534,6 +553,63 @@ def _state_summary(raw: dict[str, Any]) -> dict[str, Any]:
         "available_actions": action_names(raw),
         "legal_action_ids": [str(action.get("id")) for action in legal_actions],
         "enemy_ids": [enemy.get("enemy_id") for enemy in (combat.get("enemies") or []) if enemy.get("enemy_id")],
+    }
+    if raw.get("screen") == "MAP":
+        route_planning = build_route_planning_payload(raw, legal_actions)
+        if route_planning is not None:
+            summary["route_planning"] = _route_planning_summary(route_planning)
+    if raw.get("screen") == "BUNDLE_SELECTION":
+        summary["bundles"] = _bundle_summary(raw.get("bundles"))
+    return summary
+
+
+def _bundle_summary(bundles: Any) -> list[dict[str, Any]]:
+    if not isinstance(bundles, list):
+        return []
+    summarized: list[dict[str, Any]] = []
+    for bundle in bundles:
+        if not isinstance(bundle, dict):
+            continue
+        cards: list[dict[str, Any]] = []
+        for card in bundle.get("cards") or []:
+            if not isinstance(card, dict):
+                continue
+            cards.append(
+                {
+                    "index": card.get("index"),
+                    "card_id": card.get("card_id"),
+                    "name": card.get("name"),
+                    "card_type": card.get("card_type"),
+                    "rarity": card.get("rarity"),
+                    "energy_cost": card.get("energy_cost"),
+                    "resolved_rules_text": card.get("resolved_rules_text"),
+                }
+            )
+        summarized.append({"index": bundle.get("index"), "cards": cards})
+    return summarized
+
+
+def _route_planning_summary(route_planning: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "schema_version": route_planning.get("schema_version"),
+        "map_generation_count": route_planning.get("map_generation_count"),
+        "current_node_id": route_planning.get("current_node_id"),
+        "available_node_ids": route_planning.get("available_node_ids"),
+        "route_count": route_planning.get("route_count"),
+        "routes_omitted": route_planning.get("routes_omitted"),
+        "route_groups": route_planning.get("route_groups") or [],
+        "route_candidates": [
+            {
+                "route_id": candidate.get("route_id"),
+                "next_node_id": candidate.get("next_node_id"),
+                "next_legal_action_id": candidate.get("next_legal_action_id"),
+                "remaining_sequence": candidate.get("remaining_sequence"),
+                "remaining_counts": candidate.get("remaining_counts"),
+                "features": candidate.get("features"),
+            }
+            for candidate in route_planning.get("route_candidates") or []
+            if isinstance(candidate, dict)
+        ],
     }
 
 

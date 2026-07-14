@@ -74,15 +74,90 @@ class EventKnowledgeFile(BaseModel):
         }
 
 
+class CardUpgradeKnowledge(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    summary_zh: str
+    changes_zh: list[str]
+
+
+class CardKnowledgeFile(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    schema_version: Literal["sts2-card-knowledge.v1"]
+    kind: Literal["card"]
+    card_id: str
+    name_zh: str
+    character_ids: list[str] = Field(min_length=1)
+    card_type: str
+    rarity: str
+    cost_zh: str
+    summary_zh: str
+    mechanics_zh: list[str]
+    tags: list[str]
+    upgrade: CardUpgradeKnowledge | None = None
+    sources: list[KnowledgeSource] = Field(min_length=1)
+
+    def to_prompt_entry(self) -> dict[str, Any]:
+        return {
+            "card_id": self.card_id,
+            "name_zh": self.name_zh,
+            "card_type": self.card_type,
+            "rarity": self.rarity,
+            "cost_zh": self.cost_zh,
+            "summary_zh": self.summary_zh,
+            "mechanics_zh": self.mechanics_zh,
+            "tags": self.tags,
+            "upgrade": self.upgrade.model_dump() if self.upgrade is not None else None,
+            "source_refs": [source.ref for source in self.sources],
+        }
+
+
+class CardPriorityKnowledgeFile(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    schema_version: Literal["sts2-card-priority-strategy.v1"]
+    kind: Literal["card_priority"]
+    strategy_id: str
+    card_id: str
+    name_zh: str
+    character_ids: list[str] = Field(min_length=1)
+    baseline_priority: Literal["very_high", "high", "medium", "low", "avoid", "unknown"]
+    role_tags: list[str]
+    good_when_zh: list[str]
+    bad_when_zh: list[str]
+    pick_vs_skip_zh: list[str]
+    upgrade_priority_zh: str
+    notes_zh: list[str]
+    sources: list[KnowledgeSource] = Field(min_length=1)
+
+    def to_prompt_entry(self) -> dict[str, Any]:
+        return {
+            "strategy_id": self.strategy_id,
+            "card_id": self.card_id,
+            "name_zh": self.name_zh,
+            "baseline_priority": self.baseline_priority,
+            "role_tags": self.role_tags,
+            "good_when_zh": self.good_when_zh,
+            "bad_when_zh": self.bad_when_zh,
+            "pick_vs_skip_zh": self.pick_vs_skip_zh,
+            "upgrade_priority_zh": self.upgrade_priority_zh,
+            "notes_zh": self.notes_zh,
+            "source_refs": [source.ref for source in self.sources],
+        }
+
+
 class KnowledgeProvider:
     def __init__(self, root_dir: Path | None = None) -> None:
         self._root_dir = root_dir or Path(__file__).resolve().parents[2] / "data" / "knowledge" / "v1"
         self._monster_cache: dict[str, MonsterKnowledgeFile | None] = {}
         self._event_cache: dict[str, EventKnowledgeFile | None] = {}
+        self._card_cache: dict[str, CardKnowledgeFile | None] = {}
 
     def for_state(self, state: GameStateSnapshot) -> KnowledgeContext:
         raw = state.state
         refs: list[str] = []
+        cards: list[dict[str, Any]] = []
         monsters: list[dict[str, Any]] = []
         events: list[dict[str, Any]] = []
         sources: list[dict[str, Any]] = []
@@ -100,7 +175,12 @@ class KnowledgeProvider:
         for card in combat.get("hand") or []:
             card_id = card.get("card_id") or card.get("id")
             if card_id:
-                refs.append(f"card:{card_id}")
+                normalized_id = str(card_id)
+                refs.append(f"card:{normalized_id}")
+                entry = self._load_card(normalized_id)
+                if entry is not None:
+                    cards.append(entry.to_prompt_entry())
+                    sources.extend(self._source_payloads(entry.sources, "cards", normalized_id))
 
         run = raw.get("run") if isinstance(raw.get("run"), dict) else {}
         for potion in run.get("potions") or []:
@@ -121,6 +201,7 @@ class KnowledgeProvider:
         return KnowledgeContext(
             run_id=state.run_id,
             refs=sorted(set(refs)),
+            cards=_deduplicate_entries(cards, "card_id"),
             monsters=_deduplicate_entries(monsters, "enemy_id"),
             events=_deduplicate_entries(events, "event_id"),
             sources=_deduplicate_entries(sources, "ref"),
@@ -136,13 +217,21 @@ class KnowledgeProvider:
             self._event_cache[event_id] = self._load_json(self._root_dir / "events" / f"{event_id}.json", EventKnowledgeFile)
         return self._event_cache[event_id]
 
+    def _load_card(self, card_id: str) -> CardKnowledgeFile | None:
+        if card_id not in self._card_cache:
+            self._card_cache[card_id] = self._load_json(self._root_dir / "cards" / f"{card_id}.json", CardKnowledgeFile)
+        return self._card_cache[card_id]
+
     @staticmethod
     def _source_payloads(sources: list[KnowledgeSource], category: str, entry_id: str) -> list[dict[str, Any]]:
         knowledge_path = f"{category}/{entry_id}.json"
         return [{**source.model_dump(), "knowledge_path": knowledge_path} for source in sources]
 
     @staticmethod
-    def _load_json(path: Path, model_type: type[MonsterKnowledgeFile] | type[EventKnowledgeFile]) -> MonsterKnowledgeFile | EventKnowledgeFile | None:
+    def _load_json(
+        path: Path,
+        model_type: type[MonsterKnowledgeFile] | type[EventKnowledgeFile] | type[CardKnowledgeFile],
+    ) -> MonsterKnowledgeFile | EventKnowledgeFile | CardKnowledgeFile | None:
         if not path.is_file():
             return None
         with path.open(encoding="utf-8") as handle:

@@ -14,6 +14,7 @@ from .contracts import AgentAction, GameStateSnapshot, KnowledgeContext, PolicyD
 from .legal_actions import action_from_legal_action_id, build_legal_actions
 from .policies import Policy, ScreenRouter
 from .prompt_builder import PromptBuilder
+from .route_planning import build_route_planning_payload
 
 DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
 GAMEPLAY_LLM_SCREENS = {
@@ -129,7 +130,7 @@ class OpenAICompatiblePolicy:
             legal_actions=plan_legal_actions if stable_plan_enabled else legal_actions,
             plan_legal_actions=plan_legal_actions,
             available_action_options=[] if stable_plan_enabled else action_spec_prompt_options(state),
-            state=_compact_state(state.state),
+            state=_compact_state(state.state, legal_actions=legal_actions),
             knowledge=_knowledge_prompt_payload(knowledge),
             agent_context=agent_context,
         )
@@ -308,6 +309,9 @@ class OpenAICompatiblePolicy:
                 with request.urlopen(req, timeout=self.request_timeout_seconds) as resp:
                     data = json.loads(resp.read().decode("utf-8"))
                 break
+            except urlerror.HTTPError as exc:
+                body = exc.read().decode("utf-8", errors="replace")
+                raise RuntimeError(f"LLM HTTP {exc.code}: {body[:1000]}") from exc
             except (TimeoutError, urlerror.URLError) as exc:
                 last_error = exc
                 if attempt >= self.max_retries:
@@ -375,15 +379,19 @@ def _stable_combat_plan_gate(
             return False, "card_instance_id_missing"
         if action.get("target_index") is not None and not isinstance(action.get("target_instance_id"), str):
             return False, "target_instance_id_missing"
+    potion_actions = [item for item in legal_actions if item.get("action") == "use_potion"]
+    for action in potion_actions:
+        if action.get("target_index") is not None and not isinstance(action.get("target_instance_id"), str):
+            return False, "potion_target_instance_id_missing"
     return True, "stable_combat_identity_available"
 
 
 def _stable_plan_legal_actions(legal_actions: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Only card plays and a final end-turn are identity-safe in MVP0 plans."""
+    """Combat plans may play stable cards, use usable potions, and end the turn."""
     return [
         action
         for action in legal_actions
-        if action.get("action") in {"play_card", "end_turn"}
+        if action.get("action") in {"play_card", "use_potion", "end_turn"}
     ]
 
 
@@ -494,10 +502,10 @@ def _action_plan_rules(stable_plan_enabled: bool, max_actions: int, reason: str)
     }
 
 
-def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:
+def _compact_state(raw: dict[str, Any], *, legal_actions: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     agent_view = raw.get("agent_view") if isinstance(raw.get("agent_view"), dict) else {}
     agent_run = agent_view.get("run") if isinstance(agent_view.get("run"), dict) else {}
-    return {
+    compact = {
         "run_id": raw.get("run_id"),
         "screen": raw.get("screen"),
         "session": raw.get("session"),
@@ -505,15 +513,43 @@ def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:
         "character_select": raw.get("character_select"),
         "combat": raw.get("combat"),
         "run": raw.get("run"),
-        "map": raw.get("map"),
+        "map": _compact_map(raw.get("map")) if raw.get("screen") == "MAP" else raw.get("map"),
         "reward": raw.get("reward"),
         "selection": raw.get("selection"),
+        "bundles": raw.get("bundles"),
         "event": raw.get("event"),
         "modal": raw.get("modal"),
         "shop": raw.get("shop"),
         "rest": raw.get("rest"),
         "chest": raw.get("chest"),
         "combat_piles": agent_run.get("piles"),
+    }
+    route_planning = (
+        build_route_planning_payload(raw, legal_actions or [], include_route_candidates=False)
+        if raw.get("screen") == "MAP"
+        else None
+    )
+    if route_planning is not None:
+        compact["route_planning"] = route_planning
+    return compact
+
+
+def _compact_map(map_payload: Any) -> Any:
+    if not isinstance(map_payload, dict):
+        return map_payload
+    return {
+        "current_node": map_payload.get("current_node"),
+        "starting_node": map_payload.get("starting_node"),
+        "boss_node": map_payload.get("boss_node"),
+        "second_boss_node": map_payload.get("second_boss_node"),
+        "rows": map_payload.get("rows"),
+        "cols": map_payload.get("cols"),
+        "is_travel_enabled": map_payload.get("is_travel_enabled"),
+        "is_traveling": map_payload.get("is_traveling"),
+        "map_generation_count": map_payload.get("map_generation_count"),
+        "available_nodes": map_payload.get("available_nodes"),
+        "local_vote": map_payload.get("local_vote"),
+        "player_votes": map_payload.get("player_votes"),
     }
 
 

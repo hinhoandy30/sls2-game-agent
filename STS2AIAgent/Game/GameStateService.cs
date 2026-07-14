@@ -4232,6 +4232,7 @@ internal static class GameStateService
         return new MapNodePayload
         {
             index = index,
+            node_id = BuildMapNodeId(node.Point.coord),
             row = node.Point.coord.row,
             col = node.Point.coord.col,
             node_type = node.Point.PointType.ToString(),
@@ -4254,6 +4255,7 @@ internal static class GameStateService
     {
         return new MapGraphNodePayload
         {
+            node_id = BuildMapNodeId(point.coord),
             row = point.coord.row,
             col = point.coord.col,
             node_type = point.PointType.ToString(),
@@ -4269,12 +4271,27 @@ internal static class GameStateService
                 .ThenBy(parent => parent.coord.col)
                 .Select(parent => BuildMapCoordPayload(parent.coord)!)
                 .ToArray(),
+            parent_node_ids = point.parents
+                .OrderBy(parent => parent.coord.row)
+                .ThenBy(parent => parent.coord.col)
+                .Select(parent => BuildMapNodeId(parent.coord))
+                .ToArray(),
             children = point.Children
                 .OrderBy(child => child.coord.row)
                 .ThenBy(child => child.coord.col)
                 .Select(child => BuildMapCoordPayload(child.coord)!)
+                .ToArray(),
+            child_node_ids = point.Children
+                .OrderBy(child => child.coord.row)
+                .ThenBy(child => child.coord.col)
+                .Select(child => BuildMapNodeId(child.coord))
                 .ToArray()
         };
+    }
+
+    private static string BuildMapNodeId(MapCoord coord)
+    {
+        return $"{coord.row}:{coord.col}";
     }
 
     private static MapCoordPayload? BuildMapCoordPayload(MapCoord? coord)
@@ -5866,6 +5883,8 @@ internal sealed class MapNodePayload
 {
     public int index { get; init; }
 
+    public string node_id { get; init; } = string.Empty;
+
     public int row { get; init; }
 
     public int col { get; init; }
@@ -5894,6 +5913,8 @@ internal sealed class MapPlayerVotePayload
 
 internal sealed class MapGraphNodePayload
 {
+    public string node_id { get; init; } = string.Empty;
+
     public int row { get; init; }
 
     public int col { get; init; }
@@ -5916,7 +5937,11 @@ internal sealed class MapGraphNodePayload
 
     public MapCoordPayload[] parents { get; init; } = Array.Empty<MapCoordPayload>();
 
+    public string[] parent_node_ids { get; init; } = Array.Empty<string>();
+
     public MapCoordPayload[] children { get; init; } = Array.Empty<MapCoordPayload>();
+
+    public string[] child_node_ids { get; init; } = Array.Empty<string>();
 }
 
 internal sealed class CombatPlayerPayload

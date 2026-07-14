@@ -2,7 +2,7 @@
   "schema_version": "sts2-specialist-strategy.v1",
   "agent_name": "combat",
   "strategy_id": "combat.baseline.v1",
-  "revision": 1,
+  "revision": 2,
   "title_zh": "战斗基线：先确认局面，再在可执行前缀内取舍",
   "rules_zh": [
     {
@@ -11,7 +11,15 @@
     },
     {
       "rule_id": "tactical-order",
-      "text_zh": "每回合按固定顺序检查：先确定当前最危险或最值得击杀的目标；再检查本回合是否存在可靠斩杀；若不能斩杀，比较本回合伤害、格挡和为了下回合节奏可接受的战损；最后才考虑药水。"
+      "text_zh": "每个 action window 都要做攻防平衡：先确定敌人本回合意图、我方当前 HP/格挡/能量/药水；再检查可靠斩杀或击杀关键敌人能否直接减少本回合或下回合伤害；若不能可靠斩杀，比较多打伤害、少掉血、保留/使用药水、打出能力牌之间的收益。不要默认用本回合战损换下回合斩杀；如果用一张防御或药水能显著减少战损且不破坏关键节奏，通常应优先防住。"
+    },
+    {
+      "rule_id": "tempo-damage-discipline",
+      "text_zh": "接受战损必须说明换来了什么：本回合斩杀、击杀高威胁目标、避免更大后续伤害、建立关键能力，或让下回合斩杀概率显著提高。若只是多打少量伤害但导致未来必须在火堆回血、无法敲牌，通常不是好交换。"
+    },
+    {
+      "rule_id": "potion-as-combat-resource",
+      "text_zh": "可使用药水是当前战斗资源，必须和手牌一起比较。药水可以用于保命、避免大额战损、确保斩杀或解决高威胁目标；不要因为 action_plan 可多步出牌就忽略 legal actions 中的 use_potion。"
     },
     {
       "rule_id": "pile-uncertainty",

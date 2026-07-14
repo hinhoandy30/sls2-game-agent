@@ -9,13 +9,13 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
     raw = state.state
     available = set(state.available_actions)
     legal: list[dict[str, Any]] = []
+    enemies_by_index = {
+        enemy.get("index"): enemy
+        for enemy in ((raw.get("combat") or {}).get("enemies") or [])
+        if isinstance(enemy, dict) and isinstance(enemy.get("index"), int)
+    }
 
     if "play_card" in available:
-        enemies_by_index = {
-            enemy.get("index"): enemy
-            for enemy in ((raw.get("combat") or {}).get("enemies") or [])
-            if isinstance(enemy, dict) and isinstance(enemy.get("index"), int)
-        }
         for card in ((raw.get("combat") or {}).get("hand") or []):
             if not isinstance(card, dict) or not card.get("playable", False):
                 continue
@@ -63,7 +63,16 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
                 if potion.get("requires_target"):
                     for target_index in potion.get("valid_target_indices") or []:
                         if isinstance(target_index, int):
-                            legal.append(_with_id({**base, "target_index": target_index}))
+                            target = enemies_by_index.get(target_index) or {}
+                            legal.append(
+                                _with_id(
+                                    {
+                                        **base,
+                                        "target_index": target_index,
+                                        "target_instance_id": target.get("enemy_instance_id"),
+                                    }
+                                )
+                            )
                 else:
                     legal.append(_with_id(base))
             if "discard_potion" in available and potion.get("can_discard", False):
@@ -126,7 +135,7 @@ def _add_option_actions(legal: list[dict[str, Any]], available: set[str], action
             "option_index": index,
             "namespace": namespace,
         }
-        for key in ("node_type", "row", "col", "event_id", "label", "name", "card_id", "relic_id", "potion_id", "price"):
+        for key in ("node_id", "node_type", "row", "col", "event_id", "label", "name", "card_id", "relic_id", "potion_id", "price"):
             if key in option:
                 item[key] = option[key]
         legal.append(_with_id(item))
@@ -144,7 +153,7 @@ def _with_id(action: dict[str, Any]) -> dict[str, Any]:
         value = action.get(key)
         if value is not None:
             parts.append(f"{key.removesuffix('_index')}_{value}")
-    for key in ("card_id", "potion_id", "node_type", "event_id", "name"):
+    for key in ("card_id", "potion_id", "node_id", "node_type", "event_id", "name"):
         value = action.get(key)
         if value:
             parts.append(_safe_id(str(value)))

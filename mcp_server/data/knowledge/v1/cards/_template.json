@@ -1,0 +1,28 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REPLACE_WITH_CARD_ID",
+  "name_zh": "替换为中文卡名",
+  "character_ids": ["IRONCLAD"],
+  "card_type": "Attack|Skill|Power|Curse|Status|Colorless",
+  "rarity": "Basic|Common|Uncommon|Rare|Curse|Status|Special",
+  "cost_zh": "例如：1 能量；0 能量；X 能量；不可打出",
+  "summary_zh": "一句话说明卡牌的可验证机制。",
+  "mechanics_zh": [
+    "写卡牌事实，例如伤害、格挡、抽牌、消耗、获得能量、给予 debuff。",
+    "不要写拿牌建议或策略结论。"
+  ],
+  "tags": ["输出", "防御", "过牌"],
+  "upgrade": {
+    "summary_zh": "升级后一句话说明。",
+    "changes_zh": ["例如：伤害从 6 提升到 9。"]
+  },
+  "sources": [
+    {
+      "ref": "wiki:replace-with-page",
+      "title_zh": "资料页面标题",
+      "url": "https://example.invalid",
+      "retrieved_at": "YYYY-MM-DD"
+    }
+  ]
+}

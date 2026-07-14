@@ -55,6 +55,7 @@
 | `enable-stable-combat-planning` | 默认 LLM combat plan | Steam smoke 中连续完整执行 4 项与 3 项 instance-ID action plan。 |
 | `add-combat-policy-audit-and-seeded-runs` | 战斗审计/边界与固定种子 | Steam smoke 验证生成牌、随机消耗牌都会在边界后重新读取 state；`HYPF24C3XC` seed 回显端到端验证通过。 |
 | `externalize-specialist-strategies` | 外置专项策略配置 | 策略组可独立维护中文 JSON；trajectory 可区分具体策略版本和内容。 |
+| `add-full-map-route-planning` | 全量地图路线候选 | C# 状态补稳定 `node_id`/边 ID；Runtime 枚举全量剩余路线，但 MAP prompt 默认按下一步节点聚合为 `route_groups`，重点给精英、火堆、商店、小怪和事件数量范围。 |
 
 ## 输出文件与消费者
 
@@ -65,14 +66,21 @@ runs/<timestamp>_<run-id>/
   trajectory.jsonl
   segments.jsonl
   summary.json
+  decision_summary.md      # 可由 summarize_run CLI 生成
+  decision_summary.json    # 可由 summarize_run CLI 生成
 ```
 
 `trajectory.jsonl` 每行是 `StepRecord`，包含决策前摘要、动作、结果、错误、step 用时、
 segment ID 及前后 state hash。`segments.jsonl` 描述每条 checkpoint 分支。`summary.json`
 包含最终 screen/floor、错误数、总时间、token usage 和 segment 数。
 
-Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取这些文件来修复 Mod 或
-运行时故障。
+`mcp_server/src/sts2_agent_runtime/summarize_run.py` 可以把原始 trajectory 压缩成面向人的
+决策摘要：seed/run id、总 token、按 agent 拆分的 token、每一步的 screen/floor/HP、action、
+reason、MAP `route_groups`、BUNDLE_SELECTION 卡包内容、COMBAT `combat_audit`、LLM 单步耗时和错误。团队复盘优先看
+`decision_summary.md`；需要追字段或复现 bug 时再回到 `trajectory.jsonl`。Evaluation 可以读取
+`decision_summary.json` 做 notebook 或报表，但正式指标仍应以原始 `trajectory.jsonl` 为准。
+
+Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取这些文件来修复 Mod 或运行时故障。
 
 ## 已知边界，暂时不要依赖
 
@@ -82,7 +90,9 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
   变化重新解析；旧 Mod 或非 combat action 仍可能依赖当前 index，不能跨 snapshot 复用。
 - CombatAgent 使用稳定 `legal_action_id` 制定短 plan。它会对抽牌、随机、生成牌、弃牌/消耗、
   目标死亡和未知复杂效果声明重规划边界；Runtime 强制该动作位于 plan 末尾，执行后读取 fresh
-  state 并再次调用 Policy。它不是全局 tactical solver，策略质量仍取决于模型、知识库与后续评测。
+  state 并再次调用 Policy。可使用药水已进入 combat `plan_legal_actions`；有目标药水会携带
+  `target_instance_id` 并由 Runtime 解析回最新 target index。它不是全局 tactical solver，
+  策略质量仍取决于模型、知识库与后续评测。
 - `continue_run` 的 segment 检测只覆盖同一 Runtime 进程。不同命令、不同 output 目录
   的 run 尚未自动关联为同一存档树。
 - option payload 的“索引必须属于对应 option 列表”仍未完整验证；目前 `ActionSpec` 保证
@@ -94,6 +104,10 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
   dynamic state 分成固定顺序消息，并在 LLM metrics 中记录 knowledge hash 与消息字符数；目前仅覆盖
   Overgrowth 前 3 场弱敌池的怪物和事件文件框架，卡牌、药水、遗物与全量事件资料仍未完成。Evaluation
   JSONL reader、指标报表和脱敏 fixture 也尚未完成。
+- RouteCandidate 由 Runtime 根据 `map.nodes` DFS 生成，支持中途重规划并只统计未来路线；
+  实机 smoke 已确认 STS2 v0.107.1 的 `map.nodes` 返回全图，本次样例为 69 个节点。
+- Route Agent prompt 不再直接包含完整 `map.nodes` 或全部 `route_candidates`。上次实机日志重建后，
+  起点 80 条路线压缩为 3 个下一步 route groups，MAP state JSON 从约 156k 字符降到约 14k 字符。
 
 ## 验证证据
 
@@ -109,6 +123,9 @@ Evaluation 应只读取这些文件，不直接调用 STS2。Policy 不应读取
   `card_4`；死亡的 `enemy_1` 会触发 HTTP 409 `stale_target_instance_id`。
 - 最近一次实机短测在 STS2 正式版 `v0.107.1` 上到达第 8 层并自然结束，记录
   `error_count = 0`。这证明 Runtime 链路能运行；不代表策略强度或连胜能力已验证。
+- 长测 `HYPF24C3XC` 到达第 17 层 Boss `SOUL_FYSH` 后死亡，`error_count = 0`。该 run 使用
+  `--no-review-on-game-over`，因此没有生成 `review.json`；默认 multi-agent run 在 GAME_OVER
+  且未显式关闭时会运行离线复盘 agent。
 - 本轮新增测试覆盖 `combat_audit` 的 schema、边界 repair、执行截断和 live combat piles 注入；
   `set_seed` 的参数与 CLI screen guard 也有覆盖。最新 OpenSpec 全量验证结果将在本 change 收尾时更新。
 

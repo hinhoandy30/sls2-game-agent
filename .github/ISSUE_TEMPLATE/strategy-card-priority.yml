@@ -1,0 +1,69 @@
+name: Strategy entry - card priority
+description: Assign or submit one conditional card-priority strategy JSON entry.
+title: "[Strategy][CardPriority] <CARD_ID>"
+labels: ["strategy", "card-priority"]
+body:
+  - type: input
+    id: card_id
+    attributes:
+      label: Card ID
+      description: Must match the matching card fact `card_id` and the strategy JSON filename.
+      placeholder: BATTLE_TRANCE
+    validations:
+      required: true
+  - type: input
+    id: chinese_name
+    attributes:
+      label: 中文名称
+      placeholder: 战斗专注
+    validations:
+      required: true
+  - type: dropdown
+    id: baseline_priority
+    attributes:
+      label: Baseline priority
+      description: This is a default, not an absolute tier.
+      options:
+        - very_high
+        - high
+        - medium
+        - low
+        - avoid
+        - unknown
+    validations:
+      required: true
+  - type: textarea
+    id: conditions
+    attributes:
+      label: 条件化优先级
+      description: 写 good_when / bad_when / pick_vs_skip 的判断依据。
+      placeholder: |
+        good_when:
+        - 牌组缺过牌
+        bad_when:
+        - 本回合或牌组继续抽牌依赖很高
+        pick_vs_skip:
+        - 缺过牌时优先于普通攻击；缺防御时不应因此跳过关键防御牌
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / 来源
+      description: 可以来自 wiki、人工策略讨论、复盘日志或评测结果；需要可追溯。
+      placeholder: |
+        - run analysis: runs/.../decision_summary.md
+        - team note: <issue/pr link>
+    validations:
+      required: true
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Done when
+      options:
+        - label: Added or updated `mcp_server/data/knowledge/v1/strategy/card_priorities/<CARD_ID>.json`
+          required: true
+        - label: JSON filename exactly matches `card_id`
+          required: true
+        - label: Ran `cd mcp_server && uv run sts2-validate-knowledge`
+          required: true

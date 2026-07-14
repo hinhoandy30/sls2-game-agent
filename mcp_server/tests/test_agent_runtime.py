@@ -20,9 +20,11 @@ from sts2_agent_runtime.legal_actions import build_legal_actions
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
 from sts2_agent_runtime.orchestration import AgentOrchestrator, CombatAgent, RouteStrategyAgent, RunDevelopmentAgent
 from sts2_agent_runtime.review import ReviewReport, ReviewResult
-from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
+from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError, _state_summary
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
 from sts2_agent_runtime.strategy import StrategyProvider
+from sts2_agent_runtime.summarize_run import render_markdown, summarize_run_dir
+from sts2_agent_runtime.validate_knowledge import validate_knowledge_root
 
 
 def state_payload(
@@ -253,6 +255,75 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(len(policy.last_prompt["messages"]), 5)
         self.assertIn('"packet":"run_context.v1"', policy.last_prompt["messages"][2]["content"])
 
+    def test_route_agent_prompt_contains_grouped_remaining_map_routes(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node"],
+                run={"floor": 2, "deck": [], "potions": []},
+            ),
+            source="test",
+        )
+        snapshot.state["map"] = {
+            "current_node": {"row": 1, "col": 3},
+            "map_generation_count": 1,
+            "available_nodes": [
+                {"index": 0, "node_id": "2:2", "row": 2, "col": 2, "node_type": "Monster", "state": "Travelable"},
+                {"index": 1, "node_id": "2:4", "row": 2, "col": 4, "node_type": "Event", "state": "Travelable"},
+            ],
+            "nodes": [
+                {"node_id": "0:3", "row": 0, "col": 3, "node_type": "Start", "visited": True, "child_node_ids": ["1:3"]},
+                {"node_id": "1:3", "row": 1, "col": 3, "node_type": "Monster", "visited": True, "is_current": True, "child_node_ids": ["2:2", "2:4"]},
+                {"node_id": "2:2", "row": 2, "col": 2, "node_type": "Monster", "child_node_ids": ["3:2"]},
+                {"node_id": "2:4", "row": 2, "col": 4, "node_type": "Event", "child_node_ids": ["3:4"]},
+                {"node_id": "3:2", "row": 3, "col": 2, "node_type": "Rest", "child_node_ids": ["4:3"]},
+                {"node_id": "3:4", "row": 3, "col": 4, "node_type": "Elite", "child_node_ids": ["4:3"]},
+                {"node_id": "4:3", "row": 4, "col": 3, "node_type": "Boss", "is_boss": True, "child_node_ids": []},
+            ],
+        }
+        first_legal_id = build_legal_actions(snapshot)[0]["id"]
+        policy = FakeRouteAgent(RunContextStore(), f'{{"legal_action_id":"{first_legal_id}","reason":"route"}}')
+
+        policy.decide(snapshot, KnowledgeContext())
+
+        route_planning = policy.last_prompt["state"]["route_planning"]
+        self.assertEqual(route_planning["current_node_id"], "1:3")
+        self.assertEqual(route_planning["route_count"], 2)
+        self.assertEqual(route_planning["routes_omitted"], 0)
+        self.assertNotIn("route_candidates", route_planning)
+        self.assertNotIn("nodes", policy.last_prompt["state"]["map"])
+        first_group = route_planning["route_groups"][0]
+        self.assertEqual(first_group["next_node_id"], "2:2")
+        self.assertEqual(first_group["next_legal_action_id"], first_legal_id)
+        self.assertEqual(first_group["count_ranges"]["monster"], {"min": 1, "max": 1, "values": [1]})
+        self.assertEqual(first_group["count_ranges"]["rest"], {"min": 1, "max": 1, "values": [1]})
+        self.assertEqual(first_group["count_ranges"]["elite"], {"min": 0, "max": 0, "values": [0]})
+        self.assertEqual(first_group["representative_routes"][0]["remaining_sequence"], ["Monster", "Rest", "Boss"])
+        self.assertEqual([node["node_id"] for node in route_planning["visited_prefix"]], ["0:3"])
+
+    def test_state_summary_logs_map_route_candidates(self) -> None:
+        raw = state_payload(screen="MAP", actions=["choose_map_node"], run={"floor": 2, "potions": []})["data"]
+        raw["map"] = {
+            "current_node": {"row": 1, "col": 3},
+            "map_generation_count": 1,
+            "available_nodes": [
+                {"index": 0, "node_id": "2:2", "row": 2, "col": 2, "node_type": "Monster", "state": "Travelable"},
+            ],
+            "nodes": [
+                {"node_id": "1:3", "row": 1, "col": 3, "node_type": "Monster", "visited": True, "is_current": True, "child_node_ids": ["2:2"]},
+                {"node_id": "2:2", "row": 2, "col": 2, "node_type": "Monster", "child_node_ids": ["3:2"]},
+                {"node_id": "3:2", "row": 3, "col": 2, "node_type": "Boss", "is_boss": True, "child_node_ids": []},
+            ],
+        }
+
+        summary = _state_summary(raw)
+
+        self.assertEqual(summary["route_planning"]["route_count"], 1)
+        self.assertEqual(summary["route_planning"]["route_groups"][0]["next_node_id"], "2:2")
+        candidate = summary["route_planning"]["route_candidates"][0]
+        self.assertEqual(candidate["next_legal_action_id"], "choose_map_node_option_0_2-2")
+        self.assertEqual(candidate["remaining_sequence"], ["Monster", "Boss"])
+
     def test_agent_orchestrator_routes_gameplay_screens_without_llm_router_call(self) -> None:
         orchestrator = AgentOrchestrator(context_store=RunContextStore(), api_key="test-key")
         map_state = GameStateSnapshot.from_raw(state_payload(screen="MAP", actions=["choose_map_node"], run={"deck": [], "potions": []}), source="test")
@@ -274,8 +345,145 @@ class AgentRuntimeTests(unittest.TestCase):
         metadata = orchestrator.combat_agent.metadata_provider(state)
 
         self.assertEqual(metadata["strategy"]["strategy_id"], "combat.baseline.v1")
-        self.assertEqual(metadata["strategy"]["strategy_revision"], 1)
+        self.assertEqual(metadata["strategy"]["strategy_revision"], 2)
         self.assertRegex(metadata["strategy"]["strategy_hash"], r"^[0-9a-f]{16}$")
+
+    def test_summarize_run_extracts_human_timeline_and_route_groups(self) -> None:
+        map_state = state_payload(screen="MAP", actions=["choose_map_node"], run={"floor": 1, "current_hp": 70, "potions": []})["data"]
+        map_state["map"] = {
+            "current_node": {"row": 0, "col": 3},
+            "map_generation_count": 1,
+            "available_nodes": [
+                {"index": 0, "node_id": "1:2", "row": 1, "col": 2, "node_type": "Monster", "state": "Travelable"},
+                {"index": 1, "node_id": "1:4", "row": 1, "col": 4, "node_type": "Shop", "state": "Travelable"},
+            ],
+            "nodes": [
+                {"node_id": "0:3", "row": 0, "col": 3, "node_type": "Ancient", "visited": True, "is_current": True, "child_node_ids": ["1:2", "1:4"]},
+                {"node_id": "1:2", "row": 1, "col": 2, "node_type": "Monster", "child_node_ids": ["2:2"]},
+                {"node_id": "1:4", "row": 1, "col": 4, "node_type": "Shop", "child_node_ids": ["2:4"]},
+                {"node_id": "2:2", "row": 2, "col": 2, "node_type": "Boss", "is_boss": True, "child_node_ids": []},
+                {"node_id": "2:4", "row": 2, "col": 4, "node_type": "Boss", "is_boss": True, "child_node_ids": []},
+            ],
+        }
+        map_summary = _state_summary(map_state)
+        rows = [
+            {
+                "schema_version": "mvp0.v1",
+                "run_id": "run_test",
+                "segment_id": "seg",
+                "step_index": 0,
+                "observed_at": "now",
+                "screen_before": "EVENT",
+                "state_hash_before": "a",
+                "state_hash_after": "b",
+                "state_summary": {"screen": "EVENT", "floor": 1, "player_hp": 70},
+                "knowledge_refs": [],
+                "decision": {"type": "action", "reason": "proceed"},
+                "action_request": {"action": "choose_event_option", "legal_action_id": "choose_event_option_option_0"},
+                "action_result": {"ok": True, "action": "choose_event_option", "status": "completed", "stable": True, "message": "ok", "state": map_state},
+            },
+            {
+                "schema_version": "mvp0.v1",
+                "run_id": "run_test",
+                "segment_id": "seg",
+                "step_index": 1,
+                "observed_at": "now",
+                "screen_before": "MAP",
+                "state_hash_before": "b",
+                "state_hash_after": "c",
+                "state_summary": map_summary,
+                "knowledge_refs": [],
+                "decision": {
+                    "type": "action",
+                    "reason": "choose shop branch",
+                    "metadata": {
+                        "agent": {"name": "route_strategy"},
+                        "llm": {"model": "fake", "duration_seconds": 1.5, "usage": {"prompt_tokens": 100, "total_tokens": 120}},
+                    },
+                },
+                "action_request": {"action": "choose_map_node", "legal_action_id": "choose_map_node_option_1_1-4"},
+                "action_result": None,
+            },
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            (run_dir / "trajectory.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n", encoding="utf-8")
+
+            summary = summarize_run_dir(run_dir)
+            markdown = render_markdown(summary)
+
+        self.assertEqual(summary["token_totals"]["total_tokens"], 120)
+        route_groups = summary["decisions"][1]["route_groups"]
+        self.assertEqual({group["next_node_id"] for group in route_groups}, {"1:2", "1:4"})
+        self.assertIn("choose shop branch", markdown)
+        self.assertIn("Route groups", markdown)
+
+    def test_summarize_run_infers_seed_and_recovers_bundle_options(self) -> None:
+        bundle_state = state_payload(
+            screen="BUNDLE_SELECTION",
+            actions=["choose_bundle"],
+            run={"floor": 1, "current_hp": 64},
+        )["data"]
+        bundle_state["run_id"] = "SEED123"
+        bundle_state["bundles"] = [
+            {
+                "index": 0,
+                "cards": [
+                    {"index": 0, "card_id": "ANGER", "name": "愤怒", "energy_cost": 0, "resolved_rules_text": "造成6点伤害。"},
+                    {"index": 1, "card_id": "CINDER", "name": "余烬", "energy_cost": 2, "resolved_rules_text": "造成18点伤害。"},
+                ],
+            },
+            {
+                "index": 1,
+                "cards": [
+                    {"index": 0, "card_id": "BODY_SLAM", "name": "全身撞击", "energy_cost": 1, "resolved_rules_text": "造成你当前格挡值的伤害。"},
+                ],
+            },
+        ]
+        rows = [
+            {
+                "schema_version": "mvp0.v1",
+                "run_id": "run_unknown",
+                "segment_id": "seg",
+                "step_index": 0,
+                "observed_at": "now",
+                "screen_before": "EVENT",
+                "state_summary": {"screen": "EVENT", "floor": 1, "player_hp": 64},
+                "decision": {"type": "action", "reason": "choose bundle event"},
+                "action_request": {"action": "choose_event_option", "legal_action_id": "choose_event_option_option_1"},
+                "action_result": {"ok": True, "state": bundle_state},
+            },
+            {
+                "schema_version": "mvp0.v1",
+                "run_id": "run_unknown",
+                "segment_id": "seg",
+                "step_index": 1,
+                "observed_at": "now",
+                "screen_before": "BUNDLE_SELECTION",
+                "state_summary": {
+                    "screen": "BUNDLE_SELECTION",
+                    "floor": 1,
+                    "player_hp": 64,
+                    "legal_action_ids": ["choose_bundle_option_0", "choose_bundle_option_1"],
+                },
+                "decision": {"type": "action", "reason": "pick bundle"},
+                "action_request": {"action": "choose_bundle", "legal_action_id": "choose_bundle_option_0"},
+                "action_result": None,
+            },
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            (run_dir / "trajectory.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in rows) + "\n", encoding="utf-8")
+
+            summary = summarize_run_dir(run_dir)
+            markdown = render_markdown(summary)
+
+        self.assertEqual(summary["seed"], "SEED123")
+        self.assertEqual(summary["run_id"], "SEED123")
+        self.assertEqual(len(summary["decisions"][1]["bundles"]), 2)
+        self.assertIn("Seed: `SEED123`", markdown)
+        self.assertIn("愤怒", markdown)
+        self.assertIn("全身撞击", markdown)
 
     def test_runtime_writes_review_and_experience_after_game_over(self) -> None:
         game_over = state_payload(screen="GAME_OVER", actions=[], run={"floor": 7, "deck": [], "potions": []})
@@ -399,6 +607,113 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(knowledge.events[0]["name_zh"], "测试事件")
         self.assertEqual(knowledge.sources[0]["ref"], "test:event")
         self.assertEqual(knowledge.sources[0]["knowledge_path"], "events/TEST_EVENT.json")
+
+    def test_knowledge_provider_loads_card_entry_from_hand_card_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cards_dir = root / "cards"
+            cards_dir.mkdir()
+            (cards_dir / "BATTLE_TRANCE.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "sts2-card-knowledge.v1",
+                        "kind": "card",
+                        "card_id": "BATTLE_TRANCE",
+                        "name_zh": "战斗专注",
+                        "character_ids": ["IRONCLAD"],
+                        "card_type": "Skill",
+                        "rarity": "Uncommon",
+                        "cost_zh": "0 能量",
+                        "summary_zh": "抽牌技能。",
+                        "mechanics_zh": ["抽 3 张牌。", "本回合不能再抽牌。"],
+                        "tags": ["过牌", "0费"],
+                        "upgrade": {"summary_zh": "抽更多牌。", "changes_zh": ["抽牌数量增加。"]},
+                        "sources": [{"ref": "test:card", "title_zh": "测试来源", "url": "https://example.com/card", "retrieved_at": "2026-07-14"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            snapshot = GameStateSnapshot.from_raw(
+                combat_payload(
+                    actions=["end_turn"],
+                    hand=[{"index": 0, "card_id": "BATTLE_TRANCE", "playable": True, "requires_target": False}],
+                ),
+                source="test",
+            )
+
+            knowledge = KnowledgeProvider(root_dir=root).for_state(snapshot)
+
+        self.assertEqual(knowledge.refs, ["card:BATTLE_TRANCE", "monster:TEST_ENEMY"])
+        self.assertEqual(knowledge.cards[0]["card_id"], "BATTLE_TRANCE")
+        self.assertEqual(knowledge.cards[0]["name_zh"], "战斗专注")
+        self.assertEqual(knowledge.sources[0]["knowledge_path"], "cards/BATTLE_TRANCE.json")
+
+    def test_validate_knowledge_root_reports_filename_id_mismatch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "monsters").mkdir(parents=True)
+            (root / "events").mkdir()
+            (root / "cards").mkdir()
+            (root / "strategy" / "card_priorities").mkdir(parents=True)
+            (root / "monsters" / "WRONG_ID.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "sts2-monster-knowledge.v1",
+                        "kind": "monster",
+                        "enemy_id": "NIBBIT",
+                        "name_zh": "尼比",
+                        "act_ids": ["OVERGROWTH"],
+                        "encounter_pool_zh": "测试",
+                        "summary_zh": "测试",
+                        "pattern_zh": "测试",
+                        "moves": [{"name_zh": "攻击", "effect_zh": "造成伤害"}],
+                        "risk_facts_zh": [],
+                        "sources": [{"ref": "test", "title_zh": "测试", "url": "https://example.com", "retrieved_at": "2026-07-14"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            errors = validate_knowledge_root(root)
+
+        self.assertTrue(any("filename must match enemy_id" in error for error in errors))
+
+    def test_validate_knowledge_root_accepts_card_priority_strategy(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "monsters").mkdir(parents=True)
+            (root / "events").mkdir()
+            (root / "cards").mkdir()
+            priorities_dir = root / "strategy" / "card_priorities"
+            priorities_dir.mkdir(parents=True)
+            (priorities_dir / "BATTLE_TRANCE.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "sts2-card-priority-strategy.v1",
+                        "kind": "card_priority",
+                        "strategy_id": "card-priority.BATTLE_TRANCE.v1",
+                        "card_id": "BATTLE_TRANCE",
+                        "name_zh": "战斗专注",
+                        "character_ids": ["IRONCLAD"],
+                        "baseline_priority": "high",
+                        "role_tags": ["过牌", "0费"],
+                        "good_when_zh": ["牌组缺过牌。"],
+                        "bad_when_zh": ["本回合后续依赖继续抽牌。"],
+                        "pick_vs_skip_zh": ["缺过牌时优先级较高。"],
+                        "upgrade_priority_zh": "中等。",
+                        "notes_zh": ["条件化优先级。"],
+                        "sources": [{"ref": "test:priority", "title_zh": "测试来源", "url": "https://example.com/priority", "retrieved_at": "2026-07-14"}],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+
+            errors = validate_knowledge_root(root)
+
+        self.assertEqual(errors, [])
 
     def test_llm_prompt_contains_compact_knowledge_entries(self) -> None:
         snapshot = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
@@ -903,6 +1218,46 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertIn("use_potion_potion_1_FYSH-OIL", {item["id"] for item in legal})
         self.assertNotIn("use_potion_potion_0_STABLE-SERUM", {item["id"] for item in legal})
 
+    def test_targeted_potion_legal_action_carries_target_instance_id(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="COMBAT",
+                actions=["use_potion", "end_turn"],
+                run={
+                    "floor": 1,
+                    "current_hp": 70,
+                    "potions": [
+                        {
+                            "index": 0,
+                            "potion_id": "FIRE_POTION",
+                            "name": "火焰药水",
+                            "occupied": True,
+                            "can_use": True,
+                            "can_discard": True,
+                            "requires_target": True,
+                            "valid_target_indices": [0],
+                        }
+                    ],
+                },
+                combat={
+                    "player": {"current_hp": 70, "energy": 3},
+                    "hand": [],
+                    "enemies": [{"index": 0, "enemy_instance_id": "enemy_1", "enemy_id": "TEST_ENEMY", "current_hp": 20, "is_alive": True}],
+                },
+                turn=1,
+            ),
+            source="test",
+        )
+
+        potion_action = next(item for item in build_legal_actions(snapshot) if item["action"] == "use_potion")
+
+        self.assertEqual(potion_action["target_instance_id"], "enemy_1")
+        self.assertIn("enemy-1", potion_action["id"])
+        runtime = AgentRuntime(client=DummyClient([]))
+        action = AgentAction("use_potion", potion_index=0, target_instance_id="enemy_1", legal_action_id=potion_action["id"])
+        runtime.validate_action(snapshot, action)
+        self.assertEqual(action.target_index, 0)
+
     def test_legal_actions_distinguish_identical_card_instances(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             combat_payload(
@@ -985,6 +1340,29 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(policy.last_prompt["legal_actions"], policy.last_prompt["plan_legal_actions"])
         self.assertNotIn("card_index", policy.last_prompt["response_schema"]["action_plan"])
         self.assertEqual(len(decision.action_plan), 2)
+
+    def test_llm_stable_combat_plan_prompt_includes_usable_potions(self) -> None:
+        payload = combat_payload(
+            actions=["play_card", "use_potion", "discard_potion", "end_turn"],
+            hand=[{"index": 0, "card_instance_id": "card_101", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+        )
+        payload["data"]["run"]["potions"] = [
+            {"index": 0, "potion_id": "POTION_OF_BINDING", "name": "缚魂药水", "occupied": True, "can_use": True, "can_discard": True, "requires_target": False}
+        ]
+        snapshot = GameStateSnapshot.from_raw(payload, source="test")
+        potion_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "use_potion")
+        policy = FakeLLMPolicy(
+            '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + potion_id + '"},{"legal_action_id":"end_turn"}]},"reason":"use potion"}',
+            enable_action_plan=True,
+        )
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        plan_actions = {item["action"] for item in policy.last_prompt["plan_legal_actions"]}
+        self.assertIn("use_potion", plan_actions)
+        self.assertIn(potion_id, {item["id"] for item in policy.last_prompt["plan_legal_actions"]})
+        self.assertNotIn("discard_potion", plan_actions)
+        self.assertEqual([action.action for action in decision.action_plan], ["use_potion", "end_turn"])
 
     def test_combat_agent_requires_and_records_short_combat_audit(self) -> None:
         snapshot = GameStateSnapshot.from_raw(

@@ -1,0 +1,67 @@
+name: Knowledge entry - card
+description: Assign or submit one card fact JSON entry.
+title: "[Knowledge][Card] <CARD_ID>"
+labels: ["knowledge", "card"]
+body:
+  - type: input
+    id: card_id
+    attributes:
+      label: Card ID
+      description: Must match the runtime `card_id` and the JSON filename.
+      placeholder: BATTLE_TRANCE
+    validations:
+      required: true
+  - type: input
+    id: chinese_name
+    attributes:
+      label: 中文名称
+      placeholder: 战斗专注
+    validations:
+      required: true
+  - type: dropdown
+    id: card_type
+    attributes:
+      label: Card type
+      options:
+        - Attack
+        - Skill
+        - Power
+        - Curse
+        - Status
+        - Colorless
+        - 未确认
+    validations:
+      required: true
+  - type: textarea
+    id: facts
+    attributes:
+      label: 需要录入的卡牌事实
+      description: 只写费用、效果、升级变化、关键词等可验证事实；不要写拿牌建议。
+      placeholder: |
+        - 费用：0 能量
+        - 效果：抽 3 张牌
+        - 限制：本回合不能再抽牌
+        - 升级变化：...
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / 来源
+      description: 每条知识必须能追溯来源；可以填 wiki、实机日志、截图或测试 run。
+      placeholder: |
+        - wiki: <url>
+        - run log: runs/.../decision_summary.md
+    validations:
+      required: true
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Done when
+      options:
+        - label: Added or updated `mcp_server/data/knowledge/v1/cards/<CARD_ID>.json`
+          required: true
+        - label: JSON filename exactly matches `card_id`
+          required: true
+        - label: Ran `cd mcp_server && uv run sts2-validate-knowledge`
+          required: true

@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-card-priority-strategy.v1",
+  "kind": "card_priority",
+  "strategy_id": "card-priority.REPLACE_WITH_CARD_ID.v1",
+  "card_id": "REPLACE_WITH_CARD_ID",
+  "name_zh": "替换为中文卡名",
+  "character_ids": ["IRONCLAD"],
+  "baseline_priority": "unknown",
+  "role_tags": ["过牌", "防御", "输出", "成长", "消耗", "自伤", "AOE"],
+  "good_when_zh": [
+    "说明这张牌在什么牌组、路线或战斗需求下变好。"
+  ],
+  "bad_when_zh": [
+    "说明这张牌在什么情况下变差或不该拿。"
+  ],
+  "pick_vs_skip_zh": [
+    "写条件化比较，例如：缺过牌时优先于普通攻击；已有足够过牌但缺防御时可跳过。"
+  ],
+  "upgrade_priority_zh": "说明升级优先级；未知就写未知。",
+  "notes_zh": [
+    "只写策略判断依据，不写不可验证的绝对结论。"
+  ],
+  "sources": [
+    {
+      "ref": "analysis:replace-with-source",
+      "title_zh": "策略来源标题",
+      "url": "https://example.invalid",
+      "retrieved_at": "YYYY-MM-DD"
+    }
+  ]
+}

@@ -232,7 +232,7 @@ def _options_for_action(action_name: str, raw: dict[str, Any]) -> list[dict[str,
         index = candidate.get("index")
         if isinstance(index, int):
             compact = {"option_index": index}
-            for key in ("node_type", "row", "col", "event_id", "label", "name", "card_id", "relic_id", "potion_id", "price"):
+            for key in ("node_id", "node_type", "row", "col", "event_id", "label", "name", "card_id", "relic_id", "potion_id", "price"):
                 if key in candidate:
                     compact[key] = candidate[key]
             options.append(compact)

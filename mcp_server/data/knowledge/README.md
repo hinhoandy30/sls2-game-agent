@@ -7,7 +7,13 @@
 data/knowledge/v1/
   monsters/<ENEMY_ID>.json
   events/<EVENT_ID>.json
+  cards/<CARD_ID>.json
+  strategy/card_priorities/<CARD_ID>.json
 ```
+
+`cards/` 是卡牌事实库：费用、类型、效果、升级变化、关键词等可验证机制。
+`strategy/card_priorities/` 是条件化策略知识：什么时候优先拿、什么时候跳过、升级优先级。
+不要把这两类混在一起；事实库不写“应该选”，策略库不改写游戏机制事实。
 
 ## 维护规则
 
@@ -22,3 +28,26 @@ data/knowledge/v1/
 
 复制 `monsters/_template.json` 或 `events/_template.json` 后改名，即可新增一条知识。Runtime
 只会按当前 ID 读取文件，以下划线开头的模板不会被加载。
+
+可复制的模板：
+
+- `monsters/_template.json`
+- `events/_template.json`
+- `cards/_template.json`
+- `strategy/card_priorities/_template.json`
+
+## 组员协作入口
+
+日常派活使用 GitHub Issues，不靠手动维护长文档：
+
+1. Owner 创建 `Knowledge entry - monster`、`Knowledge entry - event`、`Knowledge entry - card` 或
+   `Strategy entry - card priority` issue，并填写 ID、中文名、范围和来源。
+2. 组员从 issue 新建分支，只改对应 JSON 文件。
+3. 提 PR 前运行：
+
+```bash
+cd mcp_server
+uv run sts2-validate-knowledge
+```
+
+4. PR 关联 issue，review 重点看事实是否可验证、来源是否可靠、字段是否紧凑。

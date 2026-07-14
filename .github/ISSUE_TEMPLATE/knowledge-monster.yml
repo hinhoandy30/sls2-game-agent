@@ -1,0 +1,61 @@
+name: Knowledge entry - monster
+description: Assign or submit one monster knowledge JSON entry.
+title: "[Knowledge][Monster] <ENEMY_ID>"
+labels: ["knowledge", "monster"]
+body:
+  - type: input
+    id: enemy_id
+    attributes:
+      label: Enemy ID
+      description: Must match the runtime `combat.enemies[].enemy_id` and the JSON filename.
+      placeholder: NIBBIT
+    validations:
+      required: true
+  - type: input
+    id: chinese_name
+    attributes:
+      label: 中文名称
+      placeholder: 尼比特
+    validations:
+      required: true
+  - type: dropdown
+    id: act
+    attributes:
+      label: Act / 区域
+      options:
+        - OVERGROWTH
+        - 未确认
+    validations:
+      required: true
+  - type: textarea
+    id: facts
+    attributes:
+      label: 需要录入的机制事实
+      description: 只写可验证事实，例如招式、伤害、debuff、循环、阈值；不要写策略结论。
+      placeholder: |
+        - 招式 A：造成 X 点伤害
+        - 招式 B：给予 Y 层 debuff
+        - 行动规律：...
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / 来源
+      description: 每条知识必须能追溯来源；可以填 wiki、实机日志、截图或测试 run。
+      placeholder: |
+        - wiki: <url>
+        - run log: runs/.../decision_summary.md
+    validations:
+      required: true
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Done when
+      options:
+        - label: Added or updated `mcp_server/data/knowledge/v1/monsters/<ENEMY_ID>.json`
+          required: true
+        - label: JSON filename exactly matches `enemy_id`
+          required: true
+        - label: Ran `cd mcp_server && uv run sts2-validate-knowledge`
+          required: true

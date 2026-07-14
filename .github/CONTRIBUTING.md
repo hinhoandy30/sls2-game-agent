@@ -67,6 +67,16 @@ For MCP server changes:
 - Run `uv run sts2-mcp-server`
 - Verify the server can reach `/health` or `/state` from a running mod
 
+For knowledge-base changes:
+
+- Use a GitHub issue from `Knowledge entry - monster`, `Knowledge entry - event`,
+  `Knowledge entry - card`, or `Strategy entry - card priority` as the assignment unit.
+- Edit only the matching JSON file under `mcp_server/data/knowledge/v1/`.
+- Keep text in Chinese, but keep runtime IDs and schema fields in English.
+- For `monsters/`, `events/`, and `cards/`, record verifiable facts, not policy advice.
+- For `strategy/`, record conditional strategy advice with clear good/bad conditions.
+- Run `cd "mcp_server"` then `uv run sts2-validate-knowledge`.
+
 ## Release flow
 
 1. Merge tested work into `dev`.

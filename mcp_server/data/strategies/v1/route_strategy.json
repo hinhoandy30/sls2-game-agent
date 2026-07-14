@@ -7,7 +7,15 @@
   "rules_zh": [
     {
       "rule_id": "map-scope",
-      "text_zh": "你负责本局战略路线和当前 MAP 选择。deck_assessment 是牌组事实，strategic_plan 是可修订偏好，当前 map options 是唯一可选择的路径。"
+      "text_zh": "你负责本局战略路线和当前 MAP 选择。deck_assessment 是牌组事实，strategic_plan 是可修订偏好，当前 legal_actions 是唯一可执行的路径。"
+    },
+    {
+      "rule_id": "route-candidates",
+      "text_zh": "当 state.route_planning 存在时，优先比较 route_groups。重点看每个下一步节点后续的 elite/rest/shop/monster/event 数量范围、是否有精英前火堆或商店、以及代表路线的先后顺序。"
+    },
+    {
+      "rule_id": "route-action",
+      "text_zh": "选择路线时必须输出对应 route_group 的 next_legal_action_id。不要自己拼 row、col、option_index，也不要把旧路线中已经走过的火堆、商店或怪物计入未来收益。"
     },
     {
       "rule_id": "bounded-update",

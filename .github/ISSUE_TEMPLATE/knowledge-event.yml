@@ -1,0 +1,61 @@
+name: Knowledge entry - event
+description: Assign or submit one event knowledge JSON entry.
+title: "[Knowledge][Event] <EVENT_ID>"
+labels: ["knowledge", "event"]
+body:
+  - type: input
+    id: event_id
+    attributes:
+      label: Event ID
+      description: Must match the runtime `event.event_id` and the JSON filename.
+      placeholder: NEOW
+    validations:
+      required: true
+  - type: input
+    id: chinese_name
+    attributes:
+      label: 中文名称
+      placeholder: 涅奥
+    validations:
+      required: true
+  - type: dropdown
+    id: act
+    attributes:
+      label: Act / 区域
+      options:
+        - OVERGROWTH
+        - 未确认
+    validations:
+      required: true
+  - type: textarea
+    id: facts
+    attributes:
+      label: 需要录入的机制事实
+      description: 记录事件页面、选项、代价、奖励、是否不可逆；不要写“必选 X”这类策略结论。
+      placeholder: |
+        - 初始选项：...
+        - 选项 A 结果：...
+        - 后续页面：...
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources / 来源
+      description: 每条知识必须能追溯来源；可以填 wiki、实机日志、截图或测试 run。
+      placeholder: |
+        - wiki: <url>
+        - run log: runs/.../decision_summary.md
+    validations:
+      required: true
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Done when
+      options:
+        - label: Added or updated `mcp_server/data/knowledge/v1/events/<EVENT_ID>.json`
+          required: true
+        - label: JSON filename exactly matches `event_id`
+          required: true
+        - label: Ran `cd mcp_server && uv run sts2-validate-knowledge`
+          required: true
