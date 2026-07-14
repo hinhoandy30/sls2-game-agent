@@ -9,9 +9,14 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .contracts import AgentAction
-from .client import HttpGameClient
+from .client import GameClientError, HttpGameClient, action_names, unwrap_data
+from .agent_context import RunContextStore
+from .experience import ExperienceRepository
 from .llm import GAMEPLAY_LLM_SCREENS, LLMScreenRouter, OpenAICompatiblePolicy
+from .orchestration import AgentOrchestrator
+from .review import RunReviewAgent
 from .runtime import AgentRuntime, RuntimeConfig
+from .strategy import StrategyProvider
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -25,10 +30,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--steam-url", default="steam://run/2868840")
     parser.add_argument("--enable-instant", action="store_true")
     parser.add_argument("--instant-command", default="instant")
+    parser.add_argument("--seed", help="Set a fixed seed before a new singleplayer run embarks.")
+    parser.add_argument(
+        "--replace-existing-run",
+        action="store_true",
+        help="Explicitly abandon an existing main-menu run before starting the seeded run.",
+    )
     parser.add_argument("--resume", action="store_true", help="Connect to the current game state and continue from there.")
     parser.add_argument("--stop-after-first-combat", action="store_true")
     parser.add_argument("--stop-on-reward-after-combat", action="store_true")
-    parser.add_argument("--policy", choices=["heuristic", "llm"], default="heuristic")
+    parser.add_argument("--policy", choices=["heuristic", "llm", "multi-agent"], default="heuristic")
     parser.add_argument("--llm-model", default=None)
     parser.add_argument("--llm-screens", choices=["gameplay", "all"], default="gameplay")
     parser.add_argument(
@@ -45,10 +56,15 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.set_defaults(llm_action_plan=True)
     parser.add_argument("--max-plan-actions", type=int, default=5, help="Maximum actions to execute from one LLM combat plan.")
+    parser.add_argument("--experience-dir", default="agent_knowledge/experience/v1", help="Directory for review-generated strategy experience.")
+    parser.add_argument("--strategy-dir", default=None, help="Versioned specialist strategy directory; defaults to data/strategies/v1.")
+    parser.add_argument("--no-review-on-game-over", action="store_true", help="Do not run the offline review agent after GAME_OVER.")
     parser.add_argument("--cleanup-only", action="store_true")
     parser.add_argument("--abandon-run", action="store_true")
     parser.add_argument("--shutdown-game", action="store_true")
     args = parser.parse_args(argv)
+    if args.replace_existing_run and not args.seed:
+        parser.error("--replace-existing-run is only valid together with --seed.")
     _load_env_files()
 
     if args.launch_debug_session:
@@ -57,8 +73,10 @@ def main(argv: list[str] | None = None) -> int:
         subprocess.run(["open", args.steam_url], check=False)
 
     client = HttpGameClient(base_url=args.base_url)
-    if args.launch_steam:
+    if args.launch_steam or args.launch_debug_session:
         _wait_for_health(client, timeout_seconds=120)
+    if args.seed:
+        set_seed_for_new_run(client, args.seed, replace_existing_run=args.replace_existing_run)
     if args.enable_instant:
         enable_instant_mode(client, args.instant_command)
 
@@ -70,6 +88,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     router = None
+    review_agent = None
+    experience_repository = None
     if args.policy == "llm":
         screens = None if args.llm_screens == "gameplay" else {
             "MAIN_MENU",
@@ -85,6 +105,18 @@ def main(argv: list[str] | None = None) -> int:
             ),
             llm_screens=screens,
         )
+    elif args.policy == "multi-agent":
+        experience_repository = ExperienceRepository(Path(args.experience_dir))
+        context_store = RunContextStore(experience_repository)
+        router = AgentOrchestrator(
+            context_store=context_store,
+            model=args.llm_model,
+            enable_action_plan=args.llm_action_plan,
+            max_plan_actions=args.max_plan_actions,
+            strategy_provider=StrategyProvider(Path(args.strategy_dir)) if args.strategy_dir else None,
+        )
+        if not args.no_review_on_game_over:
+            review_agent = RunReviewAgent(model=args.llm_model)
 
     runtime = AgentRuntime(
         client=client,
@@ -96,6 +128,8 @@ def main(argv: list[str] | None = None) -> int:
             stop_on_reward_after_combat=args.stop_on_reward_after_combat,
         ),
         router=router,
+        review_agent=review_agent,
+        experience_repository=experience_repository,
     )
     summary = runtime.run()
     print(summary.to_dict())
@@ -138,8 +172,128 @@ def _wait_for_health(client: HttpGameClient, *, timeout_seconds: float) -> None:
     raise RuntimeError(f"Timed out waiting for STS2 health: {last_error}")
 
 
+def set_seed_for_new_run(client: HttpGameClient, seed: str, *, replace_existing_run: bool = False) -> dict:
+    """Navigate only as far as character select, then set and verify a reproducible run seed."""
+    requested_seed = seed.strip()
+    if not requested_seed or len(requested_seed) > 64:
+        raise ValueError("--seed must contain 1 to 64 non-whitespace characters.")
+
+    state = _wait_for_seed_screen(client)
+    screen = _state_screen(state)
+    replaced_run = False
+    while screen == "MAIN_MENU":
+        actions = set(_state_action_names(state))
+        if "open_character_select" in actions:
+            break
+        if replace_existing_run and not replaced_run and "abandon_run" in actions:
+            result = client.act(AgentAction("abandon_run"))
+            modal_state = _wait_for_state_action(client, "confirm_modal", initial_payload=result.state)
+            result = client.act(AgentAction("confirm_modal"))
+            state = _wait_for_seed_screen(client, initial_payload=result.state)
+            screen = _state_screen(state)
+            replaced_run = True
+            continue
+        if "abandon_run" in actions:
+            raise RuntimeError(
+                "--seed found an existing run. Finish or abandon it first, or explicitly pass "
+                "--replace-existing-run to discard it before the seeded run starts."
+            )
+        raise RuntimeError("--seed requires a new-run main menu with open_character_select available.")
+
+    if screen == "MAIN_MENU":
+        result = client.act(AgentAction("open_character_select"))
+        state = _wait_for_seed_screen(client, initial_payload=result.state, require_character_select=True)
+        screen = _state_screen(state)
+
+    if screen != "CHARACTER_SELECT":
+        raise RuntimeError(f"--seed requires CHARACTER_SELECT, received {screen}.")
+    if "set_seed" not in _state_action_names(state):
+        raise RuntimeError("set_seed is unavailable. The lobby may be ready, already started, or a multiplayer client.")
+
+    result = client.act(AgentAction("set_seed", payload={"seed": requested_seed}))
+    state = _wait_for_seed_screen(client, initial_payload=result.state, require_character_select=True)
+    actual_seed = ((state.get("character_select") or {}).get("seed"))
+    if actual_seed != requested_seed:
+        raise RuntimeError(f"set_seed did not echo the requested seed (expected {requested_seed!r}, got {actual_seed!r}).")
+    return state
+
+
+def _state_screen(state: dict) -> str:
+    agent_view = state.get("agent_view")
+    if isinstance(agent_view, dict) and agent_view.get("screen"):
+        return str(agent_view["screen"])
+    return str(state.get("screen") or "UNKNOWN")
+
+
+def _state_action_names(state: dict) -> list[str]:
+    agent_view = state.get("agent_view")
+    if isinstance(agent_view, dict) and (agent_view.get("available_actions") or agent_view.get("actions")):
+        return action_names(agent_view)
+    return action_names(state)
+
+
+def _wait_for_seed_screen(
+    client: HttpGameClient,
+    *,
+    timeout_seconds: float = 30.0,
+    initial_payload: dict | None = None,
+    require_character_select: bool = False,
+) -> dict:
+    """Health means the Mod server is alive; wait until the relevant menu screen is actionable."""
+    deadline = time.monotonic() + timeout_seconds
+    payload = initial_payload
+    last_state: dict = {}
+    while time.monotonic() < deadline:
+        if payload is None:
+            payload = client.get_state()
+        state = unwrap_data(payload)
+        screen = _state_screen(state)
+        if screen == "CHARACTER_SELECT":
+            return state
+        if not require_character_select and screen == "MAIN_MENU":
+            actions = set(_state_action_names(state))
+            if "open_character_select" in actions or "abandon_run" in actions:
+                return state
+        last_state = state
+        payload = None
+        time.sleep(0.25)
+    expected = "CHARACTER_SELECT" if require_character_select else "an actionable MAIN_MENU or CHARACTER_SELECT"
+    raise RuntimeError(f"Timed out waiting for {expected} before setting seed; last screen was {_state_screen(last_state)}.")
+
+
+def _wait_for_state_action(
+    client: HttpGameClient,
+    action_name: str,
+    *,
+    timeout_seconds: float = 15.0,
+    initial_payload: dict | None = None,
+) -> dict:
+    """Wait for a specific transitional action, such as the abandon confirmation modal."""
+    deadline = time.monotonic() + timeout_seconds
+    payload = initial_payload
+    last_state: dict = {}
+    while time.monotonic() < deadline:
+        if payload is None:
+            payload = client.get_state()
+        state = unwrap_data(payload)
+        if action_name in _state_action_names(state):
+            return state
+        last_state = state
+        payload = None
+        time.sleep(0.25)
+    raise RuntimeError(f"Timed out waiting for {action_name}; last screen was {_state_screen(last_state)}.")
+
+
 def enable_instant_mode(client: HttpGameClient, command: str = "instant") -> ActionResult:
-    return client.run_console_command(command)
+    try:
+        return client.run_console_command(command)
+    except GameClientError as exc:
+        if exc.code == "invalid_action" and "STS2_ENABLE_DEBUG_ACTIONS" in str(exc):
+            raise RuntimeError(
+                "--enable-instant requires debug actions. Start with --launch-debug-session "
+                "or launch STS2 with STS2_ENABLE_DEBUG_ACTIONS=1."
+            ) from exc
+        raise
 
 
 def _load_env_files() -> None:

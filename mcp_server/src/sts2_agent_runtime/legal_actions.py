@@ -84,6 +84,7 @@ def build_legal_actions(state: GameStateSnapshot) -> list[dict[str, Any]]:
     _add_option_actions(legal, available, "claim_reward", (raw.get("reward") or {}).get("rewards") or [], "reward")
     _add_option_actions(legal, available, "choose_reward_card", (raw.get("reward") or {}).get("cards") or [], "reward_card")
     _add_option_actions(legal, available, "choose_treasure_relic", (raw.get("reward") or {}).get("rewards") or [], "treasure")
+    _add_option_actions(legal, available, "choose_bundle", raw.get("bundles") or [], "bundle")
     _add_option_actions(legal, available, "choose_rest_option", (raw.get("rest") or {}).get("options") or (raw.get("selection") or {}).get("options") or [], "rest")
     _add_option_actions(legal, available, "buy_card", (raw.get("shop") or {}).get("cards") or (raw.get("shop") or {}).get("items") or [], "shop_card")
     _add_option_actions(legal, available, "buy_relic", (raw.get("shop") or {}).get("relics") or (raw.get("shop") or {}).get("items") or [], "shop_relic")

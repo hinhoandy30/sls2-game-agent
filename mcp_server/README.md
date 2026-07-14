@@ -65,6 +65,7 @@
 - `choose_timeline_epoch`
 - `confirm_timeline_overlay`
 - `select_character`
+- `set_seed`
 - `embark`
 - `choose_map_node`
 - `proceed`
@@ -103,6 +104,12 @@ Modal：
   - 仅当 `STS2_ENABLE_DEBUG_ACTIONS=1` 时注册
   - 默认关闭
   - 只用于开发和验证，不应成为正式游玩流程的常规依赖
+  - **启动前约束：** 必须在 Steam 启动 STS2 游戏进程之前设置
+    `STS2_ENABLE_DEBUG_ACTIONS=1`。已经以普通方式启动的游戏不会因之后在终端
+    设置该变量而解锁；此时应完全退出游戏，并通过 debug session 重新启动。
+  - `instant` 是通过该工具执行的工作台控制台命令。因此 `instant` 失败并收到
+    HTTP 409 / `run_console_command is disabled` 时，先检查启动方式，不要把它误判为
+    MCP 连接、Mod 加载或游戏动作 API 的故障。
 
 ## 降低模型误调用的建议
 
@@ -134,6 +141,28 @@ Modal：
 - [sts2-mcp-player](../skills/sts2-mcp-player/SKILL.md)
 
 这个 skill 会强制 agent 采用“状态优先、按房间推进、只用可用动作”的工作流，能明显减少误调用和索引漂移。
+
+## 固定种子与战斗短计划
+
+为可复现评测，Mod 在 `CHARACTER_SELECT` 暴露 `set_seed(seed)`：它只允许未 ready 的单人局或
+主机 lobby 使用，成功后会在最新 state 的 `character_select.seed` 回显。已有存档 run、已经出发或
+多人客户端不能改种子。
+
+专用 Runtime 可在开新局时使用：
+
+```bash
+uv run python -m sts2_agent_runtime.cli \
+  --launch-debug-session --seed HYPF24C3XC --policy multi-agent
+```
+
+`--seed` 不会放弃已有 run；如果主菜单发现续局存档，CLI 会安全失败。确认当前存档可以丢弃时，才显式
+追加 `--replace-existing-run`，它会执行 `abandon_run -> confirm_modal` 后再新开固定种子局。实机评测
+应把 seed、角色、难度、模型、Mod 版本和 Runtime 参数一起记入实验配置。
+
+CombatAgent 默认以稳定 `legal_action_id` 输出短 action plan，而不是手牌 index。每个战斗决策同时
+写入简短 `combat_audit`：目标、是否斩杀、防御取舍和最早的信息边界。遇到模型声明的抽牌、随机、
+生成牌、弃牌/消耗、目标死亡或未知复杂效果时，Runtime 强制在该动作后停止旧计划、读取 fresh state，
+再让模型决定后续动作。
 
 ## 费用字段说明
 

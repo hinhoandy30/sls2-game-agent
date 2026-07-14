@@ -193,13 +193,26 @@ class ActionResult:
 
 @dataclass(slots=True)
 class KnowledgeContext:
-    schema_version: str = SCHEMA_VERSION
+    schema_version: str = "knowledge-context.v1"
     run_id: str = "run_unknown"
     refs: list[str] = field(default_factory=list)
     cards: list[dict[str, Any]] = field(default_factory=list)
     monsters: list[dict[str, Any]] = field(default_factory=list)
+    events: list[dict[str, Any]] = field(default_factory=list)
     potions: list[dict[str, Any]] = field(default_factory=list)
     relics: list[dict[str, Any]] = field(default_factory=list)
+    sources: list[dict[str, Any]] = field(default_factory=list)
+
+    def to_prompt_dict(self) -> dict[str, Any]:
+        """Return only the compact, decision-relevant portion of knowledge."""
+        return {
+            "refs": sorted({str(item) for item in self.refs}),
+            "cards": list(self.cards),
+            "monsters": list(self.monsters),
+            "events": list(self.events),
+            "potions": list(self.potions),
+            "relics": list(self.relics),
+        }
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)
@@ -258,6 +271,9 @@ class RunSummary:
     duration_seconds: float | None = None
     token_usage: dict[str, int] = field(default_factory=dict)
     segment_count: int = 0
+    review_path: str | None = None
+    experience_lesson_count: int = 0
+    review_error: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)

@@ -1,0 +1,42 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "NIBBIT",
+  "name_zh": "尼比特",
+  "act_ids": ["OVERGROWTH"],
+  "encounter_pool_zh": "繁茂之地前 3 场弱敌池可单独出现；普通池也可能两只同时出现。",
+  "summary_zh": "会按固定三回合循环攻击、获得格挡、获得力量；战斗拖长后攻击会因力量累积而增强。",
+  "pattern_zh": "单独出现时首回合使用臀击；之后固定循环为：臀击 -> 犹豫斩击 -> 嘶嘶 -> 重复。两只同时出现时，前排首回合犹豫斩击、后排首回合嘶嘶，随后都进入同一循环。",
+  "moves": [
+    {
+      "name_zh": "臀击",
+      "effect_zh": "造成 12 点伤害；难度 9 时为 13 点。"
+    },
+    {
+      "name_zh": "犹豫斩击",
+      "effect_zh": "造成 6 点伤害并获得 5 点格挡；难度 9 时伤害为 7 点，难度 8 时格挡为 6 点。"
+    },
+    {
+      "name_zh": "嘶嘶",
+      "effect_zh": "获得 2 点力量；难度 9 时获得 3 点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "力量会保留并强化之后所有攻击。",
+    "双尼比特开局处于不同循环位置，因此同回合意图可能不同。"
+  ],
+  "sources": [
+    {
+      "ref": "wiki:sts2-nibbit",
+      "title_zh": "Slay the Spire 2 Wiki：Nibbit",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3ANibbit",
+      "retrieved_at": "2026-07-13"
+    },
+    {
+      "ref": "wiki:sts2-overgrowth",
+      "title_zh": "Slay the Spire 2 Wiki：Overgrowth",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3AOvergrowth",
+      "retrieved_at": "2026-07-13"
+    }
+  ]
+}

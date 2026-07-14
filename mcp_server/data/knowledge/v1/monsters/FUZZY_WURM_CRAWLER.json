@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "FUZZY_WURM_CRAWLER",
+  "name_zh": "毛茸茸的蠕虫爬行者",
+  "act_ids": ["OVERGROWTH"],
+  "encounter_pool_zh": "繁茂之地前 3 场弱敌池可单独出现；普通池也可与缩小甲虫组合出现。",
+  "summary_zh": "固定三回合循环，获得力量后攻击会永久变强，并会在每轮继续叠加。",
+  "pattern_zh": "固定循环为：酸性黏液 -> 吸气 -> 酸性黏液 -> 重复。",
+  "moves": [
+    {
+      "name_zh": "酸性黏液",
+      "effect_zh": "造成 4 点伤害；难度 9 时为 6 点，且会受此前获得的力量加成。"
+    },
+    {
+      "name_zh": "吸气",
+      "effect_zh": "获得 7 点力量。"
+    }
+  ],
+  "risk_facts_zh": ["每次吸气获得的力量都会保留，因此后续循环的酸性黏液会越来越痛。"],
+  "sources": [
+    {
+      "ref": "wiki:sts2-fuzzy-wurm-crawler",
+      "title_zh": "Slay the Spire 2 Wiki：Fuzzy Wurm Crawler",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3AFuzzy_Wurm_Crawler",
+      "retrieved_at": "2026-07-13"
+    },
+    {
+      "ref": "wiki:sts2-overgrowth",
+      "title_zh": "Slay the Spire 2 Wiki：Overgrowth",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3AOvergrowth",
+      "retrieved_at": "2026-07-13"
+    }
+  ]
+}

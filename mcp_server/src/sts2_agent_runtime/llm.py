@@ -4,13 +4,16 @@ import json
 import os
 import re
 import time
-from typing import Any
+from typing import Any, Callable, Literal
 from urllib import error as urlerror, request
 
+from pydantic import BaseModel, ConfigDict, Field, ValidationError as PydanticValidationError
+
 from .action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
-from .contracts import GameStateSnapshot, KnowledgeContext, PolicyDecision
+from .contracts import AgentAction, GameStateSnapshot, KnowledgeContext, PolicyDecision
 from .legal_actions import action_from_legal_action_id, build_legal_actions
 from .policies import Policy, ScreenRouter
+from .prompt_builder import PromptBuilder
 
 DEFAULT_OPENAI_MODEL = "deepseek-v4-flash"
 GAMEPLAY_LLM_SCREENS = {
@@ -18,12 +21,47 @@ GAMEPLAY_LLM_SCREENS = {
     "COMBAT",
     "REWARD",
     "CARD_SELECTION",
+    "BUNDLE_SELECTION",
     "CHEST",
     "EVENT",
     "SHOP",
     "REST",
     "MODAL",
 }
+
+
+class CombatReplanBoundary(BaseModel):
+    """The earliest action after which the current plan must be discarded."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    legal_action_id: str = Field(min_length=1)
+    reason: Literal[
+        "draw_cards",
+        "random_effect",
+        "card_generation",
+        "discard_or_exhaust",
+        "entity_missing",
+        "unknown_complex_effect",
+    ]
+
+
+class CombatAudit(BaseModel):
+    """Short, inspectable conclusions instead of storing a long reasoning trace."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    primary_target_id: str | None = None
+    lethal_this_turn: Literal["yes", "no", "unknown"]
+    defense_posture: Literal[
+        "lethal",
+        "full_block",
+        "accept_damage_for_tempo",
+        "unavoidable_damage",
+        "unknown",
+    ]
+    risk_summary_zh: str = Field(min_length=1, max_length=360)
+    replan_after: list[CombatReplanBoundary] = Field(default_factory=list, max_length=1)
 
 
 class OpenAICompatiblePolicy:
@@ -37,6 +75,11 @@ class OpenAICompatiblePolicy:
         max_plan_actions: int = 5,
         max_retries: int = 2,
         request_timeout_seconds: float = 60.0,
+        agent_name: str = "general",
+        agent_instruction: str = "",
+        context_provider: Callable[[GameStateSnapshot], dict[str, Any]] | None = None,
+        metadata_provider: Callable[[GameStateSnapshot], dict[str, Any]] | None = None,
+        strategy_update_handler: Callable[[Any, GameStateSnapshot], dict[str, Any]] | None = None,
     ) -> None:
         self.model = model or os.getenv("OPENAI_MODEL") or DEFAULT_OPENAI_MODEL
         self.api_base = (api_base or os.getenv("OPENAI_API_BASE") or "https://api.openai.com/v1").rstrip("/")
@@ -45,6 +88,12 @@ class OpenAICompatiblePolicy:
         self.max_plan_actions = max(1, min(max_plan_actions, 8))
         self.max_retries = max(0, max_retries)
         self.request_timeout_seconds = request_timeout_seconds
+        self.agent_name = agent_name
+        self.agent_instruction = agent_instruction
+        self.context_provider = context_provider
+        self.metadata_provider = metadata_provider
+        self.strategy_update_handler = strategy_update_handler
+        self.prompt_builder = PromptBuilder()
         self.last_call_metadata: dict[str, Any] = {}
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required for OpenAICompatiblePolicy.")
@@ -53,30 +102,73 @@ class OpenAICompatiblePolicy:
         legal_actions = build_legal_actions(state)
         stable_plan_enabled, plan_reason = _stable_combat_plan_gate(state, legal_actions, self.enable_action_plan)
         plan_legal_actions = _stable_plan_legal_actions(legal_actions) if stable_plan_enabled else []
-        prompt = {
-            "instruction": _decision_instruction(stable_plan_enabled),
-            "response_schema": _response_schema(stable_plan_enabled),
-            "planning_mode": "stable_action_plan" if stable_plan_enabled else "single_action",
-            "action_plan_rules": _action_plan_rules(stable_plan_enabled, self.max_plan_actions, plan_reason),
-            "screen": state.screen,
-            "available_actions": state.available_actions,
-            "legal_actions": plan_legal_actions if stable_plan_enabled else legal_actions,
-            "plan_legal_actions": plan_legal_actions,
-            "available_action_options": [] if stable_plan_enabled else action_spec_prompt_options(state),
-            "state": _compact_state(state.state),
-            "knowledge_refs": knowledge.refs,
-        }
+        prompt_builder = getattr(self, "prompt_builder", None)
+        if prompt_builder is None:
+            # Test/evaluation policy subclasses may deliberately skip the networked base constructor.
+            prompt_builder = PromptBuilder()
+            self.prompt_builder = prompt_builder
+        agent_name = getattr(self, "agent_name", "general")
+        agent_instruction = getattr(self, "agent_instruction", "")
+        context_provider = getattr(self, "context_provider", None)
+        agent_context = context_provider(state) if callable(context_provider) else None
+        instruction = _decision_instruction(stable_plan_enabled)
+        if agent_instruction:
+            instruction = f"{agent_instruction}\n\n{instruction}"
+        requires_combat_audit = stable_plan_enabled and agent_name == "combat"
+        response_schema = _response_schema(stable_plan_enabled, requires_combat_audit=requires_combat_audit)
+        if callable(getattr(self, "strategy_update_handler", None)):
+            response_schema = {**response_schema, "strategy_update": _strategy_update_schema()}
+        prompt = prompt_builder.build_decision(
+            system_message=_agent_system_message(agent_name),
+            instruction=instruction,
+            response_schema=response_schema,
+            planning_mode="stable_action_plan" if stable_plan_enabled else "single_action",
+            action_plan_rules=_action_plan_rules(stable_plan_enabled, self.max_plan_actions, plan_reason),
+            screen=state.screen,
+            available_actions=state.available_actions,
+            legal_actions=plan_legal_actions if stable_plan_enabled else legal_actions,
+            plan_legal_actions=plan_legal_actions,
+            available_action_options=[] if stable_plan_enabled else action_spec_prompt_options(state),
+            state=_compact_state(state.state),
+            knowledge=_knowledge_prompt_payload(knowledge),
+            agent_context=agent_context,
+        )
         response = self._chat(prompt)
         llm_metadata = dict(getattr(self, "last_call_metadata", {}) or {})
         parsed = self._parse_or_repair_json(response, prompt, llm_metadata)
+        agent_metadata = self._agent_metadata(state, agent_name)
+        strategy_update_handler = getattr(self, "strategy_update_handler", None)
+        if callable(strategy_update_handler):
+            agent_metadata["strategy_update"] = strategy_update_handler(parsed.get("strategy_update"), state)
         plan_payload = _extract_action_plan_payload(parsed)
         if stable_plan_enabled and plan_payload is not None:
-            actions, stop_conditions = parse_llm_action_plan_payload(
-                plan_payload,
-                state,
-                require_legal_action_ids=True,
-                allowed_legal_action_ids={str(action["id"]) for action in plan_legal_actions},
-            )
+            allowed_plan_ids = {str(action["id"]) for action in plan_legal_actions}
+            try:
+                actions, stop_conditions = parse_llm_action_plan_payload(
+                    plan_payload,
+                    state,
+                    require_legal_action_ids=True,
+                    allowed_legal_action_ids=allowed_plan_ids,
+                )
+                combat_audit = _parse_combat_audit(parsed, actions) if requires_combat_audit else None
+            except ValueError as exc:
+                parsed = self._repair_invalid_action_plan(
+                    original_prompt=prompt,
+                    invalid_response=parsed,
+                    validation_error=str(exc),
+                    allowed_plan_ids=allowed_plan_ids,
+                    aggregate_metadata=llm_metadata,
+                )
+                repaired_plan = _extract_action_plan_payload(parsed)
+                if repaired_plan is None:
+                    raise ValueError("LLM repair did not return an action_plan.")
+                actions, stop_conditions = parse_llm_action_plan_payload(
+                    repaired_plan,
+                    state,
+                    require_legal_action_ids=True,
+                    allowed_legal_action_ids=allowed_plan_ids,
+                )
+                combat_audit = _parse_combat_audit(parsed, actions) if requires_combat_audit else None
             actions = actions[: self.max_plan_actions]
             decision = PolicyDecision.action_plan_decision(
                 actions,
@@ -88,6 +180,9 @@ class OpenAICompatiblePolicy:
                 },
             )
             decision.metadata["llm"] = llm_metadata
+            if combat_audit is not None:
+                decision.metadata["combat_audit"] = combat_audit.model_dump(mode="json")
+            self._attach_agent_metadata(decision, agent_metadata)
             return decision
         legal_action_id = parsed.get("legal_action_id")
         if isinstance(legal_action_id, str) and legal_action_id:
@@ -99,13 +194,17 @@ class OpenAICompatiblePolicy:
                 "fallback_from_stable_plan": self.enable_action_plan and state.screen == "COMBAT",
             }
             decision.metadata["llm"] = llm_metadata
+            self._attach_agent_metadata(decision, agent_metadata)
             return decision
 
         action_payload = _extract_action_payload(parsed)
         if parsed.get("type") != "action" and action_payload is None:
             if _has_useful_action(state.available_actions):
                 raise ValueError(f"LLM returned non-action decision while actions are available: {parsed.get('type')!r}")
-            return PolicyDecision(type=parsed.get("type", "needs_human"), reason=parsed.get("reason", "LLM non-action decision."))
+            decision = PolicyDecision(type=parsed.get("type", "needs_human"), reason=parsed.get("reason", "LLM non-action decision."))
+            decision.metadata["llm"] = llm_metadata
+            self._attach_agent_metadata(decision, agent_metadata)
+            return decision
         if action_payload is None:
             raise ValueError("LLM action decision did not include an action payload.")
         action = parse_llm_action_payload(action_payload, state)
@@ -116,8 +215,20 @@ class OpenAICompatiblePolicy:
             "fallback_from_stable_plan": self.enable_action_plan and state.screen == "COMBAT",
         }
         decision.metadata["llm"] = llm_metadata
+        self._attach_agent_metadata(decision, agent_metadata)
         return decision
 
+    def _agent_metadata(self, state: GameStateSnapshot, agent_name: str) -> dict[str, Any]:
+        metadata_provider = getattr(self, "metadata_provider", None)
+        metadata = metadata_provider(state) if callable(metadata_provider) else {"name": agent_name}
+        if not isinstance(metadata, dict):
+            metadata = {"name": agent_name}
+        metadata.setdefault("name", agent_name)
+        return metadata
+
+    @staticmethod
+    def _attach_agent_metadata(decision: PolicyDecision, metadata: dict[str, Any]) -> None:
+        decision.metadata["agent"] = metadata
     def _parse_or_repair_json(self, response: str, original_prompt: dict[str, Any], aggregate_metadata: dict[str, Any]) -> dict[str, Any]:
         last_error: Exception | None = None
         current_response = response
@@ -128,24 +239,58 @@ class OpenAICompatiblePolicy:
                 last_error = exc
                 if attempt >= self.max_retries:
                     raise
-                repair_prompt = {
-                    "instruction": "Repair the previous response into exactly one valid JSON object. Output JSON only.",
-                    "original_decision_prompt": original_prompt,
-                    "invalid_response": current_response[:12000],
-                    "parse_error": str(exc),
-                }
+                repair_prompt = self.prompt_builder.build_repair(
+                    original_prompt=original_prompt,
+                    invalid_response=current_response,
+                    parse_error=str(exc),
+                )
                 current_response = self._chat(repair_prompt)
                 _merge_llm_metadata(aggregate_metadata, getattr(self, "last_call_metadata", {}) or {})
         raise last_error or ValueError("Unable to parse LLM JSON response.")
 
+    def _repair_invalid_action_plan(
+        self,
+        *,
+        original_prompt: dict[str, Any],
+        invalid_response: dict[str, Any],
+        validation_error: str,
+        allowed_plan_ids: set[str],
+        aggregate_metadata: dict[str, Any],
+    ) -> dict[str, Any]:
+        packet = {
+            "packet": "repair_action_plan.v1",
+            "instruction": "Return exactly one corrected JSON decision. action_plan.actions must contain one or more legal_action_id values from allowed_plan_legal_action_ids.",
+            "response_schema": original_prompt.get("response_schema"),
+            "invalid_decision": invalid_response,
+            "validation_error": validation_error,
+            "allowed_plan_legal_action_ids": sorted(allowed_plan_ids),
+        }
+        content = json.dumps(packet, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        repair_prompt = {
+            "messages": [
+                {"role": "system", "content": _agent_system_message(str(getattr(self, "agent_name", "combat")))},
+                {"role": "user", "content": content},
+            ],
+            "prompt_metadata": {
+                "layout_version": "action-plan-repair.v1",
+                "message_characters": {"repair": len(content)},
+            },
+        }
+        response = self._chat(repair_prompt)
+        _merge_llm_metadata(aggregate_metadata, getattr(self, "last_call_metadata", {}) or {})
+        return self._parse_or_repair_json(response, repair_prompt, aggregate_metadata)
+
     def _chat(self, prompt: dict[str, Any]) -> str:
         started_at = time.perf_counter()
-        payload = {
-            "model": self.model,
-            "messages": [
+        messages = prompt.get("messages")
+        if not isinstance(messages, list):
+            messages = [
                 {"role": "system", "content": "You are an STS2 policy module. Output only JSON."},
                 {"role": "user", "content": json.dumps(prompt, ensure_ascii=False)},
-            ],
+            ]
+        payload = {
+            "model": self.model,
+            "messages": messages,
             "temperature": 0.1,
         }
         req = request.Request(
@@ -176,8 +321,24 @@ class OpenAICompatiblePolicy:
             "model": str(data.get("model") or self.model),
             "duration_seconds": round(time.perf_counter() - started_at, 6),
             "usage": _normalize_usage(data.get("usage")),
+            **dict(prompt.get("prompt_metadata") or {}),
         }
         return str(data["choices"][0]["message"]["content"])
+
+
+def _knowledge_prompt_payload(knowledge: KnowledgeContext) -> dict[str, Any]:
+    to_prompt_dict = getattr(knowledge, "to_prompt_dict", None)
+    if callable(to_prompt_dict):
+        return to_prompt_dict()
+
+    return {
+        "refs": list(getattr(knowledge, "refs", []) or []),
+        "cards": list(getattr(knowledge, "cards", []) or []),
+        "monsters": list(getattr(knowledge, "monsters", []) or []),
+        "events": list(getattr(knowledge, "events", []) or []),
+        "potions": list(getattr(knowledge, "potions", []) or []),
+        "relics": list(getattr(knowledge, "relics", []) or []),
+    }
 
 
 class LLMScreenRouter:
@@ -244,9 +405,9 @@ def _decision_instruction(stable_plan_enabled: bool) -> str:
     )
 
 
-def _response_schema(stable_plan_enabled: bool) -> dict[str, Any]:
+def _response_schema(stable_plan_enabled: bool, *, requires_combat_audit: bool = False) -> dict[str, Any]:
     if stable_plan_enabled:
-        return {
+        schema = {
             "type": "action",
             "action_plan": {
                 "actions": [{"legal_action_id": "required string id from plan_legal_actions"}],
@@ -255,6 +416,20 @@ def _response_schema(stable_plan_enabled: bool) -> dict[str, Any]:
             "reason": "short reason",
             "confidence": "number 0..1",
         }
+        if requires_combat_audit:
+            schema["combat_audit"] = {
+                "primary_target_id": "enemy_instance_id|null",
+                "lethal_this_turn": "yes|no|unknown",
+                "defense_posture": "lethal|full_block|accept_damage_for_tempo|unavoidable_damage|unknown",
+                "risk_summary_zh": "short Chinese factual summary",
+                "replan_after": [
+                    {
+                        "legal_action_id": "the earliest planned boundary action id",
+                        "reason": "draw_cards|random_effect|card_generation|discard_or_exhaust|entity_missing|unknown_complex_effect",
+                    }
+                ],
+            }
+        return schema
     return {
         "type": "action|wait|stop|needs_human",
         "legal_action_id": "string id from legal_actions|null",
@@ -268,6 +443,40 @@ def _response_schema(stable_plan_enabled: bool) -> dict[str, Any]:
         "reason": "short reason",
         "confidence": "number 0..1",
     }
+
+
+def _strategy_update_schema() -> dict[str, Any]:
+    return {
+        "goal_zh": "optional short strategic goal",
+        "risk_budget": "optional low|balanced|high",
+        "path_preferences": ["optional short preferences"],
+        "acquisition_priorities": ["optional short priorities"],
+        "avoid_conditions": ["optional short avoidance conditions"],
+    }
+
+
+def _agent_system_message(agent_name: str) -> str:
+    return (
+        f"You are the STS2 {agent_name} policy module. Output only JSON. "
+        "You must not call tools or control the game directly. "
+        "Live game state is authoritative for legality and current values; "
+        "curated knowledge and historical experience are background reference only."
+    )
+
+
+def _parse_combat_audit(payload: dict[str, Any], actions: list[AgentAction]) -> CombatAudit:
+    try:
+        audit = CombatAudit.model_validate(payload.get("combat_audit"))
+    except PydanticValidationError as exc:
+        raise ValueError(f"Invalid combat_audit: {exc}") from exc
+
+    planned_ids = {action.legal_action_id for action in actions if action.legal_action_id}
+    for boundary in audit.replan_after:
+        if boundary.legal_action_id not in planned_ids:
+            raise ValueError("combat_audit.replan_after must reference a legal_action_id in action_plan.")
+        if actions[-1].legal_action_id != boundary.legal_action_id:
+            raise ValueError("A combat action plan must end at its declared replan boundary.")
+    return audit
 
 
 def _action_plan_rules(stable_plan_enabled: bool, max_actions: int, reason: str) -> dict[str, Any]:
@@ -286,6 +495,8 @@ def _action_plan_rules(stable_plan_enabled: bool, max_actions: int, reason: str)
 
 
 def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:
+    agent_view = raw.get("agent_view") if isinstance(raw.get("agent_view"), dict) else {}
+    agent_run = agent_view.get("run") if isinstance(agent_view.get("run"), dict) else {}
     return {
         "run_id": raw.get("run_id"),
         "screen": raw.get("screen"),
@@ -302,6 +513,7 @@ def _compact_state(raw: dict[str, Any]) -> dict[str, Any]:
         "shop": raw.get("shop"),
         "rest": raw.get("rest"),
         "chest": raw.get("chest"),
+        "combat_piles": agent_run.get("piles"),
     }
 
 

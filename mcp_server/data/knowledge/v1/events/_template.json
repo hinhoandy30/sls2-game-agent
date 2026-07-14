@@ -1,0 +1,17 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "REPLACE_WITH_EVENT_ID",
+  "name_zh": "替换为中文事件名称",
+  "act_ids": ["OVERGROWTH"],
+  "summary_zh": "一句话说明事件机制。",
+  "flow_facts_zh": ["记录后续页面、次数限制或不可逆结果等可验证事实。"],
+  "sources": [
+    {
+      "ref": "wiki:replace-with-page",
+      "title_zh": "资料页面标题",
+      "url": "https://example.invalid",
+      "retrieved_at": "YYYY-MM-DD"
+    }
+  ]
+}

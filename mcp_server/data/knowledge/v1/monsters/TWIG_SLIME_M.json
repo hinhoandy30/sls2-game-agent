@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "TWIG_SLIME_M",
+  "name_zh": "树枝史莱姆（中）",
+  "act_ids": ["OVERGROWTH"],
+  "encounter_pool_zh": "繁茂之地前 3 场史莱姆弱敌组合中，随机出现的一只中型史莱姆。",
+  "summary_zh": "首回合固定塞入一张黏液；之后以概率选择高伤攻击或继续塞黏液。",
+  "pattern_zh": "首回合固定使用黏性射击。之后每回合有 67% 概率使用咬击、33% 概率使用黏性射击；黏性射击不能连续使用两次。",
+  "moves": [
+    {
+      "name_zh": "咬击",
+      "effect_zh": "造成 11 点伤害；难度 9 时为 12 点。"
+    },
+    {
+      "name_zh": "黏性射击",
+      "effect_zh": "将 1 张 Slimed 洗入玩家弃牌堆。"
+    }
+  ],
+  "risk_facts_zh": ["首回合必定污染弃牌堆；后续存在 11/12 点攻击的随机分支。"],
+  "sources": [
+    {
+      "ref": "wiki:sts2-slimes",
+      "title_zh": "Slay the Spire 2 Wiki：Slimes",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3ASlimes",
+      "retrieved_at": "2026-07-13"
+    }
+  ]
+}

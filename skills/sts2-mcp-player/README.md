@@ -53,7 +53,12 @@
 debug 模式：
 
 - 明确启用 `STS2_ENABLE_DEBUG_ACTIONS=1`
+- 必须在 Steam 启动 STS2 **之前**设置该环境变量；已普通启动的游戏不能在运行中解锁
+  `run_console_command`，需要退出游戏后以 debug session 重启
 - 只在开发和复现问题时使用 `run_console_command`
+- `instant` 依赖 `run_console_command`。若收到 HTTP 409 或
+  `run_console_command is disabled`，说明 debug 启动条件不满足，不代表 MCP、Mod 或
+  正常游戏动作接口不可用
 
 ## 标准使用方式
 

@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-specialist-strategy.v1",
+  "agent_name": "combat",
+  "strategy_id": "combat.baseline.v1",
+  "revision": 1,
+  "title_zh": "战斗基线：先确认局面，再在可执行前缀内取舍",
+  "rules_zh": [
+    {
+      "rule_id": "live-state-first",
+      "text_zh": "你只负责当前 COMBAT action window。当前手牌、能量、敌人意图和 legal actions 是实时事实；牌组摘要和战略计划只提供长期背景。"
+    },
+    {
+      "rule_id": "tactical-order",
+      "text_zh": "每回合按固定顺序检查：先确定当前最危险或最值得击杀的目标；再检查本回合是否存在可靠斩杀；若不能斩杀，比较本回合伤害、格挡和为了下回合节奏可接受的战损；最后才考虑药水。"
+    },
+    {
+      "rule_id": "pile-uncertainty",
+      "text_zh": "若 state.combat_piles 提供 draw/discard/exhaust 的实时列表，可据此评估下一轮的可能抽牌；否则不得断言下一回合一定抽到某张具体牌，只能将整副牌组作为不确定背景。"
+    },
+    {
+      "rule_id": "information-boundary",
+      "text_zh": "抽牌、随机、生成牌、弃牌或消耗、目标死亡，以及未知复杂效果都是信息边界：计划可包含触发该边界的动作，但必须在 combat_audit.replan_after 中标记该动作，并且 action_plan 必须在该动作处结束。"
+    },
+    {
+      "rule_id": "audit-scope",
+      "text_zh": "combat_audit 与风险摘要只能描述这个实际可执行前缀，不得把边界之后需要重新观察才能决定的动作或结果写成既定事实。返回简短、可复盘的 combat_audit 结论，不要输出冗长推理链。"
+    },
+    {
+      "rule_id": "stable-actions-only",
+      "text_zh": "使用稳定 legal_action_id；不得在战斗中 emit strategy_update。"
+    }
+  ]
+}

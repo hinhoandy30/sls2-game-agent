@@ -530,6 +530,16 @@ class Sts2Client:
             },
         )
 
+    def set_seed(self, seed: str) -> dict[str, Any]:
+        return self.execute_action(
+            "set_seed",
+            seed=seed,
+            client_context={
+                "source": "mcp",
+                "tool_name": "set_seed",
+            },
+        )
+
     def embark(self) -> dict[str, Any]:
         return self.execute_action(
             "embark",
@@ -631,6 +641,7 @@ class Sts2Client:
         card_index: int | None = None,
         target_index: int | None = None,
         option_index: int | None = None,
+        seed: str | None = None,
         command: str | None = None,
         client_context: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
@@ -642,6 +653,7 @@ class Sts2Client:
                 "card_index": card_index,
                 "target_index": target_index,
                 "option_index": option_index,
+                "seed": seed,
                 "command": command,
                 "client_context": client_context,
             },

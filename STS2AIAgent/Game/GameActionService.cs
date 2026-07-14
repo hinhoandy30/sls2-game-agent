@@ -129,6 +129,7 @@ internal static class GameActionService
             "buy_potion" => ExecuteBuyPotionAsync(request),
             "remove_card_at_shop" => ExecuteRemoveCardAtShopAsync(),
             "select_character" => ExecuteSelectCharacterAsync(request),
+            "set_seed" => ExecuteSetSeedAsync(request),
             "embark" => ExecuteEmbarkAsync(),
             "unready" => ExecuteUnreadyAsync(),
             "host_multiplayer_lobby" => ExecuteHostMultiplayerLobbyAsync(),
@@ -3196,6 +3197,42 @@ internal static class GameActionService
         };
     }
 
+    private static async Task<ActionResponsePayload> ExecuteSetSeedAsync(ActionRequest request)
+    {
+        var currentScreen = ActiveScreenContext.Instance.GetCurrentScreen();
+        var screen = GameStateService.ResolveScreen(currentScreen);
+        var requestedSeed = request.seed?.Trim();
+
+        if (string.IsNullOrWhiteSpace(requestedSeed) || requestedSeed.Length > 64)
+        {
+            throw new ApiException(400, "invalid_request", "set_seed requires a non-empty seed of at most 64 characters.", new
+            {
+                action = "set_seed"
+            });
+        }
+
+        if (!GameStateService.CanSetSeed(currentScreen) || currentScreen is not NCharacterSelectScreen characterSelectScreen)
+        {
+            throw new ApiException(409, "invalid_action", "set_seed is only available for an unready singleplayer or host character-select lobby.", new
+            {
+                action = "set_seed",
+                screen
+            });
+        }
+
+        SetStandardModeLobbySeed(characterSelectScreen.Lobby, requestedSeed);
+        var stable = await WaitForSeedTransitionAsync(characterSelectScreen, requestedSeed, TimeSpan.FromSeconds(5));
+
+        return new ActionResponsePayload
+        {
+            action = "set_seed",
+            status = stable ? "completed" : "pending",
+            stable = stable,
+            message = stable ? "Seed applied." : "Seed change is still transitioning.",
+            state = GameStateService.BuildStatePayload()
+        };
+    }
+
     private static async Task<ActionResponsePayload> ExecuteUnreadyAsync()
     {
         var currentScreen = ActiveScreenContext.Instance.GetCurrentScreen();
@@ -4203,6 +4240,56 @@ internal static class GameActionService
         return screen.Lobby.LocalPlayer.character.Id.Entry == currentCharacterId;
     }
 
+    private static async Task<bool> WaitForSeedTransitionAsync(NCharacterSelectScreen screen, string requestedSeed, TimeSpan timeout)
+    {
+        var deadline = DateTime.UtcNow + timeout;
+        while (DateTime.UtcNow < deadline)
+        {
+            await WaitForNextFrameAsync();
+            if (!GodotObject.IsInstanceValid(screen))
+            {
+                return false;
+            }
+
+            if (string.Equals(screen.Lobby.Seed, requestedSeed, StringComparison.Ordinal))
+            {
+                return true;
+            }
+        }
+
+        return GodotObject.IsInstanceValid(screen) && string.Equals(screen.Lobby.Seed, requestedSeed, StringComparison.Ordinal);
+    }
+
+    private static void SetStandardModeLobbySeed(StartRunLobby lobby, string requestedSeed)
+    {
+        // StartRunLobby.SetSeed notifies NCharacterSelectScreen.SeedChanged(), which v0.107.1
+        // deliberately does not implement for the standard singleplayer screen. The private setter
+        // only updates the value consumed by BeginRunForAllPlayersIfAllReady().
+        var setter = typeof(StartRunLobby)
+            .GetProperty(nameof(StartRunLobby.Seed), BindingFlags.Instance | BindingFlags.Public)
+            ?.GetSetMethod(nonPublic: true);
+        if (setter == null)
+        {
+            throw new ApiException(503, "state_unavailable", "StartRunLobby.Seed setter is unavailable in this game version.", new
+            {
+                action = "set_seed"
+            }, retryable: true);
+        }
+
+        try
+        {
+            setter.Invoke(lobby, new object?[] { requestedSeed });
+        }
+        catch (TargetInvocationException exception)
+        {
+            throw new ApiException(503, "state_unavailable", "Failed to update the standard-mode run seed.", new
+            {
+                action = "set_seed",
+                exception = exception.InnerException?.Message ?? exception.Message
+            }, retryable: true);
+        }
+    }
+
     private static async Task<bool> WaitForEmbarkTransitionAsync(NCharacterSelectScreen screen, TimeSpan timeout)
     {
         var deadline = DateTime.UtcNow + timeout;
@@ -4770,6 +4857,8 @@ internal sealed class ActionRequest
     public string? target_instance_id { get; init; }
 
     public int? option_index { get; init; }
+
+    public string? seed { get; init; }
 
     public string? command { get; init; }
 

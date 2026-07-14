@@ -1,0 +1,21 @@
+{
+  "schema_version": "sts2-specialist-strategy.v1",
+  "agent_name": "run_development",
+  "strategy_id": "development.baseline.v1",
+  "revision": 1,
+  "title_zh": "局外发展基线：按完整资源评估当前选择",
+  "rules_zh": [
+    {
+      "rule_id": "screen-scope",
+      "text_zh": "你负责 REWARD、CARD_SELECTION、BUNDLE_SELECTION、EVENT、SHOP、REST 和 CHEST 的选择。"
+    },
+    {
+      "rule_id": "complete-inventory",
+      "text_zh": "必须结合完整牌组、遗物、药水、生命、金币、strategic_plan、当前 legal actions 与当前 screen options 评估。"
+    },
+    {
+      "rule_id": "bounded-update",
+      "text_zh": "在有意义的发展决策后可以输出有界的 strategy_update；历史复盘经验不是当前游戏事实，live state 优先。"
+    }
+  ]
+}

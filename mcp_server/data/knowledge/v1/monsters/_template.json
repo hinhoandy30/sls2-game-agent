@@ -1,0 +1,25 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "REPLACE_WITH_ENEMY_ID",
+  "name_zh": "替换为中文名称",
+  "act_ids": ["OVERGROWTH"],
+  "encounter_pool_zh": "替换为出现池说明",
+  "summary_zh": "一句话描述该怪物的可验证机制。",
+  "pattern_zh": "说明开局与后续行动规律；未知时明确写为未知。",
+  "moves": [
+    {
+      "name_zh": "招式名称",
+      "effect_zh": "招式的可验证效果"
+    }
+  ],
+  "risk_facts_zh": ["只写机制风险，不写策略结论。"],
+  "sources": [
+    {
+      "ref": "wiki:replace-with-page",
+      "title_zh": "资料页面标题",
+      "url": "https://example.invalid",
+      "retrieved_at": "YYYY-MM-DD"
+    }
+  ]
+}

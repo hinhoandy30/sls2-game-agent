@@ -53,17 +53,23 @@ class AgentRuntime:
         config: RuntimeConfig | None = None,
         knowledge: KnowledgeProvider | None = None,
         router: ScreenRouter | None = None,
+        review_agent: Any | None = None,
+        experience_repository: Any | None = None,
     ) -> None:
         self.client = client
         self.config = config or RuntimeConfig()
         self.knowledge = knowledge or KnowledgeProvider()
         self.router = router or ScreenRouter()
+        self.context_store = getattr(self.router, "context_store", None)
+        self.review_agent = review_agent
+        self.experience_repository = experience_repository
         self.health_payload: dict[str, Any] = {}
         self.records: list[StepRecord] = []
         self.segments: list[TrajectorySegment] = []
         self.current_segment: TrajectorySegment | None = None
         self.token_usage: dict[str, int] = {}
         self.run_started_at: float | None = None
+        self._last_context_marker: str | None = None
 
     def run(self) -> RunSummary:
         self.run_started_at = time.perf_counter()
@@ -72,6 +78,8 @@ class AgentRuntime:
         run_dir = self._run_dir(state.run_id)
         trajectory_path = run_dir / "trajectory.jsonl"
         segments_path = run_dir / "segments.jsonl"
+        context_path = run_dir / "context.jsonl"
+        self._append_context_snapshot(context_path, state)
         self._start_segment(
             state,
             segments_path,
@@ -86,6 +94,7 @@ class AgentRuntime:
             step_started_at = time.perf_counter()
             try:
                 state = self._ensure_actionable(state)
+                self._append_context_snapshot(context_path, state)
                 if state.screen == "GAME_OVER":
                     terminal_reason = "game_over"
                     break
@@ -106,7 +115,11 @@ class AgentRuntime:
                     self._append_record(trajectory_path, record)
                     continue
                 if decision.action_plan:
-                    next_state, executed_actions, results, plan_stop_reason = self._execute_action_plan(state, decision.action_plan)
+                    next_state, executed_actions, results, plan_stop_reason = self._execute_action_plan(
+                        state,
+                        decision.action_plan,
+                        tactical_boundary=_tactical_replan_boundary(decision),
+                    )
                     if plan_stop_reason:
                         decision.metadata["plan_stop_reason"] = plan_stop_reason
                     record = self._record(
@@ -181,6 +194,7 @@ class AgentRuntime:
 
         duration_seconds = round(time.perf_counter() - self.run_started_at, 6) if self.run_started_at is not None else None
         summary = self._summary(state, terminal_reason, len(self.records), error_count, duration_seconds=duration_seconds)
+        self._review_game_over(run_dir, summary)
         self._write_summary(run_dir, summary)
         return summary
 
@@ -274,6 +288,8 @@ class AgentRuntime:
         self,
         state: GameStateSnapshot,
         actions: list[AgentAction],
+        *,
+        tactical_boundary: tuple[str, str] | None = None,
     ) -> tuple[GameStateSnapshot, list[AgentAction], list[ActionResult], str | None]:
         current_state = state
         initial_screen = state.screen
@@ -297,6 +313,10 @@ class AgentRuntime:
             current_state = self._snapshot(next_state_payload)
             executed_actions.append(action)
             results.append(result)
+
+            if tactical_boundary is not None and action.legal_action_id == tactical_boundary[0]:
+                stop_reason = f"tactical_replan:{tactical_boundary[1]}"
+                break
 
             if current_state.screen != initial_screen:
                 stop_reason = f"screen_changed:{current_state.screen}"
@@ -369,7 +389,7 @@ class AgentRuntime:
         return RunSummary(
             schema_version=SCHEMA_VERSION,
             run_id=state.run_id,
-            result="stopped",
+            result="loss" if state.screen == "GAME_OVER" else "stopped",
             floor_reached=run.get("floor"),
             terminal_screen=state.screen,
             terminal_reason=reason,
@@ -384,6 +404,42 @@ class AgentRuntime:
     def _write_summary(self, run_dir: Path, summary: RunSummary) -> None:
         run_dir.mkdir(parents=True, exist_ok=True)
         (run_dir / "summary.json").write_text(json.dumps(summary.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def _append_context_snapshot(self, path: Path, state: GameStateSnapshot) -> None:
+        if self.context_store is None:
+            return
+        snapshot = self.context_store.snapshot(state)
+        marker = snapshot.get("snapshot_marker")
+        if isinstance(marker, str) and marker == self._last_context_marker:
+            return
+        self._last_context_marker = marker if isinstance(marker, str) else None
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(snapshot, ensure_ascii=False, separators=(",", ":")) + "\n")
+
+    def _review_game_over(self, run_dir: Path, summary: RunSummary) -> None:
+        if summary.terminal_screen != "GAME_OVER" or self.review_agent is None:
+            return
+        try:
+            result = self.review_agent.review(run_dir, summary)
+            review_path = run_dir / "review.json"
+            review_path.write_text(json.dumps(result.report.model_dump(mode="json"), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if self.experience_repository is not None:
+                self.experience_repository.save_lessons(result.report.lessons)
+            summary.review_path = review_path.name
+            summary.experience_lesson_count = len(result.report.lessons)
+            usage = result.llm_metadata.get("usage") if isinstance(result.llm_metadata, dict) else None
+            if isinstance(usage, dict):
+                for key, value in usage.items():
+                    if isinstance(value, int):
+                        self.token_usage[key] = self.token_usage.get(key, 0) + value
+                summary.token_usage = dict(self.token_usage)
+        except Exception as exc:
+            summary.review_error = {
+                "code": "review_error",
+                "message": str(exc),
+                "details": {"exception_type": exc.__class__.__name__},
+            }
 
     def _run_dir(self, run_id: str) -> Path:
         timestamp = utc_now_iso().replace(":", "").replace("-", "").split(".")[0].replace("Z", "")
@@ -495,6 +551,24 @@ def _decision_actions(decision: PolicyDecision) -> AgentAction | list[AgentActio
     if decision.action_plan:
         return decision.action_plan
     return decision.action
+
+
+def _tactical_replan_boundary(decision: PolicyDecision) -> tuple[str, str] | None:
+    """Return the earliest LLM-declared information boundary, if its audit was validated."""
+    audit = decision.metadata.get("combat_audit") if isinstance(decision.metadata, dict) else None
+    if not isinstance(audit, dict):
+        return None
+    boundaries = audit.get("replan_after")
+    if not isinstance(boundaries, list) or not boundaries:
+        return None
+    boundary = boundaries[0]
+    if not isinstance(boundary, dict):
+        return None
+    action_id = boundary.get("legal_action_id")
+    reason = boundary.get("reason")
+    if not isinstance(action_id, str) or not isinstance(reason, str):
+        return None
+    return action_id, reason
 
 
 def _action_request_payload(action: AgentAction | list[AgentAction] | None) -> dict[str, Any] | None:

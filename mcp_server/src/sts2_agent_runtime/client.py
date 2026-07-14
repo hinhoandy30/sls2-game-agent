@@ -38,11 +38,12 @@ PASSIVE_ACTIONS = {"save_and_quit", "discard_potion"}
 COMBAT_DECISION_ACTIONS = {"play_card", "end_turn"}
 SCREEN_DECISION_ACTIONS: dict[str, set[str]] = {
     "MAIN_MENU": {"continue_run", "open_character_select", "open_timeline", "abandon_run"},
-    "CHARACTER_SELECT": {"select_character", "embark", "increase_ascension", "decrease_ascension", "unready"},
+    "CHARACTER_SELECT": {"select_character", "set_seed", "embark", "increase_ascension", "decrease_ascension", "unready"},
     "MAP": {"choose_map_node", "use_potion", "discard_potion"},
     "COMBAT": {"play_card", "end_turn", "use_potion", "discard_potion"},
     "REWARD": {"claim_reward", "choose_reward_card", "skip_reward_cards", "collect_rewards_and_proceed", "resolve_rewards"},
     "CARD_SELECTION": {"select_deck_card", "confirm_selection"},
+    "BUNDLE_SELECTION": {"choose_bundle", "confirm_bundle"},
     "EVENT": {"choose_event_option", "proceed"},
     "SHOP": {"open_shop_inventory", "close_shop_inventory", "buy_card", "buy_relic", "buy_potion", "remove_card_at_shop", "proceed"},
     "REST": {"choose_rest_option", "select_deck_card", "confirm_selection", "proceed"},
@@ -168,6 +169,16 @@ class HttpGameClient:
         try:
             with request.urlopen(http_request, timeout=timeout) as response:
                 decoded = json.loads(response.read().decode("utf-8"))
+        except error.HTTPError as exc:
+            try:
+                decoded = json.loads(exc.read().decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                raise GameClientError(
+                    "http_error",
+                    f"STS2 mod API returned HTTP {exc.code} for {path}.",
+                    retryable=500 <= exc.code < 600,
+                    details={"path": path, "http_status": exc.code},
+                ) from exc
         except error.URLError as exc:
             raise GameClientError(
                 "connection_error",

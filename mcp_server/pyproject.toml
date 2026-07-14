@@ -23,9 +23,13 @@ packages = ["src/sts2_mcp", "src/sts2_agent_runtime"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "data/eng" = "data/eng"
+"data/knowledge" = "data/knowledge"
+"data/strategies" = "data/strategies"
 
 [tool.hatch.build.targets.sdist.force-include]
 "data/eng" = "data/eng"
+"data/knowledge" = "data/knowledge"
+"data/strategies" = "data/strategies"
 
 [tool.uv]
 package = true

@@ -1,0 +1,23 @@
+{
+  "schema_version": "experience-lesson.v1",
+  "lesson_id": "lesson_example_v1",
+  "kind": "strategy_experience",
+  "status": "provisional",
+  "scope": {
+    "character_id": "IRONCLAD",
+    "screens": ["SHOP"],
+    "min_floor": 1,
+    "max_floor": 10,
+    "deck_tags_any": ["type:skill"]
+  },
+  "recommendation_zh": "在此填写可执行的策略建议。",
+  "rationale_zh": "在此填写证据支持的原因，而不是游戏事实。",
+  "counterexamples_zh": ["在此填写不应直接套用该建议的情形。"],
+  "evidence": {
+    "run_id": "run_example",
+    "segment_id": "seg_example",
+    "step_indices": [12]
+  },
+  "confidence": 0.5,
+  "created_at": "2026-07-13T00:00:00Z"
+}

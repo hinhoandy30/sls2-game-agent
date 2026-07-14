@@ -557,6 +557,16 @@ internal static class GameStateService
             });
         }
 
+        if (CanSetSeed(currentScreen))
+        {
+            descriptors.Add(new ActionDescriptor
+            {
+                name = "set_seed",
+                requires_target = false,
+                requires_index = false
+            });
+        }
+
         if (CanUnready(currentScreen))
         {
             descriptors.Add(new ActionDescriptor
@@ -1090,6 +1100,17 @@ internal static class GameStateService
     {
         var embarkButton = GetCharacterEmbarkButton(currentScreen);
         return embarkButton != null && embarkButton.IsEnabled && embarkButton.IsVisibleInTree();
+    }
+
+    public static bool CanSetSeed(IScreenContext? currentScreen)
+    {
+        if (currentScreen is not NCharacterSelectScreen characterSelectScreen || !characterSelectScreen.IsVisibleInTree())
+        {
+            return false;
+        }
+
+        var lobby = characterSelectScreen.Lobby;
+        return lobby.NetService.Type != NetGameType.Client && !lobby.LocalPlayer.isReady;
     }
 
     public static bool CanUnready(IScreenContext? currentScreen)
@@ -2153,6 +2174,11 @@ internal static class GameStateService
         if (CanEmbark(currentScreen))
         {
             names.Add("embark");
+        }
+
+        if (CanSetSeed(currentScreen))
+        {
+            names.Add("set_seed");
         }
 
         if (CanUnready(currentScreen))

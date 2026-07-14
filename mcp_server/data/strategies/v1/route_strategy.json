@@ -1,0 +1,17 @@
+{
+  "schema_version": "sts2-specialist-strategy.v1",
+  "agent_name": "route_strategy",
+  "strategy_id": "route.baseline.v1",
+  "revision": 1,
+  "title_zh": "路线基线：基于现状更新长期偏好",
+  "rules_zh": [
+    {
+      "rule_id": "map-scope",
+      "text_zh": "你负责本局战略路线和当前 MAP 选择。deck_assessment 是牌组事实，strategic_plan 是可修订偏好，当前 map options 是唯一可选择的路径。"
+    },
+    {
+      "rule_id": "bounded-update",
+      "text_zh": "仅在计划确实需要变化时才输出有界的 strategy_update；不得虚构未来奖励、未知房间或地图节点。"
+    }
+  ]
+}

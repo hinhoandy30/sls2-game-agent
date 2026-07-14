@@ -87,6 +87,7 @@ _LEGACY_ACTION_TOOLS: tuple[ActionToolSpec, ...] = (
     ActionToolSpec("choose_timeline_epoch", "option_index", "Choose a visible epoch on the timeline screen."),
     ActionToolSpec("confirm_timeline_overlay", "no_args", "Confirm the current timeline inspect or unlock overlay."),
     ActionToolSpec("select_character", "option_index", "Pick a character on the character select screen."),
+    ActionToolSpec("set_seed", "seed", "Set the seed for an unready singleplayer or host lobby."),
     ActionToolSpec("embark", "no_args", "Start the run from character select."),
     ActionToolSpec("unready", "no_args", "Cancel local ready status in a multiplayer character-select lobby."),
     ActionToolSpec("increase_ascension", "no_args", "Increase the lobby ascension level when the local player is allowed to change it."),
@@ -387,6 +388,13 @@ def _register_option_target_tool(mcp: FastMCP, name: str, description: str, hand
     mcp.tool(name=name, description=description)(tool)
 
 
+def _register_seed_tool(mcp: FastMCP, name: str, description: str, handler: ToolHandler) -> None:
+    def tool(seed: str) -> dict[str, Any]:
+        return handler(seed=seed)
+
+    mcp.tool(name=name, description=description)(tool)
+
+
 def _register_legacy_action_tools(mcp: FastMCP, sts2: Sts2Client) -> None:
     for spec in _LEGACY_ACTION_TOOLS:
         handler = getattr(sts2, spec.name)
@@ -404,6 +412,10 @@ def _register_legacy_action_tools(mcp: FastMCP, sts2: Sts2Client) -> None:
 
         if spec.kind == "option_target":
             _register_option_target_tool(mcp, spec.name, spec.description, handler)
+            continue
+
+        if spec.kind == "seed":
+            _register_seed_tool(mcp, spec.name, spec.description, handler)
             continue
 
         raise RuntimeError(f"Unsupported action tool kind: {spec.kind}")
@@ -757,6 +769,7 @@ def create_server(client: Sts2Client | None = None, tool_profile: str | None = N
         card_index: int | None = None,
         target_index: int | None = None,
         option_index: int | None = None,
+        seed: str | None = None,
     ) -> dict[str, Any]:
         """Execute one currently available game action through the compact tool surface.
 
@@ -780,6 +793,7 @@ def create_server(client: Sts2Client | None = None, tool_profile: str | None = N
             - Use `option_index` for map, reward, shop, event, rest, selection,
               and multiplayer-lobby actions.
             - Use `target_index` when the latest state marks a card, potion, or rest option as `requires_target=true`.
+            - Use `seed` only with `set_seed` on an unready character-select lobby.
             - Read `target_index_space` and `valid_target_indices` from state to know whether `target_index`
               refers to `combat.enemies[]`, `combat.players[]`, or `run.players[]`.
             - `run_console_command` is intentionally excluded from this compact tool.
@@ -793,6 +807,7 @@ def create_server(client: Sts2Client | None = None, tool_profile: str | None = N
             card_index=card_index,
             target_index=target_index,
             option_index=option_index,
+            seed=seed,
             client_context={
                 "source": "mcp",
                 "tool_name": "act",

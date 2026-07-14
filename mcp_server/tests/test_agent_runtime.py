@@ -1,19 +1,28 @@
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 import unittest
+from io import BytesIO
 from pathlib import Path
 from typing import Any
+from unittest.mock import patch
 
-from sts2_agent_runtime.client import is_actionable_state
-from sts2_agent_runtime.cli import _load_env_file, _port_from_base_url, enable_instant_mode
-from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, PolicyDecision
+from sts2_agent_runtime.client import GameClientError, HttpGameClient, is_actionable_state
+from sts2_agent_runtime.cli import _load_env_file, _port_from_base_url, enable_instant_mode, set_seed_for_new_run
+from sts2_agent_runtime.contracts import ActionResult, AgentAction, GameStateSnapshot, KnowledgeContext, PolicyDecision
+from sts2_agent_runtime.agent_context import ExperienceEvidence, ExperienceLesson, ExperienceScope, RunContextStore
+from sts2_agent_runtime.experience import ExperienceRepository
+from sts2_agent_runtime.knowledge import KnowledgeProvider
 from sts2_agent_runtime.action_spec import action_spec_prompt_options, parse_llm_action_payload, parse_llm_action_plan_payload
 from sts2_agent_runtime.legal_actions import build_legal_actions
 from sts2_agent_runtime.llm import OpenAICompatiblePolicy
+from sts2_agent_runtime.orchestration import AgentOrchestrator, CombatAgent, RouteStrategyAgent, RunDevelopmentAgent
+from sts2_agent_runtime.review import ReviewReport, ReviewResult
 from sts2_agent_runtime.runtime import AgentRuntime, RuntimeConfig, ValidationError
 from sts2_agent_runtime.policies import EventPolicy, MapPolicy
+from sts2_agent_runtime.strategy import StrategyProvider
 
 
 def state_payload(
@@ -97,6 +106,15 @@ class ConsoleClient:
         return ActionResult(ok=True, action="run_console_command", status="completed", stable=True, message="ok")
 
 
+class DisabledConsoleClient:
+    def run_console_command(self, command: str) -> ActionResult:
+        raise GameClientError(
+            "invalid_action",
+            "run_console_command is disabled. Set STS2_ENABLE_DEBUG_ACTIONS=1 for development use.",
+            retryable=False,
+        )
+
+
 class RaisingPolicy:
     def decide(self, state: GameStateSnapshot, knowledge: Any) -> Any:
         raise RuntimeError("model returned invalid JSON")
@@ -147,7 +165,301 @@ class MeteredFakeLLMPolicy(FakeLLMPolicy):
         return self.response
 
 
+class FakeRouteAgent(RouteStrategyAgent):
+    def __init__(self, context_store: RunContextStore, response: str) -> None:
+        super().__init__(context_store, api_key="test-key")
+        self.response = response
+        self.last_prompt: dict[str, Any] = {}
+
+    def _chat(self, prompt: dict[str, Any]) -> str:
+        self.last_prompt = prompt
+        self.last_call_metadata = {"provider": "test", "usage": {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2}}
+        return self.response
+
+
+class FakeReviewAgent:
+    def review(self, run_dir: Path, summary: Any) -> ReviewResult:
+        lesson = ExperienceLesson(
+            lesson_id="lesson_fixture_loss_v1",
+            scope=ExperienceScope(screens=["SHOP"]),
+            recommendation_zh="优先比较关键生存资源。",
+            rationale_zh="fixture evidence",
+            counterexamples_zh=["拥有充分防御时可删除牌。"],
+            evidence=ExperienceEvidence(run_id=summary.run_id, segment_id="seg_fixture", step_indices=[0]),
+            confidence=0.5,
+        )
+        return ReviewResult(
+            report=ReviewReport(run_id=summary.run_id, outcome_zh="fixture loss", lessons=[lesson]),
+            llm_metadata={"usage": {"prompt_tokens": 7, "completion_tokens": 3, "total_tokens": 10}},
+        )
+
+
 class AgentRuntimeTests(unittest.TestCase):
+    def test_experience_repository_retrieves_scoped_historical_advice(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repository = ExperienceRepository(Path(tmp))
+            repository.save_lessons(
+                [
+                    ExperienceLesson(
+                        lesson_id="lesson_map_skill_v1",
+                        status="active",
+                        scope=ExperienceScope(screens=["MAP"], deck_tags_any=["type:skill"]),
+                        recommendation_zh="保留生命值。",
+                        rationale_zh="过去对局的可追溯经验。",
+                        evidence=ExperienceEvidence(run_id="older_run", step_indices=[8]),
+                        confidence=0.8,
+                    )
+                ]
+            )
+            snapshot = GameStateSnapshot.from_raw(
+                state_payload(
+                    screen="MAP",
+                    actions=["choose_map_node"],
+                    run={"floor": 2, "deck": [{"card_id": "DEFEND", "card_type": "Skill"}], "potions": []},
+                ),
+                source="test",
+            )
+            context_store = RunContextStore(repository)
+
+            packet = context_store.prompt_context(snapshot, "route_strategy")
+
+        lessons = packet["historical_experience"]["lessons"]
+        self.assertEqual(packet["historical_experience"]["lesson_ids"], ["lesson_map_skill_v1"])
+        self.assertIn("历史复盘经验", lessons[0]["notice_zh"])
+
+    def test_route_agent_uses_run_context_and_applies_valid_strategy_update(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="MAP",
+                actions=["choose_map_node"],
+                run={"floor": 2, "deck": [{"card_id": "DEFEND", "card_type": "Skill"}], "potions": []},
+            ),
+            source="test",
+        )
+        snapshot.state["map"] = {"available_nodes": [{"index": 3, "node_type": "Monster"}]}
+        legal_id = build_legal_actions(snapshot)[0]["id"]
+        context_store = RunContextStore()
+        policy = FakeRouteAgent(
+            context_store,
+            '{"legal_action_id":"' + legal_id + '","reason":"route","strategy_update":{"risk_budget":"low","path_preferences":["Monster"]}}',
+        )
+
+        decision = policy.decide(snapshot, KnowledgeContext())
+
+        self.assertEqual(decision.action.action, "choose_map_node")
+        self.assertEqual(decision.metadata["agent"]["name"], "route_strategy")
+        self.assertTrue(decision.metadata["agent"]["strategy_update"]["applied"])
+        self.assertEqual(context_store.strategic_plan.risk_budget, "low")
+        self.assertEqual(len(policy.last_prompt["messages"]), 5)
+        self.assertIn('"packet":"run_context.v1"', policy.last_prompt["messages"][2]["content"])
+
+    def test_agent_orchestrator_routes_gameplay_screens_without_llm_router_call(self) -> None:
+        orchestrator = AgentOrchestrator(context_store=RunContextStore(), api_key="test-key")
+        map_state = GameStateSnapshot.from_raw(state_payload(screen="MAP", actions=["choose_map_node"], run={"deck": [], "potions": []}), source="test")
+        combat_state = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
+        reward_state = GameStateSnapshot.from_raw(state_payload(screen="REWARD", actions=["proceed"], run={"deck": [], "potions": []}), source="test")
+
+        self.assertIsInstance(orchestrator.select(map_state), RouteStrategyAgent)
+        self.assertIsInstance(orchestrator.select(combat_state), CombatAgent)
+        self.assertIsInstance(orchestrator.select(reward_state), RunDevelopmentAgent)
+
+    def test_specialist_strategies_are_loaded_from_versioned_data_and_recorded(self) -> None:
+        provider = StrategyProvider()
+        combat_strategy = provider.get("combat")
+        self.assertEqual(combat_strategy.strategy_id, "combat.baseline.v1")
+        self.assertIn("信息边界", combat_strategy.render_instruction())
+
+        orchestrator = AgentOrchestrator(context_store=RunContextStore(), api_key="test-key", strategy_provider=provider)
+        state = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
+        metadata = orchestrator.combat_agent.metadata_provider(state)
+
+        self.assertEqual(metadata["strategy"]["strategy_id"], "combat.baseline.v1")
+        self.assertEqual(metadata["strategy"]["strategy_revision"], 1)
+        self.assertRegex(metadata["strategy"]["strategy_hash"], r"^[0-9a-f]{16}$")
+
+    def test_runtime_writes_review_and_experience_after_game_over(self) -> None:
+        game_over = state_payload(screen="GAME_OVER", actions=[], run={"floor": 7, "deck": [], "potions": []})
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            repository = ExperienceRepository(root / "experience")
+            runtime = AgentRuntime(
+                client=DummyClient([game_over]),
+                config=RuntimeConfig(max_steps=1, output_dir=root / "runs"),
+                router=AgentOrchestrator(context_store=RunContextStore(repository), api_key="test-key"),
+                review_agent=FakeReviewAgent(),
+                experience_repository=repository,
+            )
+            summary = runtime.run()
+
+            run_dir = next((root / "runs").iterdir())
+            lessons = list((root / "experience" / "lessons").glob("*.json"))
+            review_exists = (run_dir / "review.json").is_file()
+            context_exists = (run_dir / "context.jsonl").is_file()
+
+        self.assertEqual(summary.result, "loss")
+        self.assertEqual(summary.review_path, "review.json")
+        self.assertEqual(summary.experience_lesson_count, 1)
+        self.assertEqual(summary.token_usage["total_tokens"], 10)
+        self.assertTrue(review_exists)
+        self.assertTrue(context_exists)
+        self.assertEqual(len(lessons), 1)
+
+    def test_knowledge_provider_loads_current_monsters_from_chinese_json(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(
+                screen="COMBAT",
+                actions=["end_turn"],
+                combat={
+                    "enemies": [
+                        {"enemy_id": "NIBBIT"},
+                        {"enemy_id": "LEAF_SLIME_S"},
+                        {"enemy_id": "LEAF_SLIME_M"},
+                        {"enemy_id": "TWIG_SLIME_S"},
+                        {"enemy_id": "TWIG_SLIME_M"},
+                        {"enemy_id": "SHRINKER_BEETLE"},
+                        {"enemy_id": "FUZZY_WURM_CRAWLER"},
+                        {"enemy_id": "UNKNOWN_MONSTER"},
+                    ],
+                    "hand": [],
+                },
+                run={"floor": 1, "potions": []},
+            ),
+            source="test",
+        )
+
+        knowledge = KnowledgeProvider().for_state(snapshot)
+
+        self.assertEqual(
+            knowledge.refs,
+            [
+                "monster:FUZZY_WURM_CRAWLER",
+                "monster:LEAF_SLIME_M",
+                "monster:LEAF_SLIME_S",
+                "monster:NIBBIT",
+                "monster:SHRINKER_BEETLE",
+                "monster:TWIG_SLIME_M",
+                "monster:TWIG_SLIME_S",
+                "monster:UNKNOWN_MONSTER",
+            ],
+        )
+        self.assertEqual(
+            [entry["enemy_id"] for entry in knowledge.monsters],
+            [
+                "NIBBIT",
+                "LEAF_SLIME_S",
+                "LEAF_SLIME_M",
+                "TWIG_SLIME_S",
+                "TWIG_SLIME_M",
+                "SHRINKER_BEETLE",
+                "FUZZY_WURM_CRAWLER",
+            ],
+        )
+        self.assertEqual(knowledge.monsters[0]["name_zh"], "尼比特")
+        self.assertIn("wiki:sts2-nibbit", knowledge.monsters[0]["source_refs"])
+        self.assertTrue(any(source["ref"] == "wiki:sts2-nibbit" for source in knowledge.sources))
+        self.assertTrue(all(source["knowledge_path"] == "monsters/NIBBIT.json" for source in knowledge.sources if source["ref"] == "wiki:sts2-nibbit"))
+
+    def test_knowledge_provider_loads_event_entry_from_state_id(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            events_dir = root / "events"
+            events_dir.mkdir()
+            (events_dir / "TEST_EVENT.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": "sts2-event-knowledge.v1",
+                        "kind": "event",
+                        "event_id": "TEST_EVENT",
+                        "name_zh": "测试事件",
+                        "act_ids": ["OVERGROWTH"],
+                        "summary_zh": "用于验证事件知识按 ID 加载。",
+                        "flow_facts_zh": ["第二页仍可能出现选项。"],
+                        "sources": [
+                            {
+                                "ref": "test:event",
+                                "title_zh": "测试来源",
+                                "url": "https://example.test/event",
+                                "retrieved_at": "2026-07-13",
+                            }
+                        ],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            snapshot = GameStateSnapshot.from_raw(
+                state_payload(screen="EVENT", actions=["choose_event_option"], run={"floor": 1, "potions": []}),
+                source="test",
+            )
+            snapshot.state["event"] = {"event_id": "TEST_EVENT"}
+
+            knowledge = KnowledgeProvider(root_dir=root).for_state(snapshot)
+
+        self.assertEqual(knowledge.refs, ["event:TEST_EVENT"])
+        self.assertEqual(knowledge.events[0]["name_zh"], "测试事件")
+        self.assertEqual(knowledge.sources[0]["ref"], "test:event")
+        self.assertEqual(knowledge.sources[0]["knowledge_path"], "events/TEST_EVENT.json")
+
+    def test_llm_prompt_contains_compact_knowledge_entries(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
+        knowledge = KnowledgeContext(
+            refs=["monster:NIBBIT"],
+            monsters=[{"enemy_id": "NIBBIT", "name_zh": "尼比特", "summary_zh": "固定循环。"}],
+        )
+
+        policy = FakeLLMPolicy('{"action":"end_turn","reason":"done"}')
+        policy.decide(snapshot, knowledge=knowledge)
+
+        self.assertEqual(policy.last_prompt["knowledge"]["monsters"][0]["name_zh"], "尼比特")
+        self.assertEqual(policy.last_prompt["knowledge"]["refs"], ["monster:NIBBIT"])
+
+    def test_llm_prompt_keeps_knowledge_before_dynamic_state_and_reports_hash(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
+        knowledge = KnowledgeContext(
+            refs=["monster:NIBBIT", "monster:SHRINKER_BEETLE"],
+            monsters=[
+                {"enemy_id": "SHRINKER_BEETLE", "name_zh": "缩小甲虫"},
+                {"enemy_id": "NIBBIT", "name_zh": "尼比特"},
+            ],
+        )
+        policy = FakeLLMPolicy('{"action":"end_turn","reason":"done"}')
+
+        policy.decide(snapshot, knowledge=knowledge)
+
+        messages = policy.last_prompt["messages"]
+        self.assertEqual([message["role"] for message in messages], ["system", "user", "user", "user"])
+        self.assertIn('"packet":"knowledge_packet.v1"', messages[2]["content"])
+        self.assertIn('"enemy_id":"NIBBIT"', messages[2]["content"])
+        self.assertLess(messages[2]["content"].index("NIBBIT"), messages[2]["content"].index("SHRINKER_BEETLE"))
+        self.assertIn('"packet":"decision_state.v1"', messages[3]["content"])
+        metadata = policy.last_prompt["prompt_metadata"]
+        self.assertRegex(metadata["knowledge_packet_hash"], r"^[0-9a-f]{16}$")
+        self.assertGreater(metadata["message_characters"]["decision_state"], 0)
+
+    def test_equivalent_knowledge_has_the_same_packet_hash_despite_input_order(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(combat_payload(actions=["end_turn"], hand=[]), source="test")
+        first = FakeLLMPolicy('{"action":"end_turn","reason":"done"}')
+        second = FakeLLMPolicy('{"action":"end_turn","reason":"done"}')
+        first.decide(
+            snapshot,
+            knowledge=KnowledgeContext(
+                refs=["monster:NIBBIT", "monster:SHRINKER_BEETLE"],
+                monsters=[{"enemy_id": "NIBBIT"}, {"enemy_id": "SHRINKER_BEETLE"}],
+            ),
+        )
+        second.decide(
+            snapshot,
+            knowledge=KnowledgeContext(
+                refs=["monster:SHRINKER_BEETLE", "monster:NIBBIT"],
+                monsters=[{"enemy_id": "SHRINKER_BEETLE"}, {"enemy_id": "NIBBIT"}],
+            ),
+        )
+
+        self.assertEqual(
+            first.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
+            second.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
+        )
+
     def test_combat_state_with_only_side_actions_is_not_actionable(self) -> None:
         payload = combat_payload(actions=["save_and_quit", "use_potion", "discard_potion"], hand=[])
 
@@ -453,6 +765,97 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(options[0]["required_params"], ["option_index"])
         self.assertEqual(options[0]["options"][0]["option_index"], 3)
 
+    def test_legal_actions_include_bundle_options(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(screen="BUNDLE_SELECTION", actions=["choose_bundle"], run={"deck": [], "potions": []}),
+            source="test",
+        )
+        snapshot.state["bundles"] = [{"index": 0, "cards": []}, {"index": 1, "cards": []}]
+
+        options = [item for item in build_legal_actions(snapshot) if item["action"] == "choose_bundle"]
+
+        self.assertEqual([item["option_index"] for item in options], [0, 1])
+
+    def test_action_spec_accepts_seed_payload(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            state_payload(screen="CHARACTER_SELECT", actions=["set_seed"], run=None),
+            source="test",
+        )
+
+        action = parse_llm_action_payload({"action": "set_seed", "seed": "V16VSX4954"}, snapshot)
+
+        self.assertEqual(action.to_request()["seed"], "V16VSX4954")
+
+    def test_seed_bootstrap_opens_character_select_and_verifies_echo(self) -> None:
+        def character_select(seed: str | None = None) -> dict[str, Any]:
+            payload = state_payload(screen="CHARACTER_SELECT", actions=["set_seed", "select_character"], run=None)
+            payload["data"]["screen"] = "UNKNOWN"
+            payload["data"]["character_select"] = {"seed": seed}
+            return payload
+
+        class SeedClient:
+            def __init__(self) -> None:
+                self.state = state_payload(screen="MAIN_MENU", actions=["open_character_select"], run=None)
+                self.actions: list[AgentAction] = []
+                self.pending_menu = True
+
+            def get_state(self) -> dict[str, Any]:
+                if self.pending_menu:
+                    self.pending_menu = False
+                    return state_payload(screen="MAIN_MENU", actions=[], run=None)
+                return self.state
+
+            def act(self, action: AgentAction) -> ActionResult:
+                self.actions.append(action)
+                if action.action == "open_character_select":
+                    self.state = character_select()
+                elif action.action == "set_seed":
+                    self.state = character_select(action.payload["seed"])
+                return ActionResult(ok=True, action=action.action, status="completed", stable=True, message="ok", state=self.state["data"])
+
+            def wait_until_actionable(self, timeout_seconds: float) -> dict[str, Any]:
+                return self.state
+
+        client = SeedClient()
+
+        state = set_seed_for_new_run(client, "V16VSX4954")
+
+        self.assertEqual([action.action for action in client.actions], ["open_character_select", "set_seed"])
+        self.assertEqual(client.actions[1].payload["seed"], "V16VSX4954")
+        self.assertEqual(state["character_select"]["seed"], "V16VSX4954")
+
+    def test_seed_bootstrap_replaces_existing_run_only_when_explicit(self) -> None:
+        def character_select(seed: str | None = None) -> dict[str, Any]:
+            payload = state_payload(screen="CHARACTER_SELECT", actions=["set_seed", "select_character"], run=None)
+            payload["data"]["character_select"] = {"seed": seed}
+            return payload
+
+        class SeedClient:
+            def __init__(self) -> None:
+                self.state = state_payload(screen="MAIN_MENU", actions=["continue_run", "abandon_run"], run=None)
+                self.actions: list[AgentAction] = []
+
+            def get_state(self) -> dict[str, Any]:
+                return self.state
+
+            def act(self, action: AgentAction) -> ActionResult:
+                self.actions.append(action)
+                if action.action == "abandon_run":
+                    self.state = state_payload(screen="MODAL", actions=["confirm_modal", "dismiss_modal"], run=None)
+                elif action.action == "confirm_modal":
+                    self.state = state_payload(screen="MAIN_MENU", actions=["open_character_select"], run=None)
+                elif action.action == "open_character_select":
+                    self.state = character_select()
+                elif action.action == "set_seed":
+                    self.state = character_select(action.payload["seed"])
+                return ActionResult(ok=True, action=action.action, status="completed", stable=True, message="ok", state=self.state["data"])
+
+        client = SeedClient()
+        state = set_seed_for_new_run(client, "V16VSX4954", replace_existing_run=True)
+
+        self.assertEqual([action.action for action in client.actions], ["abandon_run", "confirm_modal", "open_character_select", "set_seed"])
+        self.assertEqual(state["character_select"]["seed"], "V16VSX4954")
+
     def test_action_plan_payload_validates_and_normalizes_actions(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             state_payload(
@@ -537,6 +940,28 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(decision.action_plan[0].action, "play_card")
         self.assertEqual(decision.action.action, "play_card")
 
+    def test_llm_repairs_empty_combat_action_plan(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_101", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy(
+            [
+                '{"type":"action","action_plan":{"actions":[]},"reason":"invalid empty plan"}',
+                '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"}]},"reason":"repaired plan"}',
+            ],
+            enable_action_plan=True,
+        )
+
+        decision = policy.decide(snapshot, knowledge=KnowledgeContext())
+
+        self.assertEqual([action.legal_action_id for action in decision.action_plan], [play_id])
+        self.assertEqual(decision.reason, "repaired plan")
+
     def test_llm_stable_combat_plan_prompt_uses_only_instance_legal_actions(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
             combat_payload(
@@ -560,6 +985,114 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(policy.last_prompt["legal_actions"], policy.last_prompt["plan_legal_actions"])
         self.assertNotIn("card_index", policy.last_prompt["response_schema"]["action_plan"])
         self.assertEqual(len(decision.action_plan), 2)
+
+    def test_combat_agent_requires_and_records_short_combat_audit(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_a", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy(
+            '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"},{"legal_action_id":"end_turn"}]},'
+            '"combat_audit":{"primary_target_id":"enemy_1","lethal_this_turn":"no","defense_posture":"accept_damage_for_tempo",'
+            '"risk_summary_zh":"当前无法稳定斩杀，保留节奏。","replan_after":[]},"reason":"short plan"}',
+            enable_action_plan=True,
+        )
+        policy.agent_name = "combat"
+        policy.agent_instruction = "combat protocol"
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertIn("combat_audit", decision.metadata)
+        self.assertEqual(decision.metadata["combat_audit"]["primary_target_id"], "enemy_1")
+        self.assertIn("combat_audit", policy.last_prompt["response_schema"])
+
+    def test_combat_prompt_includes_live_combat_piles(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_a", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        snapshot.state["agent_view"]["run"] = {
+            "piles": {
+                "draw_cards": [{"card_id": "DEFEND"}],
+                "discard_cards": [{"card_id": "BASH"}],
+                "exhaust_cards": [],
+            }
+        }
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy(
+            '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"}]},'
+            '"combat_audit":{"primary_target_id":"enemy_1","lethal_this_turn":"no","defense_posture":"unknown",'
+            '"risk_summary_zh":"牌堆信息已纳入判断。","replan_after":[]}}',
+            enable_action_plan=True,
+        )
+        policy.agent_name = "combat"
+        policy.agent_instruction = "combat protocol"
+
+        policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(policy.last_prompt["state"]["combat_piles"]["draw_cards"], [{"card_id": "DEFEND"}])
+        self.assertEqual(policy.last_prompt["state"]["combat_piles"]["discard_cards"], [{"card_id": "BASH"}])
+
+    def test_combat_agent_repairs_audit_boundary_outside_plan(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_a", "card_id": "STRIKE", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        policy = FakeLLMPolicy(
+            [
+                '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"}]},'
+                '"combat_audit":{"primary_target_id":null,"lethal_this_turn":"unknown","defense_posture":"unknown",'
+                '"risk_summary_zh":"需要重新确认。","replan_after":[{"legal_action_id":"missing","reason":"draw_cards"}]}}',
+                '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"}]},'
+                '"combat_audit":{"primary_target_id":null,"lethal_this_turn":"unknown","defense_posture":"unknown",'
+                '"risk_summary_zh":"需要重新确认。","replan_after":[]}}',
+            ],
+            enable_action_plan=True,
+        )
+        policy.agent_name = "combat"
+        policy.agent_instruction = "combat protocol"
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual(decision.metadata["combat_audit"]["replan_after"], [])
+
+    def test_combat_agent_repairs_actions_after_declared_boundary(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(
+            combat_payload(
+                actions=["play_card", "end_turn"],
+                hand=[{"index": 0, "card_instance_id": "card_a", "card_id": "DRAW_CARD", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+            ),
+            source="test",
+        )
+        play_id = next(item["id"] for item in build_legal_actions(snapshot) if item["action"] == "play_card")
+        audit = (
+            '"combat_audit":{"primary_target_id":"enemy_1","lethal_this_turn":"unknown","defense_posture":"unknown",'
+            '"risk_summary_zh":"抽牌后需要重规划。","replan_after":[{"legal_action_id":"' + play_id + '","reason":"draw_cards"}]}'
+        )
+        policy = FakeLLMPolicy(
+            [
+                '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"},{"legal_action_id":"end_turn"}]},' + audit + '}',
+                '{"type":"action","action_plan":{"actions":[{"legal_action_id":"' + play_id + '"}]},' + audit + '}',
+            ],
+            enable_action_plan=True,
+        )
+        policy.agent_name = "combat"
+        policy.agent_instruction = "combat protocol"
+
+        decision = policy.decide(snapshot, knowledge=type("K", (), {"refs": []})())
+
+        self.assertEqual([action.legal_action_id for action in decision.action_plan], [play_id])
 
     def test_llm_falls_back_to_single_action_without_card_instance_id(self) -> None:
         snapshot = GameStateSnapshot.from_raw(
@@ -586,6 +1119,28 @@ class AgentRuntimeTests(unittest.TestCase):
 
         self.assertEqual(client.commands, ["instant"])
         self.assertEqual(result.action, "run_console_command")
+
+    def test_enable_instant_mode_explains_debug_action_requirement(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "--launch-debug-session"):
+            enable_instant_mode(DisabledConsoleClient(), "instant")
+
+    def test_http_client_preserves_structured_http_error_payload(self) -> None:
+        error_body = BytesIO(
+            b'{"ok":false,"error":{"code":"invalid_action","message":"debug action disabled","retryable":false,"details":{"action":"run_console_command"}}}'
+        )
+        http_error = __import__("urllib.error", fromlist=["HTTPError"]).HTTPError(
+            "http://127.0.0.1:8080/action",
+            409,
+            "Conflict",
+            hdrs=None,
+            fp=error_body,
+        )
+        with patch("sts2_agent_runtime.client.request.urlopen", side_effect=http_error):
+            with self.assertRaises(GameClientError) as cm:
+                HttpGameClient().run_console_command("instant")
+
+        self.assertEqual(cm.exception.code, "invalid_action")
+        self.assertEqual(cm.exception.details["action"], "run_console_command")
 
     def test_debug_session_port_comes_from_base_url(self) -> None:
         self.assertEqual(_port_from_base_url("http://127.0.0.1:8080"), 8080)
@@ -698,6 +1253,41 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual([action.action for action in client.actions], ["play_card", "end_turn"])
         self.assertEqual(len(runtime.records[0].action_request["action_plan"]), 2)
         self.assertEqual(len(runtime.records[0].action_result["action_results"]), 2)
+
+    def test_runtime_stops_action_plan_at_validated_tactical_boundary(self) -> None:
+        first = combat_payload(
+            actions=["play_card", "end_turn"],
+            hand=[{"index": 0, "card_instance_id": "card_a", "card_id": "DRAW_CARD", "playable": True, "requires_target": True, "valid_target_indices": [0]}],
+        )
+        second = combat_payload(actions=["end_turn"], hand=[])
+
+        class BoundaryPolicy:
+            def decide(self, state: GameStateSnapshot, knowledge: Any) -> PolicyDecision:
+                play_id = next(item["id"] for item in build_legal_actions(state) if item["action"] == "play_card")
+                return PolicyDecision.action_plan_decision(
+                    [
+                        AgentAction("play_card", card_index=0, card_instance_id="card_a", target_index=0, target_instance_id="enemy_1", legal_action_id=play_id),
+                        AgentAction("end_turn", legal_action_id="end_turn"),
+                    ],
+                    reason="play then redraw",
+                    metadata={
+                        "combat_audit": {
+                            "replan_after": [{"legal_action_id": play_id, "reason": "draw_cards"}],
+                        }
+                    },
+                )
+
+        client = DummyClient([first, second])
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime = AgentRuntime(
+                client=client,
+                router=SinglePolicyRouter(BoundaryPolicy()),
+                config=RuntimeConfig(max_steps=1, output_dir=Path(tmp), wait_timeout_seconds=1.0),
+            )
+            runtime.run()
+
+        self.assertEqual([action.action for action in client.actions], ["play_card"])
+        self.assertEqual(runtime.records[0].decision["metadata"]["plan_stop_reason"], "tactical_replan:draw_cards")
 
     def test_runtime_stops_action_plan_when_next_action_is_stale(self) -> None:
         first = combat_payload(

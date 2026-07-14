@@ -8,14 +8,14 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError as PydanticVa
 from .contracts import AgentAction, GameStateSnapshot
 from .legal_actions import action_from_legal_action_id
 
-IndexParam = Literal["card_index", "target_index", "option_index", "potion_index"]
+ActionParam = Literal["card_index", "target_index", "option_index", "potion_index", "seed"]
 
 
 @dataclass(frozen=True, slots=True)
 class ActionSpec:
     action: str
-    required: tuple[IndexParam, ...] = ()
-    optional: tuple[IndexParam, ...] = ()
+    required: tuple[ActionParam, ...] = ()
+    optional: tuple[ActionParam, ...] = ()
 
     @property
     def allowed(self) -> set[IndexParam]:
@@ -55,6 +55,7 @@ ACTION_SPECS: dict[str, ActionSpec] = {
     "choose_timeline_epoch": ActionSpec("choose_timeline_epoch", required=("option_index",)),
     "confirm_timeline_overlay": ActionSpec("confirm_timeline_overlay"),
     "select_character": ActionSpec("select_character", required=("option_index",)),
+    "set_seed": ActionSpec("set_seed", required=("seed",)),
     "embark": ActionSpec("embark"),
     "unready": ActionSpec("unready"),
     "increase_ascension": ActionSpec("increase_ascension"),
@@ -82,6 +83,7 @@ class ActionModel(BaseModel):
     target_index: int | None = Field(default=None)
     option_index: int | None = Field(default=None)
     potion_index: int | None = Field(default=None)
+    seed: str | None = Field(default=None, min_length=1, max_length=64)
 
     @model_validator(mode="after")
     def validate_against_action_spec(self) -> "ActionModel":
@@ -94,6 +96,7 @@ class ActionModel(BaseModel):
             "target_index": self.target_index,
             "option_index": self.option_index,
             "potion_index": self.potion_index,
+            "seed": self.seed,
         }
         for param in spec.required:
             if values[param] is None:
@@ -110,6 +113,7 @@ class ActionModel(BaseModel):
             target_index=self.target_index,
             option_index=self.option_index,
             potion_index=self.potion_index,
+            payload={"seed": self.seed} if self.seed is not None else {},
         )
 
 
@@ -216,7 +220,9 @@ def _options_for_action(action_name: str, raw: dict[str, Any]) -> list[dict[str,
         candidates = (raw.get("reward") or {}).get("rewards") or (raw.get("reward") or {}).get("cards") or []
     elif action_name in {"buy_card", "buy_relic", "buy_potion"}:
         candidates = (raw.get("shop") or {}).get("items") or []
-    elif action_name in {"choose_rest_option", "choose_bundle", "choose_capstone_option"}:
+    elif action_name == "choose_bundle":
+        candidates = raw.get("bundles") or []
+    elif action_name in {"choose_rest_option", "choose_capstone_option"}:
         candidates = (raw.get("selection") or {}).get("options") or (raw.get("event") or {}).get("options") or []
 
     options: list[dict[str, Any]] = []

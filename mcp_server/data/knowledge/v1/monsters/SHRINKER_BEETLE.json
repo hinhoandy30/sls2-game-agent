@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SHRINKER_BEETLE",
+  "name_zh": "缩小甲虫",
+  "act_ids": ["OVERGROWTH"],
+  "encounter_pool_zh": "繁茂之地前 3 场弱敌池可单独出现；普通池也可与毛虫组合出现。",
+  "summary_zh": "首回合施加 Shrink，之后在中等攻击和高伤攻击之间交替。",
+  "pattern_zh": "首回合固定使用 Shrinker；之后在 Chomp 和 Stomp 之间交替。",
+  "moves": [
+    {
+      "name_zh": "缩小",
+      "effect_zh": "对玩家施加 Shrink。"
+    },
+    {
+      "name_zh": "啃咬",
+      "effect_zh": "造成 7 点伤害；难度 9 时为 8 点。"
+    },
+    {
+      "name_zh": "践踏",
+      "effect_zh": "造成 13 点伤害；难度 9 时为 14 点。"
+    }
+  ],
+  "risk_facts_zh": ["首回合的 Shrink 会改变后续玩家攻击牌的价值；具体当前状态以 live powers 为准。"],
+  "sources": [
+    {
+      "ref": "wiki:sts2-shrinker-beetle",
+      "title_zh": "Slay the Spire 2 Wiki：Shrinker Beetle",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3AShrinker_Beetle",
+      "retrieved_at": "2026-07-13"
+    },
+    {
+      "ref": "wiki:sts2-overgrowth",
+      "title_zh": "Slay the Spire 2 Wiki：Overgrowth",
+      "url": "https://slaythespire.wiki.gg/wiki/Slay_the_Spire_2%3AOvergrowth",
+      "retrieved_at": "2026-07-13"
+    }
+  ]
+}
