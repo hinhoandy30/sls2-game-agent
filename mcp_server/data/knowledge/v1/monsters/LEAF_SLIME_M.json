@@ -3,7 +3,9 @@
   "kind": "monster",
   "enemy_id": "LEAF_SLIME_M",
   "name_zh": "树叶史莱姆（中）",
-  "act_ids": ["OVERGROWTH"],
+  "act_ids": [
+    "OVERGROWTH"
+  ],
   "encounter_pool_zh": "繁茂之地前 3 场史莱姆弱敌组合中，随机出现的一只中型史莱姆。",
   "summary_zh": "首回合固定塞入两张黏液，之后在单体攻击和塞黏液之间交替。",
   "pattern_zh": "首回合固定使用黏性射击；之后在团块射击和黏性射击之间交替。",
@@ -17,7 +19,9 @@
       "effect_zh": "将 2 张 Slimed 洗入玩家弃牌堆。"
     }
   ],
-  "risk_facts_zh": ["开局即会向弃牌堆加入两张 Slimed。"],
+  "risk_facts_zh": [
+    "开局即会向弃牌堆加入两张 Slimed。"
+  ],
   "sources": [
     {
       "ref": "wiki:sts2-slimes",

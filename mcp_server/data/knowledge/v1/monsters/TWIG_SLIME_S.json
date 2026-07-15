@@ -3,7 +3,9 @@
   "kind": "monster",
   "enemy_id": "TWIG_SLIME_S",
   "name_zh": "树枝史莱姆（小）",
-  "act_ids": ["OVERGROWTH"],
+  "act_ids": [
+    "OVERGROWTH"
+  ],
   "encounter_pool_zh": "繁茂之地前 3 场史莱姆弱敌组合的一员。",
   "summary_zh": "只有稳定的单体攻击，每回合都会使用。",
   "pattern_zh": "每回合固定使用冲撞。",
@@ -13,7 +15,9 @@
       "effect_zh": "造成 4 点伤害；难度 9 时为 5 点。"
     }
   ],
-  "risk_facts_zh": ["没有随机性；下回合的基础攻击伤害可由本条目预期，但实际数值仍应读取 live intent。"],
+  "risk_facts_zh": [
+    "没有随机性；下回合的基础攻击伤害可由本条目预期，但实际数值仍应读取 live intent。"
+  ],
   "sources": [
     {
       "ref": "wiki:sts2-slimes",

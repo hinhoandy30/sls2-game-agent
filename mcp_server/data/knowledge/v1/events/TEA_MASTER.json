@@ -4,7 +4,9 @@
   "event_id": "TEA_MASTER",
   "name_zh": "茶艺大师",
   "act_ids": [
-    "UNKNOWN"
+    "UNDERDOCKS",
+    "OVERGROWTH",
+    "HIVE"
   ],
   "summary_zh": "茶艺大师事件，出现于第一阶段、第二阶段；前置条件：所有玩家至少拥有 150 金币。",
   "flow_facts_zh": [

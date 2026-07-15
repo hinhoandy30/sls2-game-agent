@@ -4,7 +4,10 @@
   "event_id": "SLIPPERY_BRIDGE",
   "name_zh": "滑脚木桥",
   "act_ids": [
-    "UNKNOWN"
+    "UNDERDOCKS",
+    "OVERGROWTH",
+    "HIVE",
+    "GLORY"
   ],
   "summary_zh": "滑脚木桥事件，出现于任意阶段；前置条件：当前总楼层数大于6，且所有玩家牌组中都有至少1张可移除牌。",
   "flow_facts_zh": [

@@ -8,11 +8,19 @@
   ],
   "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
   "summary_zh": "劫掠者斧手是密林场景的普通怪物；基础生命 20-22，进阶生命 21-23。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "pattern_zh": "英文静态数据列出行动：挥砍1、挥砍2、重挥；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "挥砍1",
+      "effect_zh": "造成5点伤害；进阶后造成6点伤害。"
+    },
+    {
+      "name_zh": "挥砍2",
+      "effect_zh": "造成5点伤害；进阶后造成6点伤害。"
+    },
+    {
+      "name_zh": "重挥",
+      "effect_zh": "造成12点伤害；进阶后造成13点伤害。"
     }
   ],
   "risk_facts_zh": [],
@@ -22,6 +30,12 @@
       "title_zh": "灰机 wiki：劫掠者斧手",
       "url": "https://sts2.huijiwiki.com/wiki/%E5%8A%AB%E6%8E%A0%E8%80%85%E6%96%A7%E6%89%8B",
       "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
     }
   ]
 }

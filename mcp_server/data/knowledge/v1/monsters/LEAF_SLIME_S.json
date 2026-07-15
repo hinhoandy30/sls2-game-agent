@@ -3,7 +3,9 @@
   "kind": "monster",
   "enemy_id": "LEAF_SLIME_S",
   "name_zh": "树叶史莱姆（小）",
-  "act_ids": ["OVERGROWTH"],
+  "act_ids": [
+    "OVERGROWTH"
+  ],
   "encounter_pool_zh": "繁茂之地前 3 场史莱姆弱敌组合的一员。",
   "summary_zh": "在低额攻击和向弃牌堆塞入黏液之间随机选择，不能连续两回合使用同一招。",
   "pattern_zh": "每回合在冲撞与黏液之间随机选择；同一招式不能连续使用两次。",
@@ -17,7 +19,9 @@
       "effect_zh": "将 1 张 Slimed 洗入玩家弃牌堆。"
     }
   ],
-  "risk_facts_zh": ["Slimed 会污染后续洗牌后的抽牌堆。"],
+  "risk_facts_zh": [
+    "Slimed 会污染后续洗牌后的抽牌堆。"
+  ],
   "sources": [
     {
       "ref": "wiki:sts2-slimes",

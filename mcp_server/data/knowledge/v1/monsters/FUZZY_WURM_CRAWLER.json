@@ -3,7 +3,9 @@
   "kind": "monster",
   "enemy_id": "FUZZY_WURM_CRAWLER",
   "name_zh": "毛茸茸的蠕虫爬行者",
-  "act_ids": ["OVERGROWTH"],
+  "act_ids": [
+    "OVERGROWTH"
+  ],
   "encounter_pool_zh": "繁茂之地前 3 场弱敌池可单独出现；普通池也可与缩小甲虫组合出现。",
   "summary_zh": "固定三回合循环，获得力量后攻击会永久变强，并会在每轮继续叠加。",
   "pattern_zh": "固定循环为：酸性黏液 -> 吸气 -> 酸性黏液 -> 重复。",
@@ -17,7 +19,9 @@
       "effect_zh": "获得 7 点力量。"
     }
   ],
-  "risk_facts_zh": ["每次吸气获得的力量都会保留，因此后续循环的酸性黏液会越来越痛。"],
+  "risk_facts_zh": [
+    "每次吸气获得的力量都会保留，因此后续循环的酸性黏液会越来越痛。"
+  ],
   "sources": [
     {
       "ref": "wiki:sts2-fuzzy-wurm-crawler",

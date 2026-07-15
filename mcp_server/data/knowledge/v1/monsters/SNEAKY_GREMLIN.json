@@ -8,11 +8,15 @@
   ],
   "encounter_pool_zh": "暗港场景的召唤或衍生单位；具体遭遇组合以当前地图和 live state 为准。",
   "summary_zh": "卑鄙地精是暗港场景的衍生怪物；基础生命 10-14，进阶生命 11-15。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "pattern_zh": "英文静态数据列出行动：生成、冲撞；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "生成",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    },
+    {
+      "name_zh": "冲撞",
+      "effect_zh": "造成9点伤害；进阶后造成10点伤害。"
     }
   ],
   "risk_facts_zh": [],
@@ -22,6 +26,12 @@
       "title_zh": "灰机 wiki：卑鄙地精",
       "url": "https://sts2.huijiwiki.com/wiki/%E5%8D%91%E9%84%99%E5%9C%B0%E7%B2%BE",
       "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
     }
   ]
 }

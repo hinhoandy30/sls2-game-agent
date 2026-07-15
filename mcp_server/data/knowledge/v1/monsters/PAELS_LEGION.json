@@ -4,15 +4,15 @@
   "enemy_id": "PAELS_LEGION",
   "name_zh": "佩尔的士兵",
   "act_ids": [
-    "UNKNOWN"
+    "EVENT"
   ],
-  "encounter_pool_zh": "未知阶段场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
-  "summary_zh": "佩尔的士兵是未知阶段场景的普通怪物；基础生命 9999，进阶生命 9999。",
-  "pattern_zh": "* 该遗物被视为“宠物”，会在获得后跟随在玩家身边。 * 使用控制台多次获取本遗物，每次都会生成一只独立的宠物（多只可同时陪伴玩家）。",
+  "encounter_pool_zh": "远古遗物相关特殊单位；不属于普通楼层敌池，具体出现以遗物和 live state 为准。",
+  "summary_zh": "佩尔的士兵是远古遗物相关特殊单位；基础生命 9999，进阶生命 9999。",
+  "pattern_zh": "该条目缺少可验证行动表；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "无可验证行动表",
+      "effect_zh": "静态资料未提供可验证行动效果；以 live intent 为准。"
     }
   ],
   "risk_facts_zh": [],
@@ -22,6 +22,12 @@
       "title_zh": "灰机 wiki：佩尔的士兵",
       "url": "https://sts2.huijiwiki.com/wiki/%E4%BD%A9%E5%B0%94%E7%9A%84%E5%A3%AB%E5%85%B5",
       "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
     }
   ]
 }

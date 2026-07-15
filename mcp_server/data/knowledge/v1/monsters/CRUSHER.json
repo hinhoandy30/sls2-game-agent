@@ -8,11 +8,27 @@
   ],
   "encounter_pool_zh": "巢穴场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
   "summary_zh": "碾碎爪是巢穴场景的Boss怪物；基础生命 209，进阶生命 219。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "pattern_zh": "英文静态数据列出行动：撕扯、增幅打击、虫刺、适应、防守打击；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "撕扯",
+      "effect_zh": "造成12点伤害；进阶后造成14点伤害。"
+    },
+    {
+      "name_zh": "增幅打击",
+      "effect_zh": "造成4点伤害。"
+    },
+    {
+      "name_zh": "虫刺",
+      "effect_zh": "造成6点伤害；进阶后造成7点伤害。"
+    },
+    {
+      "name_zh": "适应",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    },
+    {
+      "name_zh": "防守打击",
+      "effect_zh": "造成12点伤害；进阶后造成14点伤害。"
     }
   ],
   "risk_facts_zh": [
@@ -24,6 +40,12 @@
       "title_zh": "灰机 wiki：碾碎爪",
       "url": "https://sts2.huijiwiki.com/wiki/%E7%A2%BE%E7%A2%8E%E7%88%AA",
       "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
     }
   ]
 }
