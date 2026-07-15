@@ -8,14 +8,14 @@
   ],
   "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
   "summary_zh": "盛碗虫（石）是巢穴场景的普通怪物；基础生命 45-48，进阶生命 46-49。",
-  "pattern_zh": "英文静态数据列出行动：Headbutt、Dizzy；具体行动顺序以 live intent 和运行时状态机为准。",
+  "pattern_zh": "英文静态数据列出行动：头槌、眩晕；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "Headbutt（英文名）",
+      "name_zh": "头槌",
       "effect_zh": "造成15点伤害；进阶后造成16点伤害。"
     },
     {
-      "name_zh": "Dizzy（英文名）",
+      "name_zh": "眩晕",
       "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
     }
   ],
