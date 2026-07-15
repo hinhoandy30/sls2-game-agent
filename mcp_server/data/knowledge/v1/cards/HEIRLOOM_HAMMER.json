@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HEIRLOOM_HAMMER",
+  "name_zh": "传承之锤",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成20点伤害。选择你手牌中的一张无色牌。将这张牌的一张复制品放入你的手牌。",
+  "mechanics_zh": [
+    "造成20点伤害。",
+    "选择你手牌中的一张无色牌。",
+    "将这张牌的一张复制品放入你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成25点伤害。选择你手牌中的一张无色牌。将这张牌的一张复制品放入你的手牌。",
+    "changes_zh": [
+      "效果从 [造成20点伤害。选择你手牌中的一张无色牌。将这张牌的一张复制品放入你的手牌。] 变为 [造成25点伤害。选择你手牌中的一张无色牌。将这张牌的一张复制品放入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HEIRLOOM_HAMMER",
+      "title_zh": "灰机 wiki：传承之锤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BC%A0%E6%89%BF%E4%B9%8B%E9%94%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

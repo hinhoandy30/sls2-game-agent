@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BURNING_PACT",
+  "name_zh": "燃烧契约",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "消耗1张牌。抽2张牌。",
+  "mechanics_zh": [
+    "消耗1张牌。",
+    "抽2张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：消耗1张牌。抽3张牌。",
+    "changes_zh": [
+      "效果从 [消耗1张牌。抽2张牌。] 变为 [消耗1张牌。抽3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BURNING_PACT",
+      "title_zh": "灰机 wiki：燃烧契约",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%87%83%E7%83%A7%E5%A5%91%E7%BA%A6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

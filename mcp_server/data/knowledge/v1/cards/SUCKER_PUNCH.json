@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SUCKER_PUNCH",
+  "name_zh": "突然一拳",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成8点伤害。给予1层虚弱。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "给予1层虚弱。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害。给予2层虚弱。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。给予1层虚弱。] 变为 [造成10点伤害。给予2层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SUCKER_PUNCH",
+      "title_zh": "灰机 wiki：突然一拳",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%AA%81%E7%84%B6%E4%B8%80%E6%8B%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EXPERTISE",
+  "name_zh": "独门技术",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "抽牌直至你的手牌有6张牌。",
+  "mechanics_zh": [
+    "抽牌直至你的手牌有6张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽牌直至你的手牌有7张牌。",
+    "changes_zh": [
+      "效果从 [抽牌直至你的手牌有6张牌。] 变为 [抽牌直至你的手牌有7张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EXPERTISE",
+      "title_zh": "灰机 wiki：独门技术",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%AC%E9%97%A8%E6%8A%80%E6%9C%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

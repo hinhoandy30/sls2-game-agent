@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "AROMA_OF_CHAOS",
+  "name_zh": "混沌芳香",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "混沌芳香事件，出现于第一阶段密林场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：放任自流；结果/详情：变化你牌组中的一张牌。",
+    "选项：维持理智；结果/详情：升级你牌组中的一张牌。",
+    "选项：放任自流。",
+    "选项：维持理智。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:AROMA_OF_CHAOS",
+      "title_zh": "灰机 wiki：混沌芳香",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B7%B7%E6%B2%8C%E8%8A%B3%E9%A6%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

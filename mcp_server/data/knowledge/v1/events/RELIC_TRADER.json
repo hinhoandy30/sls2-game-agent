@@ -1,0 +1,25 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "RELIC_TRADER",
+  "name_zh": "遗物交换商",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "遗物交换商事件，出现于第二阶段、第三阶段；前置条件：所有玩家至少有 5 件可交易遗物。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段、第三阶段。",
+    "前置条件：所有玩家至少有 5 件可交易遗物。",
+    "选项：拿下面那件；结果/详情：用你的1件随机遗物换1件随机遗物。",
+    "选项：拿中间这件；结果/详情：用你的1件随机遗物换1件随机遗物。",
+    "选项：拿上面那件；结果/详情：用你的1件随机遗物换1件随机遗物。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:RELIC_TRADER",
+      "title_zh": "灰机 wiki：遗物交换商",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%81%97%E7%89%A9%E4%BA%A4%E6%8D%A2%E5%95%86",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

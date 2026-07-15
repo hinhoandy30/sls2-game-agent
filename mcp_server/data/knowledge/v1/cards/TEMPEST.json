@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TEMPEST",
+  "name_zh": "暴风雨",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "X 能量",
+  "summary_zh": "生成X个闪电充能球。",
+  "mechanics_zh": [
+    "生成X个闪电充能球。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成X+1个闪电充能球。",
+    "changes_zh": [
+      "效果从 [生成X个闪电充能球。] 变为 [生成X+1个闪电充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TEMPEST",
+      "title_zh": "灰机 wiki：暴风雨",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9A%B4%E9%A3%8E%E9%9B%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SLIMED_BERSERKER",
+  "name_zh": "史莱姆狂战士",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "史莱姆狂战士是荣耀场景的普通怪物；基础生命 261，进阶生命 281。",
+  "pattern_zh": "行动状态转移：A -> 呕吐脓液；呕吐脓液 -> 愤怒拍打；愤怒拍打 -> 榨取拥抱；榨取拥抱 -> 窒息；窒息 -> 呕吐脓液。",
+  "moves": [
+    {
+      "name_zh": "喷吐脓水",
+      "effect_zh": "效果：向弃牌堆洗入10张卡牌：黏液；效果进阶9+：向弃牌堆洗入10张卡牌：黏液；备注：循环的第1步。"
+    },
+    {
+      "name_zh": "狂怒连击",
+      "effect_zh": "效果：造成4×4伤害。（共16点）；效果进阶9+：造成5×4伤害。（共20点）；备注：循环的第2步。"
+    },
+    {
+      "name_zh": "汲取之拥",
+      "effect_zh": "效果：给予3层虚弱。获得3点力量；效果进阶9+：给予3层虚弱。获得3点力量；备注：循环的第3步。"
+    },
+    {
+      "name_zh": "窒息",
+      "effect_zh": "效果：造成30点伤害；效果进阶9+：造成33点伤害；备注：循环的第4步。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能施加虚弱，玩家攻击牌价值会受到影响。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SLIMED_BERSERKER",
+      "title_zh": "灰机 wiki：史莱姆狂战士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8F%B2%E8%8E%B1%E5%A7%86%E7%8B%82%E6%88%98%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

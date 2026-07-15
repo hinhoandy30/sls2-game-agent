@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HAILSTORM",
+  "name_zh": "冰雹风暴",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合结束时，如果你有冰霜充能球，则对所有敌人造成6点伤害。",
+  "mechanics_zh": [
+    "在你的回合结束时，如果你有冰霜充能球，则对所有敌人造成6点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合结束时，如果你有冰霜充能球，则对所有敌人造成8点伤害。",
+    "changes_zh": [
+      "效果从 [在你的回合结束时，如果你有冰霜充能球，则对所有敌人造成6点伤害。] 变为 [在你的回合结束时，如果你有冰霜充能球，则对所有敌人造成8点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HAILSTORM",
+      "title_zh": "灰机 wiki：冰雹风暴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B0%E9%9B%B9%E9%A3%8E%E6%9A%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

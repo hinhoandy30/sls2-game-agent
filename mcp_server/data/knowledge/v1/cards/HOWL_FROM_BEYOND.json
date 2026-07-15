@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HOWL_FROM_BEYOND",
+  "name_zh": "彼岸咆哮",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "对所有敌人造成16点伤害。在你的回合结束时，如果这张牌在你的消耗牌堆中，则将其打出。",
+  "mechanics_zh": [
+    "对所有敌人造成16点伤害。",
+    "在你的回合结束时，如果这张牌在你的消耗牌堆中，则将其打出。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成21点伤害。在你的回合结束时，如果这张牌在你的消耗牌堆中，则将其打出。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成16点伤害。在你的回合结束时，如果这张牌在你的消耗牌堆中，则将其打出。] 变为 [对所有敌人造成21点伤害。在你的回合结束时，如果这张牌在你的消耗牌堆中，则将其打出。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HOWL_FROM_BEYOND",
+      "title_zh": "灰机 wiki：彼岸咆哮",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BD%BC%E5%B2%B8%E5%92%86%E5%93%AE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

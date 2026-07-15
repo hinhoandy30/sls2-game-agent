@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TRANSFIGURE",
+  "name_zh": "重构",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "给一张手牌添加重放。其耗能增加11点能量。消耗。",
+  "mechanics_zh": [
+    "给一张手牌添加重放。",
+    "其耗能增加11点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给一张手牌添加重放。其耗能增加11点能量。",
+    "changes_zh": [
+      "效果从 [给一张手牌添加重放。其耗能增加11点能量。消耗。] 变为 [给一张手牌添加重放。其耗能增加11点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TRANSFIGURE",
+      "title_zh": "灰机 wiki：重构",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%8D%E6%9E%84",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

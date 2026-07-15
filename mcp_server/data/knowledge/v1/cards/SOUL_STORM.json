@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SOUL_STORM",
+  "name_zh": "灵魂风暴",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成9点伤害。你的消耗牌堆中每有一张灵魂，伤害增加2。",
+  "mechanics_zh": [
+    "造成9点伤害。",
+    "你的消耗牌堆中每有一张灵魂，伤害增加2。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。你的消耗牌堆中每有一张灵魂，伤害增加3。",
+    "changes_zh": [
+      "效果从 [造成9点伤害。你的消耗牌堆中每有一张灵魂，伤害增加2。] 变为 [造成9点伤害。你的消耗牌堆中每有一张灵魂，伤害增加3。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SOUL_STORM",
+      "title_zh": "灰机 wiki：灵魂风暴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B5%E9%AD%82%E9%A3%8E%E6%9A%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

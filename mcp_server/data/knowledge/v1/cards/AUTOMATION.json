@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "AUTOMATION",
+  "name_zh": "自动化",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "你每抽10张牌，获得1点能量。",
+  "mechanics_zh": [
+    "你每抽10张牌，获得1点能量。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每抽10张牌，获得1点能量。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:AUTOMATION",
+      "title_zh": "灰机 wiki：自动化",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%87%AA%E5%8A%A8%E5%8C%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

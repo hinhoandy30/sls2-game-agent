@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "IMITATION_LEARNING",
+  "name_zh": "模仿学习",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "选择另一名玩家。该玩家下2次打出能力牌时，你打出一张该牌的复制品。消耗。",
+  "mechanics_zh": [
+    "选择另一名玩家。",
+    "该玩家下2次打出能力牌时，你打出一张该牌的复制品。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：选择另一名玩家。该玩家下3次打出能力牌时，你打出一张该牌的复制品。消耗。",
+    "changes_zh": [
+      "效果从 [选择另一名玩家。该玩家下2次打出能力牌时，你打出一张该牌的复制品。消耗。] 变为 [选择另一名玩家。该玩家下3次打出能力牌时，你打出一张该牌的复制品。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:IMITATION_LEARNING",
+      "title_zh": "灰机 wiki：模仿学习",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PACTS_END",
+  "name_zh": "契约终结",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "如果你的消耗牌堆拥有大于等于3张牌，。则对所有敌人造成17点伤害。",
+  "mechanics_zh": [
+    "如果你的消耗牌堆拥有大于等于3张牌，。",
+    "则对所有敌人造成17点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：如果你的消耗牌堆拥有大于等于3张牌，。则对所有敌人造成23点伤害。",
+    "changes_zh": [
+      "效果从 [如果你的消耗牌堆拥有大于等于3张牌，。则对所有敌人造成17点伤害。] 变为 [如果你的消耗牌堆拥有大于等于3张牌，。则对所有敌人造成23点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PACTS_END",
+      "title_zh": "灰机 wiki：契约终结",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A5%91%E7%BA%A6%E7%BB%88%E7%BB%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

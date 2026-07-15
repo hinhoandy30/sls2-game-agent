@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PROPHESIZE",
+  "name_zh": "预言",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "抽6张牌。",
+  "mechanics_zh": [
+    "抽6张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽9张牌。",
+    "changes_zh": [
+      "效果从 [抽6张牌。] 变为 [抽9张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PROPHESIZE",
+      "title_zh": "灰机 wiki：预言",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A2%84%E8%A8%80",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

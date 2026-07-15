@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SOUL_NEXUS",
+  "name_zh": "灵魂枢纽",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "灵魂枢纽是荣耀场景的精英怪物；基础生命 234，进阶生命 254。",
+  "pattern_zh": "行动状态转移：A -> 灵魂灼烧；灵魂灼烧 -> R；R -> 灵魂灼烧；R -> 大漩涡；R -> 汲取生命；灵魂灼烧 -> R；大漩涡 -> R；汲取生命 -> R。",
+  "moves": [
+    {
+      "name_zh": "灵魂灼烧",
+      "effect_zh": "效果：造成29点伤害；效果进阶9+：造成31点伤害；备注：必定作为第1回合行动。后续在随机池中不能连续使用。"
+    },
+    {
+      "name_zh": "大漩涡",
+      "effect_zh": "效果：造成6×4伤害。（共24点）；效果进阶9+：造成7×4伤害。（共28点）；备注：不能连续使用 2 次。"
+    },
+    {
+      "name_zh": "汲取生命",
+      "effect_zh": "效果：造成18点伤害。给予2层易伤与2层虚弱；效果进阶9+：造成19点伤害。给予2层易伤与2层虚弱；备注：不能连续使用 2 次。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物可能施加易伤，后续受到攻击时当前 live powers 更重要。",
+    "该怪物可能施加虚弱，玩家攻击牌价值会受到影响。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SOUL_NEXUS",
+      "title_zh": "灰机 wiki：灵魂枢纽",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B5%E9%AD%82%E6%9E%A2%E7%BA%BD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

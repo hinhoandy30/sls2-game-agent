@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "FLAIL_KNIGHT",
+  "name_zh": "连枷骑士",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "连枷骑士是荣耀场景的精英怪物；基础生命 101，进阶生命 108。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:FLAIL_KNIGHT",
+      "title_zh": "灰机 wiki：连枷骑士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%9E%E6%9E%B7%E9%AA%91%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

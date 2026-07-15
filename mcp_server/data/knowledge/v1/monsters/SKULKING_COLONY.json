@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SKULKING_COLONY",
+  "name_zh": "鬼祟珊瑚群",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "鬼祟珊瑚群是暗港场景的精英怪物；基础生命 75，进阶生命 80。",
+  "pattern_zh": "* 硬化外壳 (Hardened Shell) X：这个生物每回合失去的生命值不会超过X点。 单人模式中鬼祟珊瑚群在战斗开始时拥有20层硬化外壳。 行动状态转移：A -> 猛冲1；猛冲1 -> 猛冲2；猛冲2 -> 惯性；惯性 -> 穿刺戳击；穿刺戳击 -> 猛冲1。",
+  "moves": [
+    {
+      "name_zh": "猛冲",
+      "effect_zh": "效果：造成14点伤害；效果进阶9+：造成16点伤害；备注：第1、2回合连续使用，之后每4回合连续使用两次。"
+    },
+    {
+      "name_zh": "惯性",
+      "effect_zh": "效果：造成9点伤害。获得2点力量；效果进阶9+：造成11点伤害。获得4点力量。"
+    },
+    {
+      "name_zh": "穿刺戳击",
+      "effect_zh": "效果：造成7×2伤害。（共14点）；效果进阶9+：造成8×2伤害。（共16点）。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：硬化外壳20。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SKULKING_COLONY",
+      "title_zh": "灰机 wiki：鬼祟珊瑚群",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AC%BC%E7%A5%9F%E7%8F%8A%E7%91%9A%E7%BE%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

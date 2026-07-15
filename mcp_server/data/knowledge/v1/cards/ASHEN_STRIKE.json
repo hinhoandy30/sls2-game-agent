@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ASHEN_STRIKE",
+  "name_zh": "灰烬打击",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成6点伤害。你的消耗牌堆中每有一张牌，伤害增加3。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "你的消耗牌堆中每有一张牌，伤害增加3。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成6点伤害。你的消耗牌堆中每有一张牌，伤害增加4。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。你的消耗牌堆中每有一张牌，伤害增加3。] 变为 [造成6点伤害。你的消耗牌堆中每有一张牌，伤害增加4。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ASHEN_STRIKE",
+      "title_zh": "灰机 wiki：灰烬打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B0%E7%83%AC%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

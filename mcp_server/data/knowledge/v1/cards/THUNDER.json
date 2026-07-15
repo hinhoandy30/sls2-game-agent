@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "THUNDER",
+  "name_zh": "雷霆",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你激发闪电充能球时，对被命中的敌人造成6点伤害。",
+  "mechanics_zh": [
+    "每当你激发闪电充能球时，对被命中的敌人造成6点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你激发闪电充能球时，对被命中的敌人造成8点伤害。",
+    "changes_zh": [
+      "效果从 [每当你激发闪电充能球时，对被命中的敌人造成6点伤害。] 变为 [每当你激发闪电充能球时，对被命中的敌人造成8点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:THUNDER",
+      "title_zh": "灰机 wiki：雷霆",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%9B%B7%E9%9C%86",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

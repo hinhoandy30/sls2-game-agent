@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SIGNAL_BOOST",
+  "name_zh": "信号增强",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "你的下一张能力牌会额外打出一次。消耗。",
+  "mechanics_zh": [
+    "你的下一张能力牌会额外打出一次。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你的下一张能力牌会额外打出一次。消耗。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SIGNAL_BOOST",
+      "title_zh": "灰机 wiki：信号增强",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BF%A1%E5%8F%B7%E5%A2%9E%E5%BC%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

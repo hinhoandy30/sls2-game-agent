@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEATHS_DOOR",
+  "name_zh": "死亡之门",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得6点格挡。如果你在本回合中曾给予过灾厄，则额外获得2次格挡。",
+  "mechanics_zh": [
+    "获得6点格挡。",
+    "如果你在本回合中曾给予过灾厄，则额外获得2次格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得7点格挡。如果你在本回合中曾给予过灾厄，则额外获得2次格挡。",
+    "changes_zh": [
+      "效果从 [获得6点格挡。如果你在本回合中曾给予过灾厄，则额外获得2次格挡。] 变为 [获得7点格挡。如果你在本回合中曾给予过灾厄，则额外获得2次格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEATHS_DOOR",
+      "title_zh": "灰机 wiki：死亡之门",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E4%BA%A1%E4%B9%8B%E9%97%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

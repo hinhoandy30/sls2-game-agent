@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BUFFER",
+  "name_zh": "缓冲",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "阻止下1次你受到的生命值损伤。",
+  "mechanics_zh": [
+    "阻止下1次你受到的生命值损伤。"
+  ],
+  "tags": [
+    "能力",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：阻止下2次你受到的生命值损伤。",
+    "changes_zh": [
+      "效果从 [阻止下1次你受到的生命值损伤。] 变为 [阻止下2次你受到的生命值损伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BUFFER",
+      "title_zh": "灰机 wiki：缓冲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BC%93%E5%86%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

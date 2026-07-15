@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NIGHTMARE",
+  "name_zh": "夜魇",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "选择一张牌。在下个回合将这张牌的3张复制品加入你的手牌。消耗。",
+  "mechanics_zh": [
+    "选择一张牌。",
+    "在下个回合将这张牌的3张复制品加入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：选择一张牌。在下个回合将这张牌的3张复制品加入你的手牌。消耗。",
+    "changes_zh": [
+      "费用从 [3 能量] 变为 [2 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NIGHTMARE",
+      "title_zh": "灰机 wiki：夜魇",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%9C%E9%AD%87",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

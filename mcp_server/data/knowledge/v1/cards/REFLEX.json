@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REFLEX",
+  "name_zh": "本能反应",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "奇巧。抽2张牌。",
+  "mechanics_zh": [
+    "奇巧。",
+    "抽2张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。抽3张牌。",
+    "changes_zh": [
+      "效果从 [奇巧。抽2张牌。] 变为 [奇巧。抽3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REFLEX",
+      "title_zh": "灰机 wiki：本能反应",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%AC%E8%83%BD%E5%8F%8D%E5%BA%94",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

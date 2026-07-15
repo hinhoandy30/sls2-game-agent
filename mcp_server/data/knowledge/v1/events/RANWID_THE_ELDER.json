@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "RANWID_THE_ELDER",
+  "name_zh": "长者兰伟德",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "长者兰伟德事件，出现于第二阶段、第三阶段；前置条件：每个玩家都要有：至少 1 件可交易遗物、至少 100 金币、至少 1 瓶药水。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段、第三阶段。",
+    "前置条件：每个玩家都要有：至少 1 件可交易遗物、至少 100 金币、至少 1 瓶药水。",
+    "备注：可交易遗物定义可前往遗物交换商查看。",
+    "选项：给他100金币；结果/详情：获得一件随机遗物。",
+    "选项：给他药水；结果/详情：获得一件随机遗物。",
+    "选项：给他遗物；结果/详情：获得2件随机遗物。",
+    "选项：给他100金币。",
+    "选项：给他药水。",
+    "选项：给他遗物。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:RANWID_THE_ELDER",
+      "title_zh": "灰机 wiki：长者兰伟德",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%95%BF%E8%80%85%E5%85%B0%E4%BC%9F%E5%BE%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

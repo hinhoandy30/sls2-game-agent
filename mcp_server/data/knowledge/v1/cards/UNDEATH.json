@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UNDEATH",
+  "name_zh": "不死",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得7点格挡。在弃牌堆放入一张此牌的复制品。",
+  "mechanics_zh": [
+    "获得7点格挡。",
+    "在弃牌堆放入一张此牌的复制品。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得9点格挡。在弃牌堆放入一张此牌的复制品。",
+    "changes_zh": [
+      "效果从 [获得7点格挡。在弃牌堆放入一张此牌的复制品。] 变为 [获得9点格挡。在弃牌堆放入一张此牌的复制品。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UNDEATH",
+      "title_zh": "灰机 wiki：不死",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%8D%E6%AD%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

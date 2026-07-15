@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLACK_HOLE",
+  "name_zh": "黑洞",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你花费或获得1点辉星时，对所有敌人造成3点伤害。",
+  "mechanics_zh": [
+    "每当你花费或获得1点辉星时，对所有敌人造成3点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "AOE",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你花费或获得1点辉星时，对所有敌人造成4点伤害。",
+    "changes_zh": [
+      "效果从 [每当你花费或获得1点辉星时，对所有敌人造成3点伤害。] 变为 [每当你花费或获得1点辉星时，对所有敌人造成4点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLACK_HOLE",
+      "title_zh": "灰机 wiki：黑洞",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%BB%91%E6%B4%9E",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

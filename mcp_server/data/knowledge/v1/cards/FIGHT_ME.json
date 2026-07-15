@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FIGHT_ME",
+  "name_zh": "与我一战！",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成5点伤害两次。获得3点力量。该敌人获得1点力量。",
+  "mechanics_zh": [
+    "造成5点伤害两次。",
+    "获得3点力量。",
+    "该敌人获得1点力量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成6点伤害两次。获得4点力量。该敌人获得1点力量。",
+    "changes_zh": [
+      "效果从 [造成5点伤害两次。获得3点力量。该敌人获得1点力量。] 变为 [造成6点伤害两次。获得4点力量。该敌人获得1点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FIGHT_ME",
+      "title_zh": "灰机 wiki：与我一战！",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%8E%E6%88%91%E4%B8%80%E6%88%98%EF%BC%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

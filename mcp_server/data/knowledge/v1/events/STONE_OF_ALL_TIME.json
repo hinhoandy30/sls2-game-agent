@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "STONE_OF_ALL_TIME",
+  "name_zh": "永恒之石",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "永恒之石事件，出现于第二阶段；前置条件：所有玩家至少有 1 瓶药水。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段。",
+    "前置条件：所有玩家至少有 1 瓶药水。",
+    "备注：事件开始时会药水栏被锁定（禁止药水使用和丢弃）。",
+    "选项：喝药抬起；结果/详情：失去1瓶随机药水。获得10最大生命。",
+    "选项：用力去推；结果/详情：失去6点生命。附魔一张攻击牌：活力8；备注：活力8。",
+    "选项：喝药抬起。",
+    "选项：用力去推。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:STONE_OF_ALL_TIME",
+      "title_zh": "灰机 wiki：永恒之石",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B0%B8%E6%81%92%E4%B9%8B%E7%9F%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

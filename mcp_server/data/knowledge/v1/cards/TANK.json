@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TANK",
+  "name_zh": "肉盾",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "承受双倍来自敌人的伤害。敌人的伤害对盟友减半。",
+  "mechanics_zh": [
+    "承受双倍来自敌人的伤害。",
+    "敌人的伤害对盟友减半。"
+  ],
+  "tags": [
+    "能力",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：承受双倍来自敌人的伤害。敌人的伤害对盟友减半。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TANK",
+      "title_zh": "灰机 wiki：肉盾",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%82%89%E7%9B%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

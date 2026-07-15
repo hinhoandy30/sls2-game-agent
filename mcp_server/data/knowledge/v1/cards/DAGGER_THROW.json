@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DAGGER_THROW",
+  "name_zh": "投掷匕首",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成9点伤害。抽1张牌。丢弃1张牌。",
+  "mechanics_zh": [
+    "造成9点伤害。",
+    "抽1张牌。",
+    "丢弃1张牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。抽1张牌。丢弃1张牌。",
+    "changes_zh": [
+      "效果从 [造成9点伤害。抽1张牌。丢弃1张牌。] 变为 [造成12点伤害。抽1张牌。丢弃1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DAGGER_THROW",
+      "title_zh": "灰机 wiki：投掷匕首",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8A%95%E6%8E%B7%E5%8C%95%E9%A6%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

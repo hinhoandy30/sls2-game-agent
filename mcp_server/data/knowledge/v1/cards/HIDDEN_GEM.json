@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HIDDEN_GEM",
+  "name_zh": "未掘宝石",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "你抽牌堆中的一张没有重放的随机牌获得2层重放。",
+  "mechanics_zh": [
+    "你抽牌堆中的一张没有重放的随机牌获得2层重放。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你抽牌堆中的一张没有重放的随机牌获得3层重放。",
+    "changes_zh": [
+      "效果从 [你抽牌堆中的一张没有重放的随机牌获得2层重放。] 变为 [你抽牌堆中的一张没有重放的随机牌获得3层重放。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HIDDEN_GEM",
+      "title_zh": "灰机 wiki：未掘宝石",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%AA%E6%8E%98%E5%AE%9D%E7%9F%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

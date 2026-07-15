@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EVIL_EYE",
+  "name_zh": "邪眼",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得8点格挡。如果你在本回合消耗过卡牌，则额外获得8点格挡。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "如果你在本回合消耗过卡牌，则额外获得8点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得11点格挡。如果你在本回合消耗过卡牌，则额外获得11点格挡。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。如果你在本回合消耗过卡牌，则额外获得8点格挡。] 变为 [获得11点格挡。如果你在本回合消耗过卡牌，则额外获得11点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EVIL_EYE",
+      "title_zh": "灰机 wiki：邪眼",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%82%AA%E7%9C%BC",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

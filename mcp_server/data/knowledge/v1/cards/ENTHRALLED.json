@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENTHRALLED",
+  "name_zh": "执迷",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "2 能量",
+  "summary_zh": "如果这张牌在你的手牌中，你必须优先打出这张牌。永恒。",
+  "mechanics_zh": [
+    "如果这张牌在你的手牌中，你必须优先打出这张牌。",
+    "永恒。"
+  ],
+  "tags": [
+    "诅咒"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENTHRALLED",
+      "title_zh": "灰机 wiki：执迷",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%A7%E8%BF%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

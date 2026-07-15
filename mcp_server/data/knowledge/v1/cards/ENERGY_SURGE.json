@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENERGY_SURGE",
+  "name_zh": "能量涌动",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "所有玩家获得2点能量。消耗。",
+  "mechanics_zh": [
+    "所有玩家获得2点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：所有玩家获得3点能量。消耗。",
+    "changes_zh": [
+      "效果从 [所有玩家获得2点能量。消耗。] 变为 [所有玩家获得3点能量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENERGY_SURGE",
+      "title_zh": "灰机 wiki：能量涌动",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%83%BD%E9%87%8F%E6%B6%8C%E5%8A%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

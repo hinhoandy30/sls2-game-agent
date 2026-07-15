@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "THE_BOMB",
+  "name_zh": "炸弹",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "在3回合结束后，对所有敌人造成40点伤害。",
+  "mechanics_zh": [
+    "在3回合结束后，对所有敌人造成40点伤害。"
+  ],
+  "tags": [
+    "技能",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在3回合结束后，对所有敌人造成50点伤害。",
+    "changes_zh": [
+      "效果从 [在3回合结束后，对所有敌人造成40点伤害。] 变为 [在3回合结束后，对所有敌人造成50点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:THE_BOMB",
+      "title_zh": "灰机 wiki：炸弹",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%82%B8%E5%BC%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

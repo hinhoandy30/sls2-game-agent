@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LEG_SWEEP",
+  "name_zh": "扫腿",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "给予2层虚弱。获得11点格挡。",
+  "mechanics_zh": [
+    "给予2层虚弱。",
+    "获得11点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予3层虚弱。获得14点格挡。",
+    "changes_zh": [
+      "效果从 [给予2层虚弱。获得11点格挡。] 变为 [给予3层虚弱。获得14点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LEG_SWEEP",
+      "title_zh": "灰机 wiki：扫腿",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%AB%E8%85%BF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

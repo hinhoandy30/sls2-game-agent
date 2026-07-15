@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DELAY",
+  "name_zh": "拖延",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "获得11点格挡。在下个回合，。获得1点能量。",
+  "mechanics_zh": [
+    "获得11点格挡。",
+    "在下个回合，。",
+    "获得1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得13点格挡。在下个回合，。获得2点能量。",
+    "changes_zh": [
+      "效果从 [获得11点格挡。在下个回合，。获得1点能量。] 变为 [获得13点格挡。在下个回合，。获得2点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DELAY",
+      "title_zh": "灰机 wiki：拖延",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8B%96%E5%BB%B6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

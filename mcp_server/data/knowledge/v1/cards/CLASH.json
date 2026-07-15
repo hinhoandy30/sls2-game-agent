@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CLASH",
+  "name_zh": "交锋",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "只有在手牌中每一张牌都是攻击牌时才能被打出。造成14点伤害。",
+  "mechanics_zh": [
+    "只有在手牌中每一张牌都是攻击牌时才能被打出。",
+    "造成14点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：只有在手牌中每一张牌都是攻击牌时才能被打出。造成18点伤害。",
+    "changes_zh": [
+      "效果从 [只有在手牌中每一张牌都是攻击牌时才能被打出。造成14点伤害。] 变为 [只有在手牌中每一张牌都是攻击牌时才能被打出。造成18点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CLASH",
+      "title_zh": "灰机 wiki：交锋",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BA%A4%E9%94%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

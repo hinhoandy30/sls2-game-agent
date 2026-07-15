@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "PAELS_LEGION",
+  "name_zh": "佩尔的士兵",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "encounter_pool_zh": "未知阶段场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "佩尔的士兵是未知阶段场景的普通怪物；基础生命 9999，进阶生命 9999。",
+  "pattern_zh": "* 该遗物被视为“宠物”，会在获得后跟随在玩家身边。 * 使用控制台多次获取本遗物，每次都会生成一只独立的宠物（多只可同时陪伴玩家）。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:PAELS_LEGION",
+      "title_zh": "灰机 wiki：佩尔的士兵",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BD%A9%E5%B0%94%E7%9A%84%E5%A3%AB%E5%85%B5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

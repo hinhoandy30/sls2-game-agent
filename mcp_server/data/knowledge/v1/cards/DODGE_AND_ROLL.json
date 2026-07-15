@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DODGE_AND_ROLL",
+  "name_zh": "闪躲翻滚",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得4点格挡。在下个回合，获得4点格挡。",
+  "mechanics_zh": [
+    "获得4点格挡。",
+    "在下个回合，获得4点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得6点格挡。在下个回合，获得6点格挡。",
+    "changes_zh": [
+      "效果从 [获得4点格挡。在下个回合，获得4点格挡。] 变为 [获得6点格挡。在下个回合，获得6点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DODGE_AND_ROLL",
+      "title_zh": "灰机 wiki：闪躲翻滚",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%97%AA%E8%BA%B2%E7%BF%BB%E6%BB%9A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

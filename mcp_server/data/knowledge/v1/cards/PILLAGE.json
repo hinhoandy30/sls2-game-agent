@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PILLAGE",
+  "name_zh": "劫掠",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成6点伤害。抽牌直到你抽到一张非攻击牌。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "抽牌直到你抽到一张非攻击牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。抽牌直到你抽到一张非攻击牌。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。抽牌直到你抽到一张非攻击牌。] 变为 [造成9点伤害。抽牌直到你抽到一张非攻击牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PILLAGE",
+      "title_zh": "灰机 wiki：劫掠",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8A%AB%E6%8E%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

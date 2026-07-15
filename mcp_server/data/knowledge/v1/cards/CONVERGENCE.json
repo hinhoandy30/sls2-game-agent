@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CONVERGENCE",
+  "name_zh": "汇流",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在本回合保留你的手牌。在下个回合，。获得1点能量与1点辉星。",
+  "mechanics_zh": [
+    "在本回合保留你的手牌。",
+    "在下个回合，。",
+    "获得1点能量与1点辉星。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "保留",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在本回合保留你的手牌。在下个回合，。获得1点能量与2点辉星。",
+    "changes_zh": [
+      "效果从 [在本回合保留你的手牌。在下个回合，。获得1点能量与1点辉星。] 变为 [在本回合保留你的手牌。在下个回合，。获得1点能量与2点辉星。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CONVERGENCE",
+      "title_zh": "灰机 wiki：汇流",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B1%87%E6%B5%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

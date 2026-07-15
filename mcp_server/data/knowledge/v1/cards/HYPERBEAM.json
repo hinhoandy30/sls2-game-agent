@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HYPERBEAM",
+  "name_zh": "超能光束",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "对所有敌人造成28点伤害。失去3点集中。",
+  "mechanics_zh": [
+    "对所有敌人造成28点伤害。",
+    "失去3点集中。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "集中",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成36点伤害。失去3点集中。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成28点伤害。失去3点集中。] 变为 [对所有敌人造成36点伤害。失去3点集中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HYPERBEAM",
+      "title_zh": "灰机 wiki：超能光束",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B6%85%E8%83%BD%E5%85%89%E6%9D%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

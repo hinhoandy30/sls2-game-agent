@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "INFESTED_AUTOMATON",
+  "name_zh": "被寄生的自动机械",
+  "act_ids": [
+    "HIVE"
+  ],
+  "summary_zh": "被寄生的自动机械事件，出现于第二阶段巢穴场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段巢穴场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：学习；结果/详情：随机获得一张能力牌。",
+    "选项：触碰核心；结果/详情：随机获得一张耗能为0的牌。",
+    "选项：学习。",
+    "选项：触碰核心。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:INFESTED_AUTOMATON",
+      "title_zh": "灰机 wiki：被寄生的自动机械",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A2%AB%E5%AF%84%E7%94%9F%E7%9A%84%E8%87%AA%E5%8A%A8%E6%9C%BA%E6%A2%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

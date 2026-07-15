@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MURDER",
+  "name_zh": "谋杀",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "造成1点伤害。你在本场战斗中每抽过一张牌，此牌就额外造成1点伤害。",
+  "mechanics_zh": [
+    "造成1点伤害。",
+    "你在本场战斗中每抽过一张牌，此牌就额外造成1点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成1点伤害。你在本场战斗中每抽过一张牌，此牌就额外造成1点伤害。",
+    "changes_zh": [
+      "费用从 [3 能量] 变为 [2 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MURDER",
+      "title_zh": "灰机 wiki：谋杀",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B0%8B%E6%9D%80",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

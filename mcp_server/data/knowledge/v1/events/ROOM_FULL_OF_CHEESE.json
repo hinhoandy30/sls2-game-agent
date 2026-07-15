@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "ROOM_FULL_OF_CHEESE",
+  "name_zh": "满屋芝士",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "满屋芝士事件，出现于第一阶段、第二阶段；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段、第二阶段。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：大快朵颐；结果/详情：从8张随机普通牌中选择2张加入到你的牌组；备注：8张随机普通牌不可能出现重复牌。",
+    "选项：仔细翻找；结果/详情：失去14点生命，获得天选芝士；备注：遗物：天选芝士。",
+    "选项：大快朵颐。",
+    "选项：仔细翻找。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:ROOM_FULL_OF_CHEESE",
+      "title_zh": "灰机 wiki：满屋芝士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%BB%A1%E5%B1%8B%E8%8A%9D%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

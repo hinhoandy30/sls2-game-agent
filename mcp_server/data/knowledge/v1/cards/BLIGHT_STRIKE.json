@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLIGHT_STRIKE",
+  "name_zh": "荒疫打击",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成8点伤害。给予等量于所造成伤害的灾厄。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "给予等量于所造成伤害的灾厄。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害。给予等量于所造成伤害的灾厄。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。给予等量于所造成伤害的灾厄。] 变为 [造成10点伤害。给予等量于所造成伤害的灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLIGHT_STRIKE",
+      "title_zh": "灰机 wiki：荒疫打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8D%92%E7%96%AB%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SEANCE",
+  "name_zh": "降灵",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。将你抽牌堆中的一张牌变化为灵魂。",
+  "mechanics_zh": [
+    "虚无。",
+    "将你抽牌堆中的一张牌变化为灵魂。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "虚无"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。将你抽牌堆中的一张牌变化为灵魂。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SEANCE",
+      "title_zh": "灰机 wiki：降灵",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%99%8D%E7%81%B5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REFINE_BLADE",
+  "name_zh": "淬炼刀刃",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "铸造9。在下个回合获得1点能量。",
+  "mechanics_zh": [
+    "铸造9。",
+    "在下个回合获得1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：铸造13。在下个回合获得1点能量。",
+    "changes_zh": [
+      "效果从 [铸造9。在下个回合获得1点能量。] 变为 [铸造13。在下个回合获得1点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REFINE_BLADE",
+      "title_zh": "灰机 wiki：淬炼刀刃",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B7%AC%E7%82%BC%E5%88%80%E5%88%83",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

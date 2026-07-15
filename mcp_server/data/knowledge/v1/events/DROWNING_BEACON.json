@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "DROWNING_BEACON",
+  "name_zh": "淹水灯塔",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "summary_zh": "淹水灯塔事件，出现于第一阶段暗港场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段暗港场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：装瓶；结果/详情：获得一瓶发光水。",
+    "选项：攀爬；结果/详情：获得菲涅耳透镜。失去13点最大生命；备注：发光水；·遗物：菲涅耳透镜。",
+    "选项：装瓶。",
+    "选项：攀爬。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:DROWNING_BEACON",
+      "title_zh": "灰机 wiki：淹水灯塔",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B7%B9%E6%B0%B4%E7%81%AF%E5%A1%94",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

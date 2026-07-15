@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BOOT_SEQUENCE",
+  "name_zh": "启动流程",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "固有。获得10点格挡。消耗。",
+  "mechanics_zh": [
+    "固有。",
+    "获得10点格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗",
+    "固有"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。获得13点格挡。消耗。",
+    "changes_zh": [
+      "效果从 [固有。获得10点格挡。消耗。] 变为 [固有。获得13点格挡。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BOOT_SEQUENCE",
+      "title_zh": "灰机 wiki：启动流程",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

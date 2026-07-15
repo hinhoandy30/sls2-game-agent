@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "EXOSKELETON",
+  "name_zh": "外骨骼虫",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "外骨骼虫是巢穴场景的普通怪物；基础生命 24-28，进阶生命 25-29。",
+  "pattern_zh": "* 难以杀灭 (Hard to Kill) 9：受到的所有伤害和生命减少效果不会超过 9 点。 行动状态转移：[*] -> 忙乱:fa:fa-map-marker ：左1；[*] -> 啃食:fa:fa-map-marker ：左2；[*] -> 激怒:fa:fa-map-marker ：左3；[*] -> random:fa:fa-map-marker ：左4（如果存在）；忙乱 -> 啃食；啃食 -> 激怒；激怒 -> random。",
+  "moves": [
+    {
+      "name_zh": "忙乱",
+      "effect_zh": "效果：造成1×3伤害。（共3点）；效果进阶9+：造成1×4伤害。（共4点）；备注：下回合必定使用“啃食”。"
+    },
+    {
+      "name_zh": "啃食",
+      "effect_zh": "效果：造成8点伤害；效果进阶9+：造成9点伤害；备注：下回合必定使用“激怒”。"
+    },
+    {
+      "name_zh": "激怒",
+      "effect_zh": "效果：获得2点力量；效果进阶9+：获得2点力量；备注：下回合在“忙乱”与“啃食”中随机选择。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：难以杀灭9。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:EXOSKELETON",
+      "title_zh": "灰机 wiki：外骨骼虫",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%96%E9%AA%A8%E9%AA%BC%E8%99%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

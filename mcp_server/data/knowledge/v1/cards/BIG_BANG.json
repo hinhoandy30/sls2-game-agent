@@ -1,0 +1,41 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BIG_BANG",
+  "name_zh": "大爆炸",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽1张牌。获得1点能量。获得1点辉星。铸造5。消耗。",
+  "mechanics_zh": [
+    "抽1张牌。",
+    "获得1点能量。",
+    "获得1点辉星。",
+    "铸造5。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "能量",
+    "消耗",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。抽1张牌。获得1点能量。获得1点辉星。铸造5。消耗。",
+    "changes_zh": [
+      "效果从 [抽1张牌。获得1点能量。获得1点辉星。铸造5。消耗。] 变为 [固有。抽1张牌。获得1点能量。获得1点辉星。铸造5。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BIG_BANG",
+      "title_zh": "灰机 wiki：大爆炸",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%A7%E7%88%86%E7%82%B8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "THE_LEGENDS_WERE_TRUE",
+  "name_zh": "传说是真的",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "传说是真的事件，出现于第一阶段；前置条件：所有玩家牌库都有卡牌，且当前生命值至少为10。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段。",
+    "前置条件：所有玩家牌库都有卡牌，且当前生命值至少为10。",
+    "选项：顺走地图；结果/详情：获得藏宝图。",
+    "选项：耐心寻找出口；结果/详情：失去8点生命。获得1瓶随机药水；备注：卡牌：藏宝图。",
+    "选项：顺走地图。",
+    "选项：耐心寻找出口。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:THE_LEGENDS_WERE_TRUE",
+      "title_zh": "灰机 wiki：传说是真的",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BC%A0%E8%AF%B4%E6%98%AF%E7%9C%9F%E7%9A%84",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

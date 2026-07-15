@@ -1,0 +1,40 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SWEEPING_GAZE",
+  "name_zh": "扫荡凝视",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "虚无。奥斯提对随机一名敌人造成10点伤害。消耗。",
+  "mechanics_zh": [
+    "虚无。",
+    "奥斯提对随机一名敌人造成10点伤害。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "虚无",
+    "随机",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。奥斯提对随机一名敌人造成15点伤害。消耗。",
+    "changes_zh": [
+      "效果从 [虚无。奥斯提对随机一名敌人造成10点伤害。消耗。] 变为 [虚无。奥斯提对随机一名敌人造成15点伤害。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SWEEPING_GAZE",
+      "title_zh": "灰机 wiki：扫荡凝视",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%AB%E8%8D%A1%E5%87%9D%E8%A7%86",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

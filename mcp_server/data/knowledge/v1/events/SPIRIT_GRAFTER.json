@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "SPIRIT_GRAFTER",
+  "name_zh": "灵魂嫁接者",
+  "act_ids": [
+    "HIVE"
+  ],
+  "summary_zh": "灵魂嫁接者事件，出现于第二阶段巢穴场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段巢穴场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：接纳；结果/详情：回复25点生命。将一张羽化添加到你的牌组。",
+    "选项：拒绝；结果/详情：失去10点生命。升级一张牌；备注：卡牌：羽化。",
+    "选项：接纳。",
+    "选项：拒绝。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:SPIRIT_GRAFTER",
+      "title_zh": "灰机 wiki：灵魂嫁接者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B5%E9%AD%82%E5%AB%81%E6%8E%A5%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEBT",
+  "name_zh": "债务",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，你失去10金币。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，你失去10金币。"
+  ],
+  "tags": [
+    "诅咒"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEBT",
+      "title_zh": "灰机 wiki：债务",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%80%BA%E5%8A%A1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

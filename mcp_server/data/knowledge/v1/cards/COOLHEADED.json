@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COOLHEADED",
+  "name_zh": "冷静头脑",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "生成1个冰霜充能球。抽1张牌。",
+  "mechanics_zh": [
+    "生成1个冰霜充能球。",
+    "抽1张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成1个冰霜充能球。抽2张牌。",
+    "changes_zh": [
+      "效果从 [生成1个冰霜充能球。抽1张牌。] 变为 [生成1个冰霜充能球。抽2张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COOLHEADED",
+      "title_zh": "灰机 wiki：冷静头脑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B7%E9%9D%99%E5%A4%B4%E8%84%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BEAT_DOWN",
+  "name_zh": "狠揍",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "打出你弃牌堆中的3张随机攻击牌。",
+  "mechanics_zh": [
+    "打出你弃牌堆中的3张随机攻击牌。"
+  ],
+  "tags": [
+    "技能",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：打出你弃牌堆中的4张随机攻击牌。",
+    "changes_zh": [
+      "效果从 [打出你弃牌堆中的3张随机攻击牌。] 变为 [打出你弃牌堆中的4张随机攻击牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BEAT_DOWN",
+      "title_zh": "灰机 wiki：狠揍",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%A0%E6%8F%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

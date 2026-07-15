@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PREP_TIME",
+  "name_zh": "准备时间",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，获得4点活力。",
+  "mechanics_zh": [
+    "在你的回合开始时，获得4点活力。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，获得6点活力。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，获得4点活力。] 变为 [在你的回合开始时，获得6点活力。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PREP_TIME",
+      "title_zh": "灰机 wiki：准备时间",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%87%86%E5%A4%87%E6%97%B6%E9%97%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

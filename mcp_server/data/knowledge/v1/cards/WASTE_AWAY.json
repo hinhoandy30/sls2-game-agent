@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "WASTE_AWAY",
+  "name_zh": "衰朽",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "不可打出",
+  "summary_zh": "每回合失去1点1点能量。",
+  "mechanics_zh": [
+    "每回合失去1点1点能量。"
+  ],
+  "tags": [
+    "状态",
+    "能量"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:WASTE_AWAY",
+      "title_zh": "灰机 wiki：衰朽",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A1%B0%E6%9C%BD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

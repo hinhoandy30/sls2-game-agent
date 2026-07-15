@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GRAND_FINALE",
+  "name_zh": "华丽收场",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "只有当你的抽牌堆中没有牌时才能打出。对所有敌人造成60点伤害。",
+  "mechanics_zh": [
+    "只有当你的抽牌堆中没有牌时才能打出。",
+    "对所有敌人造成60点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：只有当你的抽牌堆中没有牌时才能打出。对所有敌人造成75点伤害。",
+    "changes_zh": [
+      "效果从 [只有当你的抽牌堆中没有牌时才能打出。对所有敌人造成60点伤害。] 变为 [只有当你的抽牌堆中没有牌时才能打出。对所有敌人造成75点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GRAND_FINALE",
+      "title_zh": "灰机 wiki：华丽收场",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8D%8E%E4%B8%BD%E6%94%B6%E5%9C%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

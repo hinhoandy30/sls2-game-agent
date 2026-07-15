@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "JUGGLING",
+  "name_zh": "杂耍",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "将你在每回合打出的第三张攻击牌的复制品加入你的手牌。",
+  "mechanics_zh": [
+    "将你在每回合打出的第三张攻击牌的复制品加入你的手牌。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。将你在每回合打出的第三张攻击牌的复制品加入你的手牌。",
+    "changes_zh": [
+      "效果从 [将你在每回合打出的第三张攻击牌的复制品加入你的手牌。] 变为 [固有。将你在每回合打出的第三张攻击牌的复制品加入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:JUGGLING",
+      "title_zh": "灰机 wiki：杂耍",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9D%82%E8%80%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "STARDUST",
+  "name_zh": "星尘",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "随机对敌人造成5点伤害X次。",
+  "mechanics_zh": [
+    "随机对敌人造成5点伤害X次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：随机对敌人造成7点伤害X次。",
+    "changes_zh": [
+      "效果从 [随机对敌人造成5点伤害X次。] 变为 [随机对敌人造成7点伤害X次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:STARDUST",
+      "title_zh": "灰机 wiki：星尘",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%98%9F%E5%B0%98",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

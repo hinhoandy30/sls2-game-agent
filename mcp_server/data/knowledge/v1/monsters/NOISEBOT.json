@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "NOISEBOT",
+  "name_zh": "噪音机器人",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "噪音机器人是荣耀场景的普通怪物；基础生命 18-23，进阶生命 19-24。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：爪牙。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:NOISEBOT",
+      "title_zh": "灰机 wiki：噪音机器人",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%99%AA%E9%9F%B3%E6%9C%BA%E5%99%A8%E4%BA%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

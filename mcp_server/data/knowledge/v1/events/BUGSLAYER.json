@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "BUGSLAYER",
+  "name_zh": "害虫杀手",
+  "act_ids": [
+    "HIVE"
+  ],
+  "summary_zh": "害虫杀手事件，出现于第二阶段巢穴场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段巢穴场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：学习杀灭的技巧；结果/详情：将一张杀灭添加至你的牌组。",
+    "选项：学习压扁的技巧；结果/详情：将一张压扁添加至你的牌组；备注：卡牌：杀灭；·卡牌：压扁。",
+    "选项：学习杀灭的技巧。",
+    "选项：学习压扁的技巧。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:BUGSLAYER",
+      "title_zh": "灰机 wiki：害虫杀手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AE%B3%E8%99%AB%E6%9D%80%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

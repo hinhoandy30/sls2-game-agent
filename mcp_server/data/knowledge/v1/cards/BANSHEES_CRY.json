@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BANSHEES_CRY",
+  "name_zh": "女妖之嚎",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "9 能量",
+  "summary_zh": "对所有敌人造成33点伤害。本场战斗中每打出过一张虚无牌，此牌的耗能就减少2点能量。",
+  "mechanics_zh": [
+    "对所有敌人造成33点伤害。",
+    "本场战斗中每打出过一张虚无牌，此牌的耗能就减少2点能量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量",
+    "虚无",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成33点伤害。本场战斗中每打出过一张虚无牌，此牌的耗能就减少2点能量。",
+    "changes_zh": [
+      "费用从 [9 能量] 变为 [7 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BANSHEES_CRY",
+      "title_zh": "灰机 wiki：女妖之嚎",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A5%B3%E5%A6%96%E4%B9%8B%E5%9A%8E",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

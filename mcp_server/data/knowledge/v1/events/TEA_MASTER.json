@@ -1,0 +1,25 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "TEA_MASTER",
+  "name_zh": "茶艺大师",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "茶艺大师事件，出现于第一阶段、第二阶段；前置条件：所有玩家至少拥有 150 金币。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段、第二阶段。",
+    "前置条件：所有玩家至少拥有 150 金币。",
+    "选项：骨茶；结果/详情：支付50金币。在你接下来的1场战斗开始时，升级你的初始手牌。",
+    "选项：余烬茶；结果/详情：支付150金币。在接下来的5场战斗开始时，获得2点力量。",
+    "选项：无礼之茶；结果/详情：在下一场战斗开始时，将2张眩晕放入你的抽牌堆。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:TEA_MASTER",
+      "title_zh": "灰机 wiki：茶艺大师",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8C%B6%E8%89%BA%E5%A4%A7%E5%B8%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

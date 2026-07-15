@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "KIN_PRIEST",
+  "name_zh": "同族神官",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "同族神官是密林场景的Boss怪物；基础生命 190，进阶生命 199。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:KIN_PRIEST",
+      "title_zh": "灰机 wiki：同族神官",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%8C%E6%97%8F%E7%A5%9E%E5%AE%98",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "PUNCH_CONSTRUCT",
+  "name_zh": "拳击构装体",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "拳击构装体是暗港场景的普通怪物；基础生命 55，进阶生命 60。",
+  "pattern_zh": "* 人工制品 (Artifact) 1：出场自带 1 层人工制品。 * 特例：在“重拳出击(Punch-Off)”事件中遇到该怪物时，其生命值会降低2~10点，且第一只拳击构装体的起手式将被强制改为“快速拳”。 行动状态转移：A -> 准备就绪；准备就绪 -> 快速拳；快速拳 -> 强力拳；强力拳 -> 准备就绪。",
+  "moves": [
+    {
+      "name_zh": "准备就绪",
+      "effect_zh": "效果：获得10点格挡；效果进阶9+：获得10点格挡。"
+    },
+    {
+      "name_zh": "强力拳",
+      "effect_zh": "效果：造成14点伤害；效果进阶9+：造成16点伤害。"
+    },
+    {
+      "name_zh": "快速拳",
+      "effect_zh": "效果：造成5×2伤害，给予1层脆弱。（共10点）；效果进阶9+：造成6×2伤害，给予1层脆弱。（共12点）。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人工制品1。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:PUNCH_CONSTRUCT",
+      "title_zh": "灰机 wiki：拳击构装体",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8B%B3%E5%87%BB%E6%9E%84%E8%A3%85%E4%BD%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

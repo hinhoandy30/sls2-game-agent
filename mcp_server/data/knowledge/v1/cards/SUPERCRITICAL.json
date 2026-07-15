@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SUPERCRITICAL",
+  "name_zh": "超临界态",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得41点能量。消耗。",
+  "mechanics_zh": [
+    "获得41点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得61点能量。消耗。",
+    "changes_zh": [
+      "效果从 [获得41点能量。消耗。] 变为 [获得61点能量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SUPERCRITICAL",
+      "title_zh": "灰机 wiki：超临界态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B6%85%E4%B8%B4%E7%95%8C%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

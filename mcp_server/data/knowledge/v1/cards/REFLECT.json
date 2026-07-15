@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REFLECT",
+  "name_zh": "倒映",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得15点格挡。在本回合将你格挡掉的攻击伤害反弹给攻击者。",
+  "mechanics_zh": [
+    "获得15点格挡。",
+    "在本回合将你格挡掉的攻击伤害反弹给攻击者。"
+  ],
+  "tags": [
+    "技能",
+    "伤害",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得20点格挡。在本回合将你格挡掉的攻击伤害反弹给攻击者。",
+    "changes_zh": [
+      "效果从 [获得15点格挡。在本回合将你格挡掉的攻击伤害反弹给攻击者。] 变为 [获得20点格挡。在本回合将你格挡掉的攻击伤害反弹给攻击者。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REFLECT",
+      "title_zh": "灰机 wiki：倒映",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%80%92%E6%98%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

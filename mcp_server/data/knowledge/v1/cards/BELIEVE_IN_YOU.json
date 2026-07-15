@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BELIEVE_IN_YOU",
+  "name_zh": "相信着你",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "另一名玩家获得2点能量。",
+  "mechanics_zh": [
+    "另一名玩家获得2点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：另一名玩家获得3点能量。",
+    "changes_zh": [
+      "效果从 [另一名玩家获得2点能量。] 变为 [另一名玩家获得3点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BELIEVE_IN_YOU",
+      "title_zh": "灰机 wiki：相信着你",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%9B%B8%E4%BF%A1%E7%9D%80%E4%BD%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

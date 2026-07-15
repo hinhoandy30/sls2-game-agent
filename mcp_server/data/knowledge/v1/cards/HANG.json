@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HANG",
+  "name_zh": "吊杀",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。让所有“吊杀”牌对这名敌人造成的伤害翻倍。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "让所有“吊杀”牌对这名敌人造成的伤害翻倍。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。让所有“吊杀”牌对这名敌人造成的伤害翻倍。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。让所有“吊杀”牌对这名敌人造成的伤害翻倍。] 变为 [造成13点伤害。让所有“吊杀”牌对这名敌人造成的伤害翻倍。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HANG",
+      "title_zh": "灰机 wiki：吊杀",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%8A%E6%9D%80",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

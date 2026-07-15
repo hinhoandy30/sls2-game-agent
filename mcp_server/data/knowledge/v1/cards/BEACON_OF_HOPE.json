@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BEACON_OF_HOPE",
+  "name_zh": "希望灯塔",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡。",
+  "mechanics_zh": [
+    "每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡。"
+  ],
+  "tags": [
+    "能力",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡。",
+    "changes_zh": [
+      "效果从 [每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡。] 变为 [固有。每当你在你的回合获得格挡时，其他玩家获得相应一半的格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BEACON_OF_HOPE",
+      "title_zh": "灰机 wiki：希望灯塔",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B8%8C%E6%9C%9B%E7%81%AF%E5%A1%94",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

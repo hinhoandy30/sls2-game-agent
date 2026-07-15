@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COSMIC_INDIFFERENCE",
+  "name_zh": "宇宙冷漠",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得6点格挡。将弃牌堆中的一张牌放到你的抽牌堆的顶部。",
+  "mechanics_zh": [
+    "获得6点格挡。",
+    "将弃牌堆中的一张牌放到你的抽牌堆的顶部。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得9点格挡。将弃牌堆中的一张牌放到你的抽牌堆的顶部。",
+    "changes_zh": [
+      "效果从 [获得6点格挡。将弃牌堆中的一张牌放到你的抽牌堆的顶部。] 变为 [获得9点格挡。将弃牌堆中的一张牌放到你的抽牌堆的顶部。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COSMIC_INDIFFERENCE",
+      "title_zh": "灰机 wiki：宇宙冷漠",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AE%87%E5%AE%99%E5%86%B7%E6%BC%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

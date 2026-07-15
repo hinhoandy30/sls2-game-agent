@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "AGGRESSION",
+  "name_zh": "好勇斗狠",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，将你弃牌堆的一张随机攻击牌放入你的手牌并将其升级。",
+  "mechanics_zh": [
+    "在你的回合开始时，将你弃牌堆的一张随机攻击牌放入你的手牌并将其升级。"
+  ],
+  "tags": [
+    "能力",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。在你的回合开始时，将你弃牌堆的一张随机攻击牌放入你的手牌并将其升级。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，将你弃牌堆的一张随机攻击牌放入你的手牌并将其升级。] 变为 [固有。在你的回合开始时，将你弃牌堆的一张随机攻击牌放入你的手牌并将其升级。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:AGGRESSION",
+      "title_zh": "灰机 wiki：好勇斗狠",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A5%BD%E5%8B%87%E6%96%97%E7%8B%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

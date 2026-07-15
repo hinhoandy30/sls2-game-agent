@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FLECHETTES",
+  "name_zh": "飞镖",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "手牌中每有一张技能牌，造成5点伤害。",
+  "mechanics_zh": [
+    "手牌中每有一张技能牌，造成5点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：手牌中每有一张技能牌，造成7点伤害。",
+    "changes_zh": [
+      "效果从 [手牌中每有一张技能牌，造成5点伤害。] 变为 [手牌中每有一张技能牌，造成7点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FLECHETTES",
+      "title_zh": "灰机 wiki：飞镖",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A3%9E%E9%95%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

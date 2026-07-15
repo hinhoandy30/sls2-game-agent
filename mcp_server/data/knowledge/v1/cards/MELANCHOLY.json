@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MELANCHOLY",
+  "name_zh": "忧郁",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "获得13点格挡。每当有任何生物死亡时，这张牌的耗能减少1点能量。",
+  "mechanics_zh": [
+    "获得13点格挡。",
+    "每当有任何生物死亡时，这张牌的耗能减少1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得17点格挡。每当有任何生物死亡时，这张牌的耗能减少1点能量。",
+    "changes_zh": [
+      "效果从 [获得13点格挡。每当有任何生物死亡时，这张牌的耗能减少1点能量。] 变为 [获得17点格挡。每当有任何生物死亡时，这张牌的耗能减少1点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MELANCHOLY",
+      "title_zh": "灰机 wiki：忧郁",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BF%A7%E9%83%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

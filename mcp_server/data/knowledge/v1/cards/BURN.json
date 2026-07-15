@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BURN",
+  "name_zh": "灼伤",
+  "character_ids": [
+    "STATUS"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，你受到2点伤害。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，你受到2点伤害。"
+  ],
+  "tags": [
+    "状态",
+    "伤害"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BURN",
+      "title_zh": "灰机 wiki：灼伤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%BC%E4%BC%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

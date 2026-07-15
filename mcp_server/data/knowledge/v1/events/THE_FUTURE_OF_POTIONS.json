@@ -1,0 +1,24 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "THE_FUTURE_OF_POTIONS",
+  "name_zh": "药水的未来？",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "药水的未来？事件，出现于任意阶段；前置条件：所有玩家至少拥有 2 瓶药水。",
+  "flow_facts_zh": [
+    "出现阶段：任意阶段。",
+    "前置条件：所有玩家至少拥有 2 瓶药水。",
+    "选项：放入一瓶药水；结果/详情：失去对应药水。获得一次3选1卡牌奖励，候选牌均为升级过的同稀有度、同随机类型的牌。",
+    "选项：放入一瓶药水。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:THE_FUTURE_OF_POTIONS",
+      "title_zh": "灰机 wiki：药水的未来？",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8D%AF%E6%B0%B4%E7%9A%84%E6%9C%AA%E6%9D%A5%EF%BC%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

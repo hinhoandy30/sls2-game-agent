@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HOTFIX",
+  "name_zh": "热修复",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "在本回合获得2点集中。消耗。",
+  "mechanics_zh": [
+    "在本回合获得2点集中。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "集中"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在本回合获得2点集中。",
+    "changes_zh": [
+      "效果从 [在本回合获得2点集中。消耗。] 变为 [在本回合获得2点集中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HOTFIX",
+      "title_zh": "灰机 wiki：热修复",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%83%AD%E4%BF%AE%E5%A4%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

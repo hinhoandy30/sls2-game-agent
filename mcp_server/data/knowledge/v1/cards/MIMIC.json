@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MIMIC",
+  "name_zh": "拟态",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得等同于另一位玩家格挡值的格挡。消耗。",
+  "mechanics_zh": [
+    "获得等同于另一位玩家格挡值的格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得等同于另一位玩家格挡值的格挡。",
+    "changes_zh": [
+      "效果从 [获得等同于另一位玩家格挡值的格挡。消耗。] 变为 [获得等同于另一位玩家格挡值的格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MIMIC",
+      "title_zh": "灰机 wiki：拟态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8B%9F%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

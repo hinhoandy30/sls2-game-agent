@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLAZE",
+  "name_zh": "炽焰",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "给予另一名玩家5点力量。",
+  "mechanics_zh": [
+    "给予另一名玩家5点力量。"
+  ],
+  "tags": [
+    "技能",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予另一名玩家7点力量。",
+    "changes_zh": [
+      "效果从 [给予另一名玩家5点力量。] 变为 [给予另一名玩家7点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLAZE",
+      "title_zh": "灰机 wiki：炽焰",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%82%BD%E7%84%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

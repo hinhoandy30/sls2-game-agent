@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MINION_DIVE_BOMB",
+  "name_zh": "仆从俯冲",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成13点伤害。消耗。",
+  "mechanics_zh": [
+    "造成13点伤害。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成16点伤害。消耗。",
+    "changes_zh": [
+      "效果从 [造成13点伤害。消耗。] 变为 [造成16点伤害。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MINION_DIVE_BOMB",
+      "title_zh": "灰机 wiki：仆从俯冲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BB%86%E4%BB%8E%E4%BF%AF%E5%86%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

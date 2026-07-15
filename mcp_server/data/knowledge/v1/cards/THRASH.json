@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "THRASH",
+  "name_zh": "痛殴",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成4点伤害两次。消耗你的手牌中随机一张攻击牌，并将它的伤害添加给这张牌。",
+  "mechanics_zh": [
+    "造成4点伤害两次。",
+    "消耗你的手牌中随机一张攻击牌，并将它的伤害添加给这张牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成6点伤害两次。消耗你的手牌中随机一张攻击牌，并将它的伤害添加给这张牌。",
+    "changes_zh": [
+      "效果从 [造成4点伤害两次。消耗你的手牌中随机一张攻击牌，并将它的伤害添加给这张牌。] 变为 [造成6点伤害两次。消耗你的手牌中随机一张攻击牌，并将它的伤害添加给这张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:THRASH",
+      "title_zh": "灰机 wiki：痛殴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%97%9B%E6%AE%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

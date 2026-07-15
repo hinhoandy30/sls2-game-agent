@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MOLTEN_FIST",
+  "name_zh": "熔融之拳",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。将该敌人身上的易伤层数翻倍。消耗。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "将该敌人身上的易伤层数翻倍。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成14点伤害。将该敌人身上的易伤层数翻倍。消耗。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。将该敌人身上的易伤层数翻倍。消耗。] 变为 [造成14点伤害。将该敌人身上的易伤层数翻倍。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MOLTEN_FIST",
+      "title_zh": "灰机 wiki：熔融之拳",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%86%94%E8%9E%8D%E4%B9%8B%E6%8B%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

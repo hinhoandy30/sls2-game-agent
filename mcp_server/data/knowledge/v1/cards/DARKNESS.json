@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DARKNESS",
+  "name_zh": "漆黑",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "生成1黑暗充能球。触发所有黑暗充能球的被动。",
+  "mechanics_zh": [
+    "生成1黑暗充能球。",
+    "触发所有黑暗充能球的被动。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成1黑暗充能球。触发所有黑暗充能球的被动两次。",
+    "changes_zh": [
+      "效果从 [生成1黑暗充能球。触发所有黑暗充能球的被动。] 变为 [生成1黑暗充能球。触发所有黑暗充能球的被动两次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DARKNESS",
+      "title_zh": "灰机 wiki：漆黑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%BC%86%E9%BB%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

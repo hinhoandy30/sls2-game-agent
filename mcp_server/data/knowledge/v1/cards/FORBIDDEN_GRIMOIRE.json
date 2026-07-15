@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FORBIDDEN_GRIMOIRE",
+  "name_zh": "禁忌魔典",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "2 能量",
+  "summary_zh": "在战斗结束时，你可以从你的牌组中选一张牌移除。永恒。",
+  "mechanics_zh": [
+    "在战斗结束时，你可以从你的牌组中选一张牌移除。",
+    "永恒。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在战斗结束时，你可以从你的牌组中选一张牌移除。永恒。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FORBIDDEN_GRIMOIRE",
+      "title_zh": "灰机 wiki：禁忌魔典",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%A6%81%E5%BF%8C%E9%AD%94%E5%85%B8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

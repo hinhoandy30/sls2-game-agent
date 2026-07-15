@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SQUEEZE",
+  "name_zh": "榨取",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "奥斯提造成25点伤害。你每有一张奥斯提的攻击牌，这张牌就额外造成5点伤害。",
+  "mechanics_zh": [
+    "奥斯提造成25点伤害。",
+    "你每有一张奥斯提的攻击牌，这张牌就额外造成5点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提造成30点伤害。你每有一张奥斯提的攻击牌，这张牌就额外造成6点伤害。",
+    "changes_zh": [
+      "效果从 [奥斯提造成25点伤害。你每有一张奥斯提的攻击牌，这张牌就额外造成5点伤害。] 变为 [奥斯提造成30点伤害。你每有一张奥斯提的攻击牌，这张牌就额外造成6点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SQUEEZE",
+      "title_zh": "灰机 wiki：榨取",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%A6%A8%E5%8F%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

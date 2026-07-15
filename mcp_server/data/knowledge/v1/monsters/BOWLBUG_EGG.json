@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "BOWLBUG_EGG",
+  "name_zh": "盛碗虫（卵）",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "盛碗虫（卵）是巢穴场景的普通怪物；基础生命 21-22，进阶生命 23-24。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:BOWLBUG_EGG",
+      "title_zh": "灰机 wiki：盛碗虫（卵）",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%9B%9B%E7%A2%97%E8%99%AB%EF%BC%88%E5%8D%B5%EF%BC%89",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

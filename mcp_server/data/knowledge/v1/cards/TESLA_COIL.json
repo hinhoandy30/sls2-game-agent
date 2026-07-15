@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TESLA_COIL",
+  "name_zh": "特斯拉线圈",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成3点伤害。对该敌人触发你的所有闪电充能球的被动。",
+  "mechanics_zh": [
+    "造成3点伤害。",
+    "对该敌人触发你的所有闪电充能球的被动。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成4点伤害。对该敌人触发你的所有闪电充能球的被动 两次。",
+    "changes_zh": [
+      "效果从 [造成3点伤害。对该敌人触发你的所有闪电充能球的被动。] 变为 [造成4点伤害。对该敌人触发你的所有闪电充能球的被动 两次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TESLA_COIL",
+      "title_zh": "灰机 wiki：特斯拉线圈",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%89%B9%E6%96%AF%E6%8B%89%E7%BA%BF%E5%9C%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

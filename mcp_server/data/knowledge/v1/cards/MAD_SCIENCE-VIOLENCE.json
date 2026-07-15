@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MAD_SCIENCE-VIOLENCE",
+  "name_zh": "疯狂科学",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成12点伤害3次。",
+  "mechanics_zh": [
+    "造成12点伤害3次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。造成12点伤害3次。",
+    "changes_zh": [
+      "效果从 [造成12点伤害3次。] 变为 [固有。造成12点伤害3次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MAD_SCIENCE-VIOLENCE",
+      "title_zh": "灰机 wiki：疯狂科学",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%96%AF%E7%8B%82%E7%A7%91%E5%AD%A6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

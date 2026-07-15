@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BOLAS",
+  "name_zh": "流星锤",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成3点伤害。在你的下个回合开始时，将此卡返回你的手牌。",
+  "mechanics_zh": [
+    "造成3点伤害。",
+    "在你的下个回合开始时，将此卡返回你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成4点伤害。在你的下个回合开始时，将此卡返回你的手牌。",
+    "changes_zh": [
+      "效果从 [造成3点伤害。在你的下个回合开始时，将此卡返回你的手牌。] 变为 [造成4点伤害。在你的下个回合开始时，将此卡返回你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BOLAS",
+      "title_zh": "灰机 wiki：流星锤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B5%81%E6%98%9F%E9%94%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

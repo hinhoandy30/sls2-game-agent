@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COLD_SNAP",
+  "name_zh": "寒流",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成6点伤害。生成1个冰霜充能球。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "生成1个冰霜充能球。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。生成1个冰霜充能球。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。生成1个冰霜充能球。] 变为 [造成9点伤害。生成1个冰霜充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COLD_SNAP",
+      "title_zh": "灰机 wiki：寒流",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AF%92%E6%B5%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

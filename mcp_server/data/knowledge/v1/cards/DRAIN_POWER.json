@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DRAIN_POWER",
+  "name_zh": "能量汲取",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。随机升级你弃牌堆中的2张牌。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "随机升级你弃牌堆中的2张牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。随机升级你弃牌堆中的3张牌。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。随机升级你弃牌堆中的2张牌。] 变为 [造成12点伤害。随机升级你弃牌堆中的3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DRAIN_POWER",
+      "title_zh": "灰机 wiki：能量汲取",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%83%BD%E9%87%8F%E6%B1%B2%E5%8F%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

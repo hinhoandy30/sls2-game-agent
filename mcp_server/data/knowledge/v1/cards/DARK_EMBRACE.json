@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DARK_EMBRACE",
+  "name_zh": "黑暗之拥",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当有一张牌被消耗时，。抽1张牌。",
+  "mechanics_zh": [
+    "每当有一张牌被消耗时，。",
+    "抽1张牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当有一张牌被消耗时，。抽1张牌。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DARK_EMBRACE",
+      "title_zh": "灰机 wiki：黑暗之拥",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%BB%91%E6%9A%97%E4%B9%8B%E6%8B%A5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

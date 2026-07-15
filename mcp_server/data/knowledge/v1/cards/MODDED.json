@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MODDED",
+  "name_zh": "模组改造",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得1个充能球栏位。抽1张牌。这张牌的耗能加1。",
+  "mechanics_zh": [
+    "获得1个充能球栏位。",
+    "抽1张牌。",
+    "这张牌的耗能加1。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得1个充能球栏位。抽2张牌。这张牌的耗能加1。",
+    "changes_zh": [
+      "效果从 [获得1个充能球栏位。抽1张牌。这张牌的耗能加1。] 变为 [获得1个充能球栏位。抽2张牌。这张牌的耗能加1。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MODDED",
+      "title_zh": "灰机 wiki：模组改造",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%A8%A1%E7%BB%84%E6%94%B9%E9%80%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

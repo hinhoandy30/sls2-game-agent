@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLOOD_WALL",
+  "name_zh": "血墙",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "失去2点生命。获得16点格挡。",
+  "mechanics_zh": [
+    "失去2点生命。",
+    "获得16点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去2点生命。获得20点格挡。",
+    "changes_zh": [
+      "效果从 [失去2点生命。获得16点格挡。] 变为 [失去2点生命。获得20点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLOOD_WALL",
+      "title_zh": "灰机 wiki：血墙",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A1%80%E5%A2%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

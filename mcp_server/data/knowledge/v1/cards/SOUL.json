@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SOUL",
+  "name_zh": "灵魂",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽2张牌。消耗。",
+  "mechanics_zh": [
+    "抽2张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽3张牌。消耗。",
+    "changes_zh": [
+      "效果从 [抽2张牌。消耗。] 变为 [抽3张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SOUL",
+      "title_zh": "灰机 wiki：灵魂",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B5%E9%AD%82",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

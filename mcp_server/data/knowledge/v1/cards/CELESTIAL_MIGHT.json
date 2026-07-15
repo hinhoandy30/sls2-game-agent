@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CELESTIAL_MIGHT",
+  "name_zh": "天穹之力",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成6点伤害3次。",
+  "mechanics_zh": [
+    "造成6点伤害3次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成6点伤害4次。",
+    "changes_zh": [
+      "效果从 [造成6点伤害3次。] 变为 [造成6点伤害4次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CELESTIAL_MIGHT",
+      "title_zh": "灰机 wiki：天穹之力",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%A9%E7%A9%B9%E4%B9%8B%E5%8A%9B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

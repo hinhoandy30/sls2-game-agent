@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ECHO_FORM",
+  "name_zh": "回响形态",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "虚无。你每回合打出的第一张牌会被打出两次。",
+  "mechanics_zh": [
+    "虚无。",
+    "你每回合打出的第一张牌会被打出两次。"
+  ],
+  "tags": [
+    "能力",
+    "虚无"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每回合打出的第一张牌会被打出两次。",
+    "changes_zh": [
+      "效果从 [虚无。你每回合打出的第一张牌会被打出两次。] 变为 [你每回合打出的第一张牌会被打出两次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ECHO_FORM",
+      "title_zh": "灰机 wiki：回响形态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9B%9E%E5%93%8D%E5%BD%A2%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

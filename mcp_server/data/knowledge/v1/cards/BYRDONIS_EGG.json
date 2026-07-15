@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BYRDONIS_EGG",
+  "name_zh": "多尼斯异鸟蛋",
+  "character_ids": [
+    "TASK"
+  ],
+  "card_type": "Colorless",
+  "rarity": "Special",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。能在休息处被孵化。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "能在休息处被孵化。"
+  ],
+  "tags": [
+    "任务"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BYRDONIS_EGG",
+      "title_zh": "灰机 wiki：多尼斯异鸟蛋",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%9A%E5%B0%BC%E6%96%AF%E5%BC%82%E9%B8%9F%E8%9B%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

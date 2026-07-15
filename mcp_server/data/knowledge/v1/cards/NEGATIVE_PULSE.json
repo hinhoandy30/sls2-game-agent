@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NEGATIVE_PULSE",
+  "name_zh": "负能量脉冲",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。给予所有敌人7层灾厄。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "给予所有敌人7层灾厄。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得6点格挡。给予所有敌人11层灾厄。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。给予所有敌人7层灾厄。] 变为 [获得6点格挡。给予所有敌人11层灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NEGATIVE_PULSE",
+      "title_zh": "灰机 wiki：负能量脉冲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B4%9F%E8%83%BD%E9%87%8F%E8%84%89%E5%86%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

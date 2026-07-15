@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CALTROPS",
+  "name_zh": "铁蒺藜",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你被攻击时，对攻击者造成3点伤害。",
+  "mechanics_zh": [
+    "每当你被攻击时，对攻击者造成3点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你被攻击时，对攻击者造成5点伤害。",
+    "changes_zh": [
+      "效果从 [每当你被攻击时，对攻击者造成3点伤害。] 变为 [每当你被攻击时，对攻击者造成5点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CALTROPS",
+      "title_zh": "灰机 wiki：铁蒺藜",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%93%81%E8%92%BA%E8%97%9C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

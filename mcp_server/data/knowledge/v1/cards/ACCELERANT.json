@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ACCELERANT",
+  "name_zh": "触媒",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "中毒会额外触发1次。",
+  "mechanics_zh": [
+    "中毒会额外触发1次。"
+  ],
+  "tags": [
+    "能力",
+    "中毒"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：中毒会额外触发2次。",
+    "changes_zh": [
+      "效果从 [中毒会额外触发1次。] 变为 [中毒会额外触发2次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ACCELERANT",
+      "title_zh": "灰机 wiki：触媒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A7%A6%E5%AA%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

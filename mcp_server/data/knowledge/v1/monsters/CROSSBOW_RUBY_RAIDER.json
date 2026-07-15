@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "CROSSBOW_RUBY_RAIDER",
+  "name_zh": "劫掠者弩手",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "劫掠者弩手是密林场景的普通怪物；基础生命 18-21，进阶生命 19-22。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:CROSSBOW_RUBY_RAIDER",
+      "title_zh": "灰机 wiki：劫掠者弩手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8A%AB%E6%8E%A0%E8%80%85%E5%BC%A9%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

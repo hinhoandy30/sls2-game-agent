@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "VOLTAIC",
+  "name_zh": "电流相生",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "生成等量于你在这场战斗中生成过的闪电充能球数量的闪电充能球。消耗。",
+  "mechanics_zh": [
+    "生成等量于你在这场战斗中生成过的闪电充能球数量的闪电充能球。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成等量于你在这场战斗中生成过的闪电充能球数量的闪电充能球。",
+    "changes_zh": [
+      "效果从 [生成等量于你在这场战斗中生成过的闪电充能球数量的闪电充能球。消耗。] 变为 [生成等量于你在这场战斗中生成过的闪电充能球数量的闪电充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:VOLTAIC",
+      "title_zh": "灰机 wiki：电流相生",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%94%B5%E6%B5%81%E7%9B%B8%E7%94%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

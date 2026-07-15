@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SOW",
+  "name_zh": "播种",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "保留。对所有敌人造成8点伤害。",
+  "mechanics_zh": [
+    "保留。",
+    "对所有敌人造成8点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "保留",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。对所有敌人造成11点伤害。",
+    "changes_zh": [
+      "效果从 [保留。对所有敌人造成8点伤害。] 变为 [保留。对所有敌人造成11点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SOW",
+      "title_zh": "灰机 wiki：播种",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%92%AD%E7%A7%8D(%E5%8D%A1%E7%89%8C)",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

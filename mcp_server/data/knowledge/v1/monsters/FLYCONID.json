@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "FLYCONID",
+  "name_zh": "飞蝇菌子",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "飞蝇菌子是密林场景的普通怪物；基础生命 47-49，进阶生命 51-53。",
+  "pattern_zh": "行动状态转移：[*] -> random；random -> random。",
+  "moves": [
+    {
+      "name_zh": "脆弱孢子",
+      "effect_zh": "效果：造成8点伤害。给予2层脆弱；效果进阶9+：造成9点伤害。给予2层脆弱；备注：rowspan=\"3\" | 首回合在脆弱孢子与猛砸中等概率选择；之后三招等权重随机，但易伤孢子有3回合冷却、脆弱孢子有2回合冷却，猛砸不可连续使用。"
+    },
+    {
+      "name_zh": "猛砸",
+      "effect_zh": "效果：造成11点伤害；效果进阶9+：造成12点伤害。"
+    },
+    {
+      "name_zh": "易伤孢子",
+      "effect_zh": "效果：给予2层易伤；效果进阶9+：给予2层易伤。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物可能施加易伤，后续受到攻击时当前 live powers 更重要。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:FLYCONID",
+      "title_zh": "灰机 wiki：飞蝇菌子",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A3%9E%E8%9D%87%E8%8F%8C%E5%AD%90",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

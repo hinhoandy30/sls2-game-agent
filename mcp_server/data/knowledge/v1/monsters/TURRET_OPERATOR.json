@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "TURRET_OPERATOR",
+  "name_zh": "高塔炮手",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "高塔炮手是荣耀场景的普通怪物；基础生命 41，进阶生命 51。",
+  "pattern_zh": "= * 盾墙 (Rampart) 25：在玩家的回合开始时，活体盾会给予高塔炮手25 点格挡。 ===行为=== flowchart LR subgraph R[\" \"] direction LR A((\"开始\")) --> 盾击 --> 盾击 end flowchart LR subgraph R[\" \"] direction LR S[\"炮手死亡后\"] --> 粉碎 --> 粉碎 end {| class=\"wikitable mw-collapsible\" !行为名称 !效果 !效果进阶9+ !备注 |- |盾击。 (Shield Slam) |造成6点伤害。 |造成6点伤害。 |只要“高塔炮手”存活，每回合都将使用此技能。 |- |砸击。 (Smash) |造成16点伤害。 获得3点力量。 |造成18点伤害。 获得3点力量。 |一旦“高塔炮手”死亡，立刻切换为此技能并永久使用。 |}。 页面列出的行为包括：弹雨！、装弹；具体循环以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "弹雨！",
+      "effect_zh": "效果：造成3×5伤害。（共15点）；效果进阶9+：造成4×5伤害。（共20点）。"
+    },
+    {
+      "name_zh": "装弹",
+      "effect_zh": "效果：获得1点力量；效果进阶9+：获得1点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:TURRET_OPERATOR",
+      "title_zh": "灰机 wiki：高塔炮手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AB%98%E5%A1%94%E7%82%AE%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

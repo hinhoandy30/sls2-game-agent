@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SPUR",
+  "name_zh": "增生",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "保留。召唤3。奥斯提回复5点生命。",
+  "mechanics_zh": [
+    "保留。",
+    "召唤3。",
+    "奥斯提回复5点生命。"
+  ],
+  "tags": [
+    "技能",
+    "保留",
+    "召唤",
+    "奥斯提",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。召唤5。奥斯提回复7点生命。",
+    "changes_zh": [
+      "效果从 [保留。召唤3。奥斯提回复5点生命。] 变为 [保留。召唤5。奥斯提回复7点生命。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SPUR",
+      "title_zh": "灰机 wiki：增生",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A2%9E%E7%94%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

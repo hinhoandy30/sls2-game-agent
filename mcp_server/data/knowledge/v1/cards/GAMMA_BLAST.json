@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GAMMA_BLAST",
+  "name_zh": "伽马爆破",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成13点伤害。给予2层虚弱。给予2层易伤。",
+  "mechanics_zh": [
+    "造成13点伤害。",
+    "给予2层虚弱。",
+    "给予2层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成18点伤害。给予2层虚弱。给予2层易伤。",
+    "changes_zh": [
+      "效果从 [造成13点伤害。给予2层虚弱。给予2层易伤。] 变为 [造成18点伤害。给予2层虚弱。给予2层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GAMMA_BLAST",
+      "title_zh": "灰机 wiki：伽马爆破",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BC%BD%E9%A9%AC%E7%88%86%E7%A0%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

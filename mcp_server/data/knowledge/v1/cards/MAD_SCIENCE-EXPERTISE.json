@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MAD_SCIENCE-EXPERTISE",
+  "name_zh": "疯狂科学",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得2点力量。获得2点敏捷。",
+  "mechanics_zh": [
+    "获得2点力量。",
+    "获得2点敏捷。"
+  ],
+  "tags": [
+    "能力",
+    "力量",
+    "敏捷"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。获得2点力量。获得2点敏捷。",
+    "changes_zh": [
+      "效果从 [获得2点力量。获得2点敏捷。] 变为 [固有。获得2点力量。获得2点敏捷。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MAD_SCIENCE-EXPERTISE",
+      "title_zh": "灰机 wiki：疯狂科学",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%96%AF%E7%8B%82%E7%A7%91%E5%AD%A6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

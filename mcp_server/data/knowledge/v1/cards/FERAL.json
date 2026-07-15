@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FERAL",
+  "name_zh": "野性",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "你每回合打出的第一张。耗能为01点能量的攻击牌，。会放回你的手牌。",
+  "mechanics_zh": [
+    "你每回合打出的第一张。",
+    "耗能为01点能量的攻击牌，。",
+    "会放回你的手牌。"
+  ],
+  "tags": [
+    "能力",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每回合打出的第一张。耗能为01点能量的攻击牌，。会放回你的手牌。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FERAL",
+      "title_zh": "灰机 wiki：野性",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%8E%E6%80%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

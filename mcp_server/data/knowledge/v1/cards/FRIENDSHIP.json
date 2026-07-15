@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FRIENDSHIP",
+  "name_zh": "友谊",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "失去2点力量。在每个回合开始时获得1点能量。",
+  "mechanics_zh": [
+    "失去2点力量。",
+    "在每个回合开始时获得1点能量。"
+  ],
+  "tags": [
+    "能力",
+    "能量",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去1点力量。在每个回合开始时获得1点能量。",
+    "changes_zh": [
+      "效果从 [失去2点力量。在每个回合开始时获得1点能量。] 变为 [失去1点力量。在每个回合开始时获得1点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FRIENDSHIP",
+      "title_zh": "灰机 wiki：友谊",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8F%8B%E8%B0%8A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

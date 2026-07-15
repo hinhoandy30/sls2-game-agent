@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LIGHTNING_ROD",
+  "name_zh": "引雷针",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得4点格挡。在下2个回合开始时,生成1个闪电充能球。",
+  "mechanics_zh": [
+    "获得4点格挡。",
+    "在下2个回合开始时,生成1个闪电充能球。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得7点格挡。在下2个回合开始时,生成1个闪电充能球。",
+    "changes_zh": [
+      "效果从 [获得4点格挡。在下2个回合开始时,生成1个闪电充能球。] 变为 [获得7点格挡。在下2个回合开始时,生成1个闪电充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LIGHTNING_ROD",
+      "title_zh": "灰机 wiki：引雷针",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%95%E9%9B%B7%E9%92%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

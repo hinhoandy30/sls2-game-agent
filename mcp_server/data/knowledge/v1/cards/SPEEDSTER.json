@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SPEEDSTER",
+  "name_zh": "速行者",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当你在回合进行中抽到一张牌时，对所有敌人造成2点伤害。",
+  "mechanics_zh": [
+    "每当你在回合进行中抽到一张牌时，对所有敌人造成2点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "抽牌",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。每当你在回合进行中抽到一张牌时，对所有敌人造成2点伤害。",
+    "changes_zh": [
+      "效果从 [每当你在回合进行中抽到一张牌时，对所有敌人造成2点伤害。] 变为 [固有。每当你在回合进行中抽到一张牌时，对所有敌人造成2点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SPEEDSTER",
+      "title_zh": "灰机 wiki：速行者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%80%9F%E8%A1%8C%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

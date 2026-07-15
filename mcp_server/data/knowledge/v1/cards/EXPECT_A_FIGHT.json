@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EXPECT_A_FIGHT",
+  "name_zh": "跃跃欲试",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "你的手牌中每有一张攻击牌，就获得1点能量。你在本回合内。不能再获得1点能量。",
+  "mechanics_zh": [
+    "你的手牌中每有一张攻击牌，就获得1点能量。",
+    "你在本回合内。",
+    "不能再获得1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你的手牌中每有一张攻击牌，就获得1点能量。你在本回合内。不能再获得1点能量。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EXPECT_A_FIGHT",
+      "title_zh": "灰机 wiki：跃跃欲试",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B7%83%E8%B7%83%E6%AC%B2%E8%AF%95",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

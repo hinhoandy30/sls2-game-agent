@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RELAX",
+  "name_zh": "放松",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "3 能量",
+  "summary_zh": "获得15点格挡。下个回合，抽2张牌并获得2点能量。消耗。",
+  "mechanics_zh": [
+    "获得15点格挡。",
+    "下个回合，抽2张牌并获得2点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "抽牌",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得17点格挡。下个回合，抽3张牌并获得3点能量。消耗。",
+    "changes_zh": [
+      "效果从 [获得15点格挡。下个回合，抽2张牌并获得2点能量。消耗。] 变为 [获得17点格挡。下个回合，抽3张牌并获得3点能量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RELAX",
+      "title_zh": "灰机 wiki：放松",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%94%BE%E6%9D%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

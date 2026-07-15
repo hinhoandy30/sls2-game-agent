@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "WAR_HISTORIAN_REPY",
+  "name_zh": "战史学家 付袭",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "战史学家 付袭事件，出现于未知阶段；前置条件：只有在拥有卡牌：灯火钥匙的情况下触发。",
+  "flow_facts_zh": [
+    "前置条件：只有在拥有卡牌：灯火钥匙的情况下触发。",
+    "备注：灯火钥匙事件在第二阶段。根据卡牌效果本事件只能在第三阶段触发，并且会强制出现在第三阶段第一个未知房中。",
+    "选项：打开笼子；结果/详情：失去灯火钥匙。获得历史课。",
+    "选项：打开宝箱；结果/详情：失去灯火钥匙。获得2瓶随机药水和2件随机遗物；备注：卡牌：灯火钥匙；·遗物：历史课。",
+    "选项：打开笼子。",
+    "选项：未命名选项。",
+    "选项：打开宝箱。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:WAR_HISTORIAN_REPY",
+      "title_zh": "灰机 wiki：战史学家 付袭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E5%8F%B2%E5%AD%A6%E5%AE%B6%20%E4%BB%98%E8%A2%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

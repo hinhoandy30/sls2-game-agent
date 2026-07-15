@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UPROAR",
+  "name_zh": "骚动",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成6点伤害两次。随机打出你的抽牌堆中的1张攻击牌。",
+  "mechanics_zh": [
+    "造成6点伤害两次。",
+    "随机打出你的抽牌堆中的1张攻击牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成8点伤害两次。随机打出你的抽牌堆中的1张攻击牌。",
+    "changes_zh": [
+      "效果从 [造成6点伤害两次。随机打出你的抽牌堆中的1张攻击牌。] 变为 [造成8点伤害两次。随机打出你的抽牌堆中的1张攻击牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UPROAR",
+      "title_zh": "灰机 wiki：骚动",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AA%9A%E5%8A%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

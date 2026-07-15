@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CONSTELLATION",
+  "name_zh": "Constellation",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "Another player draws 1 card, gains 1点能量, and gains 9 Block.",
+  "mechanics_zh": [
+    "Another player draws 1 card, gains 1点能量, and gains 9 Block.。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：Another player draws 1 card, gains 1点能量, and gains 12 Block.",
+    "changes_zh": [
+      "效果从 [Another player draws 1 card, gains 1点能量, and gains 9 Block.] 变为 [Another player draws 1 card, gains 1点能量, and gains 12 Block.]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CONSTELLATION",
+      "title_zh": "灰机 wiki：Constellation",
+      "url": "https://sts2.huijiwiki.com/wiki/Constellation",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

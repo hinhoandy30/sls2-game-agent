@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HOLOGRAM",
+  "name_zh": "全息影像",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得3点格挡。将弃牌堆中的一张牌放入你的手牌。消耗。",
+  "mechanics_zh": [
+    "获得3点格挡。",
+    "将弃牌堆中的一张牌放入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得5点格挡。将弃牌堆中的一张牌放入你的手牌。",
+    "changes_zh": [
+      "效果从 [获得3点格挡。将弃牌堆中的一张牌放入你的手牌。消耗。] 变为 [获得5点格挡。将弃牌堆中的一张牌放入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HOLOGRAM",
+      "title_zh": "灰机 wiki：全息影像",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%A8%E6%81%AF%E5%BD%B1%E5%83%8F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

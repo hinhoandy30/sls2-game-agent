@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "STONE_ARMOR",
+  "name_zh": "岩石铠甲",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得4层覆甲。",
+  "mechanics_zh": [
+    "获得4层覆甲。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得6层覆甲。",
+    "changes_zh": [
+      "效果从 [获得4层覆甲。] 变为 [获得6层覆甲。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:STONE_ARMOR",
+      "title_zh": "灰机 wiki：岩石铠甲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B2%A9%E7%9F%B3%E9%93%A0%E7%94%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

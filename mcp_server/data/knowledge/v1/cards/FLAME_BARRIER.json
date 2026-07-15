@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FLAME_BARRIER",
+  "name_zh": "火焰屏障",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "获得12点格挡。你在这个回合每受到一次攻击，都会对攻击者造成4点伤害。",
+  "mechanics_zh": [
+    "获得12点格挡。",
+    "你在这个回合每受到一次攻击，都会对攻击者造成4点伤害。"
+  ],
+  "tags": [
+    "技能",
+    "伤害",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得16点格挡。你在这个回合每受到一次攻击，都会对攻击者造成6点伤害。",
+    "changes_zh": [
+      "效果从 [获得12点格挡。你在这个回合每受到一次攻击，都会对攻击者造成4点伤害。] 变为 [获得16点格挡。你在这个回合每受到一次攻击，都会对攻击者造成6点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FLAME_BARRIER",
+      "title_zh": "灰机 wiki：火焰屏障",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%AB%E7%84%B0%E5%B1%8F%E9%9A%9C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

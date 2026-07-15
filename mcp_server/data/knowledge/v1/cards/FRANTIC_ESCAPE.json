@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FRANTIC_ESCAPE",
+  "name_zh": "狂乱逃离",
+  "character_ids": [
+    "STATUS"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "1 能量",
+  "summary_zh": "远离。将沙坑的计数加1。这张牌的耗能加1。",
+  "mechanics_zh": [
+    "远离。",
+    "将沙坑的计数加1。",
+    "这张牌的耗能加1。"
+  ],
+  "tags": [
+    "状态"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FRANTIC_ESCAPE",
+      "title_zh": "灰机 wiki：狂乱逃离",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%82%E4%B9%B1%E9%80%83%E7%A6%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

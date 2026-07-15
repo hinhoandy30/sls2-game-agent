@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEMONIC_SHIELD",
+  "name_zh": "恶魔护盾",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "失去1点生命。给予另一位玩家你当前格挡值的格挡。消耗。",
+  "mechanics_zh": [
+    "失去1点生命。",
+    "给予另一位玩家你当前格挡值的格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去1点生命。给予另一位玩家你当前格挡值的格挡。",
+    "changes_zh": [
+      "效果从 [失去1点生命。给予另一位玩家你当前格挡值的格挡。消耗。] 变为 [失去1点生命。给予另一位玩家你当前格挡值的格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEMONIC_SHIELD",
+      "title_zh": "灰机 wiki：恶魔护盾",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%81%B6%E9%AD%94%E6%8A%A4%E7%9B%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

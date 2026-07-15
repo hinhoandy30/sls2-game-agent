@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MISERY",
+  "name_zh": "苦难",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成7点伤害。给予其他敌人该名敌人身上的所有负面效果。",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "给予其他敌人该名敌人身上的所有负面效果。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。造成9点伤害。给予其他敌人该名敌人身上的所有负面效果。",
+    "changes_zh": [
+      "效果从 [造成7点伤害。给予其他敌人该名敌人身上的所有负面效果。] 变为 [保留。造成9点伤害。给予其他敌人该名敌人身上的所有负面效果。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MISERY",
+      "title_zh": "灰机 wiki：苦难",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8B%A6%E9%9A%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ROLLING_BOULDER",
+  "name_zh": "滚石",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "在你的回合开始时，对所有敌人造成5点伤害，然后将该伤害增加5点。",
+  "mechanics_zh": [
+    "在你的回合开始时，对所有敌人造成5点伤害，然后将该伤害增加5点。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，对所有敌人造成10点伤害，然后将该伤害增加5点。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，对所有敌人造成5点伤害，然后将该伤害增加5点。] 变为 [在你的回合开始时，对所有敌人造成10点伤害，然后将该伤害增加5点。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ROLLING_BOULDER",
+      "title_zh": "灰机 wiki：滚石",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%BB%9A%E7%9F%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

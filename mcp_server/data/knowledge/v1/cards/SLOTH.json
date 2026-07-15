@@ -1,0 +1,28 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SLOTH",
+  "name_zh": "懒惰",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "不可打出",
+  "summary_zh": "你在每个回合不能打出超过3张牌。",
+  "mechanics_zh": [
+    "你在每个回合不能打出超过3张牌。"
+  ],
+  "tags": [
+    "状态"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SLOTH",
+      "title_zh": "灰机 wiki：懒惰",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%87%92%E6%83%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

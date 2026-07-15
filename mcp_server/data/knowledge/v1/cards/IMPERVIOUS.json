@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "IMPERVIOUS",
+  "name_zh": "岿然不动",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "获得30点格挡。消耗。",
+  "mechanics_zh": [
+    "获得30点格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得40点格挡。消耗。",
+    "changes_zh": [
+      "效果从 [获得30点格挡。消耗。] 变为 [获得40点格挡。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:IMPERVIOUS",
+      "title_zh": "灰机 wiki：岿然不动",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B2%BF%E7%84%B6%E4%B8%8D%E5%8A%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

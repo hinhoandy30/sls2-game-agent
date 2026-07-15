@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "LUMINOUS_CHOIR",
+  "name_zh": "冷光合唱团",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "冷光合唱团事件，出现于第一阶段密林场景；前置条件：所有玩家金币数不小于149。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：所有玩家金币数不小于149。",
+    "备注：在进入后选项的价格将会从 0-50 随机降价，供奉选项支付金币在 100-149 之间。",
+    "选项：供奉；结果/详情：支付100-149金币。获取一件随机遗物。",
+    "选项：探入菌肉；结果/详情：从你的牌组移除2张牌。将一张孢子心灵添加到你的牌组；备注：卡牌：孢子心灵。",
+    "选项：供奉。",
+    "选项：探入菌肉。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:LUMINOUS_CHOIR",
+      "title_zh": "灰机 wiki：冷光合唱团",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B7%E5%85%89%E5%90%88%E5%94%B1%E5%9B%A2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

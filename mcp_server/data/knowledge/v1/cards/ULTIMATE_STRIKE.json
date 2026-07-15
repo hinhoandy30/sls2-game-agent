@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ULTIMATE_STRIKE",
+  "name_zh": "究极打击",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成14点伤害。",
+  "mechanics_zh": [
+    "造成14点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成20点伤害。",
+    "changes_zh": [
+      "效果从 [造成14点伤害。] 变为 [造成20点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ULTIMATE_STRIKE",
+      "title_zh": "灰机 wiki：究极打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%A9%B6%E6%9E%81%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

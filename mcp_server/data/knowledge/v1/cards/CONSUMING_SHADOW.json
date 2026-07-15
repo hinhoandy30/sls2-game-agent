@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CONSUMING_SHADOW",
+  "name_zh": "吞噬暗影",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "生成2个黑暗充能球。在你的回合结束时，激发你最左侧的充能球。",
+  "mechanics_zh": [
+    "生成2个黑暗充能球。",
+    "在你的回合结束时，激发你最左侧的充能球。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成3个黑暗充能球。在你的回合结束时，激发你最左侧的充能球。",
+    "changes_zh": [
+      "效果从 [生成2个黑暗充能球。在你的回合结束时，激发你最左侧的充能球。] 变为 [生成3个黑暗充能球。在你的回合结束时，激发你最左侧的充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CONSUMING_SHADOW",
+      "title_zh": "灰机 wiki：吞噬暗影",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%9E%E5%99%AC%E6%9A%97%E5%BD%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

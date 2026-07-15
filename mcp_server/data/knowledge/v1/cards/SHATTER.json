@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SHATTER",
+  "name_zh": "打碎",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成7点伤害。激发你的所有充能球两次。",
+  "mechanics_zh": [
+    "对所有敌人造成7点伤害。",
+    "激发你的所有充能球两次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成11点伤害。激发你的所有充能球两次。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成7点伤害。激发你的所有充能球两次。] 变为 [对所有敌人造成11点伤害。激发你的所有充能球两次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SHATTER",
+      "title_zh": "灰机 wiki：打碎",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%93%E7%A2%8E",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COLOSSUS",
+  "name_zh": "巨像",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。在本回合中，有易伤状态的敌人对你造成的伤害降低50%。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "在本回合中，有易伤状态的敌人对你造成的伤害降低50%。"
+  ],
+  "tags": [
+    "技能",
+    "伤害",
+    "格挡",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得8点格挡。在本回合中，有易伤状态的敌人对你造成的伤害降低50%。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。在本回合中，有易伤状态的敌人对你造成的伤害降低50%。] 变为 [获得8点格挡。在本回合中，有易伤状态的敌人对你造成的伤害降低50%。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COLOSSUS",
+      "title_zh": "灰机 wiki：巨像",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B7%A8%E5%83%8F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

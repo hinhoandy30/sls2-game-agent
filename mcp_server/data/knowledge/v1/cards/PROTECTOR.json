@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PROTECTOR",
+  "name_zh": "守护者",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "奥斯提造成10点伤害。额外造成等量于奥斯提最大生命值的伤害。",
+  "mechanics_zh": [
+    "奥斯提造成10点伤害。",
+    "额外造成等量于奥斯提最大生命值的伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "奥斯提",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提造成15点伤害。额外造成等量于奥斯提最大生命值的伤害。",
+    "changes_zh": [
+      "效果从 [奥斯提造成10点伤害。额外造成等量于奥斯提最大生命值的伤害。] 变为 [奥斯提造成15点伤害。额外造成等量于奥斯提最大生命值的伤害。]。",
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PROTECTOR",
+      "title_zh": "灰机 wiki：守护者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AE%88%E6%8A%A4%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

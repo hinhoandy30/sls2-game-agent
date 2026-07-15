@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FEEL_NO_PAIN",
+  "name_zh": "无惧疼痛",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当有一张牌被消耗时，获得3点格挡。",
+  "mechanics_zh": [
+    "每当有一张牌被消耗时，获得3点格挡。"
+  ],
+  "tags": [
+    "能力",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当有一张牌被消耗时，获得4点格挡。",
+    "changes_zh": [
+      "效果从 [每当有一张牌被消耗时，获得3点格挡。] 变为 [每当有一张牌被消耗时，获得4点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FEEL_NO_PAIN",
+      "title_zh": "灰机 wiki：无惧疼痛",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%A0%E6%83%A7%E7%96%BC%E7%97%9B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

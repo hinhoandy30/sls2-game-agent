@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "INFINITE_BLADES",
+  "name_zh": "无尽刀刃",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，在你的手牌中加入1张小刀。",
+  "mechanics_zh": [
+    "在你的回合开始时，在你的手牌中加入1张小刀。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。在你的回合开始时，在你的手牌中加入1张小刀。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，在你的手牌中加入1张小刀。] 变为 [固有。在你的回合开始时，在你的手牌中加入1张小刀。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:INFINITE_BLADES",
+      "title_zh": "灰机 wiki：无尽刀刃",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%A0%E5%B0%BD%E5%88%80%E5%88%83",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

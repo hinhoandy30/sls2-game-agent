@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CHILL",
+  "name_zh": "冰寒",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "当前每有一名敌人，就生成1个冰霜充能球。消耗。",
+  "mechanics_zh": [
+    "当前每有一名敌人，就生成1个冰霜充能球。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：当前每有一名敌人，就生成1个冰霜充能球。",
+    "changes_zh": [
+      "效果从 [当前每有一名敌人，就生成1个冰霜充能球。消耗。] 变为 [当前每有一名敌人，就生成1个冰霜充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CHILL",
+      "title_zh": "灰机 wiki：冰寒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B0%E5%AF%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

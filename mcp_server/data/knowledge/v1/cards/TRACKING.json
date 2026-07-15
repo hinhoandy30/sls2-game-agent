@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TRACKING",
+  "name_zh": "跟踪",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "对虚弱状态的敌人，你所造成的攻击伤害翻倍。",
+  "mechanics_zh": [
+    "对虚弱状态的敌人，你所造成的攻击伤害翻倍。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对虚弱状态的敌人，你所造成的攻击伤害翻倍。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TRACKING",
+      "title_zh": "灰机 wiki：跟踪",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B7%9F%E8%B8%AA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

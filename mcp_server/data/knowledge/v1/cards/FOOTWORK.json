@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FOOTWORK",
+  "name_zh": "灵动步法",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得2点敏捷。",
+  "mechanics_zh": [
+    "获得2点敏捷。"
+  ],
+  "tags": [
+    "能力",
+    "敏捷"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得3点敏捷。",
+    "changes_zh": [
+      "效果从 [获得2点敏捷。] 变为 [获得3点敏捷。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FOOTWORK",
+      "title_zh": "灰机 wiki：灵动步法",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%B5%E5%8A%A8%E6%AD%A5%E6%B3%95",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

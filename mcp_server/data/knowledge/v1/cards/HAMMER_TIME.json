@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HAMMER_TIME",
+  "name_zh": "锤子时间",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当你铸造时，所有盟友也都铸造相同的数值。",
+  "mechanics_zh": [
+    "每当你铸造时，所有盟友也都铸造相同的数值。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你铸造时，所有盟友也都铸造相同的数值。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HAMMER_TIME",
+      "title_zh": "灰机 wiki：锤子时间",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%94%A4%E5%AD%90%E6%97%B6%E9%97%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

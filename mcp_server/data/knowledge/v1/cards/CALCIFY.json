@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CALCIFY",
+  "name_zh": "钙化",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "奥斯提的攻击额外造成4点伤害。",
+  "mechanics_zh": [
+    "奥斯提的攻击额外造成4点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提的攻击额外造成6点伤害。",
+    "changes_zh": [
+      "效果从 [奥斯提的攻击额外造成4点伤害。] 变为 [奥斯提的攻击额外造成6点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CALCIFY",
+      "title_zh": "灰机 wiki：钙化",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%92%99%E5%8C%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HELIX_DRILL",
+  "name_zh": "螺旋钻击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "在本回合中，每个被使用的1点能量，都会使此牌造成3点伤害一次。",
+  "mechanics_zh": [
+    "在本回合中，每个被使用的1点能量，都会使此牌造成3点伤害一次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在本回合中，每个被使用的1点能量，都会使此牌造成5点伤害一次。",
+    "changes_zh": [
+      "效果从 [在本回合中，每个被使用的1点能量，都会使此牌造成3点伤害一次。] 变为 [在本回合中，每个被使用的1点能量，都会使此牌造成5点伤害一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HELIX_DRILL",
+      "title_zh": "灰机 wiki：螺旋钻击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9E%BA%E6%97%8B%E9%92%BB%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MALAISE",
+  "name_zh": "萎靡",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "X 能量",
+  "summary_zh": "敌人失去X点力量。给予X层虚弱。消耗。",
+  "mechanics_zh": [
+    "敌人失去X点力量。",
+    "给予X层虚弱。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "虚弱",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：敌人失去X+1点力量。给予X+1层虚弱。消耗。",
+    "changes_zh": [
+      "效果从 [敌人失去X点力量。给予X层虚弱。消耗。] 变为 [敌人失去X+1点力量。给予X+1层虚弱。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MALAISE",
+      "title_zh": "灰机 wiki：萎靡",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%90%8E%E9%9D%A1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "INFECTION",
+  "name_zh": "感染",
+  "character_ids": [
+    "STATUS"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，你受到3点伤害。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，你受到3点伤害。"
+  ],
+  "tags": [
+    "状态",
+    "伤害"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:INFECTION",
+      "title_zh": "灰机 wiki：感染",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%84%9F%E6%9F%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

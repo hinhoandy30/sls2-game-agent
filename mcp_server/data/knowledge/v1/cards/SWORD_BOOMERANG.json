@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SWORD_BOOMERANG",
+  "name_zh": "飞剑回旋镖",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "随机对敌人造成3点伤害3次。",
+  "mechanics_zh": [
+    "随机对敌人造成3点伤害3次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：随机对敌人造成3点伤害4次。",
+    "changes_zh": [
+      "效果从 [随机对敌人造成3点伤害3次。] 变为 [随机对敌人造成3点伤害4次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SWORD_BOOMERANG",
+      "title_zh": "灰机 wiki：飞剑回旋镖",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A3%9E%E5%89%91%E5%9B%9E%E6%97%8B%E9%95%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

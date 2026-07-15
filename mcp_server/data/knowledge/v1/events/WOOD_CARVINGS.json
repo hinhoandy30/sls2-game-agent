@@ -1,0 +1,28 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "WOOD_CARVINGS",
+  "name_zh": "木雕",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "木雕事件，出现于第一阶段密林场景；前置条件：所有玩家牌库里都要有至少 1 张“可移除的基础牌”。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：所有玩家牌库里都要有至少 1 张“可移除的基础牌”。",
+    "选项：鸟；结果/详情：选择1张初始牌变化为啄击。",
+    "选项：蛇；结果/详情：给1张牌附魔：蛇行。",
+    "选项：圆环；结果/详情：选择1张初始牌变化为坚韧之环；备注：卡牌：坚韧之环；·卡牌：啄击；·蛇行。",
+    "选项：鸟。",
+    "选项：蛇。",
+    "选项：圆环。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:WOOD_CARVINGS",
+      "title_zh": "灰机 wiki：木雕",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%A8%E9%9B%95",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

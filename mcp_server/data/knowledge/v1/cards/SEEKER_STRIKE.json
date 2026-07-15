@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SEEKER_STRIKE",
+  "name_zh": "探寻打击",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成9点伤害。从抽牌堆的随机3张牌中选择一张加入你的手牌。",
+  "mechanics_zh": [
+    "造成9点伤害。",
+    "从抽牌堆的随机3张牌中选择一张加入你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。从抽牌堆的随机3张牌中选择一张加入你的手牌。",
+    "changes_zh": [
+      "效果从 [造成9点伤害。从抽牌堆的随机3张牌中选择一张加入你的手牌。] 变为 [造成12点伤害。从抽牌堆的随机3张牌中选择一张加入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SEEKER_STRIKE",
+      "title_zh": "灰机 wiki：探寻打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8E%A2%E5%AF%BB%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

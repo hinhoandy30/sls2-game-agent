@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CLUMSY",
+  "name_zh": "笨拙",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。虚无。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "虚无。"
+  ],
+  "tags": [
+    "诅咒",
+    "虚无"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CLUMSY",
+      "title_zh": "灰机 wiki：笨拙",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%AC%A8%E6%8B%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}
