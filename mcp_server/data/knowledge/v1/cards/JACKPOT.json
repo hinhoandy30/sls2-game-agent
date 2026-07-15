@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "JACKPOT",
+  "name_zh": "大奖",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "造成25点伤害。将3张随机01点能量的牌加入你的手牌。",
+  "mechanics_zh": [
+    "造成25点伤害。",
+    "将3张随机01点能量的牌加入你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成30点伤害。将3张随机升级过的01点能量的牌加入你的手牌。",
+    "changes_zh": [
+      "效果从 [造成25点伤害。将3张随机01点能量的牌加入你的手牌。] 变为 [造成30点伤害。将3张随机升级过的01点能量的牌加入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:JACKPOT",
+      "title_zh": "灰机 wiki：大奖",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%A7%E5%A5%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

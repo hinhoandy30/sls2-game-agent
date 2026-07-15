@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RAINBOW",
+  "name_zh": "彩虹",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "生成1个闪电充能球。生成1个冰霜充能球。生成1个黑暗充能球。消耗。",
+  "mechanics_zh": [
+    "生成1个闪电充能球。",
+    "生成1个冰霜充能球。",
+    "生成1个黑暗充能球。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成1个闪电充能球。生成1个冰霜充能球。生成1个黑暗充能球。",
+    "changes_zh": [
+      "效果从 [生成1个闪电充能球。生成1个冰霜充能球。生成1个黑暗充能球。消耗。] 变为 [生成1个闪电充能球。生成1个冰霜充能球。生成1个黑暗充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RAINBOW",
+      "title_zh": "灰机 wiki：彩虹",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BD%A9%E8%99%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

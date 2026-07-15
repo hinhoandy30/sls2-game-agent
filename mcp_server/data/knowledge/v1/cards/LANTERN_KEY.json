@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LANTERN_KEY",
+  "name_zh": "灯火钥匙",
+  "character_ids": [
+    "TASK"
+  ],
+  "card_type": "Colorless",
+  "rarity": "Special",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在下一阶段解锁一个特殊事件。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在下一阶段解锁一个特殊事件。"
+  ],
+  "tags": [
+    "任务"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LANTERN_KEY",
+      "title_zh": "灰机 wiki：灯火钥匙",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%AF%E7%81%AB%E9%92%A5%E5%8C%99(%E5%8D%A1%E7%89%8C)",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

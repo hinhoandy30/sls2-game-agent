@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REANIMATE",
+  "name_zh": "死者苏生",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "召唤20。消耗。",
+  "mechanics_zh": [
+    "召唤20。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "召唤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：召唤25。消耗。",
+    "changes_zh": [
+      "效果从 [召唤20。消耗。] 变为 [召唤25。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REANIMATE",
+      "title_zh": "灰机 wiki：死者苏生",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E8%80%85%E8%8B%8F%E7%94%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

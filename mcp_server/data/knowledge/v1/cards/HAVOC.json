@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HAVOC",
+  "name_zh": "破灭",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "打出抽牌堆顶部的牌并将其消耗。",
+  "mechanics_zh": [
+    "打出抽牌堆顶部的牌并将其消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：打出抽牌堆顶部的牌并将其消耗。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HAVOC",
+      "title_zh": "灰机 wiki：破灭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%A0%B4%E7%81%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

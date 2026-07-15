@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENLIGHTENMENT",
+  "name_zh": "开悟",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "在这个回合，你当前手牌中所有牌的耗能降低至1。消耗。",
+  "mechanics_zh": [
+    "在这个回合，你当前手牌中所有牌的耗能降低至1。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在这场战斗，你当前手牌中所有牌的耗能降低至1。消耗。",
+    "changes_zh": [
+      "效果从 [在这个回合，你当前手牌中所有牌的耗能降低至1。消耗。] 变为 [在这场战斗，你当前手牌中所有牌的耗能降低至1。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENLIGHTENMENT",
+      "title_zh": "灰机 wiki：开悟",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%80%E6%82%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HIBERNATE",
+  "name_zh": "休眠",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "在本回合，你的冰霜充能球会给予所有玩家格挡。生成2个冰霜充能球",
+  "mechanics_zh": [
+    "在本回合，你的冰霜充能球会给予所有玩家格挡。",
+    "生成2个冰霜充能球。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在本回合，你的冰霜充能球会给予所有玩家格挡。生成3个冰霜充能球",
+    "changes_zh": [
+      "效果从 [在本回合，你的冰霜充能球会给予所有玩家格挡。生成2个冰霜充能球] 变为 [在本回合，你的冰霜充能球会给予所有玩家格挡。生成3个冰霜充能球]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HIBERNATE",
+      "title_zh": "灰机 wiki：休眠",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BC%91%E7%9C%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

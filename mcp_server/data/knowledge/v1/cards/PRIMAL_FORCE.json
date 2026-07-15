@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PRIMAL_FORCE",
+  "name_zh": "原始力量",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "将手牌中的所有攻击牌变化为巨石。",
+  "mechanics_zh": [
+    "将手牌中的所有攻击牌变化为巨石。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将手牌中的所有攻击牌变化为巨石+。",
+    "changes_zh": [
+      "效果从 [将手牌中的所有攻击牌变化为巨石。] 变为 [将手牌中的所有攻击牌变化为巨石+。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PRIMAL_FORCE",
+      "title_zh": "灰机 wiki：原始力量",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8E%9F%E5%A7%8B%E5%8A%9B%E9%87%8F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

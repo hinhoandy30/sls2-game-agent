@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SWORD_SAGE",
+  "name_zh": "剑圣",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "君王之剑获得重放1。",
+  "mechanics_zh": [
+    "君王之剑获得重放1。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：君王之剑获得重放1。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SWORD_SAGE",
+      "title_zh": "灰机 wiki：剑圣",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%89%91%E5%9C%A3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

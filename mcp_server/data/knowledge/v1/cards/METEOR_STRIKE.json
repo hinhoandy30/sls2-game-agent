@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "METEOR_STRIKE",
+  "name_zh": "陨石打击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "5 能量",
+  "summary_zh": "造成24点伤害。生成3个等离子充能球。",
+  "mechanics_zh": [
+    "造成24点伤害。",
+    "生成3个等离子充能球。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成30点伤害。生成3个等离子充能球。",
+    "changes_zh": [
+      "效果从 [造成24点伤害。生成3个等离子充能球。] 变为 [造成30点伤害。生成3个等离子充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:METEOR_STRIKE",
+      "title_zh": "灰机 wiki：陨石打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%99%A8%E7%9F%B3%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

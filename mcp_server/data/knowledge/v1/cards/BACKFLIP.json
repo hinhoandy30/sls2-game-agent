@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BACKFLIP",
+  "name_zh": "后空翻",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。抽2张牌。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "抽2张牌。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得8点格挡。抽2张牌。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。抽2张牌。] 变为 [获得8点格挡。抽2张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BACKFLIP",
+      "title_zh": "灰机 wiki：后空翻",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%8E%E7%A9%BA%E7%BF%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

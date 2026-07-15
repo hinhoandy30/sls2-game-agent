@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "I_AM_INVINCIBLE",
+  "name_zh": "所向无敌",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得10点格挡。在你的回合结束时，如果这张牌位于抽牌堆顶部，则将其打出。",
+  "mechanics_zh": [
+    "获得10点格挡。",
+    "在你的回合结束时，如果这张牌位于抽牌堆顶部，则将其打出。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得13点格挡。在你的回合结束时，如果这张牌位于抽牌堆顶部，则将其打出。",
+    "changes_zh": [
+      "效果从 [获得10点格挡。在你的回合结束时，如果这张牌位于抽牌堆顶部，则将其打出。] 变为 [获得13点格挡。在你的回合结束时，如果这张牌位于抽牌堆顶部，则将其打出。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:I_AM_INVINCIBLE",
+      "title_zh": "灰机 wiki：所向无敌",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%80%E5%90%91%E6%97%A0%E6%95%8C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

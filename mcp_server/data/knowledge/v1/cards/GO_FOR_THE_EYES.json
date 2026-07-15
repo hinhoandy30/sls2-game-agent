@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GO_FOR_THE_EYES",
+  "name_zh": "眼部攻击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成3点伤害。如果敌人的意图是攻击，则给予1层虚弱。",
+  "mechanics_zh": [
+    "造成3点伤害。",
+    "如果敌人的意图是攻击，则给予1层虚弱。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成4点伤害。如果敌人的意图是攻击，则给予2层虚弱。",
+    "changes_zh": [
+      "效果从 [造成3点伤害。如果敌人的意图是攻击，则给予1层虚弱。] 变为 [造成4点伤害。如果敌人的意图是攻击，则给予2层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GO_FOR_THE_EYES",
+      "title_zh": "灰机 wiki：眼部攻击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%9C%BC%E9%83%A8%E6%94%BB%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

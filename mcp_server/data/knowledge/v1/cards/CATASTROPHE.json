@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CATASTROPHE",
+  "name_zh": "横祸",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "从你的抽牌堆中随机打出2张牌。",
+  "mechanics_zh": [
+    "从你的抽牌堆中随机打出2张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：从你的抽牌堆中随机打出3张牌。",
+    "changes_zh": [
+      "效果从 [从你的抽牌堆中随机打出2张牌。] 变为 [从你的抽牌堆中随机打出3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CATASTROPHE",
+      "title_zh": "灰机 wiki：横祸",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%A8%AA%E7%A5%B8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

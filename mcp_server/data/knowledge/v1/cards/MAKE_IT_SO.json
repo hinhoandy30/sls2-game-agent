@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MAKE_IT_SO",
+  "name_zh": "如此甚好",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成6点伤害。你每在一回合内打出3张技能牌，就将这张牌放入你的手牌。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "你每在一回合内打出3张技能牌，就将这张牌放入你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。你每在一回合内打出3张技能牌，就将这张牌放入你的手牌。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。你每在一回合内打出3张技能牌，就将这张牌放入你的手牌。] 变为 [造成9点伤害。你每在一回合内打出3张技能牌，就将这张牌放入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MAKE_IT_SO",
+      "title_zh": "灰机 wiki：如此甚好",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A6%82%E6%AD%A4%E7%94%9A%E5%A5%BD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CRASH_LANDING",
+  "name_zh": "迫降",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成21点伤害。用碎屑填满你的手牌。",
+  "mechanics_zh": [
+    "对所有敌人造成21点伤害。",
+    "用碎屑填满你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成26点伤害。用碎屑填满你的手牌。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成21点伤害。用碎屑填满你的手牌。] 变为 [对所有敌人造成26点伤害。用碎屑填满你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CRASH_LANDING",
+      "title_zh": "灰机 wiki：迫降",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%AB%E9%99%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

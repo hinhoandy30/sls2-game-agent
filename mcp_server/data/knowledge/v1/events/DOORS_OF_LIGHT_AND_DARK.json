@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "DOORS_OF_LIGHT_AND_DARK",
+  "name_zh": "光与暗的门扉",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "summary_zh": "光与暗的门扉事件，出现于第一阶段暗港场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段暗港场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：暗之门；结果/详情：从你的牌组中选择1张牌移除。",
+    "选项：光之门；结果/详情：随机升级2张牌。",
+    "选项：暗之门。",
+    "选项：光之门。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:DOORS_OF_LIGHT_AND_DARK",
+      "title_zh": "灰机 wiki：光与暗的门扉",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%89%E4%B8%8E%E6%9A%97%E7%9A%84%E9%97%A8%E6%89%89",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

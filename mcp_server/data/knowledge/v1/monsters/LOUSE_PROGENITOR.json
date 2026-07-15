@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "LOUSE_PROGENITOR",
+  "name_zh": "虱虫之祖",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "虱虫之祖是巢穴场景的普通怪物；基础生命 134-136，进阶生命 138-141。",
+  "pattern_zh": "* 蜷身：战斗开始时自带。 在第一次被命中时，获得 14（高进阶18）点格挡。 行动状态转移：A -> 吐网炮；吐网炮 -> 蜷身成长；蜷身成长 -> 猛扑；猛扑 -> 吐网炮。",
+  "moves": [
+    {
+      "name_zh": "吐网炮",
+      "effect_zh": "效果：造成9点伤害。给予2层脆弱；效果进阶9+：造成10点伤害。给予2层脆弱。"
+    },
+    {
+      "name_zh": "蜷身成长",
+      "effect_zh": "效果：获得14点格挡与5点力量；效果进阶9+：获得18点格挡与5点力量。"
+    },
+    {
+      "name_zh": "猛扑",
+      "effect_zh": "效果：造成14点伤害；效果进阶9+：造成16点伤害。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：蜷身14 （高进阶18）。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:LOUSE_PROGENITOR",
+      "title_zh": "灰机 wiki：虱虫之祖",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%99%B1%E8%99%AB%E4%B9%8B%E7%A5%96",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

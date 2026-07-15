@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "JUGGERNAUT",
+  "name_zh": "势不可当",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当你获得格挡时，对随机敌人造成6点伤害。",
+  "mechanics_zh": [
+    "每当你获得格挡时，对随机敌人造成6点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "格挡",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你获得格挡时，对随机敌人造成8点伤害。",
+    "changes_zh": [
+      "效果从 [每当你获得格挡时，对随机敌人造成6点伤害。] 变为 [每当你获得格挡时，对随机敌人造成8点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:JUGGERNAUT",
+      "title_zh": "灰机 wiki：势不可当",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8A%BF%E4%B8%8D%E5%8F%AF%E5%BD%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

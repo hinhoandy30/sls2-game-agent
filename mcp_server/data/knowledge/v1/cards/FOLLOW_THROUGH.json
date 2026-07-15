@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FOLLOW_THROUGH",
+  "name_zh": "跟进",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成7点伤害。如果你的手牌中还有至少5张其他牌，则额外命中一次。",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "如果你的手牌中还有至少5张其他牌，则额外命中一次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。如果你的手牌中还有至少5张其他牌，则额外命中一次。",
+    "changes_zh": [
+      "效果从 [造成7点伤害。如果你的手牌中还有至少5张其他牌，则额外命中一次。] 变为 [造成9点伤害。如果你的手牌中还有至少5张其他牌，则额外命中一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FOLLOW_THROUGH",
+      "title_zh": "灰机 wiki：跟进",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B7%9F%E8%BF%9B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "ENTOMANCER",
+  "name_zh": "蜂群术士",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "蜂群术士是巢穴场景的精英怪物；基础生命 145，进阶生命 155。",
+  "pattern_zh": "* 人体蜂房 (Personal Hive) X：战斗开始时自带 1 层。 每当该怪物受到攻击伤害时，向你的抽牌堆洗入 X 张卡牌：晕眩。 ** 受到伤害时触发，若本次打出的攻击牌在造成伤害后还有抽牌效果，可能会抽到本次伤害触发人体蜂房加入的晕眩。 * 仅施加“失去生命”效果的卡牌不会触发人体蜂房，如卡牌：捕捉灵魂、卡牌：亡灵精通等。 行动状态转移：B -> C[\"矛击！\"]；C -> 喷射信息素；喷射信息素 -> B。",
+  "moves": [
+    {
+      "name_zh": "蜜——蜂——！",
+      "effect_zh": "效果：造成3×7伤害。（共21点）；效果进阶9+：造成3×8伤害。（共24点）。"
+    },
+    {
+      "name_zh": "矛击！",
+      "effect_zh": "效果：造成18点伤害；效果进阶9+：造成20点伤害。"
+    },
+    {
+      "name_zh": "喷射信息素",
+      "effect_zh": "效果：colspan=\"2\" |若人体蜂房<3层，获得1层人体蜂房与1点力量; 若人体蜂房≥3层，获得2点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人体蜂房1。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:ENTOMANCER",
+      "title_zh": "灰机 wiki：蜂群术士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9C%82%E7%BE%A4%E6%9C%AF%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

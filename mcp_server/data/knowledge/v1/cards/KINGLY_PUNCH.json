@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "KINGLY_PUNCH",
+  "name_zh": "王者之拳",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成8点伤害。每当你抽到这张牌时，在这场战斗中其伤害增加4。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "每当你抽到这张牌时，在这场战斗中其伤害增加4。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害。每当你抽到这张牌时，在这场战斗中其伤害增加6。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。每当你抽到这张牌时，在这场战斗中其伤害增加4。] 变为 [造成10点伤害。每当你抽到这张牌时，在这场战斗中其伤害增加6。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:KINGLY_PUNCH",
+      "title_zh": "灰机 wiki：王者之拳",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8E%8B%E8%80%85%E4%B9%8B%E6%8B%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

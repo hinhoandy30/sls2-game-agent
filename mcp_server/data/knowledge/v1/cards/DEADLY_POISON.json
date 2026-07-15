@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEADLY_POISON",
+  "name_zh": "致命毒药",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "给予5层中毒。",
+  "mechanics_zh": [
+    "给予5层中毒。"
+  ],
+  "tags": [
+    "技能",
+    "中毒"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予7层中毒。",
+    "changes_zh": [
+      "效果从 [给予5层中毒。] 变为 [给予7层中毒。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEADLY_POISON",
+      "title_zh": "灰机 wiki：致命毒药",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%87%B4%E5%91%BD%E6%AF%92%E8%8D%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

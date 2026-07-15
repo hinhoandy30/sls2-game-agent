@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SLITHERING_STRANGLER",
+  "name_zh": "蛇行扼杀者",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "蛇行扼杀者是密林场景的普通怪物；基础生命 53-55，进阶生命 54-56。",
+  "pattern_zh": "* 紧缠 (Constrict) X：每回合结束时，受到 X 点伤害（只要该怪物存活，此状态便一直生效）。 页面列出的行为包括：缠身、重击、甩动；具体循环以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "缠身",
+      "effect_zh": "效果：给予3层“紧缠”；效果进阶9+：给予3层“紧缠”；备注：循环的起点。下回合必定在两招攻击中随机。"
+    },
+    {
+      "name_zh": "重击",
+      "effect_zh": "效果：造成7点伤害。获得5点格挡；效果进阶9+：造成8点伤害。获得5点格挡；备注：使用后，下回合必定回到“绞杀”。"
+    },
+    {
+      "name_zh": "甩动",
+      "effect_zh": "效果：造成12点伤害；效果进阶9+：造成13点伤害；备注：使用后，下回合必定回到“绞杀”。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SLITHERING_STRANGLER",
+      "title_zh": "灰机 wiki：蛇行扼杀者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9B%87%E8%A1%8C%E6%89%BC%E6%9D%80%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

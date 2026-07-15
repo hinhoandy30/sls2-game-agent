@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GUILTY",
+  "name_zh": "愧疚",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在5场战斗后从你的牌组中移除。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在5场战斗后从你的牌组中移除。"
+  ],
+  "tags": [
+    "诅咒"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GUILTY",
+      "title_zh": "灰机 wiki：愧疚",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%84%A7%E7%96%9A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

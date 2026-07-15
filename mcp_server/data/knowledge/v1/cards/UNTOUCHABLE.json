@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UNTOUCHABLE",
+  "name_zh": "触不可及",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "奇巧。获得6点格挡。",
+  "mechanics_zh": [
+    "奇巧。",
+    "获得6点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。获得9点格挡。",
+    "changes_zh": [
+      "效果从 [奇巧。获得6点格挡。] 变为 [奇巧。获得9点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UNTOUCHABLE",
+      "title_zh": "灰机 wiki：触不可及",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A7%A6%E4%B8%8D%E5%8F%AF%E5%8F%8A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

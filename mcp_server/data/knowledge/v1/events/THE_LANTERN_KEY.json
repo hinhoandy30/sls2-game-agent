@@ -1,0 +1,22 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "THE_LANTERN_KEY",
+  "name_zh": "灯火钥匙",
+  "act_ids": [
+    "HIVE"
+  ],
+  "summary_zh": "灯火钥匙事件，出现于第二阶段巢穴场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段巢穴场景。",
+    "前置条件：无已知特殊前置条件。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:THE_LANTERN_KEY",
+      "title_zh": "灰机 wiki：灯火钥匙",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%AF%E7%81%AB%E9%92%A5%E5%8C%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

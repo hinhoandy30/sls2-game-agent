@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "DENSE_VEGETATION",
+  "name_zh": "茂密的植被",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "茂密的植被事件，出现于第一阶段密林场景；前置条件：多人模式下所有玩家血量高于本事件失去生命值（8）。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：多人模式下所有玩家血量高于本事件失去生命值（8）。",
+    "备注：单人模式无此限制。",
+    "选项：休息；结果/详情：回复30%最大生命值点生命。进入战斗。",
+    "选项：坚持跋涉；结果/详情：获得61-99金币。失去8点生命；备注：可以触发“休息”的相关效果，如遗物：皇家枕头。",
+    "选项：战！；后续页面：本事件；备注：出现的敌人固定为四只扭动虫。",
+    "选项：坚持跋涉。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:DENSE_VEGETATION",
+      "title_zh": "灰机 wiki：茂密的植被",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8C%82%E5%AF%86%E7%9A%84%E6%A4%8D%E8%A2%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

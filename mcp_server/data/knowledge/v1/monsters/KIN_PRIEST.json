@@ -1,0 +1,45 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "KIN_PRIEST",
+  "name_zh": "同族神官",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "同族神官是密林场景的Boss怪物；基础生命 190，进阶生命 199。",
+  "pattern_zh": "英文静态数据列出行动：Orb Of Frailty、Orb Of Weakness、Beam、Ritual；具体行动顺序以 live intent 和运行时状态机为准。",
+  "moves": [
+    {
+      "name_zh": "Orb Of Frailty（英文名）",
+      "effect_zh": "造成8点伤害；进阶后造成9点伤害。"
+    },
+    {
+      "name_zh": "Orb Of Weakness（英文名）",
+      "effect_zh": "造成8点伤害；进阶后造成9点伤害。"
+    },
+    {
+      "name_zh": "Beam（英文名）",
+      "effect_zh": "造成3点伤害。"
+    },
+    {
+      "name_zh": "Ritual（英文名）",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:KIN_PRIEST",
+      "title_zh": "灰机 wiki：同族神官",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%8C%E6%97%8F%E7%A5%9E%E5%AE%98",
+      "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
+    }
+  ]
+}

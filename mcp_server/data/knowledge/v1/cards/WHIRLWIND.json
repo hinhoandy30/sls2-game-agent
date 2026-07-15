@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "WHIRLWIND",
+  "name_zh": "旋风斩",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "X 能量",
+  "summary_zh": "对所有敌人造成5点伤害X次。",
+  "mechanics_zh": [
+    "对所有敌人造成5点伤害X次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成8点伤害X次。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成5点伤害X次。] 变为 [对所有敌人造成8点伤害X次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:WHIRLWIND",
+      "title_zh": "灰机 wiki：旋风斩",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%8B%E9%A3%8E%E6%96%A9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REAP",
+  "name_zh": "收割",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "3 能量",
+  "summary_zh": "保留。造成27点伤害。",
+  "mechanics_zh": [
+    "保留。",
+    "造成27点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "保留"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。造成33点伤害。",
+    "changes_zh": [
+      "效果从 [保留。造成27点伤害。] 变为 [保留。造成33点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REAP",
+      "title_zh": "灰机 wiki：收割",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%94%B6%E5%89%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

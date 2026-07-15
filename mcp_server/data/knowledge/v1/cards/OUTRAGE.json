@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "OUTRAGE",
+  "name_zh": "群情激愤",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成9点伤害。在所有人的弃牌堆中加入一张此牌的复制品。",
+  "mechanics_zh": [
+    "造成9点伤害。",
+    "在所有人的弃牌堆中加入一张此牌的复制品。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。在所有人的弃牌堆中加入一张此牌的复制品。",
+    "changes_zh": [
+      "效果从 [造成9点伤害。在所有人的弃牌堆中加入一张此牌的复制品。] 变为 [造成13点伤害。在所有人的弃牌堆中加入一张此牌的复制品。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:OUTRAGE",
+      "title_zh": "灰机 wiki：群情激愤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BE%A4%E6%83%85%E6%BF%80%E6%84%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UPPERCUT",
+  "name_zh": "上勾拳",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成13点伤害。给予1层虚弱。给予1层易伤。",
+  "mechanics_zh": [
+    "造成13点伤害。",
+    "给予1层虚弱。",
+    "给予1层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。给予2层虚弱。给予2层易伤。",
+    "changes_zh": [
+      "效果从 [造成13点伤害。给予1层虚弱。给予1层易伤。] 变为 [造成13点伤害。给予2层虚弱。给予2层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UPPERCUT",
+      "title_zh": "灰机 wiki：上勾拳",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%8A%E5%8B%BE%E6%8B%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

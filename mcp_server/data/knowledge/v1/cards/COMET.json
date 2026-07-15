@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COMET",
+  "name_zh": "彗星",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成33点伤害。给予3层虚弱。给予3层易伤。",
+  "mechanics_zh": [
+    "造成33点伤害。",
+    "给予3层虚弱。",
+    "给予3层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成44点伤害。给予3层虚弱。给予3层易伤。",
+    "changes_zh": [
+      "效果从 [造成33点伤害。给予3层虚弱。给予3层易伤。] 变为 [造成44点伤害。给予3层虚弱。给予3层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COMET",
+      "title_zh": "灰机 wiki：彗星",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BD%97%E6%98%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

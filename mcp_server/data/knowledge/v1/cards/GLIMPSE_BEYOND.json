@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GLIMPSE_BEYOND",
+  "name_zh": "彼岸一瞥",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在所有玩家的抽牌堆中加入3张灵魂。消耗。",
+  "mechanics_zh": [
+    "在所有玩家的抽牌堆中加入3张灵魂。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在所有玩家的抽牌堆中加入4张灵魂。消耗。",
+    "changes_zh": [
+      "效果从 [在所有玩家的抽牌堆中加入3张灵魂。消耗。] 变为 [在所有玩家的抽牌堆中加入4张灵魂。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GLIMPSE_BEYOND",
+      "title_zh": "灰机 wiki：彼岸一瞥",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BD%BC%E5%B2%B8%E4%B8%80%E7%9E%A5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

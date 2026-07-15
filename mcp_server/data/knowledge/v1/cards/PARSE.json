@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PARSE",
+  "name_zh": "领会",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。抽3张牌。",
+  "mechanics_zh": [
+    "虚无。",
+    "抽3张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "虚无"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。抽4张牌。",
+    "changes_zh": [
+      "效果从 [虚无。抽3张牌。] 变为 [虚无。抽4张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PARSE",
+      "title_zh": "灰机 wiki：领会",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A2%86%E4%BC%9A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

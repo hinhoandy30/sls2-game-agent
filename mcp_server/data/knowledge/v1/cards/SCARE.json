@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SCARE",
+  "name_zh": "恫吓",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "给予所有敌人1层虚弱。消耗。",
+  "mechanics_zh": [
+    "给予所有敌人1层虚弱。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "虚弱",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予所有敌人1层虚弱。",
+    "changes_zh": [
+      "效果从 [给予所有敌人1层虚弱。消耗。] 变为 [给予所有敌人1层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SCARE",
+      "title_zh": "灰机 wiki：恫吓",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%81%AB%E5%90%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

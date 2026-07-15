@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RAGE",
+  "name_zh": "狂怒",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "打出此牌后，你在这个回合内每打出一张攻击牌，获得3点格挡。",
+  "mechanics_zh": [
+    "打出此牌后，你在这个回合内每打出一张攻击牌，获得3点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：打出此牌后，你在这个回合内每打出一张攻击牌，获得5点格挡。",
+    "changes_zh": [
+      "效果从 [打出此牌后，你在这个回合内每打出一张攻击牌，获得3点格挡。] 变为 [打出此牌后，你在这个回合内每打出一张攻击牌，获得5点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RAGE",
+      "title_zh": "灰机 wiki：狂怒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%82%E6%80%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

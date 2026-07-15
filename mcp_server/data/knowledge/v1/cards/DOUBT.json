@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DOUBT",
+  "name_zh": "疑虑",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，获得1层虚弱。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，获得1层虚弱。"
+  ],
+  "tags": [
+    "诅咒",
+    "虚弱"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DOUBT",
+      "title_zh": "灰机 wiki：疑虑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%96%91%E8%99%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

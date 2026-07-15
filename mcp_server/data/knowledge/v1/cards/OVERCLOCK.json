@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "OVERCLOCK",
+  "name_zh": "超频",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽2张牌。将一张灼伤加入你的弃牌堆。",
+  "mechanics_zh": [
+    "抽2张牌。",
+    "将一张灼伤加入你的弃牌堆。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽3张牌。将一张灼伤加入你的弃牌堆。",
+    "changes_zh": [
+      "效果从 [抽2张牌。将一张灼伤加入你的弃牌堆。] 变为 [抽3张牌。将一张灼伤加入你的弃牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:OVERCLOCK",
+      "title_zh": "灰机 wiki：超频",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B6%85%E9%A2%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

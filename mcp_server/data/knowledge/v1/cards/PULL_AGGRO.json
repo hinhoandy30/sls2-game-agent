@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PULL_AGGRO",
+  "name_zh": "吸引仇恨",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "召唤4。获得7点格挡。",
+  "mechanics_zh": [
+    "召唤4。",
+    "获得7点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "召唤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：召唤5。获得9点格挡。",
+    "changes_zh": [
+      "效果从 [召唤4。获得7点格挡。] 变为 [召唤5。获得9点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PULL_AGGRO",
+      "title_zh": "灰机 wiki：吸引仇恨",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%B8%E5%BC%95%E4%BB%87%E6%81%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

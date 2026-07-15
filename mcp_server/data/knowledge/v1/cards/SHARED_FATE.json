@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SHARED_FATE",
+  "name_zh": "命运同担",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "失去2点力量。敌人失去2点力量。消耗。",
+  "mechanics_zh": [
+    "失去2点力量。",
+    "敌人失去2点力量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去2点力量。敌人失去3点力量。消耗。",
+    "changes_zh": [
+      "效果从 [失去2点力量。敌人失去2点力量。消耗。] 变为 [失去2点力量。敌人失去3点力量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SHARED_FATE",
+      "title_zh": "灰机 wiki：命运同担",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%91%BD%E8%BF%90%E5%90%8C%E6%8B%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

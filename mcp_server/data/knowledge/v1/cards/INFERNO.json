@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "INFERNO",
+  "name_zh": "狱火",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，失去1点生命。每当你在你的回合内失去生命时，对所有敌人造成6点伤害。",
+  "mechanics_zh": [
+    "在你的回合开始时，失去1点生命。",
+    "每当你在你的回合内失去生命时，对所有敌人造成6点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "AOE",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，失去1点生命。每当你在你的回合内失去生命时，对所有敌人造成9点伤害。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，失去1点生命。每当你在你的回合内失去生命时，对所有敌人造成6点伤害。] 变为 [在你的回合开始时，失去1点生命。每当你在你的回合内失去生命时，对所有敌人造成9点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:INFERNO",
+      "title_zh": "灰机 wiki：狱火",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%B1%E7%81%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

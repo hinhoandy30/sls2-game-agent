@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MIRAGE",
+  "name_zh": "蜃景",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得等同于所有敌人中毒层数的格挡。消耗。",
+  "mechanics_zh": [
+    "获得等同于所有敌人中毒层数的格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗",
+    "中毒",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得等同于所有敌人中毒层数的格挡。消耗。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MIRAGE",
+      "title_zh": "灰机 wiki：蜃景",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9C%83%E6%99%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

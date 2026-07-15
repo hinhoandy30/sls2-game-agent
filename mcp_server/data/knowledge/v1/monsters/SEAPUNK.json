@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SEAPUNK",
+  "name_zh": "海洋混混",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "海洋混混是暗港场景的普通怪物；基础生命 44-46，进阶生命 47-49。",
+  "pattern_zh": "行动状态转移：A -> 海洋踢；海洋踢 -> 回旋踢；回旋踢 -> 吐泡泡；吐泡泡 -> 海洋踢。",
+  "moves": [
+    {
+      "name_zh": "海洋踢",
+      "effect_zh": "效果：造成11点伤害；效果进阶9+：造成13点伤害。"
+    },
+    {
+      "name_zh": "回旋踢",
+      "effect_zh": "效果：造成2×4伤害。（共8点）；效果进阶9+：造成2×4伤害。（共8点）。"
+    },
+    {
+      "name_zh": "吐泡泡",
+      "effect_zh": "效果：获得7点格挡与1点力量；效果进阶9+：获得8点格挡与2点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SEAPUNK",
+      "title_zh": "灰机 wiki：海洋混混",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B5%B7%E6%B4%8B%E6%B7%B7%E6%B7%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

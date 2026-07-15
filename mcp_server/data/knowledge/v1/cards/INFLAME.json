@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "INFLAME",
+  "name_zh": "燃烧",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得2点力量。",
+  "mechanics_zh": [
+    "获得2点力量。"
+  ],
+  "tags": [
+    "能力",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得3点力量。",
+    "changes_zh": [
+      "效果从 [获得2点力量。] 变为 [获得3点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:INFLAME",
+      "title_zh": "灰机 wiki：燃烧",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%87%83%E7%83%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

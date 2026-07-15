@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENVENOM",
+  "name_zh": "涂毒",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每有一次攻击造成未被格挡的伤害，就给予1层中毒。",
+  "mechanics_zh": [
+    "每有一次攻击造成未被格挡的伤害，就给予1层中毒。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "格挡",
+    "中毒"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每有一次攻击造成未被格挡的伤害，就给予2层中毒。",
+    "changes_zh": [
+      "效果从 [每有一次攻击造成未被格挡的伤害，就给予1层中毒。] 变为 [每有一次攻击造成未被格挡的伤害，就给予2层中毒。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENVENOM",
+      "title_zh": "灰机 wiki：涂毒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B6%82%E6%AF%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

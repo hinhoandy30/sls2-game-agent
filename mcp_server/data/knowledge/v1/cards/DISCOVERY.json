@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DISCOVERY",
+  "name_zh": "发现",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "从3张随机牌中选择1张加入你的手牌。这张牌在本回合可以免费打出。消耗。",
+  "mechanics_zh": [
+    "从3张随机牌中选择1张加入你的手牌。",
+    "这张牌在本回合可以免费打出。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：从3张随机牌中选择1张加入你的手牌。这张牌在本回合可以免费打出。",
+    "changes_zh": [
+      "效果从 [从3张随机牌中选择1张加入你的手牌。这张牌在本回合可以免费打出。消耗。] 变为 [从3张随机牌中选择1张加入你的手牌。这张牌在本回合可以免费打出。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DISCOVERY",
+      "title_zh": "灰机 wiki：发现",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8F%91%E7%8E%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

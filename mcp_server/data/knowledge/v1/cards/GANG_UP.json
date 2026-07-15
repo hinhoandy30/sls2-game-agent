@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GANG_UP",
+  "name_zh": "群起攻之",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成5点伤害。本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加5点。",
+  "mechanics_zh": [
+    "造成5点伤害。",
+    "本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加5点。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成5点伤害。本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加7点。",
+    "changes_zh": [
+      "效果从 [造成5点伤害。本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加5点。] 变为 [造成5点伤害。本回合其他玩家每攻击过一次该敌人，该牌造成的伤害就额外增加7点。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GANG_UP",
+      "title_zh": "灰机 wiki：群起攻之",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BE%A4%E8%B5%B7%E6%94%BB%E4%B9%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

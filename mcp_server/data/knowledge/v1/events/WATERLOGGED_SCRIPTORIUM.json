@@ -1,0 +1,28 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "WATERLOGGED_SCRIPTORIUM",
+  "name_zh": "水漫缮写室",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "summary_zh": "水漫缮写室事件，出现于第一阶段暗港场景；前置条件：所有玩家至少拥有55金币。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段暗港场景。",
+    "前置条件：所有玩家至少拥有55金币。",
+    "选项：血液墨水；结果/详情：获得6点最大生命。",
+    "选项：扎手海绵；结果/详情：支付99金币。给2张牌附魔：稳定。",
+    "选项：触手羽毛笔；结果/详情：支付55金币。给一张牌附魔：稳定；备注：稳定：这张牌获得保留。",
+    "选项：血液墨水。",
+    "选项：扎手海绵。",
+    "选项：触手羽毛笔。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:WATERLOGGED_SCRIPTORIUM",
+      "title_zh": "灰机 wiki：水漫缮写室",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B0%B4%E6%BC%AB%E7%BC%AE%E5%86%99%E5%AE%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

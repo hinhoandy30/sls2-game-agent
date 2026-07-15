@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NEUROSURGE",
+  "name_zh": "精神过载",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得3点能量。抽2张牌。在你的回合开始时，给予自身3层灾厄。",
+  "mechanics_zh": [
+    "获得3点能量。",
+    "抽2张牌。",
+    "在你的回合开始时，给予自身3层灾厄。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得41点能量。抽2张牌。在你的回合开始时，给予自身3层灾厄。",
+    "changes_zh": [
+      "效果从 [获得3点能量。抽2张牌。在你的回合开始时，给予自身3层灾厄。] 变为 [获得41点能量。抽2张牌。在你的回合开始时，给予自身3层灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NEUROSURGE",
+      "title_zh": "灰机 wiki：精神过载",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%B2%BE%E7%A5%9E%E8%BF%87%E8%BD%BD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

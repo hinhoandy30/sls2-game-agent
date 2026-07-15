@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLUDGEON",
+  "name_zh": "重锤",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "造成32点伤害。",
+  "mechanics_zh": [
+    "造成32点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成42点伤害。",
+    "changes_zh": [
+      "效果从 [造成32点伤害。] 变为 [造成42点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLUDGEON",
+      "title_zh": "灰机 wiki：重锤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%8D%E9%94%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GUNK_UP",
+  "name_zh": "污秽攻击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成4点伤害3次。在你的弃牌堆中加入一张黏液。",
+  "mechanics_zh": [
+    "造成4点伤害3次。",
+    "在你的弃牌堆中加入一张黏液。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成5点伤害3次。在你的弃牌堆中加入一张黏液。",
+    "changes_zh": [
+      "效果从 [造成4点伤害3次。在你的弃牌堆中加入一张黏液。] 变为 [造成5点伤害3次。在你的弃牌堆中加入一张黏液。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GUNK_UP",
+      "title_zh": "灰机 wiki：污秽攻击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B1%A1%E7%A7%BD%E6%94%BB%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

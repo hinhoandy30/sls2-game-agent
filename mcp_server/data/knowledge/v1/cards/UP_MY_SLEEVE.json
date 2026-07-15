@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UP_MY_SLEEVE",
+  "name_zh": "袖里乾坤",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "将3张小刀加入你的手牌。这张牌的耗能减少1。",
+  "mechanics_zh": [
+    "将3张小刀加入你的手牌。",
+    "这张牌的耗能减少1。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将4张小刀加入你的手牌。这张牌的耗能减少1。",
+    "changes_zh": [
+      "效果从 [将3张小刀加入你的手牌。这张牌的耗能减少1。] 变为 [将4张小刀加入你的手牌。这张牌的耗能减少1。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UP_MY_SLEEVE",
+      "title_zh": "灰机 wiki：袖里乾坤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A2%96%E9%87%8C%E4%B9%BE%E5%9D%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

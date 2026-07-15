@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MASTER_PLANNER",
+  "name_zh": "谋划专家",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "当你打出技能牌时，该牌获得奇巧。",
+  "mechanics_zh": [
+    "当你打出技能牌时，该牌获得奇巧。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：当你打出技能牌时，该牌获得奇巧。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MASTER_PLANNER",
+      "title_zh": "灰机 wiki：谋划专家",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B0%8B%E5%88%92%E4%B8%93%E5%AE%B6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

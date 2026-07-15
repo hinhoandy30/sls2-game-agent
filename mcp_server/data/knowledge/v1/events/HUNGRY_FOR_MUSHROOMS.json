@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "HUNGRY_FOR_MUSHROOMS",
+  "name_zh": "蘑菇饥渴",
+  "act_ids": [
+    "GLORY"
+  ],
+  "summary_zh": "蘑菇饥渴事件，出现于第三阶段荣耀场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第三阶段荣耀场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：大蘑菇；结果/详情：获得大蘑菇。拾起时，将你的最大生命值提升20。在每场战斗开始时，少抽2张牌。",
+    "选项：芳香蘑菇；结果/详情：获得芳香蘑菇。拾起时，失去15点生命，然后随机升级2张牌；备注：遗物：芳香蘑菇；·遗物：大蘑菇。",
+    "选项：大蘑菇。",
+    "选项：芳香蘑菇。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:HUNGRY_FOR_MUSHROOMS",
+      "title_zh": "灰机 wiki：蘑菇饥渴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%98%91%E8%8F%87%E9%A5%A5%E6%B8%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

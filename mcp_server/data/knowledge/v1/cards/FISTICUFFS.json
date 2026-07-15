@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FISTICUFFS",
+  "name_zh": "拳斗",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成7点伤害。获得等量于所造成伤害的格挡。",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "获得等量于所造成伤害的格挡。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。获得等量于所造成伤害的格挡。",
+    "changes_zh": [
+      "效果从 [造成7点伤害。获得等量于所造成伤害的格挡。] 变为 [造成9点伤害。获得等量于所造成伤害的格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FISTICUFFS",
+      "title_zh": "灰机 wiki：拳斗",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8B%B3%E6%96%97",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SETUP_STRIKE",
+  "name_zh": "预备打击",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成7点伤害。在本回合内获得2点力量。",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "在本回合内获得2点力量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。在本回合内获得3点力量。",
+    "changes_zh": [
+      "效果从 [造成7点伤害。在本回合内获得2点力量。] 变为 [造成9点伤害。在本回合内获得3点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SETUP_STRIKE",
+      "title_zh": "灰机 wiki：预备打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A2%84%E5%A4%87%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

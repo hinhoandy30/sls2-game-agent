@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HEAVENLY_DRILL",
+  "name_zh": "天际钻头",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "X 能量",
+  "summary_zh": "造成8点伤害X次。如果X的最终数值为4或以上，则将X的数值翻倍。",
+  "mechanics_zh": [
+    "造成8点伤害X次。",
+    "如果X的最终数值为4或以上，则将X的数值翻倍。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害X次。如果X的最终数值为4或以上，则将X的数值翻倍。",
+    "changes_zh": [
+      "效果从 [造成8点伤害X次。如果X的最终数值为4或以上，则将X的数值翻倍。] 变为 [造成10点伤害X次。如果X的最终数值为4或以上，则将X的数值翻倍。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HEAVENLY_DRILL",
+      "title_zh": "灰机 wiki：天际钻头",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%A9%E9%99%85%E9%92%BB%E5%A4%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

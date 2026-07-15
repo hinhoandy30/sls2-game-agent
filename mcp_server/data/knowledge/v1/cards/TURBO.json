@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TURBO",
+  "name_zh": "内核加速",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得2点能量。将一张虚空加入你的弃牌堆。",
+  "mechanics_zh": [
+    "获得2点能量。",
+    "将一张虚空加入你的弃牌堆。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得3点能量。将一张虚空加入你的弃牌堆。",
+    "changes_zh": [
+      "效果从 [获得2点能量。将一张虚空加入你的弃牌堆。] 变为 [获得3点能量。将一张虚空加入你的弃牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TURBO",
+      "title_zh": "灰机 wiki：内核加速",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%85%E6%A0%B8%E5%8A%A0%E9%80%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

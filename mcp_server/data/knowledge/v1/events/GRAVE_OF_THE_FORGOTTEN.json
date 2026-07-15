@@ -1,0 +1,25 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "GRAVE_OF_THE_FORGOTTEN",
+  "name_zh": "遗忘之墓",
+  "act_ids": [
+    "GLORY"
+  ],
+  "summary_zh": "遗忘之墓事件，出现于第三阶段荣耀场景；前置条件：每个玩家的牌组中都有至少1张可被灵魂之力附魔的牌。",
+  "flow_facts_zh": [
+    "出现阶段：第三阶段荣耀场景。",
+    "前置条件：每个玩家的牌组中都有至少1张可被灵魂之力附魔的牌。",
+    "选项：接受这颗遗忘之魂；结果/详情：获得遗忘之魂。",
+    "选项：让它直面真相；结果/详情：将一张腐朽到你的牌组。为一张带有消耗的牌附魔：灵魂之力；备注：遗物：遗忘之魂；·卡牌：腐朽；·灵魂之力。",
+    "选项：继续。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:GRAVE_OF_THE_FORGOTTEN",
+      "title_zh": "灰机 wiki：遗忘之墓",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%81%97%E5%BF%98%E4%B9%8B%E5%A2%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

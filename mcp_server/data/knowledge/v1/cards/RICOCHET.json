@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RICOCHET",
+  "name_zh": "连续反弹",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "奇巧。随机对敌人造成3点伤害4次。",
+  "mechanics_zh": [
+    "奇巧。",
+    "随机对敌人造成3点伤害4次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。随机对敌人造成3点伤害5次。",
+    "changes_zh": [
+      "效果从 [奇巧。随机对敌人造成3点伤害4次。] 变为 [奇巧。随机对敌人造成3点伤害5次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RICOCHET",
+      "title_zh": "灰机 wiki：连续反弹",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%9E%E7%BB%AD%E5%8F%8D%E5%BC%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

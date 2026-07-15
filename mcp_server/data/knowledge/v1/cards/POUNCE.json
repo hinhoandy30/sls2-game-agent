@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "POUNCE",
+  "name_zh": "猛扑",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成14点伤害。你的下一张技能牌耗能变为01点能量。",
+  "mechanics_zh": [
+    "造成14点伤害。",
+    "你的下一张技能牌耗能变为01点能量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成20点伤害。你的下一张技能牌耗能变为01点能量。",
+    "changes_zh": [
+      "效果从 [造成14点伤害。你的下一张技能牌耗能变为01点能量。] 变为 [造成20点伤害。你的下一张技能牌耗能变为01点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:POUNCE",
+      "title_zh": "灰机 wiki：猛扑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8C%9B%E6%89%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EXTERMINATE",
+  "name_zh": "杀灭",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成3点伤害4次。",
+  "mechanics_zh": [
+    "对所有敌人造成3点伤害4次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成4点伤害4次。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成3点伤害4次。] 变为 [对所有敌人造成4点伤害4次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EXTERMINATE",
+      "title_zh": "灰机 wiki：杀灭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9D%80%E7%81%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

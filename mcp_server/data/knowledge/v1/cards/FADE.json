@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FADE",
+  "name_zh": "消影",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "保留。另一名玩家在本回合获得6点敏捷。",
+  "mechanics_zh": [
+    "保留。",
+    "另一名玩家在本回合获得6点敏捷。"
+  ],
+  "tags": [
+    "技能",
+    "保留",
+    "敏捷"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。另一名玩家在本回合获得9点敏捷。",
+    "changes_zh": [
+      "效果从 [保留。另一名玩家在本回合获得6点敏捷。] 变为 [保留。另一名玩家在本回合获得9点敏捷。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FADE",
+      "title_zh": "灰机 wiki：消影",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B6%88%E5%BD%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

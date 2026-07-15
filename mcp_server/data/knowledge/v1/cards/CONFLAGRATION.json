@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CONFLAGRATION",
+  "name_zh": "焚烧",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成2点伤害4次。",
+  "mechanics_zh": [
+    "对所有敌人造成2点伤害4次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成2点伤害5次。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成2点伤害4次。] 变为 [对所有敌人造成2点伤害5次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CONFLAGRATION",
+      "title_zh": "灰机 wiki：焚烧",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%84%9A%E7%83%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

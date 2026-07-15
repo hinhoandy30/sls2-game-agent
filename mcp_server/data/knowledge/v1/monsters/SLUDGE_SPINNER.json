@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SLUDGE_SPINNER",
+  "name_zh": "淤泥旋螺",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "淤泥旋螺是暗港场景的普通怪物；基础生命 37-39，进阶生命 41-42。",
+  "pattern_zh": "行动状态转移：A -> 喷油；喷油 -> R；R -- \"防连发\" -> 喷油；R -- \"防连发\" -> 砸击；R -- \"防连发\" -> 狂怒；砸击 -> R；狂怒 -> R。",
+  "moves": [
+    {
+      "name_zh": "喷油",
+      "effect_zh": "效果：造成8点伤害。给予1层虚弱；效果进阶9+：造成9点伤害。给予1层虚弱；备注：必定作为第1回合起手式。进入随机池后不可连续使用。"
+    },
+    {
+      "name_zh": "砸击",
+      "effect_zh": "效果：造成11点伤害；效果进阶9+：造成12点伤害；备注：不可连续使用。"
+    },
+    {
+      "name_zh": "狂怒",
+      "effect_zh": "效果：造成6点伤害。获得3点力量；效果进阶9+：造成7点伤害。获得3点力量；备注：不可连续使用。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能施加虚弱，玩家攻击牌价值会受到影响。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SLUDGE_SPINNER",
+      "title_zh": "灰机 wiki：淤泥旋螺",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B7%A4%E6%B3%A5%E6%97%8B%E8%9E%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

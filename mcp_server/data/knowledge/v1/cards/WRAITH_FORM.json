@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "WRAITH_FORM",
+  "name_zh": "幽魂形态",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "3 能量",
+  "summary_zh": "获得2无实体。在你的回合开始时，失去1点敏捷。",
+  "mechanics_zh": [
+    "获得2无实体。",
+    "在你的回合开始时，失去1点敏捷。"
+  ],
+  "tags": [
+    "能力",
+    "敏捷"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得3无实体。在你的回合开始时，失去1点敏捷。",
+    "changes_zh": [
+      "效果从 [获得2无实体。在你的回合开始时，失去1点敏捷。] 变为 [获得3无实体。在你的回合开始时，失去1点敏捷。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:WRAITH_FORM",
+      "title_zh": "灰机 wiki：幽魂形态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B9%BD%E9%AD%82%E5%BD%A2%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

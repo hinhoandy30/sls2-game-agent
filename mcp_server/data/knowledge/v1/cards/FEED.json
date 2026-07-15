@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FEED",
+  "name_zh": "狂宴",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。斩杀时，永久获得3点最大生命值。消耗。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "斩杀时，永久获得3点最大生命值。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。斩杀时，永久获得4点最大生命值。消耗。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。斩杀时，永久获得3点最大生命值。消耗。] 变为 [造成12点伤害。斩杀时，永久获得4点最大生命值。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FEED",
+      "title_zh": "灰机 wiki：狂宴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%82%E5%AE%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

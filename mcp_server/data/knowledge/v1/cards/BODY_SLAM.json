@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BODY_SLAM",
+  "name_zh": "全身撞击",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成你当前格挡值的伤害。",
+  "mechanics_zh": [
+    "造成你当前格挡值的伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成你当前格挡值的伤害。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BODY_SLAM",
+      "title_zh": "灰机 wiki：全身撞击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%A8%E8%BA%AB%E6%92%9E%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

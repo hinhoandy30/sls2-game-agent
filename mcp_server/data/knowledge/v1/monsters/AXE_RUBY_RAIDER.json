@@ -1,0 +1,41 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "AXE_RUBY_RAIDER",
+  "name_zh": "劫掠者斧手",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "劫掠者斧手是密林场景的普通怪物；基础生命 20-22，进阶生命 21-23。",
+  "pattern_zh": "英文静态数据列出行动：Swing 1、Swing 2、Big Swing；具体行动顺序以 live intent 和运行时状态机为准。",
+  "moves": [
+    {
+      "name_zh": "Swing 1（英文名）",
+      "effect_zh": "造成5点伤害；进阶后造成6点伤害。"
+    },
+    {
+      "name_zh": "Swing 2（英文名）",
+      "effect_zh": "造成5点伤害；进阶后造成6点伤害。"
+    },
+    {
+      "name_zh": "Big Swing（英文名）",
+      "effect_zh": "造成12点伤害；进阶后造成13点伤害。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:AXE_RUBY_RAIDER",
+      "title_zh": "灰机 wiki：劫掠者斧手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8A%AB%E6%8E%A0%E8%80%85%E6%96%A7%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
+    }
+  ]
+}

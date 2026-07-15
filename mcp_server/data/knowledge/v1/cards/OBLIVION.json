@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "OBLIVION",
+  "name_zh": "湮灭",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "打出此牌后，你在本回合内每打出一张牌，就给予该敌人3层灾厄。",
+  "mechanics_zh": [
+    "打出此牌后，你在本回合内每打出一张牌，就给予该敌人3层灾厄。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：打出此牌后，你在本回合内每打出一张牌，就给予该敌人4层灾厄。",
+    "changes_zh": [
+      "效果从 [打出此牌后，你在本回合内每打出一张牌，就给予该敌人3层灾厄。] 变为 [打出此牌后，你在本回合内每打出一张牌，就给予该敌人4层灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:OBLIVION",
+      "title_zh": "灰机 wiki：湮灭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B9%AE%E7%81%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

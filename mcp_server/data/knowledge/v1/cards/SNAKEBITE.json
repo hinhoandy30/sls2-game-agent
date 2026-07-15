@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SNAKEBITE",
+  "name_zh": "蛇咬",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "2 能量",
+  "summary_zh": "保留。给予7层中毒。",
+  "mechanics_zh": [
+    "保留。",
+    "给予7层中毒。"
+  ],
+  "tags": [
+    "技能",
+    "保留",
+    "中毒"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。给予10层中毒。",
+    "changes_zh": [
+      "效果从 [保留。给予7层中毒。] 变为 [保留。给予10层中毒。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SNAKEBITE",
+      "title_zh": "灰机 wiki：蛇咬",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9B%87%E5%92%AC",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SMOKESTACK",
+  "name_zh": "烟囱",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你生成一张状态牌时，对所有敌人造成5点伤害。",
+  "mechanics_zh": [
+    "每当你生成一张状态牌时，对所有敌人造成5点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你生成一张状态牌时，对所有敌人造成7点伤害。",
+    "changes_zh": [
+      "效果从 [每当你生成一张状态牌时，对所有敌人造成5点伤害。] 变为 [每当你生成一张状态牌时，对所有敌人造成7点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SMOKESTACK",
+      "title_zh": "灰机 wiki：烟囱",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%83%9F%E5%9B%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SCRAPE",
+  "name_zh": "刮削",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成7点伤害。抽4张牌。丢弃抽到的牌中耗能不为01点能量的牌。",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "抽4张牌。",
+    "丢弃抽到的牌中耗能不为01点能量的牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害。抽5张牌。丢弃抽到的牌中耗能不为01点能量的牌。",
+    "changes_zh": [
+      "效果从 [造成7点伤害。抽4张牌。丢弃抽到的牌中耗能不为01点能量的牌。] 变为 [造成10点伤害。抽5张牌。丢弃抽到的牌中耗能不为01点能量的牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SCRAPE",
+      "title_zh": "灰机 wiki：刮削",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%88%AE%E5%89%8A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

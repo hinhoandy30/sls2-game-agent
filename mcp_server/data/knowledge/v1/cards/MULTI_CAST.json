@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MULTI_CAST",
+  "name_zh": "多重释放",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "X 能量",
+  "summary_zh": "激发你最右侧的充能球X次。",
+  "mechanics_zh": [
+    "激发你最右侧的充能球X次。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：激发你最右侧的充能球X+1次。",
+    "changes_zh": [
+      "效果从 [激发你最右侧的充能球X次。] 变为 [激发你最右侧的充能球X+1次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MULTI_CAST",
+      "title_zh": "灰机 wiki：多重释放",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%9A%E9%87%8D%E9%87%8A%E6%94%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

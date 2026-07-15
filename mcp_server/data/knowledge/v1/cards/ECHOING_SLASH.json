@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ECHOING_SLASH",
+  "name_zh": "回响斩击",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成10点伤害。每有一名敌人被击杀，就重复此效果。",
+  "mechanics_zh": [
+    "对所有敌人造成10点伤害。",
+    "每有一名敌人被击杀，就重复此效果。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成13点伤害。每有一名敌人被击杀，就重复此效果。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成10点伤害。每有一名敌人被击杀，就重复此效果。] 变为 [对所有敌人造成13点伤害。每有一名敌人被击杀，就重复此效果。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ECHOING_SLASH",
+      "title_zh": "灰机 wiki：回响斩击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9B%9E%E5%93%8D%E6%96%A9%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

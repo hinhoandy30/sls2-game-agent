@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "WELLSPRING",
+  "name_zh": "泉水",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "泉水事件，出现于第一阶段密林场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：沐浴；结果/详情：从你的牌组中移除1张牌。将1张愧疚添加到你的牌组；备注：卡牌：愧疚。",
+    "选项：装瓶；结果/详情：获得1瓶随机药水。",
+    "选项：沐浴。",
+    "选项：装瓶。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:WELLSPRING",
+      "title_zh": "灰机 wiki：泉水",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B3%89%E6%B0%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

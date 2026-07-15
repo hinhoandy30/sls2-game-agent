@@ -1,0 +1,51 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "ROCKET",
+  "name_zh": "火箭",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "火箭是巢穴场景的Boss怪物；基础生命 199，进阶生命 209。",
+  "pattern_zh": "英文静态数据列出行动：Targeting Reticle、Precision Beam、Charge Up、Laser、Recharge；具体行动顺序以 live intent 和运行时状态机为准。",
+  "moves": [
+    {
+      "name_zh": "Targeting Reticle（英文名）",
+      "effect_zh": "造成3点伤害；进阶后造成4点伤害。"
+    },
+    {
+      "name_zh": "Precision Beam（英文名）",
+      "effect_zh": "造成18点伤害；进阶后造成20点伤害。"
+    },
+    {
+      "name_zh": "Charge Up（英文名）",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    },
+    {
+      "name_zh": "Laser（英文名）",
+      "effect_zh": "造成31点伤害；进阶后造成35点伤害。"
+    },
+    {
+      "name_zh": "Recharge（英文名）",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：后方攻击蟹之怒。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:ROCKET",
+      "title_zh": "灰机 wiki：火箭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%81%AB%E7%AE%AD",
+      "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EXPOSE",
+  "name_zh": "暴露",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "去除敌人身上的所有格挡值和人工制品。并给予2层易伤。消耗。",
+  "mechanics_zh": [
+    "去除敌人身上的所有格挡值和人工制品。",
+    "并给予2层易伤。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：去除敌人身上的所有格挡值和人工制品。并给予3层易伤。消耗。",
+    "changes_zh": [
+      "效果从 [去除敌人身上的所有格挡值和人工制品。并给予2层易伤。消耗。] 变为 [去除敌人身上的所有格挡值和人工制品。并给予3层易伤。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EXPOSE",
+      "title_zh": "灰机 wiki：暴露",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9A%B4%E9%9C%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

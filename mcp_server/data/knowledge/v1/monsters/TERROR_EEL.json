@@ -1,0 +1,42 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "TERROR_EEL",
+  "name_zh": "骇鳗",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "骇鳗是暗港场景的精英怪物；基础生命 140，进阶生命 150。",
+  "pattern_zh": "* 尖叫 (Shriek) X：当它的生命值降至 X 点或以下时，它的回合行动将被强制替换为“被击晕”。 骇鳗开局自带尖叫层数为其最大生命值的一半。 行动状态转移：A -> 撞击；撞击 -> 撕扯；撕扯 -> 撞击；撞击 -> 被击晕；撕扯 -> 被击晕；被击晕 -> 恐吓；恐吓 -> 撞击。",
+  "moves": [
+    {
+      "name_zh": "撞击",
+      "effect_zh": "效果：造成16点伤害；效果进阶9+：造成18点伤害。"
+    },
+    {
+      "name_zh": "撕扯",
+      "effect_zh": "效果：造成3×3伤害。获得6层活力；效果进阶9+：造成4×3伤害。获得6层活力。"
+    },
+    {
+      "name_zh": "被击晕",
+      "effect_zh": "效果：跳过回合（无行动）；效果进阶9+：跳过回合（无行动）；备注：当生命值降至最大生命值的一半时强制触发一次。"
+    },
+    {
+      "name_zh": "恐吓",
+      "effect_zh": "效果：给予99层易伤；效果进阶9+：给予99层易伤；备注：从眩晕苏醒后的惩罚性攻击，随后继续回到猛撞循环。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：尖叫70 （高进阶75）。",
+    "该怪物可能施加易伤，后续受到攻击时当前 live powers 更重要。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:TERROR_EEL",
+      "title_zh": "灰机 wiki：骇鳗",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AA%87%E9%B3%97",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BULLY",
+  "name_zh": "欺凌",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成4点伤害。该敌人身上每有一层易伤就额外造成2点伤害。",
+  "mechanics_zh": [
+    "造成4点伤害。",
+    "该敌人身上每有一层易伤就额外造成2点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成4点伤害。该敌人身上每有一层易伤就额外造成3点伤害。",
+    "changes_zh": [
+      "效果从 [造成4点伤害。该敌人身上每有一层易伤就额外造成2点伤害。] 变为 [造成4点伤害。该敌人身上每有一层易伤就额外造成3点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BULLY",
+      "title_zh": "灰机 wiki：欺凌",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AC%BA%E5%87%8C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

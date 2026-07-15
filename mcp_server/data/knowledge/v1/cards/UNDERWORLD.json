@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "UNDERWORLD",
+  "name_zh": "幽冥之界",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄。消耗。",
+  "mechanics_zh": [
+    "每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄。",
+    "changes_zh": [
+      "效果从 [每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄。消耗。] 变为 [每当其他玩家在本回合造成攻击伤害时，给予敌人相等的灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:UNDERWORLD",
+      "title_zh": "灰机 wiki：幽冥之界",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B9%BD%E5%86%A5%E4%B9%8B%E7%95%8C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

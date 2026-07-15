@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PULL_FROM_BELOW",
+  "name_zh": "亡魂牵引",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "本场战斗中每打出过一张虚无牌，此牌就造成5点伤害一次。",
+  "mechanics_zh": [
+    "本场战斗中每打出过一张虚无牌，此牌就造成5点伤害一次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "虚无"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：本场战斗中每打出过一张虚无牌，此牌就造成7点伤害一次。",
+    "changes_zh": [
+      "效果从 [本场战斗中每打出过一张虚无牌，此牌就造成5点伤害一次。] 变为 [本场战斗中每打出过一张虚无牌，此牌就造成7点伤害一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PULL_FROM_BELOW",
+      "title_zh": "灰机 wiki：亡魂牵引",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BA%A1%E9%AD%82%E7%89%B5%E5%BC%95",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

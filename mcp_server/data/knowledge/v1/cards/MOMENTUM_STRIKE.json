@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MOMENTUM_STRIKE",
+  "name_zh": "趁势打击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。这张牌的耗能降为01点能量。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "这张牌的耗能降为01点能量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。这张牌的耗能降为01点能量。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。这张牌的耗能降为01点能量。] 变为 [造成13点伤害。这张牌的耗能降为01点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MOMENTUM_STRIKE",
+      "title_zh": "灰机 wiki：趁势打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B6%81%E5%8A%BF%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

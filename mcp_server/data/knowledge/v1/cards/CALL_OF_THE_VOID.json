@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CALL_OF_THE_VOID",
+  "name_zh": "虚空之唤",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，将1张随机牌添加到你的手牌中。添加的牌会获得虚无。",
+  "mechanics_zh": [
+    "在你的回合开始时，将1张随机牌添加到你的手牌中。",
+    "添加的牌会获得虚无。"
+  ],
+  "tags": [
+    "能力",
+    "虚无",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。在你的回合开始时，将1张随机牌添加到你的手牌中。添加的牌会获得虚无。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，将1张随机牌添加到你的手牌中。添加的牌会获得虚无。] 变为 [固有。在你的回合开始时，将1张随机牌添加到你的手牌中。添加的牌会获得虚无。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CALL_OF_THE_VOID",
+      "title_zh": "灰机 wiki：虚空之唤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%99%9A%E7%A9%BA%E4%B9%8B%E5%94%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

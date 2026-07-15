@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BONE_SHARDS",
+  "name_zh": "碎骨",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "如果奥斯提存活，则他对所有敌人造成9点伤害并且你获得9点格挡。然后奥斯提死去。",
+  "mechanics_zh": [
+    "如果奥斯提存活，则他对所有敌人造成9点伤害并且你获得9点格挡。",
+    "然后奥斯提死去。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "格挡",
+    "AOE",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：如果奥斯提存活，则他对所有敌人造成12点伤害并且你获得12点格挡。然后奥斯提死去。",
+    "changes_zh": [
+      "效果从 [如果奥斯提存活，则他对所有敌人造成9点伤害并且你获得9点格挡。然后奥斯提死去。] 变为 [如果奥斯提存活，则他对所有敌人造成12点伤害并且你获得12点格挡。然后奥斯提死去。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BONE_SHARDS",
+      "title_zh": "灰机 wiki：碎骨",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%A2%8E%E9%AA%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

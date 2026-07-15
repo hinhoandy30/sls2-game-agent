@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CLOAK_OF_STARS",
+  "name_zh": "群星斗篷",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得7点格挡。",
+  "mechanics_zh": [
+    "获得7点格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得10点格挡。",
+    "changes_zh": [
+      "效果从 [获得7点格挡。] 变为 [获得10点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CLOAK_OF_STARS",
+      "title_zh": "灰机 wiki：群星斗篷",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BE%A4%E6%98%9F%E6%96%97%E7%AF%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

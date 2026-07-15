@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BUNDLE_OF_JOY",
+  "name_zh": "新生之喜",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "将3张随机无色牌添加到你的手牌。消耗。",
+  "mechanics_zh": [
+    "将3张随机无色牌添加到你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将4张随机无色牌添加到你的手牌。消耗。",
+    "changes_zh": [
+      "效果从 [将3张随机无色牌添加到你的手牌。消耗。] 变为 [将4张随机无色牌添加到你的手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BUNDLE_OF_JOY",
+      "title_zh": "灰机 wiki：新生之喜",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%96%B0%E7%94%9F%E4%B9%8B%E5%96%9C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ARMAMENTS",
+  "name_zh": "武装",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。升级你手牌中的一张牌。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "升级你手牌中的一张牌。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得5点格挡。升级你手牌中的所有牌。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。升级你手牌中的一张牌。] 变为 [获得5点格挡。升级你手牌中的所有牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ARMAMENTS",
+      "title_zh": "灰机 wiki：武装",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%A6%E8%A3%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

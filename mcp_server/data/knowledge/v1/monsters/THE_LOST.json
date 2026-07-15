@@ -1,0 +1,40 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "THE_LOST",
+  "name_zh": "失落之物",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "失落之物是荣耀场景的普通怪物；基础生命 93，进阶生命 99。",
+  "pattern_zh": "英文静态数据列出行动：Debilitating Smog、Eye Lasers；具体行动顺序以 live intent 和运行时状态机为准。",
+  "moves": [
+    {
+      "name_zh": "Debilitating Smog（英文名）",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
+    },
+    {
+      "name_zh": "Eye Lasers（英文名）",
+      "effect_zh": "造成4点伤害；进阶后造成5点伤害。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：抢夺力量。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:THE_LOST",
+      "title_zh": "灰机 wiki：失落之物",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%B1%E8%90%BD%E4%B9%8B%E7%89%A9",
+      "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
+    }
+  ]
+}

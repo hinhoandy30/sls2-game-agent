@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PANIC_BUTTON",
+  "name_zh": "应急按钮",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得30点格挡。你在接下来的2回合内无法再从卡牌中获得格挡。消耗。",
+  "mechanics_zh": [
+    "获得30点格挡。",
+    "你在接下来的2回合内无法再从卡牌中获得格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得40点格挡。你在接下来的2回合内无法再从卡牌中获得格挡。消耗。",
+    "changes_zh": [
+      "效果从 [获得30点格挡。你在接下来的2回合内无法再从卡牌中获得格挡。消耗。] 变为 [获得40点格挡。你在接下来的2回合内无法再从卡牌中获得格挡。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PANIC_BUTTON",
+      "title_zh": "灰机 wiki：应急按钮",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BA%94%E6%80%A5%E6%8C%89%E9%92%AE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

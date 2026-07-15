@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TAG_TEAM",
+  "name_zh": "双打组合",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成11点伤害。其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。",
+  "mechanics_zh": [
+    "造成11点伤害。",
+    "其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成15点伤害。其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。",
+    "changes_zh": [
+      "效果从 [造成11点伤害。其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。] 变为 [造成15点伤害。其他玩家的下一张攻击牌将在该名敌人身上额外生效一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TAG_TEAM",
+      "title_zh": "灰机 wiki：双打组合",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8F%8C%E6%89%93%E7%BB%84%E5%90%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

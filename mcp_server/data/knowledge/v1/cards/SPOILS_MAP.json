@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SPOILS_MAP",
+  "name_zh": "藏宝图",
+  "character_ids": [
+    "TASK"
+  ],
+  "card_type": "Colorless",
+  "rarity": "Special",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在下一阶段的地图上，标记一个有600额外金币的地点。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在下一阶段的地图上，标记一个有600额外金币的地点。"
+  ],
+  "tags": [
+    "任务"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SPOILS_MAP",
+      "title_zh": "灰机 wiki：藏宝图",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%97%8F%E5%AE%9D%E5%9B%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NO_ESCAPE",
+  "name_zh": "无处可逃",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "给予10层灾厄，敌人身上每有10层灾厄，则额外给予这名敌人5层灾厄。",
+  "mechanics_zh": [
+    "给予10层灾厄，敌人身上每有10层灾厄，则额外给予这名敌人5层灾厄。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予15层灾厄，敌人身上每有10层灾厄，则额外给予这名敌人5层灾厄。",
+    "changes_zh": [
+      "效果从 [给予10层灾厄，敌人身上每有10层灾厄，则额外给予这名敌人5层灾厄。] 变为 [给予15层灾厄，敌人身上每有10层灾厄，则额外给予这名敌人5层灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NO_ESCAPE",
+      "title_zh": "灰机 wiki：无处可逃",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%A0%E5%A4%84%E5%8F%AF%E9%80%83",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

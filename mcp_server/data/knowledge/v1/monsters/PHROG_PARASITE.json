@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "PHROG_PARASITE",
+  "name_zh": "异蛙寄生虫",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "异蛙寄生虫是密林场景的精英怪物；基础生命 61-64，进阶生命 66-68。",
+  "pattern_zh": "= * 寄生物 (Infested) X：死亡后，将召唤(意图)||召唤 X 只“扭动虫 (Wrigglers)”。 召唤出的蠕虫出场时处于眩晕状态。 ** 召唤(意图)||召唤行为在死亡后立即执行，因此多段的非指向性攻击伤害（如卡牌：连射、卡牌：万向斩）可以直接攻击到所召唤的扭动虫，先造成伤害后给予状态的效果（如卡牌：击掌、卡牌：苦难）也可以将状态给予所召唤的扭动虫。 ===行为=== flowchart LR A((\"开始\")) --> 感染 --> 甩动 --> 感染 {| class=\"wikitable mw-collapsible\" !行为名称 !效果 !效果进阶9+ !备注 |- |感染。 (Infect) |向你的弃牌堆洗入3张卡牌：感染。 |向你的弃牌堆洗入3张卡牌：感染。 | |- |甩动。 (Lash) |造成4×4伤害。 （共16点） |造成5×4伤害。 （共20点） | |} clear。 页面列出的行为包括：感染、甩动；具体循环以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "感染",
+      "effect_zh": "效果：向你的弃牌堆洗入3张卡牌：感染；效果进阶9+：向你的弃牌堆洗入3张卡牌：感染。"
+    },
+    {
+      "name_zh": "甩动",
+      "effect_zh": "效果：造成4×4伤害。（共16点）；效果进阶9+：造成5×4伤害。（共20点）。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：寄生物。",
+    "该怪物可能召唤或生成额外单位。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:PHROG_PARASITE",
+      "title_zh": "灰机 wiki：异蛙寄生虫",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%82%E8%9B%99%E5%AF%84%E7%94%9F%E8%99%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

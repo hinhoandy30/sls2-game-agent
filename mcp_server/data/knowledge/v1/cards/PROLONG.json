@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PROLONG",
+  "name_zh": "延伸",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "在下个回合获得等量于你当前格挡值的格挡。消耗。",
+  "mechanics_zh": [
+    "在下个回合获得等量于你当前格挡值的格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在下个回合获得等量于你当前格挡值的格挡。",
+    "changes_zh": [
+      "效果从 [在下个回合获得等量于你当前格挡值的格挡。消耗。] 变为 [在下个回合获得等量于你当前格挡值的格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PROLONG",
+      "title_zh": "灰机 wiki：延伸",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BB%B6%E4%BC%B8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

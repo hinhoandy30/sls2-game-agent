@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BAD_LUCK",
+  "name_zh": "霉运",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，你失去13点生命。永恒。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，你失去13点生命。",
+    "永恒。"
+  ],
+  "tags": [
+    "诅咒",
+    "生命"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BAD_LUCK",
+      "title_zh": "灰机 wiki：霉运",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%9C%89%E8%BF%90",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

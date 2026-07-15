@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GLOW",
+  "name_zh": "辉光",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得1点辉星。抽1张牌。下一回合抽1张牌。",
+  "mechanics_zh": [
+    "获得1点辉星。",
+    "抽1张牌。",
+    "下一回合抽1张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得2点辉星。抽1张牌。下一回合抽1张牌。",
+    "changes_zh": [
+      "效果从 [获得1点辉星。抽1张牌。下一回合抽1张牌。] 变为 [获得2点辉星。抽1张牌。下一回合抽1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GLOW",
+      "title_zh": "灰机 wiki：辉光",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BE%89%E5%85%89",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "QUADCAST",
+  "name_zh": "四重释放",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "激发你最右侧的充能球4次。",
+  "mechanics_zh": [
+    "激发你最右侧的充能球4次。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：激发你最右侧的充能球4次。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:QUADCAST",
+      "title_zh": "灰机 wiki：四重释放",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9B%9B%E9%87%8D%E9%87%8A%E6%94%BE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

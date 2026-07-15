@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DREDGE",
+  "name_zh": "清淤",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "将3张牌从弃牌堆加入你的手牌。消耗。",
+  "mechanics_zh": [
+    "将3张牌从弃牌堆加入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。将3张牌从弃牌堆加入你的手牌。消耗。",
+    "changes_zh": [
+      "效果从 [将3张牌从弃牌堆加入你的手牌。消耗。] 变为 [保留。将3张牌从弃牌堆加入你的手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DREDGE",
+      "title_zh": "灰机 wiki：清淤",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B8%85%E6%B7%A4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

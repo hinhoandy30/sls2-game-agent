@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "BATTLEWORN_DUMMY",
+  "name_zh": "战痕累累的训练假人",
+  "act_ids": [
+    "GLORY"
+  ],
+  "summary_zh": "战痕累累的训练假人事件，出现于第三阶段荣耀场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第三阶段荣耀场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：第1档；结果/详情：与一个75点生命值的假人战斗。随机获取1瓶药水。",
+    "选项：第2档；结果/详情：与一个150点生命值的假人战斗。随机升级2张牌。",
+    "选项：第3档；结果/详情：与一个300点生命值的假人战斗。获取一件随机遗物。",
+    "选项：未命名选项。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:BATTLEWORN_DUMMY",
+      "title_zh": "灰机 wiki：战痕累累的训练假人",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E7%97%95%E7%B4%AF%E7%B4%AF%E7%9A%84%E8%AE%AD%E7%BB%83%E5%81%87%E4%BA%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "FOSSIL_STALKER",
+  "name_zh": "化石追踪者",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "化石追踪者是暗港场景的普通怪物；基础生命 51-53，进阶生命 54-56。",
+  "pattern_zh": "* 吮吸 (Suck) 3：每次该怪物造成未被格挡的伤害时，获得 3 点力量。 ** 在多人游戏中，如果它命中任意玩家，现在会获得固定数额的力量，而不是按命中玩家的数量获得力量。 行动状态转移：A -> 缠上；缠上 -> R；冲撞 -> R；甩动 -> R；R -> 缠上；R -> 冲撞；R -> 甩动。",
+  "moves": [
+    {
+      "name_zh": "缠上",
+      "effect_zh": "效果：造成12点伤害；效果进阶9+：造成14点伤害；备注：必定作为第1回合行动。后续在随机池中不可连续使用超过 2 次。"
+    },
+    {
+      "name_zh": "冲撞",
+      "effect_zh": "效果：造成9点伤害。给予1层脆弱；效果进阶9+：造成11点伤害。给予1层脆弱；备注：不可连续使用超过 2 次。"
+    },
+    {
+      "name_zh": "甩动",
+      "effect_zh": "效果：造成3×2伤害。（共6点）；效果进阶9+：造成4×2伤害。（共8点）；备注：不可连续使用超过 2 次。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：吮吸3。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:FOSSIL_STALKER",
+      "title_zh": "灰机 wiki：化石追踪者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8C%96%E7%9F%B3%E8%BF%BD%E8%B8%AA%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

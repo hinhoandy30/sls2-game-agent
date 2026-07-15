@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEBILITATE",
+  "name_zh": "摧残",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。在接下来的2回合内，该敌人身上的易伤与虚弱效果翻倍。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "在接下来的2回合内，该敌人身上的易伤与虚弱效果翻倍。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。在接下来的3回合内，该敌人身上的易伤与虚弱效果翻倍。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。在接下来的2回合内，该敌人身上的易伤与虚弱效果翻倍。] 变为 [造成12点伤害。在接下来的3回合内，该敌人身上的易伤与虚弱效果翻倍。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEBILITATE",
+      "title_zh": "灰机 wiki：摧残",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%91%A7%E6%AE%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

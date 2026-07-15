@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CACOPHONY",
+  "name_zh": "Cacophony",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "Every 33 cards drawn by ALL players, deal 66 damage to a random enemy.",
+  "mechanics_zh": [
+    "Every 33 cards drawn by ALL players, deal 66 damage to a random enemy.。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：Every 33 cards drawn by ALL players, deal 99 damage to a random enemy.",
+    "changes_zh": [
+      "效果从 [Every 33 cards drawn by ALL players, deal 66 damage to a random enemy.] 变为 [Every 33 cards drawn by ALL players, deal 99 damage to a random enemy.]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CACOPHONY",
+      "title_zh": "灰机 wiki：Cacophony",
+      "url": "https://sts2.huijiwiki.com/wiki/Cacophony",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

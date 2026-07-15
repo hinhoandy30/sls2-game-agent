@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENFEEBLING_TOUCH",
+  "name_zh": "弱化之触",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。让一名敌人在本回合内失去8点力量。",
+  "mechanics_zh": [
+    "虚无。",
+    "让一名敌人在本回合内失去8点力量。"
+  ],
+  "tags": [
+    "技能",
+    "虚无",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。让一名敌人在本回合内失去11点力量。",
+    "changes_zh": [
+      "效果从 [虚无。让一名敌人在本回合内失去8点力量。] 变为 [虚无。让一名敌人在本回合内失去11点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENFEEBLING_TOUCH",
+      "title_zh": "灰机 wiki：弱化之触",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%B1%E5%8C%96%E4%B9%8B%E8%A7%A6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

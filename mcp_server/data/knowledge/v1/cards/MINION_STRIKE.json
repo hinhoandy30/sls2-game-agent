@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MINION_STRIKE",
+  "name_zh": "仆从打击",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成6点伤害。抽1张牌。消耗。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "抽1张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。抽1张牌。消耗。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。抽1张牌。消耗。] 变为 [造成9点伤害。抽1张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MINION_STRIKE",
+      "title_zh": "灰机 wiki：仆从打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BB%86%E4%BB%8E%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

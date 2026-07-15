@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BOUNCING_FLASK",
+  "name_zh": "弹跳药瓶",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "随机给予敌人3层中毒3次。",
+  "mechanics_zh": [
+    "随机给予敌人3层中毒3次。"
+  ],
+  "tags": [
+    "技能",
+    "中毒",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：随机给予敌人3层中毒4次。",
+    "changes_zh": [
+      "效果从 [随机给予敌人3层中毒3次。] 变为 [随机给予敌人3层中毒4次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BOUNCING_FLASK",
+      "title_zh": "灰机 wiki：弹跳药瓶",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%B9%E8%B7%B3%E8%8D%AF%E7%93%B6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

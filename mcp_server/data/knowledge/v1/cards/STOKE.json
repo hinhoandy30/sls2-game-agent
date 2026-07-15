@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "STOKE",
+  "name_zh": "添柴",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "消耗所有手牌。每消耗一张牌，将1张随机牌加入你的手牌。",
+  "mechanics_zh": [
+    "消耗所有手牌。",
+    "每消耗一张牌，将1张随机牌加入你的手牌。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：消耗所有手牌。每消耗一张牌，将1张随机已升级的牌加入你的手牌。",
+    "changes_zh": [
+      "效果从 [消耗所有手牌。每消耗一张牌，将1张随机牌加入你的手牌。] 变为 [消耗所有手牌。每消耗一张牌，将1张随机已升级的牌加入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:STOKE",
+      "title_zh": "灰机 wiki：添柴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B7%BB%E6%9F%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

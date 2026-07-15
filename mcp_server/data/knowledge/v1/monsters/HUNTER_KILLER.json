@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "HUNTER_KILLER",
+  "name_zh": "猎人杀手",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "猎人杀手是巢穴场景的普通怪物；基础生命 121，进阶生命 126。",
+  "pattern_zh": "* 柔嫩 (Tender)：极具破坏力的专属负面状态。 你每打出一张牌，在本回合内失去 1 点力量和 1 点敏捷。 行动状态转移：嫩化黏液 -> R -> R。",
+  "moves": [
+    {
+      "name_zh": "嫩化黏液",
+      "effect_zh": "效果：给予玩家柔嫩；效果进阶9+：给予玩家柔嫩；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "啃咬",
+      "effect_zh": "效果：造成17点伤害；效果进阶9+：造成19点伤害；备注：不可连续使用。"
+    },
+    {
+      "name_zh": "刺穿",
+      "effect_zh": "效果：造成7×3伤害。（共21点）；效果进阶9+：造成8×3伤害。（共24点）；备注：不可连续使用超过 2 次。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:HUNTER_KILLER",
+      "title_zh": "灰机 wiki：猎人杀手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8C%8E%E4%BA%BA%E6%9D%80%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

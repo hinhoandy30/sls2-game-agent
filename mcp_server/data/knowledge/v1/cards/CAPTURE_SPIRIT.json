@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CAPTURE_SPIRIT",
+  "name_zh": "捕捉灵魂",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "敌人失去3点生命。将3张灵魂加入你的抽牌堆。",
+  "mechanics_zh": [
+    "敌人失去3点生命。",
+    "将3张灵魂加入你的抽牌堆。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：敌人失去4点生命。将4张灵魂加入你的抽牌堆。",
+    "changes_zh": [
+      "效果从 [敌人失去3点生命。将3张灵魂加入你的抽牌堆。] 变为 [敌人失去4点生命。将4张灵魂加入你的抽牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CAPTURE_SPIRIT",
+      "title_zh": "灰机 wiki：捕捉灵魂",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8D%95%E6%8D%89%E7%81%B5%E9%AD%82",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

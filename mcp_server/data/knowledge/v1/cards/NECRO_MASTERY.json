@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NECRO_MASTERY",
+  "name_zh": "亡灵精通",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "召唤5。每当奥斯提失去生命值时，。所有敌人失去等量生命值。",
+  "mechanics_zh": [
+    "召唤5。",
+    "每当奥斯提失去生命值时，。",
+    "所有敌人失去等量生命值。"
+  ],
+  "tags": [
+    "能力",
+    "AOE",
+    "召唤",
+    "奥斯提",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：召唤8。每当奥斯提失去生命值时，。所有敌人失去等量生命值。",
+    "changes_zh": [
+      "效果从 [召唤5。每当奥斯提失去生命值时，。所有敌人失去等量生命值。] 变为 [召唤8。每当奥斯提失去生命值时，。所有敌人失去等量生命值。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NECRO_MASTERY",
+      "title_zh": "灰机 wiki：亡灵精通",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BA%A1%E7%81%B5%E7%B2%BE%E9%80%9A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

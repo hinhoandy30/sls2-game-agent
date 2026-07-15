@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MASTER_OF_STRATEGY",
+  "name_zh": "战略大师",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽3张牌。消耗。",
+  "mechanics_zh": [
+    "抽3张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽4张牌。消耗。",
+    "changes_zh": [
+      "效果从 [抽3张牌。消耗。] 变为 [抽4张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MASTER_OF_STRATEGY",
+      "title_zh": "灰机 wiki：战略大师",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E7%95%A5%E5%A4%A7%E5%B8%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

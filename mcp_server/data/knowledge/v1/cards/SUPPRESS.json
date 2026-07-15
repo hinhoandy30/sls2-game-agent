@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SUPPRESS",
+  "name_zh": "压制",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "固有。造成11点伤害。给予3层虚弱。",
+  "mechanics_zh": [
+    "固有。",
+    "造成11点伤害。",
+    "给予3层虚弱。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "固有",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。造成17点伤害。给予5层虚弱。",
+    "changes_zh": [
+      "效果从 [固有。造成11点伤害。给予3层虚弱。] 变为 [固有。造成17点伤害。给予5层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SUPPRESS",
+      "title_zh": "灰机 wiki：压制",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8E%8B%E5%88%B6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

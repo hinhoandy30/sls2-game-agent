@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SCROLL_OF_BITING",
+  "name_zh": "咬人卷轴",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "咬人卷轴是荣耀场景的普通怪物；基础生命 30-37，进阶生命 33-39。",
+  "pattern_zh": "* 纸伤难愈 (Paper Cuts) 2：每次你受到来自该怪物未被格挡的攻击伤害时，失去 2 点最大生命值。 行动状态转移：大啃 -> 更多牙齿；更多牙齿 -> 咀嚼；咀嚼 -> R；R -- \"50%\" -> 大啃；R -- \"50%\" -> 更多牙齿。",
+  "moves": [
+    {
+      "name_zh": "大啃",
+      "effect_zh": "效果：造成14点伤害；效果进阶9+：造成16点伤害；备注：使用后，下回合必定接续“更多牙齿”。"
+    },
+    {
+      "name_zh": "更多牙齿",
+      "effect_zh": "效果：获得2点力量；效果进阶9+：获得2点力量；备注：使用后，下回合必定接续“咀嚼”。"
+    },
+    {
+      "name_zh": "咀嚼",
+      "effect_zh": "效果：造成5×2伤害。（共10点）；效果进阶9+：造成6×2伤害。（共12点）；备注：使用后，下回合在“大口咬”与“更多牙齿”中随机选择一招。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：纸伤难愈2。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SCROLL_OF_BITING",
+      "title_zh": "灰机 wiki：咬人卷轴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%92%AC%E4%BA%BA%E5%8D%B7%E8%BD%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

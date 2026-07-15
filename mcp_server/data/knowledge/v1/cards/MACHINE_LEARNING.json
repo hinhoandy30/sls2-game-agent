@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MACHINE_LEARNING",
+  "name_zh": "机器学习",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，额外抽1张牌。",
+  "mechanics_zh": [
+    "在你的回合开始时，额外抽1张牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。在你的回合开始时，额外抽1张牌。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，额外抽1张牌。] 变为 [固有。在你的回合开始时，额外抽1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MACHINE_LEARNING",
+      "title_zh": "灰机 wiki：机器学习",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

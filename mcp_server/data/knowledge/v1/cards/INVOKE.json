@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "INVOKE",
+  "name_zh": "唤起",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "在下个回合召唤2并获得2点能量。",
+  "mechanics_zh": [
+    "在下个回合召唤2并获得2点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "召唤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在下个回合召唤3并获得3点能量。",
+    "changes_zh": [
+      "效果从 [在下个回合召唤2并获得2点能量。] 变为 [在下个回合召唤3并获得3点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:INVOKE",
+      "title_zh": "灰机 wiki：唤起",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%94%A4%E8%B5%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

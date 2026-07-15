@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BEGONE",
+  "name_zh": "下去！",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "选择你手牌中的一张牌，将其变化为仆从打击。",
+  "mechanics_zh": [
+    "选择你手牌中的一张牌，将其变化为仆从打击。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：选择你手牌中的一张牌，将其变化为仆从打击+。",
+    "changes_zh": [
+      "效果从 [选择你手牌中的一张牌，将其变化为仆从打击。] 变为 [选择你手牌中的一张牌，将其变化为仆从打击+。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BEGONE",
+      "title_zh": "灰机 wiki：下去！",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%8B%E5%8E%BB%EF%BC%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

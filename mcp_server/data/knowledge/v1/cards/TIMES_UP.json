@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TIMES_UP",
+  "name_zh": "大限已至",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成等量于该敌人身上的灾厄层数的伤害。消耗。",
+  "mechanics_zh": [
+    "造成等量于该敌人身上的灾厄层数的伤害。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。造成等量于该敌人身上的灾厄层数的伤害。消耗。",
+    "changes_zh": [
+      "效果从 [造成等量于该敌人身上的灾厄层数的伤害。消耗。] 变为 [保留。造成等量于该敌人身上的灾厄层数的伤害。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TIMES_UP",
+      "title_zh": "灰机 wiki：大限已至",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%A7%E9%99%90%E5%B7%B2%E8%87%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "OFFERING",
+  "name_zh": "祭品",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "失去6点生命。获得2点能量。抽3张牌。消耗。",
+  "mechanics_zh": [
+    "失去6点生命。",
+    "获得2点能量。",
+    "抽3张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "能量",
+    "消耗",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去6点生命。获得2点能量。抽5张牌。消耗。",
+    "changes_zh": [
+      "效果从 [失去6点生命。获得2点能量。抽3张牌。消耗。] 变为 [失去6点生命。获得2点能量。抽5张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:OFFERING",
+      "title_zh": "灰机 wiki：祭品",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%A5%AD%E5%93%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

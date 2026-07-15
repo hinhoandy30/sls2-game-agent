@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEATH_MARCH",
+  "name_zh": "死亡行军",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成8点伤害。你在回合进行中每抽到一张牌，都会使其额外造成4点伤害。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "你在回合进行中每抽到一张牌，都会使其额外造成4点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成9点伤害。你在回合进行中每抽到一张牌，都会使其额外造成6点伤害。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。你在回合进行中每抽到一张牌，都会使其额外造成4点伤害。] 变为 [造成9点伤害。你在回合进行中每抽到一张牌，都会使其额外造成6点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEATH_MARCH",
+      "title_zh": "灰机 wiki：死亡行军",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E4%BA%A1%E8%A1%8C%E5%86%9B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

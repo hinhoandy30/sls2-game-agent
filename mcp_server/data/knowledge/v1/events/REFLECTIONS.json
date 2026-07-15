@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "REFLECTIONS",
+  "name_zh": "镜中倒影  影倒中镜",
+  "act_ids": [
+    "GLORY"
+  ],
+  "summary_zh": "镜中倒影  影倒中镜事件，出现于第三阶段荣耀场景；前置条件：需要解锁对应时间线（揭示重新开放-第6章-他们回来了）。",
+  "flow_facts_zh": [
+    "出现阶段：第三阶段荣耀场景。",
+    "前置条件：需要解锁对应时间线（揭示重新开放-第6章-他们回来了）。",
+    "选项：打碎；结果/详情：复制你的整个牌组。获得霉运。",
+    "选项：触碰镜子；结果/详情：降级2张随机卡牌。升级4张随机卡牌；备注：卡牌：霉运；·卡牌：霉运会在卡组复制后加入，即它本身不会被复制；·可以升级刚才被降级的卡牌。",
+    "选项：打碎。",
+    "选项：触碰镜子。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:REFLECTIONS",
+      "title_zh": "灰机 wiki：镜中倒影  影倒中镜",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%95%9C%E4%B8%AD%E5%80%92%E5%BD%B1%20%20%E5%BD%B1%E5%80%92%E4%B8%AD%E9%95%9C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

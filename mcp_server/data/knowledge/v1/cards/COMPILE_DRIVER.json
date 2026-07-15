@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COMPILE_DRIVER",
+  "name_zh": "编译冲击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成7点伤害。你每有一种不同的充能球，就抽一张牌。（抽0张牌）",
+  "mechanics_zh": [
+    "造成7点伤害。",
+    "你每有一种不同的充能球，就抽一张牌。",
+    "（抽0张牌）。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成10点伤害。你每有一种不同的充能球，就抽一张牌。（抽0张牌）",
+    "changes_zh": [
+      "效果从 [造成7点伤害。你每有一种不同的充能球，就抽一张牌。（抽0张牌）] 变为 [造成10点伤害。你每有一种不同的充能球，就抽一张牌。（抽0张牌）]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COMPILE_DRIVER",
+      "title_zh": "灰机 wiki：编译冲击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BC%96%E8%AF%91%E5%86%B2%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

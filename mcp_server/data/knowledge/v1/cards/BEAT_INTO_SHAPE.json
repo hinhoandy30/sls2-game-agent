@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BEAT_INTO_SHAPE",
+  "name_zh": "锻打成型",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成5点伤害。铸造5。本回合内，你此前每击中过该敌人一次，这张牌就额外铸造5点。",
+  "mechanics_zh": [
+    "造成5点伤害。",
+    "铸造5。",
+    "本回合内，你此前每击中过该敌人一次，这张牌就额外铸造5点。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成7点伤害。铸造7。本回合内，你此前每击中过该敌人一次，这张牌就额外铸造7点。",
+    "changes_zh": [
+      "效果从 [造成5点伤害。铸造5。本回合内，你此前每击中过该敌人一次，这张牌就额外铸造5点。] 变为 [造成7点伤害。铸造7。本回合内，你此前每击中过该敌人一次，这张牌就额外铸造7点。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BEAT_INTO_SHAPE",
+      "title_zh": "灰机 wiki：锻打成型",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%94%BB%E6%89%93%E6%88%90%E5%9E%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

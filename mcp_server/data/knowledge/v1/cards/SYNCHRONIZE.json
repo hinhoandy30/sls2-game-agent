@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SYNCHRONIZE",
+  "name_zh": "同步",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "你每有一种不同的充能球，就在本回合获得2点集中。消耗。",
+  "mechanics_zh": [
+    "你每有一种不同的充能球，就在本回合获得2点集中。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "集中"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每有一种不同的充能球，就在本回合获得2点集中。",
+    "changes_zh": [
+      "效果从 [你每有一种不同的充能球，就在本回合获得2点集中。消耗。] 变为 [你每有一种不同的充能球，就在本回合获得2点集中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SYNCHRONIZE",
+      "title_zh": "灰机 wiki：同步",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%8C%E6%AD%A5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

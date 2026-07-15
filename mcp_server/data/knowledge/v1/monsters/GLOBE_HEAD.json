@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "GLOBE_HEAD",
+  "name_zh": "电球头",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "电球头是荣耀场景的普通怪物；基础生命 148，进阶生命 158。",
+  "pattern_zh": "* 流电6：出场自带。 每当你打出一张能力牌时，你受到 6 点伤害。 ** 这个伤害无法被奥斯提阻挡。 行动状态转移：A -> 电击掌；电击掌 -> 雷霆打击；雷霆打击 -> 流电爆发；流电爆发 -> 电击掌。",
+  "moves": [
+    {
+      "name_zh": "电击掌",
+      "effect_zh": "效果：造成13点伤害。给予2层脆弱；效果进阶9+：造成14点伤害。给予2层脆弱。"
+    },
+    {
+      "name_zh": "生成闪电",
+      "effect_zh": "效果：造成6×3伤害。（共18点）；效果进阶9+：造成7×3伤害。（共21点）。"
+    },
+    {
+      "name_zh": "流电爆发",
+      "effect_zh": "效果：造成16点伤害。获得2点力量；效果进阶9+：造成17点伤害。获得2点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：流电6。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:GLOBE_HEAD",
+      "title_zh": "灰机 wiki：电球头",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%94%B5%E7%90%83%E5%A4%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

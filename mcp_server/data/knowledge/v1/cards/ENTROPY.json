@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ENTROPY",
+  "name_zh": "熵",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，变化你手牌中的1张牌。",
+  "mechanics_zh": [
+    "在你的回合开始时，变化你手牌中的1张牌。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。在你的回合开始时，变化你手牌中的1张牌。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，变化你手牌中的1张牌。] 变为 [固有。在你的回合开始时，变化你手牌中的1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ENTROPY",
+      "title_zh": "灰机 wiki：熵",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%86%B5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

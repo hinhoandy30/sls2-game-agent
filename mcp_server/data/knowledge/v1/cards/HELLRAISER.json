@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HELLRAISER",
+  "name_zh": "地狱狂徒",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当你抽到名字中有“打击”的牌时，对一名随机敌人打出这张牌。",
+  "mechanics_zh": [
+    "每当你抽到名字中有“打击”的牌时，对一名随机敌人打出这张牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你抽到名字中有“打击”的牌时，对一名随机敌人打出这张牌。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HELLRAISER",
+      "title_zh": "灰机 wiki：地狱狂徒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9C%B0%E7%8B%B1%E7%8B%82%E5%BE%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

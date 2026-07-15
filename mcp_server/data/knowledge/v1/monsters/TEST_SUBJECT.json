@@ -1,0 +1,67 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "TEST_SUBJECT",
+  "name_zh": "实验体 #C8",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "实验体 #C8是荣耀场景的Boss怪物；基础生命 100 / 200 / 300，进阶生命 111 / 212 / 313。",
+  "pattern_zh": "* 实验体拥有三个阶段。 当上一阶段的生命值耗尽时，战斗不会结束而是进入一回合的复活等待。 复活后进入下一阶段，生命回满并变更攻击模式和被动能力。 * 实验体复活时不会继承上一阶段的任何状态效果，包括第一阶段获得的力量。 * 在等待实验体复活期间，需要指定敌人的卡牌或药水无法使用。 行动状态转移：噬咬 -> 颅骨重击；颅骨重击 -> 噬咬。",
+  "moves": [
+    {
+      "name_zh": "! colspan=\"4\" style=\"text-align:center; background:#cccccc;\" | 阶段一：生命值 100",
+      "effect_zh": "效果未知；以 live intent 为准。"
+    },
+    {
+      "name_zh": "噬咬",
+      "effect_zh": "效果：造成20点伤害；效果进阶9+：造成22点伤害。"
+    },
+    {
+      "name_zh": "颅骨重击",
+      "effect_zh": "效果：造成14点伤害。给予1层易伤；效果进阶9+：造成16点伤害。给予1层易伤。"
+    },
+    {
+      "name_zh": "重生",
+      "effect_zh": "效果：colspan=\"2\" |恢复下一阶段的全部生命，移除上一阶段的状态，并获得下一阶段的能力；效果进阶9+：第一、第二阶段生命值耗尽后各使用一次；该回合不进行攻击。"
+    },
+    {
+      "name_zh": "! colspan=\"4\" style=\"text-align:center; background:#cccccc;\" | 阶段二：生命值 200",
+      "effect_zh": "效果未知；以 live intent 为准。"
+    },
+    {
+      "name_zh": "多次爪击",
+      "effect_zh": "效果：造成3+N次伤害，每次10点；效果进阶9+：造成3+N次伤害，每次11点；备注：N为该行动已使用的次数。"
+    },
+    {
+      "name_zh": "! colspan=\"4\" style=\"text-align:center; background:#cccccc;\" | 阶段三：生命值 300",
+      "effect_zh": "效果未知；以 live intent 为准。"
+    },
+    {
+      "name_zh": "撕碎",
+      "effect_zh": "效果：造成10×3伤害。（共30点）；效果进阶9+：造成11×3伤害。（共33点）。"
+    },
+    {
+      "name_zh": "大力猛扑",
+      "effect_zh": "效果：造成45点伤害；效果进阶9+：造成45点伤害。"
+    },
+    {
+      "name_zh": "燃烧之吼",
+      "effect_zh": "效果：向弃牌堆洗入3张卡牌：灼伤。获得2点力量；效果进阶9+：向弃牌堆洗入5张卡牌：灼伤。获得3点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：适者生存激怒2 （高进阶3）。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能施加易伤，后续受到攻击时当前 live powers 更重要。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:TEST_SUBJECT",
+      "title_zh": "灰机 wiki：实验体 #C8",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AE%9E%E9%AA%8C%E4%BD%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SPINY_TOAD",
+  "name_zh": "棘刺蟾蜍",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "棘刺蟾蜍是巢穴场景的普通怪物；基础生命 116-119，进阶生命 121-124。",
+  "pattern_zh": "行动状态转移：A -> 伸出尖刺；伸出尖刺 -> 尖刺爆破；尖刺爆破 -> 吐舌；吐舌 -> 伸出尖刺。",
+  "moves": [
+    {
+      "name_zh": "伸出尖刺",
+      "effect_zh": "效果：获得5层荆棘；效果进阶9+：获得5层荆棘。"
+    },
+    {
+      "name_zh": "尖刺爆破",
+      "effect_zh": "效果：造成23点伤害。失去5层荆棘；效果进阶9+：造成25点伤害。失去5层荆棘。"
+    },
+    {
+      "name_zh": "吐舌",
+      "effect_zh": "效果：造成17点伤害；效果进阶9+：造成19点伤害。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SPINY_TOAD",
+      "title_zh": "灰机 wiki：棘刺蟾蜍",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%A3%98%E5%88%BA%E8%9F%BE%E8%9C%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

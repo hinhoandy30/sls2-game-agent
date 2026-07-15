@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GOLD_AXE",
+  "name_zh": "金斧",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成本场战斗中所打出牌数的伤害。",
+  "mechanics_zh": [
+    "造成本场战斗中所打出牌数的伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。造成本场战斗中所打出牌数的伤害。",
+    "changes_zh": [
+      "效果从 [造成本场战斗中所打出牌数的伤害。] 变为 [保留。造成本场战斗中所打出牌数的伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GOLD_AXE",
+      "title_zh": "灰机 wiki：金斧",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%91%E6%96%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

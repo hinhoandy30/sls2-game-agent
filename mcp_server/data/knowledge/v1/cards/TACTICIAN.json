@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TACTICIAN",
+  "name_zh": "战术大师",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "奇巧。获得1点能量。",
+  "mechanics_zh": [
+    "奇巧。",
+    "获得1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。获得2点能量。",
+    "changes_zh": [
+      "效果从 [奇巧。获得1点能量。] 变为 [奇巧。获得2点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TACTICIAN",
+      "title_zh": "灰机 wiki：战术大师",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E6%9C%AF%E5%A4%A7%E5%B8%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

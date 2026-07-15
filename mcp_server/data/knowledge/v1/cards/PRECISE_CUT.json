@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PRECISE_CUT",
+  "name_zh": "精确切击",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成13点伤害。你的手牌中每有一张牌，此牌的伤害就降低2点。",
+  "mechanics_zh": [
+    "造成13点伤害。",
+    "你的手牌中每有一张牌，此牌的伤害就降低2点。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成16点伤害。你的手牌中每有一张牌，此牌的伤害就降低2点。",
+    "changes_zh": [
+      "效果从 [造成13点伤害。你的手牌中每有一张牌，此牌的伤害就降低2点。] 变为 [造成16点伤害。你的手牌中每有一张牌，此牌的伤害就降低2点。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PRECISE_CUT",
+      "title_zh": "灰机 wiki：精确切击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%B2%BE%E7%A1%AE%E5%88%87%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

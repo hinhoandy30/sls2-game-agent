@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RUPTURE",
+  "name_zh": "撕裂",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你在你的回合失去生命值时, 获得1点力量。",
+  "mechanics_zh": [
+    "每当你在你的回合失去生命值时, 获得1点力量。"
+  ],
+  "tags": [
+    "能力",
+    "力量",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你在你的回合失去生命值时, 获得2点力量。",
+    "changes_zh": [
+      "效果从 [每当你在你的回合失去生命值时, 获得1点力量。] 变为 [每当你在你的回合失去生命值时, 获得2点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RUPTURE",
+      "title_zh": "灰机 wiki：撕裂",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%92%95%E8%A3%82",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

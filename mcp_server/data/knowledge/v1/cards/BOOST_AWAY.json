@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BOOST_AWAY",
+  "name_zh": "高速脱离",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得6点格挡。将一张晕眩添加到你的弃牌堆中。",
+  "mechanics_zh": [
+    "获得6点格挡。",
+    "将一张晕眩添加到你的弃牌堆中。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得9点格挡。将一张晕眩添加到你的弃牌堆中。",
+    "changes_zh": [
+      "效果从 [获得6点格挡。将一张晕眩添加到你的弃牌堆中。] 变为 [获得9点格挡。将一张晕眩添加到你的弃牌堆中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BOOST_AWAY",
+      "title_zh": "灰机 wiki：高速脱离",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AB%98%E9%80%9F%E8%84%B1%E7%A6%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

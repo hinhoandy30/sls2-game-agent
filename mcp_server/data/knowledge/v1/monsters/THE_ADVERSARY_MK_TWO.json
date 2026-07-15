@@ -1,0 +1,43 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "THE_ADVERSARY_MK_TWO",
+  "name_zh": "对手2型",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "encounter_pool_zh": "未知阶段场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "对手2型是未知阶段场景的普通怪物；基础生命 200，进阶生命 200。",
+  "pattern_zh": "英文静态数据列出行动：Bash、Flame Beam、Barrage；具体行动顺序以 live intent 和运行时状态机为准。",
+  "moves": [
+    {
+      "name_zh": "Bash（英文名）",
+      "effect_zh": "造成13点伤害。"
+    },
+    {
+      "name_zh": "Flame Beam（英文名）",
+      "effect_zh": "造成16点伤害。"
+    },
+    {
+      "name_zh": "Barrage（英文名）",
+      "effect_zh": "造成9点伤害。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人工制品1。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:THE_ADVERSARY_MK_TWO",
+      "title_zh": "灰机 wiki：对手2型",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AF%B9%E6%89%8B2%E5%9E%8B",
+      "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FAN_OF_KNIVES",
+  "name_zh": "刀扇",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "小刀现在会攻击所有敌人。将4张小刀添加到你的手牌。",
+  "mechanics_zh": [
+    "小刀现在会攻击所有敌人。",
+    "将4张小刀添加到你的手牌。"
+  ],
+  "tags": [
+    "能力",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：小刀现在会攻击所有敌人。将5张小刀添加到你的手牌。",
+    "changes_zh": [
+      "效果从 [小刀现在会攻击所有敌人。将4张小刀添加到你的手牌。] 变为 [小刀现在会攻击所有敌人。将5张小刀添加到你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FAN_OF_KNIVES",
+      "title_zh": "灰机 wiki：刀扇",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%88%80%E6%89%87",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COMPACT",
+  "name_zh": "压缩",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得6点格挡。将你手牌中的全部状态牌变化为燃料。",
+  "mechanics_zh": [
+    "获得6点格挡。",
+    "将你手牌中的全部状态牌变化为燃料。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得7点格挡。将你手牌中的全部状态牌变化为燃料+。",
+    "changes_zh": [
+      "效果从 [获得6点格挡。将你手牌中的全部状态牌变化为燃料。] 变为 [获得7点格挡。将你手牌中的全部状态牌变化为燃料+。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COMPACT",
+      "title_zh": "灰机 wiki：压缩",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8E%8B%E7%BC%A9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

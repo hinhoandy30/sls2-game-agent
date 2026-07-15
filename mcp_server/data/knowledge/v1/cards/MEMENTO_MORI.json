@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MEMENTO_MORI",
+  "name_zh": "铭记死亡",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成9点伤害。本回合每丢弃过一张牌，则增加4点额外伤害。",
+  "mechanics_zh": [
+    "造成9点伤害。",
+    "本回合每丢弃过一张牌，则增加4点额外伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成11点伤害。本回合每丢弃过一张牌，则增加5点额外伤害。",
+    "changes_zh": [
+      "效果从 [造成9点伤害。本回合每丢弃过一张牌，则增加4点额外伤害。] 变为 [造成11点伤害。本回合每丢弃过一张牌，则增加5点额外伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MEMENTO_MORI",
+      "title_zh": "灰机 wiki：铭记死亡",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%93%AD%E8%AE%B0%E6%AD%BB%E4%BA%A1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

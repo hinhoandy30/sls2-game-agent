@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PHOTON_CUT",
+  "name_zh": "光子切割",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。抽1张牌。将手牌中的一张牌放到抽牌堆顶部。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "抽1张牌。",
+    "将手牌中的一张牌放到抽牌堆顶部。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。抽2张牌。将手牌中的一张牌放到抽牌堆顶部。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。抽1张牌。将手牌中的一张牌放到抽牌堆顶部。] 变为 [造成13点伤害。抽2张牌。将手牌中的一张牌放到抽牌堆顶部。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PHOTON_CUT",
+      "title_zh": "灰机 wiki：光子切割",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%89%E5%AD%90%E5%88%87%E5%89%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

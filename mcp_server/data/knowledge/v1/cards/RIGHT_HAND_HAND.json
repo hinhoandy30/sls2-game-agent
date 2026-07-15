@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RIGHT_HAND_HAND",
+  "name_zh": "得力助手",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "奥斯提造成4点伤害。每当你打出耗能为2点能量或以上的牌，将此牌从弃牌堆放回你的手牌。",
+  "mechanics_zh": [
+    "奥斯提造成4点伤害。",
+    "每当你打出耗能为2点能量或以上的牌，将此牌从弃牌堆放回你的手牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提造成6点伤害。每当你打出耗能为2点能量或以上的牌，将此牌从弃牌堆放回你的手牌。",
+    "changes_zh": [
+      "效果从 [奥斯提造成4点伤害。每当你打出耗能为2点能量或以上的牌，将此牌从弃牌堆放回你的手牌。] 变为 [奥斯提造成6点伤害。每当你打出耗能为2点能量或以上的牌，将此牌从弃牌堆放回你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RIGHT_HAND_HAND",
+      "title_zh": "灰机 wiki：得力助手",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BE%97%E5%8A%9B%E5%8A%A9%E6%89%8B",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

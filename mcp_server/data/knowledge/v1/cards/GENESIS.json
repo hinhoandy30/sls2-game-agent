@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GENESIS",
+  "name_zh": "创世纪",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "在你的回合开始时，获得2点辉星。",
+  "mechanics_zh": [
+    "在你的回合开始时，获得2点辉星。"
+  ],
+  "tags": [
+    "能力",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，获得3点辉星。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，获得2点辉星。] 变为 [在你的回合开始时，获得3点辉星。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GENESIS",
+      "title_zh": "灰机 wiki：创世纪",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%88%9B%E4%B8%96%E7%BA%AA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

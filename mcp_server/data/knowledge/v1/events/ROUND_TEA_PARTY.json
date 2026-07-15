@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "ROUND_TEA_PARTY",
+  "name_zh": "圆桌茶会",
+  "act_ids": [
+    "GLORY"
+  ],
+  "summary_zh": "圆桌茶会事件，出现于第三阶段荣耀场景；前置条件：所有玩家当前生命至少为 12。",
+  "flow_facts_zh": [
+    "出现阶段：第三阶段荣耀场景。",
+    "前置条件：所有玩家当前生命至少为 12。",
+    "选项：喝杯好茶；结果/详情：获得王室猛毒。回复全部生命。",
+    "选项：挑事斗殴；结果/详情：失去11点生命。获得一件随机遗物；备注：遗物：王室猛毒。",
+    "选项：喝杯好茶。",
+    "选项：继续。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:ROUND_TEA_PARTY",
+      "title_zh": "灰机 wiki：圆桌茶会",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9C%86%E6%A1%8C%E8%8C%B6%E4%BC%9A",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

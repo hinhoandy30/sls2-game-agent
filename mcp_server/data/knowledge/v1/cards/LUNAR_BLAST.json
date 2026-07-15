@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LUNAR_BLAST",
+  "name_zh": "月面射击",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "本回合中每打出过一张技能牌，此牌额外造成4点伤害一次。",
+  "mechanics_zh": [
+    "本回合中每打出过一张技能牌，此牌额外造成4点伤害一次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：本回合中每打出过一张技能牌，此牌额外造成5点伤害一次。",
+    "changes_zh": [
+      "效果从 [本回合中每打出过一张技能牌，此牌额外造成4点伤害一次。] 变为 [本回合中每打出过一张技能牌，此牌额外造成5点伤害一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LUNAR_BLAST",
+      "title_zh": "灰机 wiki：月面射击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%88%E9%9D%A2%E5%B0%84%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

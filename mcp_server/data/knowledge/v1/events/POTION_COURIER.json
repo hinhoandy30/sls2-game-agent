@@ -1,0 +1,25 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "POTION_COURIER",
+  "name_zh": "药水快递员",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "summary_zh": "药水快递员事件，出现于第二阶段、第三阶段；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第二阶段、第三阶段。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：拿走这批药水；结果/详情：获得3瓶污浊药水。",
+    "选项：洗劫；结果/详情：获得1瓶随机罕见药水；备注：污浊药水。",
+    "选项：继续。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:POTION_COURIER",
+      "title_zh": "灰机 wiki：药水快递员",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8D%AF%E6%B0%B4%E5%BF%AB%E9%80%92%E5%91%98",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

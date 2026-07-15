@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REGRET",
+  "name_zh": "悔恨",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中，失去相当于手牌数量的生命。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中，失去相当于手牌数量的生命。"
+  ],
+  "tags": [
+    "诅咒",
+    "生命"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REGRET",
+      "title_zh": "灰机 wiki：悔恨",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%82%94%E6%81%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}
