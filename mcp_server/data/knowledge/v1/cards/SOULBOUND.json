@@ -9,18 +9,18 @@
   "card_type": "Power",
   "rarity": "Uncommon",
   "cost_zh": "1 能量",
-  "summary_zh": "Choose an ally.。Whenever you create a Soul, add a Soul to their Draw Pile.",
+  "summary_zh": "Choose an ally. Whenever you create a Soul, add a Soul to their Draw Pile.",
   "mechanics_zh": [
-    "Choose an ally.。",
-    "Whenever you create a Soul, add a Soul to their Draw Pile.。"
+    "Choose an ally. ",
+    "Whenever you create a Soul, add a Soul to their Draw Pile. "
   ],
   "tags": [
     "能力"
   ],
   "upgrade": {
-    "summary_zh": "升级后：固有。Choose an ally.。Whenever you create a Soul, add a Soul to their Draw Pile.",
+    "summary_zh": "升级后：固有。Choose an ally. Whenever you create a Soul, add a Soul to their Draw Pile.",
     "changes_zh": [
-      "效果从 [Choose an ally.。Whenever you create a Soul, add a Soul to their Draw Pile.] 变为 [固有。Choose an ally.。Whenever you create a Soul, add a Soul to their Draw Pile.]。"
+      "效果从 [Choose an ally. Whenever you create a Soul, add a Soul to their Draw Pile.] 变为 [固有。Choose an ally. Whenever you create a Soul, add a Soul to their Draw Pile.]。"
     ]
   },
   "sources": [
