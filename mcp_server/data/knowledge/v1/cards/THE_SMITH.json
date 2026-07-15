@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "THE_SMITH",
+  "name_zh": "铸剑者",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "铸造30。",
+  "mechanics_zh": [
+    "铸造30。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：铸造40。",
+    "changes_zh": [
+      "效果从 [铸造30。] 变为 [铸造40。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:THE_SMITH",
+      "title_zh": "灰机 wiki：铸剑者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%93%B8%E5%89%91%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

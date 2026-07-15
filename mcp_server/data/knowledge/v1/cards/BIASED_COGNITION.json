@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BIASED_COGNITION",
+  "name_zh": "偏差认知",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得4点集中。在你的回合开始时，失去1点集中。",
+  "mechanics_zh": [
+    "获得4点集中。",
+    "在你的回合开始时，失去1点集中。"
+  ],
+  "tags": [
+    "能力",
+    "集中"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得5点集中。在你的回合开始时，失去1点集中。",
+    "changes_zh": [
+      "效果从 [获得4点集中。在你的回合开始时，失去1点集中。] 变为 [获得5点集中。在你的回合开始时，失去1点集中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BIASED_COGNITION",
+      "title_zh": "灰机 wiki：偏差认知",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%81%8F%E5%B7%AE%E8%AE%A4%E7%9F%A5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

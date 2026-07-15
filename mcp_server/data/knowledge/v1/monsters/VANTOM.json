@@ -1,0 +1,42 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "VANTOM",
+  "name_zh": "墨影幻灵",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "墨影幻灵是密林场景的Boss怪物；基础生命 173，进阶生命 183。",
+  "pattern_zh": "行动状态转移：[*] -> 墨迹；墨迹 -> 墨水长枪；墨水长枪 -> 肢解；肢解 -> 准备；准备 -> 墨迹。",
+  "moves": [
+    {
+      "name_zh": "墨迹",
+      "effect_zh": "效果：造成7点伤害；效果进阶9+：造成8点伤害。"
+    },
+    {
+      "name_zh": "墨水长枪",
+      "effect_zh": "效果：造成6×2点伤害。（共12点）；效果进阶9+：造成7×2点伤害。（共14点）。"
+    },
+    {
+      "name_zh": "肢解",
+      "effect_zh": "效果：造成26点伤害。向你的弃牌堆加入3张卡牌：伤口；效果进阶9+：造成30点伤害。向你的弃牌堆加入3张卡牌：伤口。"
+    },
+    {
+      "name_zh": "准备",
+      "effect_zh": "效果：获得2点力量；效果进阶9+：获得2点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：滑溜9。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:VANTOM",
+      "title_zh": "灰机 wiki：墨影幻灵",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A2%A8%E5%BD%B1%E5%B9%BB%E7%81%B5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

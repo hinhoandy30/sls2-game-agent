@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "SEWER_CLAM",
+  "name_zh": "下水道蚌",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "下水道蚌是暗港场景的普通怪物；基础生命 56，进阶生命 58。",
+  "pattern_zh": "* 覆甲 (Plating) 8 (9)：出场自带 8（高进阶9）层覆甲。 回合结束时获得等量格挡，回合开始时层数减1。 行动状态转移：A -> 喷射；增压 -> 喷射；喷射 -> 增压。",
+  "moves": [
+    {
+      "name_zh": "喷射",
+      "effect_zh": "效果：造成10点伤害；效果进阶9+：造成11点伤害。"
+    },
+    {
+      "name_zh": "增压",
+      "effect_zh": "效果：获得4点力量；效果进阶9+：获得4点力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：覆甲8 （高进阶9）。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:SEWER_CLAM",
+      "title_zh": "灰机 wiki：下水道蚌",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%8B%E6%B0%B4%E9%81%93%E8%9A%8C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

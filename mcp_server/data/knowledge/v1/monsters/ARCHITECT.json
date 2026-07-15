@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "ARCHITECT",
+  "name_zh": "建筑师",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "encounter_pool_zh": "未知阶段场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "建筑师是未知阶段场景的普通怪物；基础生命 9999，进阶生命 9999。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [
+    "备注：占位符。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:ARCHITECT",
+      "title_zh": "灰机 wiki：建筑师",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BB%BA%E7%AD%91%E5%B8%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+  "name_zh": "Decimillipede Segment (Middle)",
+  "act_ids": [
+    "UNKNOWN"
+  ],
+  "encounter_pool_zh": "未知阶段场景的未知敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "Decimillipede Segment (Middle)是未知阶段场景的未知类型怪物；基础生命 40-46，进阶生命 46-52。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:DECIMILLIPEDE_SEGMENT_MIDDLE",
+      "title_zh": "灰机 wiki：Decimillipede Segment (Middle)",
+      "url": "https://sts2.huijiwiki.com/wiki/Decimillipede%20Segment%20(Middle)",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

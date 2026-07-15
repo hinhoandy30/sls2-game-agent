@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BRAND",
+  "name_zh": "烙印",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "失去1点生命。消耗1张牌。获得1点力量。",
+  "mechanics_zh": [
+    "失去1点生命。",
+    "消耗1张牌。",
+    "获得1点力量。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "力量",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去1点生命。消耗1张牌。获得2点力量。",
+    "changes_zh": [
+      "效果从 [失去1点生命。消耗1张牌。获得1点力量。] 变为 [失去1点生命。消耗1张牌。获得2点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BRAND",
+      "title_zh": "灰机 wiki：烙印",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%83%99%E5%8D%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

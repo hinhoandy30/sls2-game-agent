@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GUARDS",
+  "name_zh": "护驾！！！",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "将你手牌中的任意张牌变化为仆从捐躯。消耗。",
+  "mechanics_zh": [
+    "将你手牌中的任意张牌变化为仆从捐躯。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将你手牌中的任意张牌变化为仆从捐躯+。消耗。",
+    "changes_zh": [
+      "效果从 [将你手牌中的任意张牌变化为仆从捐躯。消耗。] 变为 [将你手牌中的任意张牌变化为仆从捐躯+。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GUARDS",
+      "title_zh": "灰机 wiki：护驾！！！",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%8A%A4%E9%A9%BE%EF%BC%81%EF%BC%81%EF%BC%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

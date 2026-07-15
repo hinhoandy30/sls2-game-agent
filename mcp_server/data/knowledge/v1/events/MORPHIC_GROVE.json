@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "MORPHIC_GROVE",
+  "name_zh": "变形灵林谷",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "变形灵林谷事件，出现于第一阶段密林场景；前置条件：所有玩家至少拥有100金币和2张可变化的卡牌。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：所有玩家至少拥有100金币和2张可变化的卡牌。",
+    "选项：大群变形灵；结果/详情：失去所有金币。变化2张牌。",
+    "选项：落单变形灵；结果/详情：获得5点最大生命。",
+    "选项：大群变形灵。",
+    "选项：落单变形灵。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:MORPHIC_GROVE",
+      "title_zh": "灰机 wiki：变形灵林谷",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8F%98%E5%BD%A2%E7%81%B5%E6%9E%97%E8%B0%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

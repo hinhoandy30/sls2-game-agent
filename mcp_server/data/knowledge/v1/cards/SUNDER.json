@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SUNDER",
+  "name_zh": "分离",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "3 能量",
+  "summary_zh": "造成24点伤害。如果这张牌击杀了敌人，则获得3点能量。",
+  "mechanics_zh": [
+    "造成24点伤害。",
+    "如果这张牌击杀了敌人，则获得3点能量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成32点伤害。如果这张牌击杀了敌人，则获得3点能量。",
+    "changes_zh": [
+      "效果从 [造成24点伤害。如果这张牌击杀了敌人，则获得3点能量。] 变为 [造成32点伤害。如果这张牌击杀了敌人，则获得3点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SUNDER",
+      "title_zh": "灰机 wiki：分离",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%88%86%E7%A6%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

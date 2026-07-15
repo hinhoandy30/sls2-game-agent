@@ -1,0 +1,41 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "OWL_MAGISTRATE",
+  "name_zh": "猫头鹰法官",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "猫头鹰法官是荣耀场景的普通怪物；基础生命 231，进阶生命 247。",
+  "pattern_zh": "* 翱翔 (Soar)：在落地之前受到的攻击伤害减少 50%。 行动状态转移：A -> 法官审查；法官审查 -> 猛啄袭击；猛啄袭击 -> 飞法行为；飞法行为 -> 裁决；裁决 -> 法官审查。",
+  "moves": [
+    {
+      "name_zh": "法官审查",
+      "effect_zh": "效果：造成16点伤害；效果进阶9+：造成17点伤害。"
+    },
+    {
+      "name_zh": "猛啄袭击",
+      "effect_zh": "效果：造成4×6伤害。（共24点）；效果进阶9+：造成4×6伤害。（共24点）。"
+    },
+    {
+      "name_zh": "飞法行为",
+      "effect_zh": "效果：获得“翱翔”；效果进阶9+：获得“翱翔”。"
+    },
+    {
+      "name_zh": "裁决",
+      "effect_zh": "效果：造成33点伤害。给予4层易伤。失去“翱翔”；效果进阶9+：造成36点伤害。给予4层易伤。失去“翱翔”。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物可能施加易伤，后续受到攻击时当前 live powers 更重要。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:OWL_MAGISTRATE",
+      "title_zh": "灰机 wiki：猫头鹰法官",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8C%AB%E5%A4%B4%E9%B9%B0%E6%B3%95%E5%AE%98",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

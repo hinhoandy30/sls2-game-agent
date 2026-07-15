@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BORROWED_TIME",
+  "name_zh": "预借时间",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得41点能量。所有卡牌在本回合耗能增加1点能量。",
+  "mechanics_zh": [
+    "获得41点能量。",
+    "所有卡牌在本回合耗能增加1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得61点能量。所有卡牌在本回合耗能增加1点能量。",
+    "changes_zh": [
+      "效果从 [获得41点能量。所有卡牌在本回合耗能增加1点能量。] 变为 [获得61点能量。所有卡牌在本回合耗能增加1点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BORROWED_TIME",
+      "title_zh": "灰机 wiki：预借时间",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%A2%84%E5%80%9F%E6%97%B6%E9%97%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

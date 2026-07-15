@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "DAMP_CULTIST",
+  "name_zh": "潮湿邪教徒",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "潮湿邪教徒是暗港场景的普通怪物；基础生命 51-53，进阶生命 52-54。",
+  "pattern_zh": "行动状态转移：A -> 念咒；念咒 -> 黑暗打击。",
+  "moves": [
+    {
+      "name_zh": "念咒",
+      "effect_zh": "效果：获得5点仪式；效果进阶9+：获得6点仪式；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "黑暗打击",
+      "effect_zh": "效果：造成1点伤害；效果进阶9+：造成3点伤害；备注：从第2回合起，每回合都将使用此技能。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:DAMP_CULTIST",
+      "title_zh": "灰机 wiki：潮湿邪教徒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%BD%AE%E6%B9%BF%E9%82%AA%E6%95%99%E5%BE%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

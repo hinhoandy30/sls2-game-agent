@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SHADOWMELD",
+  "name_zh": "融入暗影",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "本回合你获得的格挡值翻倍。",
+  "mechanics_zh": [
+    "本回合你获得的格挡值翻倍。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：本回合你获得的格挡值翻倍。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SHADOWMELD",
+      "title_zh": "灰机 wiki：融入暗影",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9E%8D%E5%85%A5%E6%9A%97%E5%BD%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

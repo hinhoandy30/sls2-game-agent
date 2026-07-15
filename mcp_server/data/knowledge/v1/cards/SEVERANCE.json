@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SEVERANCE",
+  "name_zh": "切断",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成13点伤害。将一张灵魂分别加入你的抽牌堆，手牌和弃牌堆中。",
+  "mechanics_zh": [
+    "造成13点伤害。",
+    "将一张灵魂分别加入你的抽牌堆，手牌和弃牌堆中。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成18点伤害。将一张灵魂分别加入你的抽牌堆，手牌和弃牌堆中。",
+    "changes_zh": [
+      "效果从 [造成13点伤害。将一张灵魂分别加入你的抽牌堆，手牌和弃牌堆中。] 变为 [造成18点伤害。将一张灵魂分别加入你的抽牌堆，手牌和弃牌堆中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SEVERANCE",
+      "title_zh": "灰机 wiki：切断",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%88%87%E6%96%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

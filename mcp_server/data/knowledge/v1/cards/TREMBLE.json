@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TREMBLE",
+  "name_zh": "战栗",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "给予3层易伤。消耗。",
+  "mechanics_zh": [
+    "给予3层易伤。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予4层易伤。消耗。",
+    "changes_zh": [
+      "效果从 [给予3层易伤。消耗。] 变为 [给予4层易伤。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TREMBLE",
+      "title_zh": "灰机 wiki：战栗",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E6%A0%97",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "JACK_OF_ALL_TRADES",
+  "name_zh": "花样百出",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "将1张随机无色牌加入你的手牌。消耗。",
+  "mechanics_zh": [
+    "将1张随机无色牌加入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将2张随机无色牌加入你的手牌。消耗。",
+    "changes_zh": [
+      "效果从 [将1张随机无色牌加入你的手牌。消耗。] 变为 [将2张随机无色牌加入你的手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:JACK_OF_ALL_TRADES",
+      "title_zh": "灰机 wiki：花样百出",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%8A%B1%E6%A0%B7%E7%99%BE%E5%87%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

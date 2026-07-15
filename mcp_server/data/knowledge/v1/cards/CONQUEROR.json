@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CONQUEROR",
+  "name_zh": "征服者",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "铸造3。君王之剑在本回合对敌人造成双倍伤害。",
+  "mechanics_zh": [
+    "铸造3。",
+    "君王之剑在本回合对敌人造成双倍伤害。"
+  ],
+  "tags": [
+    "技能",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：铸造5。君王之剑在本回合对敌人造成双倍伤害。",
+    "changes_zh": [
+      "效果从 [铸造3。君王之剑在本回合对敌人造成双倍伤害。] 变为 [铸造5。君王之剑在本回合对敌人造成双倍伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CONQUEROR",
+      "title_zh": "灰机 wiki：征服者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BE%81%E6%9C%8D%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

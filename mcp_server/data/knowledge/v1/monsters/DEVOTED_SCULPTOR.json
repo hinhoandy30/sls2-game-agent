@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "DEVOTED_SCULPTOR",
+  "name_zh": "虔诚雕刻师",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "虔诚雕刻师是荣耀场景的普通怪物；基础生命 162，进阶生命 172。",
+  "pattern_zh": "行动状态转移：A -> 禁忌咒文；禁忌咒文 -> 狂击。",
+  "moves": [
+    {
+      "name_zh": "禁忌唱诵",
+      "effect_zh": "效果：获得9点仪式；效果进阶9+：获得9点仪式；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "猛烈攻击",
+      "effect_zh": "效果：造成12点伤害；效果进阶9+：造成15点伤害；备注：从第2回合起，每回合都将使用此技能。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:DEVOTED_SCULPTOR",
+      "title_zh": "灰机 wiki：虔诚雕刻师",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%99%94%E8%AF%9A%E9%9B%95%E5%88%BB%E5%B8%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

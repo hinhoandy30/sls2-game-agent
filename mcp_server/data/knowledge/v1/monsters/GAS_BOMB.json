@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "GAS_BOMB",
+  "name_zh": "气态炸弹",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的弱敌或爪牙池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "气态炸弹是暗港场景的爪牙怪物；基础生命 7，进阶生命 8。",
+  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "moves": [
+    {
+      "name_zh": "未知",
+      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：爪牙。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:GAS_BOMB",
+      "title_zh": "灰机 wiki：气态炸弹",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B0%94%E6%80%81%E7%82%B8%E5%BC%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

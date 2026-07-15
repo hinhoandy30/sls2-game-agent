@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FEAR",
+  "name_zh": "恐惧",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。造成7点伤害。给予1层易伤。",
+  "mechanics_zh": [
+    "虚无。",
+    "造成7点伤害。",
+    "给予1层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "虚无",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。造成8点伤害。给予2层易伤。",
+    "changes_zh": [
+      "效果从 [虚无。造成7点伤害。给予1层易伤。] 变为 [虚无。造成8点伤害。给予2层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FEAR",
+      "title_zh": "灰机 wiki：恐惧",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%81%90%E6%83%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

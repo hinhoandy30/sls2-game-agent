@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ADAPTIVE_STRIKE",
+  "name_zh": "适应打击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "造成18点伤害。将这张牌的一张01点能量复制品添加到你的弃牌堆。",
+  "mechanics_zh": [
+    "造成18点伤害。",
+    "将这张牌的一张01点能量复制品添加到你的弃牌堆。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成23点伤害。将这张牌的一张01点能量复制品添加到你的弃牌堆。",
+    "changes_zh": [
+      "效果从 [造成18点伤害。将这张牌的一张01点能量复制品添加到你的弃牌堆。] 变为 [造成23点伤害。将这张牌的一张01点能量复制品添加到你的弃牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ADAPTIVE_STRIKE",
+      "title_zh": "灰机 wiki：适应打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%80%82%E5%BA%94%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

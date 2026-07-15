@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CORRUPTION",
+  "name_zh": "腐化",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Special",
+  "cost_zh": "3 能量",
+  "summary_zh": "技能牌消耗变为01点能量。每当你打出一张技能牌时，将其消耗。",
+  "mechanics_zh": [
+    "技能牌消耗变为01点能量。",
+    "每当你打出一张技能牌时，将其消耗。"
+  ],
+  "tags": [
+    "能力",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：技能牌消耗变为01点能量。每当你打出一张技能牌时，将其消耗。",
+    "changes_zh": [
+      "费用从 [3 能量] 变为 [2 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CORRUPTION",
+      "title_zh": "灰机 wiki：腐化",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%85%90%E5%8C%96(%E5%8D%A1%E7%89%8C)",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

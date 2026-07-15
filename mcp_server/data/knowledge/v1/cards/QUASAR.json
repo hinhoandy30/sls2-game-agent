@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "QUASAR",
+  "name_zh": "类星体",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "从3张随机无色牌中选择1张加入你的手牌。",
+  "mechanics_zh": [
+    "从3张随机无色牌中选择1张加入你的手牌。"
+  ],
+  "tags": [
+    "技能",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：从3张随机升级过的无色牌中选择1张加入你的手牌。",
+    "changes_zh": [
+      "效果从 [从3张随机无色牌中选择1张加入你的手牌。] 变为 [从3张随机升级过的无色牌中选择1张加入你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:QUASAR",
+      "title_zh": "灰机 wiki：类星体",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%B1%BB%E6%98%9F%E4%BD%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

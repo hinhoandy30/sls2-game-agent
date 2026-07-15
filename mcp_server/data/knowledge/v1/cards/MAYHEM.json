@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MAYHEM",
+  "name_zh": "乱战",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "在你的回合开始时，打出你抽牌堆顶部的牌。",
+  "mechanics_zh": [
+    "在你的回合开始时，打出你抽牌堆顶部的牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，打出你抽牌堆顶部的牌。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MAYHEM",
+      "title_zh": "灰机 wiki：乱战",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B9%B1%E6%88%98",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

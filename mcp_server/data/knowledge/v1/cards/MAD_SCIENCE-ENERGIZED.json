@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MAD_SCIENCE-ENERGIZED",
+  "name_zh": "疯狂科学",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得8点格挡。获得2点能量。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "获得2点能量。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。获得8点格挡。获得2点能量。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。获得2点能量。] 变为 [固有。获得8点格挡。获得2点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MAD_SCIENCE-ENERGIZED",
+      "title_zh": "灰机 wiki：疯狂科学",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%96%AF%E7%8B%82%E7%A7%91%E5%AD%A6",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

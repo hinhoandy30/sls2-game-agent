@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CHARGE_BATTERY",
+  "name_zh": "充电",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得7点格挡。在下个回合获得1点能量。",
+  "mechanics_zh": [
+    "获得7点格挡。",
+    "在下个回合获得1点能量。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得10点格挡。在下个回合获得1点能量。",
+    "changes_zh": [
+      "效果从 [获得7点格挡。在下个回合获得1点能量。] 变为 [获得10点格挡。在下个回合获得1点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CHARGE_BATTERY",
+      "title_zh": "灰机 wiki：充电",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%85%E7%94%B5",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

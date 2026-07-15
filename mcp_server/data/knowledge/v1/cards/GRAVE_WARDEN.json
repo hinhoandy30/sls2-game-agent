@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GRAVE_WARDEN",
+  "name_zh": "守墓人",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得8点格挡。将一张灵魂放入你的抽牌堆中。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "将一张灵魂放入你的抽牌堆中。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得11点格挡。将一张灵魂放入你的抽牌堆中。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。将一张灵魂放入你的抽牌堆中。] 变为 [获得11点格挡。将一张灵魂放入你的抽牌堆中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GRAVE_WARDEN",
+      "title_zh": "灰机 wiki：守墓人",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%AE%88%E5%A2%93%E4%BA%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

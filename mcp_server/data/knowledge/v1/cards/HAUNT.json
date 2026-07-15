@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HAUNT",
+  "name_zh": "纠缠",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你打出一张灵魂时，随机一名敌人失去6点生命。",
+  "mechanics_zh": [
+    "每当你打出一张灵魂时，随机一名敌人失去6点生命。"
+  ],
+  "tags": [
+    "能力",
+    "随机",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你打出一张灵魂时，随机一名敌人失去8点生命。",
+    "changes_zh": [
+      "效果从 [每当你打出一张灵魂时，随机一名敌人失去6点生命。] 变为 [每当你打出一张灵魂时，随机一名敌人失去8点生命。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HAUNT",
+      "title_zh": "灰机 wiki：纠缠",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BA%A0%E7%BC%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

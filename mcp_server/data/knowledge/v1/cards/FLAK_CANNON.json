@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FLAK_CANNON",
+  "name_zh": "散射炮",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "消耗你所有的状态牌。每有一张被消耗的牌，就随机对敌人造成8点伤害。",
+  "mechanics_zh": [
+    "消耗你所有的状态牌。",
+    "每有一张被消耗的牌，就随机对敌人造成8点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：消耗你所有的状态牌。每有一张被消耗的牌，就随机对敌人造成11点伤害。",
+    "changes_zh": [
+      "效果从 [消耗你所有的状态牌。每有一张被消耗的牌，就随机对敌人造成8点伤害。] 变为 [消耗你所有的状态牌。每有一张被消耗的牌，就随机对敌人造成11点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FLAK_CANNON",
+      "title_zh": "灰机 wiki：散射炮",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%95%A3%E5%B0%84%E7%82%AE",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

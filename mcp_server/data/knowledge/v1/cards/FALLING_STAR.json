@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FALLING_STAR",
+  "name_zh": "陨星",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Starter",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成8点伤害。给予1层虚弱。给予1层易伤。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "给予1层虚弱。",
+    "给予1层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成12点伤害。给予1层虚弱。给予1层易伤。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。给予1层虚弱。给予1层易伤。] 变为 [造成12点伤害。给予1层虚弱。给予1层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FALLING_STAR",
+      "title_zh": "灰机 wiki：陨星",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%99%A8%E6%98%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

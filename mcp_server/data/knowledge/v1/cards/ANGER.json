@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ANGER",
+  "name_zh": "愤怒",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成6点伤害。将一张此牌的复制品加入你的弃牌堆。",
+  "mechanics_zh": [
+    "造成6点伤害。",
+    "将一张此牌的复制品加入你的弃牌堆。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成8点伤害。将一张此牌的复制品加入你的弃牌堆。",
+    "changes_zh": [
+      "效果从 [造成6点伤害。将一张此牌的复制品加入你的弃牌堆。] 变为 [造成8点伤害。将一张此牌的复制品加入你的弃牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ANGER",
+      "title_zh": "灰机 wiki：愤怒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%84%A4%E6%80%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

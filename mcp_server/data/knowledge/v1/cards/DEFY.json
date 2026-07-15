@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEFY",
+  "name_zh": "违逆",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。获得6点格挡。给予1层虚弱。",
+  "mechanics_zh": [
+    "虚无。",
+    "获得6点格挡。",
+    "给予1层虚弱。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "虚无",
+    "虚弱"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。获得9点格挡。给予1层虚弱。",
+    "changes_zh": [
+      "效果从 [虚无。获得6点格挡。给予1层虚弱。] 变为 [虚无。获得9点格挡。给予1层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEFY",
+      "title_zh": "灰机 wiki：违逆",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%9D%E9%80%86",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

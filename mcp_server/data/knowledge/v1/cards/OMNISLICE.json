@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "OMNISLICE",
+  "name_zh": "万向斩",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成8点伤害。对所有其他敌人造成等量的伤害。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "对所有其他敌人造成等量的伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成11点伤害。对所有其他敌人造成等量的伤害。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。对所有其他敌人造成等量的伤害。] 变为 [造成11点伤害。对所有其他敌人造成等量的伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:OMNISLICE",
+      "title_zh": "灰机 wiki：万向斩",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%87%E5%90%91%E6%96%A9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

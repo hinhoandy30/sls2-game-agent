@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ETERNAL_ARMOR",
+  "name_zh": "永恒铠甲",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "获得9层覆甲。",
+  "mechanics_zh": [
+    "获得9层覆甲。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得12层覆甲。",
+    "changes_zh": [
+      "效果从 [获得9层覆甲。] 变为 [获得12层覆甲。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ETERNAL_ARMOR",
+      "title_zh": "灰机 wiki：永恒铠甲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B0%B8%E6%81%92%E9%93%A0%E7%94%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

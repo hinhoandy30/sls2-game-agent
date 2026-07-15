@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DARK_SHACKLES",
+  "name_zh": "黑暗镣铐",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "使一名敌人在本回合失去9点力量。消耗。",
+  "mechanics_zh": [
+    "使一名敌人在本回合失去9点力量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：使一名敌人在本回合失去15点力量。消耗。",
+    "changes_zh": [
+      "效果从 [使一名敌人在本回合失去9点力量。消耗。] 变为 [使一名敌人在本回合失去15点力量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DARK_SHACKLES",
+      "title_zh": "灰机 wiki：黑暗镣铐",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%BB%91%E6%9A%97%E9%95%A3%E9%93%90",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

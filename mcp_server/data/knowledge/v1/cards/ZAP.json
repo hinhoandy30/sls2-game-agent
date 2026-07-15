@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ZAP",
+  "name_zh": "电击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Starter",
+  "cost_zh": "1 能量",
+  "summary_zh": "生成1个闪电充能球。",
+  "mechanics_zh": [
+    "生成1个闪电充能球。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成1个闪电充能球。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ZAP",
+      "title_zh": "灰机 wiki：电击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%94%B5%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

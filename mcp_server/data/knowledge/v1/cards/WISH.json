@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "WISH",
+  "name_zh": "许愿",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "将你抽牌堆中的一张牌放入你的手牌。消耗。",
+  "mechanics_zh": [
+    "将你抽牌堆中的一张牌放入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。将你抽牌堆中的一张牌放入你的手牌。消耗。",
+    "changes_zh": [
+      "效果从 [将你抽牌堆中的一张牌放入你的手牌。消耗。] 变为 [保留。将你抽牌堆中的一张牌放入你的手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:WISH",
+      "title_zh": "灰机 wiki：许愿",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%AE%B8%E6%84%BF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

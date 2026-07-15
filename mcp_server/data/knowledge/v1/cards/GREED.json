@@ -1,0 +1,29 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GREED",
+  "name_zh": "贪婪",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。永恒。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "永恒。"
+  ],
+  "tags": [
+    "诅咒"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GREED",
+      "title_zh": "灰机 wiki：贪婪",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%B4%AA%E5%A9%AA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

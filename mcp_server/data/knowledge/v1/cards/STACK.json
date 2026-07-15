@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "STACK",
+  "name_zh": "堆栈",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得等量于与你当前弃牌堆中牌数的格挡值。",
+  "mechanics_zh": [
+    "获得等量于与你当前弃牌堆中牌数的格挡值。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得等量于与你当前弃牌堆中牌数+3的格挡值。",
+    "changes_zh": [
+      "效果从 [获得等量于与你当前弃牌堆中牌数的格挡值。] 变为 [获得等量于与你当前弃牌堆中牌数+3的格挡值。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:STACK",
+      "title_zh": "灰机 wiki：堆栈",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A0%86%E6%A0%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

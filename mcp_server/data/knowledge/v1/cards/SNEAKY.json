@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SNEAKY",
+  "name_zh": "鬼祟",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "奇巧。每当其他玩家攻击一名敌人时，获得1点格挡。",
+  "mechanics_zh": [
+    "奇巧。",
+    "每当其他玩家攻击一名敌人时，获得1点格挡。"
+  ],
+  "tags": [
+    "能力",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。每当其他玩家攻击一名敌人时，获得2点格挡。",
+    "changes_zh": [
+      "效果从 [奇巧。每当其他玩家攻击一名敌人时，获得1点格挡。] 变为 [奇巧。每当其他玩家攻击一名敌人时，获得2点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SNEAKY",
+      "title_zh": "灰机 wiki：鬼祟",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AC%BC%E7%A5%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

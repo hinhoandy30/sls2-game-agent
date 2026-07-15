@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LOOP",
+  "name_zh": "循环",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，触发你最右侧的一个充能球的被动能力。",
+  "mechanics_zh": [
+    "在你的回合开始时，触发你最右侧的一个充能球的被动能力。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，触发你最右侧的一个充能球的被动能力2次。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，触发你最右侧的一个充能球的被动能力。] 变为 [在你的回合开始时，触发你最右侧的一个充能球的被动能力2次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LOOP",
+      "title_zh": "灰机 wiki：循环",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BE%AA%E7%8E%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

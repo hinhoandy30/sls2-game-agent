@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TOXIC",
+  "name_zh": "毒素",
+  "character_ids": [
+    "STATUS"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合结束时，如果这张牌在你的手牌中，你受到5点伤害。消耗。",
+  "mechanics_zh": [
+    "在你的回合结束时，如果这张牌在你的手牌中，你受到5点伤害。",
+    "消耗。"
+  ],
+  "tags": [
+    "状态",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TOXIC",
+      "title_zh": "灰机 wiki：毒素",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AF%92%E7%B4%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

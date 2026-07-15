@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HIGH_FIVE",
+  "name_zh": "击掌",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "奥斯提对所有敌人。造成11点伤害并给予它们。2层易伤。",
+  "mechanics_zh": [
+    "奥斯提对所有敌人。",
+    "造成11点伤害并给予它们。",
+    "2层易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "AOE",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提对所有敌人。造成13点伤害并给予它们。3层易伤。",
+    "changes_zh": [
+      "效果从 [奥斯提对所有敌人。造成11点伤害并给予它们。2层易伤。] 变为 [奥斯提对所有敌人。造成13点伤害并给予它们。3层易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HIGH_FIVE",
+      "title_zh": "灰机 wiki：击掌",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%87%BB%E6%8E%8C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

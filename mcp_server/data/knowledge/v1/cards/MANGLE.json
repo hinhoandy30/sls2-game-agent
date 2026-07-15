@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MANGLE",
+  "name_zh": "凌虐",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "造成15点伤害。敌人在本回合失去10点力量。",
+  "mechanics_zh": [
+    "造成15点伤害。",
+    "敌人在本回合失去10点力量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成20点伤害。敌人在本回合失去15点力量。",
+    "changes_zh": [
+      "效果从 [造成15点伤害。敌人在本回合失去10点力量。] 变为 [造成20点伤害。敌人在本回合失去15点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MANGLE",
+      "title_zh": "灰机 wiki：凌虐",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%87%8C%E8%99%90",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

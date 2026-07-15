@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RIP_AND_TEAR",
+  "name_zh": "狂乱撕扯",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "随机对敌人造成7点伤害两次。",
+  "mechanics_zh": [
+    "随机对敌人造成7点伤害两次。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：随机对敌人造成9点伤害两次。",
+    "changes_zh": [
+      "效果从 [随机对敌人造成7点伤害两次。] 变为 [随机对敌人造成9点伤害两次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RIP_AND_TEAR",
+      "title_zh": "灰机 wiki：狂乱撕扯",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8B%82%E4%B9%B1%E6%92%95%E6%89%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

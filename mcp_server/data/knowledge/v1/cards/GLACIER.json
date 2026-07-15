@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GLACIER",
+  "name_zh": "冰川",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "获得6点格挡。生成2个冰霜充能球。",
+  "mechanics_zh": [
+    "获得6点格挡。",
+    "生成2个冰霜充能球。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得9点格挡。生成2个冰霜充能球。",
+    "changes_zh": [
+      "效果从 [获得6点格挡。生成2个冰霜充能球。] 变为 [获得9点格挡。生成2个冰霜充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GLACIER",
+      "title_zh": "灰机 wiki：冰川",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B0%E5%B7%9D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ONE_TWO_PUNCH",
+  "name_zh": "连环拳",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在这个回合，你打出的下1张攻击牌会被额外打出一次。",
+  "mechanics_zh": [
+    "在这个回合，你打出的下1张攻击牌会被额外打出一次。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在这个回合，你打出的下2张攻击牌会被额外打出一次。",
+    "changes_zh": [
+      "效果从 [在这个回合，你打出的下1张攻击牌会被额外打出一次。] 变为 [在这个回合，你打出的下2张攻击牌会被额外打出一次。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ONE_TWO_PUNCH",
+      "title_zh": "灰机 wiki：连环拳",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%9E%E7%8E%AF%E6%8B%B3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

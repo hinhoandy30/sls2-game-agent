@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FUEL",
+  "name_zh": "燃料",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得1点能量。抽1张牌。消耗。",
+  "mechanics_zh": [
+    "获得1点能量。",
+    "抽1张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得1点能量。抽2张牌。消耗。",
+    "changes_zh": [
+      "效果从 [获得1点能量。抽1张牌。消耗。] 变为 [获得1点能量。抽2张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FUEL",
+      "title_zh": "灰机 wiki：燃料",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%87%83%E6%96%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

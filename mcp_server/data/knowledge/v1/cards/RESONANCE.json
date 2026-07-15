@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RESONANCE",
+  "name_zh": "共鸣",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得1点力量。所有敌人失去1点力量。",
+  "mechanics_zh": [
+    "获得1点力量。",
+    "所有敌人失去1点力量。"
+  ],
+  "tags": [
+    "技能",
+    "力量",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得2点力量。所有敌人失去1点力量。",
+    "changes_zh": [
+      "效果从 [获得1点力量。所有敌人失去1点力量。] 变为 [获得2点力量。所有敌人失去1点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RESONANCE",
+      "title_zh": "灰机 wiki：共鸣",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%85%B1%E9%B8%A3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

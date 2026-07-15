@@ -1,0 +1,31 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SLIMED",
+  "name_zh": "黏液",
+  "character_ids": [
+    "STATUS"
+  ],
+  "card_type": "Status",
+  "rarity": "Status",
+  "cost_zh": "1 能量",
+  "summary_zh": "抽1张牌。消耗。",
+  "mechanics_zh": [
+    "抽1张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "状态",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SLIMED",
+      "title_zh": "灰机 wiki：黏液",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%BB%8F%E6%B6%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

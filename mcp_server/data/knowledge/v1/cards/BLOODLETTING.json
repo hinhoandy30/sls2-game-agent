@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLOODLETTING",
+  "name_zh": "放血",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "失去3点生命。获得2点能量。",
+  "mechanics_zh": [
+    "失去3点生命。",
+    "获得2点能量。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：失去3点生命。获得3点能量。",
+    "changes_zh": [
+      "效果从 [失去3点生命。获得2点能量。] 变为 [失去3点生命。获得3点能量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLOODLETTING",
+      "title_zh": "灰机 wiki：放血",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%94%BE%E8%A1%80",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

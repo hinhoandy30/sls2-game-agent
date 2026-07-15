@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PAGESTORM",
+  "name_zh": "书页风暴",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你抽到一张虚无牌时, 抽1张牌。",
+  "mechanics_zh": [
+    "每当你抽到一张虚无牌时, 抽1张牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌",
+    "虚无"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你抽到一张虚无牌时, 抽1张牌。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PAGESTORM",
+      "title_zh": "灰机 wiki：书页风暴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B9%A6%E9%A1%B5%E9%A3%8E%E6%9A%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

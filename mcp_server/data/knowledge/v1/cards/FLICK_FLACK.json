@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FLICK_FLACK",
+  "name_zh": "翻越撑击",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "奇巧。对所有敌人造成6点伤害。",
+  "mechanics_zh": [
+    "奇巧。",
+    "对所有敌人造成6点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奇巧。对所有敌人造成8点伤害。",
+    "changes_zh": [
+      "效果从 [奇巧。对所有敌人造成6点伤害。] 变为 [奇巧。对所有敌人造成8点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FLICK_FLACK",
+      "title_zh": "灰机 wiki：翻越撑击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BF%BB%E8%B6%8A%E6%92%91%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

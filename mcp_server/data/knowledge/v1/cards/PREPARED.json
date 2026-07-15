@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PREPARED",
+  "name_zh": "早有准备",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽1张牌。丢弃1张牌。",
+  "mechanics_zh": [
+    "抽1张牌。",
+    "丢弃1张牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽2张牌。丢弃2张牌。",
+    "changes_zh": [
+      "效果从 [抽1张牌。丢弃1张牌。] 变为 [抽2张牌。丢弃2张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PREPARED",
+      "title_zh": "灰机 wiki：早有准备",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%A9%E6%9C%89%E5%87%86%E5%A4%87",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

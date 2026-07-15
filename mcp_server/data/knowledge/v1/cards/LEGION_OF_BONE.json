@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LEGION_OF_BONE",
+  "name_zh": "骸骨军团",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "所有玩家召唤6。消耗。",
+  "mechanics_zh": [
+    "所有玩家召唤6。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "召唤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：所有玩家召唤8。消耗。",
+    "changes_zh": [
+      "效果从 [所有玩家召唤6。消耗。] 变为 [所有玩家召唤8。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LEGION_OF_BONE",
+      "title_zh": "灰机 wiki：骸骨军团",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%AA%B8%E9%AA%A8%E5%86%9B%E5%9B%A2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

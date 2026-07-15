@@ -1,0 +1,27 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "SPIRALING_WHIRLPOOL",
+  "name_zh": "螺旋漩涡",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "summary_zh": "螺旋漩涡事件，出现于第一阶段暗港场景；前置条件：所有玩家牌组中都有至少1张可被涡旋附魔的基础打击或基础防御。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段暗港场景。",
+    "前置条件：所有玩家牌组中都有至少1张可被涡旋附魔的基础打击或基础防御。",
+    "选项：饮用；结果/详情：回复33%最大生命值点生命。",
+    "选项：观察；结果/详情：为一张基础“打击”或“防御”附魔：涡旋。",
+    "选项：Reach In；结果/详情：获得一件随机遗物。将一张苦恼添加到你的牌组；备注：涡旋；·卡牌：苦恼。",
+    "选项：观察。",
+    "选项：Reach In。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:SPIRALING_WHIRLPOOL",
+      "title_zh": "灰机 wiki：螺旋漩涡",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9E%BA%E6%97%8B%E6%BC%A9%E6%B6%A1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

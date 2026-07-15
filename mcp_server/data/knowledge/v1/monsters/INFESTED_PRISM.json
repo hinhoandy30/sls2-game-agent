@@ -1,0 +1,42 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "INFESTED_PRISM",
+  "name_zh": "感染棱柱",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "感染棱柱是巢穴场景的精英怪物；基础生命 161，进阶生命 171。",
+  "pattern_zh": "* 活力火花 (Vital Spark) X：战斗开始时自带2层（进阶9及以上为3层），使所有技能牌具有X层污染。 打出受污染的牌后，玩家获得等量污染。 行动状态转移：A -> 刺击；刺击 -> 辐射；辐射 -> 旋风；旋风 -> 脉动；脉动 -> 刺击。",
+  "moves": [
+    {
+      "name_zh": "刺击",
+      "effect_zh": "效果：造成15点伤害；效果进阶9+：造成17点伤害。"
+    },
+    {
+      "name_zh": "辐射",
+      "effect_zh": "效果：造成11点伤害。获得11点格挡；效果进阶9+：造成13点伤害。获得13点格挡。"
+    },
+    {
+      "name_zh": "旋风",
+      "effect_zh": "效果：造成5×3伤害。（共15点）；效果进阶9+：造成6×3伤害。（共18点）。"
+    },
+    {
+      "name_zh": "脉动",
+      "effect_zh": "效果：造成8点伤害。获得20点格挡与2层活力火花；效果进阶9+：造成10点伤害。获得22点格挡与3层活力火花。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：活力火花2 （高进阶3）。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:INFESTED_PRISM",
+      "title_zh": "灰机 wiki：感染棱柱",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%84%9F%E6%9F%93%E6%A3%B1%E6%9F%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

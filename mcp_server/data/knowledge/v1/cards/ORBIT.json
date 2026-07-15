@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ORBIT",
+  "name_zh": "环绕轨道",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "你每花费41点能量，。就获得1点能量。",
+  "mechanics_zh": [
+    "你每花费41点能量，。",
+    "就获得1点能量。"
+  ],
+  "tags": [
+    "能力",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每花费41点能量，。就获得1点能量。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ORBIT",
+      "title_zh": "灰机 wiki：环绕轨道",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8E%AF%E7%BB%95%E8%BD%A8%E9%81%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "COORDINATE",
+  "name_zh": "协同配合",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在本回合给予其他玩家5点力量。",
+  "mechanics_zh": [
+    "在本回合给予其他玩家5点力量。"
+  ],
+  "tags": [
+    "技能",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在本回合给予其他玩家8点力量。",
+    "changes_zh": [
+      "效果从 [在本回合给予其他玩家5点力量。] 变为 [在本回合给予其他玩家8点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:COORDINATE",
+      "title_zh": "灰机 wiki：协同配合",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8D%8F%E5%90%8C%E9%85%8D%E5%90%88",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

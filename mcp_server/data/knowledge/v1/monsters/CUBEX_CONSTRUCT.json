@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "CUBEX_CONSTRUCT",
+  "name_zh": "立柱构造体",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "立柱构造体是密林场景的普通怪物；基础生命 65，进阶生命 70。",
+  "pattern_zh": "* 战斗开始时自带 13 点格挡 和 1 层人工制品。 行动状态转移：A -> 蓄能；蓄能 -> 重复轰击；重复轰击 -> 重复轰击2；重复轰击2 -> 排出；排出 -> 重复轰击。",
+  "moves": [
+    {
+      "name_zh": "蓄能",
+      "effect_zh": "效果：获得2点力量；效果进阶9+：获得2点力量。"
+    },
+    {
+      "name_zh": "重复轰击",
+      "effect_zh": "效果：造成7点伤害。获得2点力量；效果进阶9+：造成8点伤害。获得2点力量；备注：该技能会被连续使用两次（作为循环的第2和第3回合）。"
+    },
+    {
+      "name_zh": "排出",
+      "effect_zh": "效果：造成5×2伤害。（共10点）；效果进阶9+：造成6×2伤害。（共12点）。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人工制品1。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:CUBEX_CONSTRUCT",
+      "title_zh": "灰机 wiki：立柱构造体",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%AB%8B%E6%9F%B1%E6%9E%84%E9%80%A0%E4%BD%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

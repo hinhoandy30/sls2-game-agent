@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "EIDOLON",
+  "name_zh": "幻景",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "消耗所有手牌。如果有9张牌被消耗，则获得1层无实体。",
+  "mechanics_zh": [
+    "消耗所有手牌。",
+    "如果有9张牌被消耗，则获得1层无实体。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：消耗所有手牌。如果有9张牌被消耗，则获得1层无实体。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:EIDOLON",
+      "title_zh": "灰机 wiki：幻景",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B9%BB%E6%99%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

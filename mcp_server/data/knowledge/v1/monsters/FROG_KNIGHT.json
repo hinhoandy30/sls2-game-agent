@@ -1,0 +1,43 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "FROG_KNIGHT",
+  "name_zh": "青蛙骑士",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "青蛙骑士是荣耀场景的普通怪物；基础生命 191，进阶生命 199。",
+  "pattern_zh": "* 覆甲 (Plating) 15 (19)：出场自带 15 (高进阶19) 层覆甲。 每回合结束获得等量格挡，回合开始层数减1。 行动状态转移：吐舌 -> 惩恶一击；惩恶一击 -> 为了女王；为了女王 -> R；甲虫冲锋 -> 吐舌。",
+  "moves": [
+    {
+      "name_zh": "吐舌",
+      "effect_zh": "效果：造成13点伤害。给予2层脆弱；效果进阶9+：造成14点伤害。给予2层脆弱。"
+    },
+    {
+      "name_zh": "惩恶一击",
+      "effect_zh": "效果：造成21点伤害；效果进阶9+：造成23点伤害。"
+    },
+    {
+      "name_zh": "为了女王",
+      "effect_zh": "效果：获得5点力量；效果进阶9+：获得5点力量；备注：若在此招后，其血量低于50%且未发动过“甲虫冲锋”，下回合将插入使用甲虫冲锋；否则回到舌鞭循环。"
+    },
+    {
+      "name_zh": "甲虫冲锋",
+      "effect_zh": "效果：造成35点伤害；效果进阶9+：造成40点伤害；备注：半血爆发技，整场战斗仅触发一次。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：覆甲15 （高进阶19）。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:FROG_KNIGHT",
+      "title_zh": "灰机 wiki：青蛙骑士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%9D%92%E8%9B%99%E9%AA%91%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

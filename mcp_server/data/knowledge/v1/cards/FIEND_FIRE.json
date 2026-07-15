@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FIEND_FIRE",
+  "name_zh": "恶魔之焰",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "消耗所有手牌。每张被消耗的牌造成7点伤害。消耗。",
+  "mechanics_zh": [
+    "消耗所有手牌。",
+    "每张被消耗的牌造成7点伤害。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：消耗所有手牌。每张被消耗的牌造成10点伤害。消耗。",
+    "changes_zh": [
+      "效果从 [消耗所有手牌。每张被消耗的牌造成7点伤害。消耗。] 变为 [消耗所有手牌。每张被消耗的牌造成10点伤害。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FIEND_FIRE",
+      "title_zh": "灰机 wiki：恶魔之焰",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%81%B6%E9%AD%94%E4%B9%8B%E7%84%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

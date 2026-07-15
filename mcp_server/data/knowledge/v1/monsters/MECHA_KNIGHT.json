@@ -1,0 +1,43 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "MECHA_KNIGHT",
+  "name_zh": "机甲骑士",
+  "act_ids": [
+    "GLORY"
+  ],
+  "encounter_pool_zh": "荣耀场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "机甲骑士是荣耀场景的精英怪物；基础生命 300，进阶生命 320。",
+  "pattern_zh": "* 人工制品 (Artifact) 3：战斗开始时自带 3 层人工制品（抵消负面效果）。 行动状态转移：A -> 冲锋；冲锋 -> 喷火器；喷火器 -> 举起蓄力；举起蓄力 -> 重斩；重斩 -> 喷火器。",
+  "moves": [
+    {
+      "name_zh": "冲锋",
+      "effect_zh": "效果：造成25点伤害；效果进阶9+：造成30点伤害；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "喷火器",
+      "effect_zh": "效果：向你的手牌中加入4张卡牌：灼伤；效果进阶9+：向你的手牌中加入4张卡牌：灼伤。"
+    },
+    {
+      "name_zh": "举起蓄力",
+      "effect_zh": "效果：获得15点格挡。获得5点力量；效果进阶9+：获得15点格挡。获得5点力量。"
+    },
+    {
+      "name_zh": "重斩",
+      "effect_zh": "效果：造成35点伤害；效果进阶9+：造成40点伤害。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人工制品3。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:MECHA_KNIGHT",
+      "title_zh": "灰机 wiki：机甲骑士",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%9C%BA%E7%94%B2%E9%AA%91%E5%A3%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

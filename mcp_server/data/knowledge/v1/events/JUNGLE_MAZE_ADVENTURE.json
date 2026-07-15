@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "JUNGLE_MAZE_ADVENTURE",
+  "name_zh": "丛林迷宫奇遇",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "summary_zh": "丛林迷宫奇遇事件，出现于第一阶段密林场景；前置条件：无已知特殊前置条件。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段密林场景。",
+    "前置条件：无已知特殊前置条件。",
+    "选项：结伴同行；结果/详情：获得35-64金币。",
+    "选项：独自挑战；结果/详情：获得135-164金币。失去18点生命。",
+    "选项：结伴同行。",
+    "选项：独自挑战。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:JUNGLE_MAZE_ADVENTURE",
+      "title_zh": "灰机 wiki：丛林迷宫奇遇",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%9B%E6%9E%97%E8%BF%B7%E5%AE%AB%E5%A5%87%E9%81%87",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

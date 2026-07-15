@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "CORPSE_SLUG",
+  "name_zh": "噬尸蛞蝓",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "噬尸蛞蝓是暗港场景的普通怪物；基础生命 25-27，进阶生命 27-29。",
+  "pattern_zh": "行动状态转移：鞭打 -> 扑击；扑击 -> 粘液；粘液 -> 鞭打；开始（33%）-> 鞭打；开始（33%）-> 扑击；开始（33%）-> 粘液。",
+  "moves": [
+    {
+      "name_zh": "鞭打",
+      "effect_zh": "效果：造成3×2伤害。（共6点）；效果进阶9+：造成3×2伤害。（共6点）。"
+    },
+    {
+      "name_zh": "扑上",
+      "effect_zh": "效果：造成8点伤害；效果进阶9+：造成9点伤害。"
+    },
+    {
+      "name_zh": "黏液",
+      "effect_zh": "效果：给予2层脆弱；效果进阶9+：给予2层脆弱。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：饥饿4 （高进阶5）。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:CORPSE_SLUG",
+      "title_zh": "灰机 wiki：噬尸蛞蝓",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%99%AC%E5%B0%B8%E8%9B%9E%E8%9D%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

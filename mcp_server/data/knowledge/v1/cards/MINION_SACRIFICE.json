@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MINION_SACRIFICE",
+  "name_zh": "仆从捐躯",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得8点格挡。消耗。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得11点格挡。消耗。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。消耗。] 变为 [获得11点格挡。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MINION_SACRIFICE",
+      "title_zh": "灰机 wiki：仆从捐躯",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%BB%86%E4%BB%8E%E6%8D%90%E8%BA%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

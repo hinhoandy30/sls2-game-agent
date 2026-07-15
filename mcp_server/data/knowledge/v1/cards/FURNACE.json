@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FURNACE",
+  "name_zh": "熔炉",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，铸造5。",
+  "mechanics_zh": [
+    "在你的回合开始时，铸造5。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在你的回合开始时，铸造7。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，铸造5。] 变为 [在你的回合开始时，铸造7。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FURNACE",
+      "title_zh": "灰机 wiki：熔炉",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%86%94%E7%82%89",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

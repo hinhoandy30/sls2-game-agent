@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DEATHBRINGER",
+  "name_zh": "死亡使者",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "2 能量",
+  "summary_zh": "给予所有敌人21层灾厄和1层虚弱。",
+  "mechanics_zh": [
+    "给予所有敌人21层灾厄和1层虚弱。"
+  ],
+  "tags": [
+    "技能",
+    "虚弱",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予所有敌人26层灾厄和1层虚弱。",
+    "changes_zh": [
+      "效果从 [给予所有敌人21层灾厄和1层虚弱。] 变为 [给予所有敌人26层灾厄和1层虚弱。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DEATHBRINGER",
+      "title_zh": "灰机 wiki：死亡使者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E4%BA%A1%E4%BD%BF%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

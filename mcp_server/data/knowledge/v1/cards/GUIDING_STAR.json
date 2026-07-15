@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "GUIDING_STAR",
+  "name_zh": "引导之星",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成12点伤害。抽2张牌。",
+  "mechanics_zh": [
+    "造成12点伤害。",
+    "抽2张牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成13点伤害。抽3张牌。",
+    "changes_zh": [
+      "效果从 [造成12点伤害。抽2张牌。] 变为 [造成13点伤害。抽3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:GUIDING_STAR",
+      "title_zh": "灰机 wiki：引导之星",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%95%E5%AF%BC%E4%B9%8B%E6%98%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SUMMON_FORTH",
+  "name_zh": "征召上前",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "不论何处，将君王之剑放入你的手牌。铸造8。",
+  "mechanics_zh": [
+    "不论何处，将君王之剑放入你的手牌。",
+    "铸造8。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：不论何处，将君王之剑放入你的手牌。铸造11。",
+    "changes_zh": [
+      "效果从 [不论何处，将君王之剑放入你的手牌。铸造8。] 变为 [不论何处，将君王之剑放入你的手牌。铸造11。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SUMMON_FORTH",
+      "title_zh": "灰机 wiki：征召上前",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BE%81%E5%8F%AC%E4%B8%8A%E5%89%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

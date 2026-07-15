@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PATTER",
+  "name_zh": "星星点点",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得8点格挡。获得2点活力。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "获得2点活力。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得10点格挡。获得3点活力。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。获得2点活力。] 变为 [获得10点格挡。获得3点活力。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PATTER",
+      "title_zh": "灰机 wiki：星星点点",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%98%9F%E6%98%9F%E7%82%B9%E7%82%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

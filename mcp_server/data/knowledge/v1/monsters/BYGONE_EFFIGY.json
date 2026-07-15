@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "BYGONE_EFFIGY",
+  "name_zh": "旧日雕像",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "旧日雕像是密林场景的精英怪物；基础生命 127，进阶生命 132。",
+  "pattern_zh": "* 缓慢 (Slow)：战斗开始时自带。 本回合玩家每打出一张牌，该怪物受到的攻击伤害增加 10%。 缓慢显示于敌方状态栏中,联机时该状态共用层数。 行动状态转移：A -> 沉睡；沉睡 -> 唤醒；唤醒 -> 斩击；斩击 -> 斩击。",
+  "moves": [
+    {
+      "name_zh": "沉睡",
+      "effect_zh": "效果：跳过回合（无行动）；效果进阶9+：跳过回合（无行动）；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "苏醒",
+      "effect_zh": "效果：获得10点力量；效果进阶9+：获得10点力量；备注：仅第2回合使用。"
+    },
+    {
+      "name_zh": "斩击",
+      "effect_zh": "效果：造成13点伤害；效果进阶9+：造成15点伤害；备注：从第3回合起，每回合都将使用此技能。由于十点力量，实际数值为23，25。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：缓慢1。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:BYGONE_EFFIGY",
+      "title_zh": "灰机 wiki：旧日雕像",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%A7%E6%97%A5%E9%9B%95%E5%83%8F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

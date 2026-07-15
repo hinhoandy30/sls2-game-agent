@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SACRIFICE",
+  "name_zh": "牺牲",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "保留。如果奥斯提存活，则他死去，然后你获得等量于其双倍最大生命值的格挡。",
+  "mechanics_zh": [
+    "保留。",
+    "如果奥斯提存活，则他死去，然后你获得等量于其双倍最大生命值的格挡。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "保留",
+    "奥斯提",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。如果奥斯提存活，则他死去，然后你获得等量于其双倍最大生命值的格挡。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SACRIFICE",
+      "title_zh": "灰机 wiki：牺牲",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%89%BA%E7%89%B2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

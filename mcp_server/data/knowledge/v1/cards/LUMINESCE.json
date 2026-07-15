@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LUMINESCE",
+  "name_zh": "冷光",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "保留。获得2点能量。消耗。",
+  "mechanics_zh": [
+    "保留。",
+    "获得2点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "消耗",
+    "保留"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。获得3点能量。消耗。",
+    "changes_zh": [
+      "效果从 [保留。获得2点能量。消耗。] 变为 [保留。获得3点能量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LUMINESCE",
+      "title_zh": "灰机 wiki：冷光",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%86%B7%E5%85%89",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

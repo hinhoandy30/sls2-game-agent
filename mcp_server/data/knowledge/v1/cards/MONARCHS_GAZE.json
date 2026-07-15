@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MONARCHS_GAZE",
+  "name_zh": "王之凝视",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "2 能量",
+  "summary_zh": "每当你攻击敌人的时候，这名敌人在本回合失去1点力量。",
+  "mechanics_zh": [
+    "每当你攻击敌人的时候，这名敌人在本回合失去1点力量。"
+  ],
+  "tags": [
+    "能力",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你攻击敌人的时候，这名敌人在本回合失去1点力量。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MONARCHS_GAZE",
+      "title_zh": "灰机 wiki：王之凝视",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8E%8B%E4%B9%8B%E5%87%9D%E8%A7%86",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

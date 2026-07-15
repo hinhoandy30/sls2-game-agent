@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TERRAFORMING",
+  "name_zh": "地形改造",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得6点活力。",
+  "mechanics_zh": [
+    "获得6点活力。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得8点活力。",
+    "changes_zh": [
+      "效果从 [获得6点活力。] 变为 [获得8点活力。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TERRAFORMING",
+      "title_zh": "灰机 wiki：地形改造",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9C%B0%E5%BD%A2%E6%94%B9%E9%80%A0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

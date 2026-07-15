@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "METEOR_SHOWER",
+  "name_zh": "流星雨",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "对所有敌人造成14点伤害。给予所有敌人2层虚弱和易伤。",
+  "mechanics_zh": [
+    "对所有敌人造成14点伤害。",
+    "给予所有敌人2层虚弱和易伤。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "易伤",
+    "虚弱",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成21点伤害。给予所有敌人2层虚弱和易伤。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成14点伤害。给予所有敌人2层虚弱和易伤。] 变为 [对所有敌人造成21点伤害。给予所有敌人2层虚弱和易伤。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:METEOR_SHOWER",
+      "title_zh": "灰机 wiki：流星雨",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B5%81%E6%98%9F%E9%9B%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

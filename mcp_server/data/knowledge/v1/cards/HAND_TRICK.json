@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "HAND_TRICK",
+  "name_zh": "手上技法",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得7点格挡。在本回合给你手牌中的一张技能牌添加奇巧。",
+  "mechanics_zh": [
+    "获得7点格挡。",
+    "在本回合给你手牌中的一张技能牌添加奇巧。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得10点格挡。在本回合给你手牌中的一张技能牌添加奇巧。",
+    "changes_zh": [
+      "效果从 [获得7点格挡。在本回合给你手牌中的一张技能牌添加奇巧。] 变为 [获得10点格挡。在本回合给你手牌中的一张技能牌添加奇巧。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:HAND_TRICK",
+      "title_zh": "灰机 wiki：手上技法",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%8B%E4%B8%8A%E6%8A%80%E6%B3%95",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

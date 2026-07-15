@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FIGHT_THROUGH",
+  "name_zh": "强撑",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得13点格挡。将2张伤口加入你的弃牌堆。",
+  "mechanics_zh": [
+    "获得13点格挡。",
+    "将2张伤口加入你的弃牌堆。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得17点格挡。将2张伤口加入你的弃牌堆。",
+    "changes_zh": [
+      "效果从 [获得13点格挡。将2张伤口加入你的弃牌堆。] 变为 [获得17点格挡。将2张伤口加入你的弃牌堆。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FIGHT_THROUGH",
+      "title_zh": "灰机 wiki：强撑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%BA%E6%92%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

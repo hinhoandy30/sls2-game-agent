@@ -1,0 +1,39 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DYING_STAR",
+  "name_zh": "星灭",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "虚无。对所有敌人造成9点伤害。所有敌人在本回合中失去9点力量。",
+  "mechanics_zh": [
+    "虚无。",
+    "对所有敌人造成9点伤害。",
+    "所有敌人在本回合中失去9点力量。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "虚无",
+    "力量",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：虚无。对所有敌人造成11点伤害。所有敌人在本回合中失去11点力量。",
+    "changes_zh": [
+      "效果从 [虚无。对所有敌人造成9点伤害。所有敌人在本回合中失去9点力量。] 变为 [虚无。对所有敌人造成11点伤害。所有敌人在本回合中失去11点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DYING_STAR",
+      "title_zh": "灰机 wiki：星灭",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%98%9F%E7%81%AD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

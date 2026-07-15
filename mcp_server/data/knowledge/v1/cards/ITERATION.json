@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ITERATION",
+  "name_zh": "迭代",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每回合你第一次抽到状态牌时，抽2张牌。",
+  "mechanics_zh": [
+    "每回合你第一次抽到状态牌时，抽2张牌。"
+  ],
+  "tags": [
+    "能力",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每回合你第一次抽到状态牌时，抽3张牌。",
+    "changes_zh": [
+      "效果从 [每回合你第一次抽到状态牌时，抽2张牌。] 变为 [每回合你第一次抽到状态牌时，抽3张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ITERATION",
+      "title_zh": "灰机 wiki：迭代",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%BF%AD%E4%BB%A3",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

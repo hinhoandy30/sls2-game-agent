@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "MIDNIGHT",
+  "name_zh": "午夜",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Rare",
+  "cost_zh": "12 能量",
+  "summary_zh": "造成99点伤害。本场战斗，任何人每消耗过一张牌，这张牌的1点能量费用减少1。",
+  "mechanics_zh": [
+    "造成99点伤害。",
+    "本场战斗，任何人每消耗过一张牌，这张牌的1点能量费用减少1。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成120点伤害。本场战斗，任何人每消耗过一张牌，这张牌的1点能量费用减少1。",
+    "changes_zh": [
+      "效果从 [造成99点伤害。本场战斗，任何人每消耗过一张牌，这张牌的1点能量费用减少1。] 变为 [造成120点伤害。本场战斗，任何人每消耗过一张牌，这张牌的1点能量费用减少1。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:MIDNIGHT",
+      "title_zh": "灰机 wiki：午夜",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%8D%88%E5%A4%9C",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

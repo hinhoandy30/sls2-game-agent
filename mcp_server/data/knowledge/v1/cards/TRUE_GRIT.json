@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "TRUE_GRIT",
+  "name_zh": "坚毅",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得7点格挡。随机消耗1张牌。",
+  "mechanics_zh": [
+    "获得7点格挡。",
+    "随机消耗1张牌。"
+  ],
+  "tags": [
+    "技能",
+    "格挡",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得9点格挡。消耗1张牌。",
+    "changes_zh": [
+      "效果从 [获得7点格挡。随机消耗1张牌。] 变为 [获得9点格挡。消耗1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:TRUE_GRIT",
+      "title_zh": "灰机 wiki：坚毅",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%9D%9A%E6%AF%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

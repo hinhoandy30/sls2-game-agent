@@ -1,0 +1,30 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DECAY",
+  "name_zh": "腐朽",
+  "character_ids": [
+    "CURSE"
+  ],
+  "card_type": "Curse",
+  "rarity": "Curse",
+  "cost_zh": "不可打出",
+  "summary_zh": "不能被打出。在你的回合结束时，如果这张牌在你的手牌中, 你受到2点伤害。",
+  "mechanics_zh": [
+    "不能被打出。",
+    "在你的回合结束时，如果这张牌在你的手牌中, 你受到2点伤害。"
+  ],
+  "tags": [
+    "诅咒",
+    "伤害"
+  ],
+  "upgrade": null,
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DECAY",
+      "title_zh": "灰机 wiki：腐朽",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%85%90%E6%9C%BD",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

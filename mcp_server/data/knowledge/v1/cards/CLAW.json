@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CLAW",
+  "name_zh": "爪击",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "0 能量",
+  "summary_zh": "造成3点伤害。本场战斗中所有爪击卡牌的伤害增加2点。",
+  "mechanics_zh": [
+    "造成3点伤害。",
+    "本场战斗中所有爪击卡牌的伤害增加2点。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成4点伤害。本场战斗中所有爪击卡牌的伤害增加3点。",
+    "changes_zh": [
+      "效果从 [造成3点伤害。本场战斗中所有爪击卡牌的伤害增加2点。] 变为 [造成4点伤害。本场战斗中所有爪击卡牌的伤害增加3点。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CLAW",
+      "title_zh": "灰机 wiki：爪击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%88%AA%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

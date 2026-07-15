@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "STORM_OF_STEEL",
+  "name_zh": "钢铁风暴",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "丢弃所有手牌。每丢弃一张牌，就将一张小刀添加至你的手牌。",
+  "mechanics_zh": [
+    "丢弃所有手牌。",
+    "每丢弃一张牌，就将一张小刀添加至你的手牌。"
+  ],
+  "tags": [
+    "技能"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：丢弃所有手牌。每丢弃一张牌，就将一张小刀+添加至你的手牌。",
+    "changes_zh": [
+      "效果从 [丢弃所有手牌。每丢弃一张牌，就将一张小刀添加至你的手牌。] 变为 [丢弃所有手牌。每丢弃一张牌，就将一张小刀+添加至你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:STORM_OF_STEEL",
+      "title_zh": "灰机 wiki：钢铁风暴",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%92%A2%E9%93%81%E9%A3%8E%E6%9A%B4",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "IRON_WAVE",
+  "name_zh": "铁斩波",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。造成5点伤害。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "造成5点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得7点格挡。造成7点伤害。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。造成5点伤害。] 变为 [获得7点格挡。造成7点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:IRON_WAVE",
+      "title_zh": "灰机 wiki：铁斩波",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%93%81%E6%96%A9%E6%B3%A2",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

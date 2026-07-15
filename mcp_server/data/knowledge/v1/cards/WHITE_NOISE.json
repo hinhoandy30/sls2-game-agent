@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "WHITE_NOISE",
+  "name_zh": "白噪声",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "将一张随机能力牌加入你的手牌。这张牌在本回合内免费打出。消耗。",
+  "mechanics_zh": [
+    "将一张随机能力牌加入你的手牌。",
+    "这张牌在本回合内免费打出。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将一张随机能力牌加入你的手牌。这张牌在本回合内免费打出。消耗。",
+    "changes_zh": [
+      "费用从 [1 能量] 变为 [0 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:WHITE_NOISE",
+      "title_zh": "灰机 wiki：白噪声",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%99%BD%E5%99%AA%E5%A3%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

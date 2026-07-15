@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DANSE_MACABRE",
+  "name_zh": "死亡之舞",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你打出一张耗能大于等于2点能量的牌时，获得4点格挡。",
+  "mechanics_zh": [
+    "每当你打出一张耗能大于等于2点能量的牌时，获得4点格挡。"
+  ],
+  "tags": [
+    "能力",
+    "格挡",
+    "能量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你打出一张耗能大于等于2点能量的牌时，获得6点格挡。",
+    "changes_zh": [
+      "效果从 [每当你打出一张耗能大于等于2点能量的牌时，获得4点格挡。] 变为 [每当你打出一张耗能大于等于2点能量的牌时，获得6点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DANSE_MACABRE",
+      "title_zh": "灰机 wiki：死亡之舞",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E4%BA%A1%E4%B9%8B%E8%88%9E",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

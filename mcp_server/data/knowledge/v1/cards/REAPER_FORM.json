@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REAPER_FORM",
+  "name_zh": "死神形态",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "每当你的攻击造成伤害时，同时给予等量的灾厄。",
+  "mechanics_zh": [
+    "每当你的攻击造成伤害时，同时给予等量的灾厄。"
+  ],
+  "tags": [
+    "能力",
+    "伤害"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。每当你的攻击造成伤害时，同时给予等量的灾厄。",
+    "changes_zh": [
+      "效果从 [每当你的攻击造成伤害时，同时给予等量的灾厄。] 变为 [保留。每当你的攻击造成伤害时，同时给予等量的灾厄。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REAPER_FORM",
+      "title_zh": "灰机 wiki：死神形态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%BB%E7%A5%9E%E5%BD%A2%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

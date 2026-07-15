@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "LARGESSE",
+  "name_zh": "慷慨捐助",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "将一张随机的无色牌添加至一位其他玩家的手牌中。",
+  "mechanics_zh": [
+    "将一张随机的无色牌添加至一位其他玩家的手牌中。"
+  ],
+  "tags": [
+    "技能",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将一张随机的升级过的无色牌添加至一位其他玩家的手牌中。",
+    "changes_zh": [
+      "效果从 [将一张随机的无色牌添加至一位其他玩家的手牌中。] 变为 [将一张随机的升级过的无色牌添加至一位其他玩家的手牌中。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:LARGESSE",
+      "title_zh": "灰机 wiki：慷慨捐助",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%85%B7%E6%85%A8%E6%8D%90%E5%8A%A9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

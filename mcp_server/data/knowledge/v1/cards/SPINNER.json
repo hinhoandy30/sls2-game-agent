@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SPINNER",
+  "name_zh": "旋转工艺",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在你的回合开始时，生成1个玻璃充能球。",
+  "mechanics_zh": [
+    "在你的回合开始时，生成1个玻璃充能球。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：生成1个玻璃充能球。在你的回合开始时，生成1个玻璃充能球。",
+    "changes_zh": [
+      "效果从 [在你的回合开始时，生成1个玻璃充能球。] 变为 [生成1个玻璃充能球。在你的回合开始时，生成1个玻璃充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SPINNER",
+      "title_zh": "灰机 wiki：旋转工艺",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%97%8B%E8%BD%AC%E5%B7%A5%E8%89%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

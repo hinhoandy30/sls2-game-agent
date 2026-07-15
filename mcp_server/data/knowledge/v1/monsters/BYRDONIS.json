@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "BYRDONIS",
+  "name_zh": "多尼斯异鸟",
+  "act_ids": [
+    "OVERGROWTH"
+  ],
+  "encounter_pool_zh": "密林场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "多尼斯异鸟是密林场景的精英怪物；基础生命 81-84，进阶生命 90。",
+  "pattern_zh": "行动状态转移：俯冲 -> 啄击；啄击 -> 俯冲。",
+  "moves": [
+    {
+      "name_zh": "飞扑",
+      "effect_zh": "效果：造成17点伤害；效果进阶9+：造成19点伤害。"
+    },
+    {
+      "name_zh": "啄击",
+      "effect_zh": "效果：造成3×3伤害。（共9点）；效果进阶9+：造成4×3伤害。（共12点）。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：领地意识1。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:BYRDONIS",
+      "title_zh": "灰机 wiki：多尼斯异鸟",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A4%9A%E5%B0%BC%E6%96%AF%E5%BC%82%E9%B8%9F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

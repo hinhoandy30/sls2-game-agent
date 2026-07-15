@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "PARTICLE_WALL",
+  "name_zh": "粒子墙",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得9点格挡。将此牌返回你的手牌。",
+  "mechanics_zh": [
+    "获得9点格挡。",
+    "将此牌返回你的手牌。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得12点格挡。将此牌返回你的手牌。",
+    "changes_zh": [
+      "效果从 [获得9点格挡。将此牌返回你的手牌。] 变为 [获得12点格挡。将此牌返回你的手牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:PARTICLE_WALL",
+      "title_zh": "灰机 wiki：粒子墙",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%B2%92%E5%AD%90%E5%A2%99",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "CHOMPER",
+  "name_zh": "啃咬机",
+  "act_ids": [
+    "HIVE"
+  ],
+  "encounter_pool_zh": "巢穴场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "啃咬机是巢穴场景的普通怪物；基础生命 60-64，进阶生命 63-67。",
+  "pattern_zh": "* 人工制品 (Artifact) 2：战斗开始时自带 2 层。 啃咬机通常成群出现。 第一只必定以“钳击”起手，第二只必定以“尖锐鸣叫”起手，以此类推。 行动状态转移：A -> 猛夹；A -> 尖锐鸣叫；猛夹 -> 尖锐鸣叫；尖锐鸣叫 -> 猛夹。",
+  "moves": [
+    {
+      "name_zh": "猛夹",
+      "effect_zh": "效果：造成8×2伤害。（共16点）；效果进阶9+：造成9×2伤害。（共18点）；备注：1号位啃咬机的起手式。"
+    },
+    {
+      "name_zh": "尖锐鸣叫",
+      "effect_zh": "效果：向你的弃牌堆洗入3张卡牌：晕眩；效果进阶9+：向你的弃牌堆洗入3张卡牌：晕眩；备注：2号位啃咬机的起手式。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：人工制品2。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:CHOMPER",
+      "title_zh": "灰机 wiki：啃咬机",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%95%83%E5%92%AC%E6%9C%BA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

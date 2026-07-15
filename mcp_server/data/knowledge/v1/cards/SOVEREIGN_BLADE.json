@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SOVEREIGN_BLADE",
+  "name_zh": "君王之剑",
+  "character_ids": [
+    "DERIVED"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "2 能量",
+  "summary_zh": "保留。造成10点伤害。",
+  "mechanics_zh": [
+    "保留。",
+    "造成10点伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "保留"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。造成10点伤害。",
+    "changes_zh": [
+      "费用从 [2 能量] 变为 [1 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SOVEREIGN_BLADE",
+      "title_zh": "灰机 wiki：君王之剑",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%90%9B%E7%8E%8B%E4%B9%8B%E5%89%91",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

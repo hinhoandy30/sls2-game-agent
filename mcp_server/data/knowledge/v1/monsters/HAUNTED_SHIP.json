@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "HAUNTED_SHIP",
+  "name_zh": "幽灵船",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "幽灵船是暗港场景的普通怪物；基础生命 63，进阶生命 67。",
+  "pattern_zh": "行动状态转移：A -> 纠缠；纠缠 -> 扫击；扫击 -> 践踏；践踏 -> 扫击。",
+  "moves": [
+    {
+      "name_zh": "纠缠",
+      "effect_zh": "效果：给予3层虚弱，向弃牌堆中洗入5张卡牌：晕眩；效果进阶9+：给予3层虚弱，向弃牌堆中洗入5张卡牌：晕眩；备注：仅第1回合使用。"
+    },
+    {
+      "name_zh": "扫击",
+      "effect_zh": "效果：造成13点伤害；效果进阶9+：造成14点伤害；备注：第2回合起与践踏交替使用。"
+    },
+    {
+      "name_zh": "践踏",
+      "effect_zh": "效果：造成4×3伤害。（共12点）；效果进阶9+：造成5×3伤害。（共15点）；备注：第2回合起与扫击交替使用。"
+    }
+  ],
+  "risk_facts_zh": [
+    "该怪物可能施加虚弱，玩家攻击牌价值会受到影响。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:HAUNTED_SHIP",
+      "title_zh": "灰机 wiki：幽灵船",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%B9%BD%E7%81%B5%E8%88%B9",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

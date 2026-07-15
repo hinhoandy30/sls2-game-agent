@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BARRICADE",
+  "name_zh": "壁垒",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "格挡不再在你的回合开始时消失。",
+  "mechanics_zh": [
+    "格挡不再在你的回合开始时消失。"
+  ],
+  "tags": [
+    "能力",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：格挡不再在你的回合开始时消失。",
+    "changes_zh": [
+      "费用从 [3 能量] 变为 [2 能量]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BARRICADE",
+      "title_zh": "灰机 wiki：壁垒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%A3%81%E5%9E%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

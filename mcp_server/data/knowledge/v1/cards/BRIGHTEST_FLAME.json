@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BRIGHTEST_FLAME",
+  "name_zh": "至亮之焰",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Special",
+  "cost_zh": "0 能量",
+  "summary_zh": "获得2点能量。抽2张牌。失去1点最大生命。",
+  "mechanics_zh": [
+    "获得2点能量。",
+    "抽2张牌。",
+    "失去1点最大生命。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "能量",
+    "生命"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得3点能量。抽3张牌。失去1点最大生命。",
+    "changes_zh": [
+      "效果从 [获得2点能量。抽2张牌。失去1点最大生命。] 变为 [获得3点能量。抽3张牌。失去1点最大生命。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BRIGHTEST_FLAME",
+      "title_zh": "灰机 wiki：至亮之焰",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%87%B3%E4%BA%AE%E4%B9%8B%E7%84%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

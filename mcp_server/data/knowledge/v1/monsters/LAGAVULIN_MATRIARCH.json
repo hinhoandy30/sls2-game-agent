@@ -1,0 +1,47 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "LAGAVULIN_MATRIARCH",
+  "name_zh": "乐加维林族母",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的Boss 池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "乐加维林族母是暗港场景的Boss怪物；基础生命 222，进阶生命 233。",
+  "pattern_zh": "行动状态转移：A -> 沉睡；沉睡 -> 斩击；斩击 -> 开膛破肚；开膛破肚 -> 斩击2；斩击2 -> 灵魂汲取；灵魂汲取 -> 斩击。",
+  "moves": [
+    {
+      "name_zh": "沉睡",
+      "effect_zh": "效果：无行动。沉睡3回合，或直到失去生命值时苏醒；效果进阶9+：无行动。沉睡3回合，或直到失去生命值时苏醒；备注：开局带有12层覆甲。苏醒时，移除所有覆甲层数。"
+    },
+    {
+      "name_zh": "斩击",
+      "effect_zh": "效果：造成19点伤害；效果进阶9+：造成21点伤害。"
+    },
+    {
+      "name_zh": "开膛破肚",
+      "effect_zh": "效果：造成9×2伤害。（共18点）；效果进阶9+：造成10×2伤害。（共20点）。"
+    },
+    {
+      "name_zh": "斩击",
+      "effect_zh": "效果：造成12点伤害。获得12点格挡；效果进阶9+：造成14点伤害。获得14点格挡。"
+    },
+    {
+      "name_zh": "灵魂汲取",
+      "effect_zh": "效果：给予玩家2层力量下降和2层敏捷下降。自身获得2层力量；效果进阶9+：给予玩家2层力量下降和2层敏捷下降。自身获得2层力量。"
+    }
+  ],
+  "risk_facts_zh": [
+    "入场状态：覆甲12沉睡3。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能获得格挡，当前回合可造成伤害以 live state 为准。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:LAGAVULIN_MATRIARCH",
+      "title_zh": "灰机 wiki：乐加维林族母",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B9%90%E5%8A%A0%E7%BB%B4%E6%9E%97%E6%97%8F%E6%AF%8D",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

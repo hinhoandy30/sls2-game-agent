@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-monster-knowledge.v1",
+  "kind": "monster",
+  "enemy_id": "TOADPOLE",
+  "name_zh": "蟾蜍蝌蚪",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "encounter_pool_zh": "暗港场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "蟾蜍蝌蚪是暗港场景的普通怪物；基础生命 21-25，进阶生命 22-26。",
+  "pattern_zh": "蟾蜍蝌蚪通常成群出现。 排在最前面（1号位）的蟾蚪固定以“带刺”起手，后面的蟾蜍蝌蚪固定以“旋转”起手。 行动状态转移：带刺 -> 吐刺；吐刺 -> 旋转[\"旋转；旋转 -> 带刺。",
+  "moves": [
+    {
+      "name_zh": "带刺",
+      "effect_zh": "效果：获得2层荆棘；效果进阶9+：获得2层荆棘；备注：前排的起手式。"
+    },
+    {
+      "name_zh": "吐刺",
+      "effect_zh": "效果：造成3×3伤害。（共9点）。失去2层荆棘；效果进阶9+：造成4×3伤害。（共12点）。失去2层荆棘。"
+    },
+    {
+      "name_zh": "旋转",
+      "effect_zh": "效果：造成7点伤害；效果进阶9+：造成8点伤害；备注：后排的起手式。"
+    }
+  ],
+  "risk_facts_zh": [],
+  "sources": [
+    {
+      "ref": "huijiwiki:monster:TOADPOLE",
+      "title_zh": "灰机 wiki：蟾蜍蝌蚪",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%9F%BE%E8%9C%8D%E8%9D%8C%E8%9A%AA",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

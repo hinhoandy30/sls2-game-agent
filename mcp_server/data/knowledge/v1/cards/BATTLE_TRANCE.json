@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BATTLE_TRANCE",
+  "name_zh": "战斗专注",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "0 能量",
+  "summary_zh": "抽3张牌。你在本回合内不能再抽任何牌。",
+  "mechanics_zh": [
+    "抽3张牌。",
+    "你在本回合内不能再抽任何牌。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：抽4张牌。你在本回合内不能再抽任何牌。",
+    "changes_zh": [
+      "效果从 [抽3张牌。你在本回合内不能再抽任何牌。] 变为 [抽4张牌。你在本回合内不能再抽任何牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BATTLE_TRANCE",
+      "title_zh": "灰机 wiki：战斗专注",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%88%98%E6%96%97%E4%B8%93%E6%B3%A8",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

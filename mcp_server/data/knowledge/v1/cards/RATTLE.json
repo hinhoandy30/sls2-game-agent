@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "RATTLE",
+  "name_zh": "猛晃",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "奥斯提造成7点伤害。本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。",
+  "mechanics_zh": [
+    "奥斯提造成7点伤害。",
+    "本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提造成9点伤害。本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。",
+    "changes_zh": [
+      "效果从 [奥斯提造成7点伤害。本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。] 变为 [奥斯提造成9点伤害。本回合每使用过一次奥斯提攻击牌，此牌就额外造成一次伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:RATTLE",
+      "title_zh": "灰机 wiki：猛晃",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8C%9B%E6%99%83",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

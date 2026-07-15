@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SWEEPING_BEAM",
+  "name_zh": "扫荡射线",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "对所有敌人造成6点伤害。抽1张牌。",
+  "mechanics_zh": [
+    "对所有敌人造成6点伤害。",
+    "抽1张牌。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "AOE"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：对所有敌人造成9点伤害。抽1张牌。",
+    "changes_zh": [
+      "效果从 [对所有敌人造成6点伤害。抽1张牌。] 变为 [对所有敌人造成9点伤害。抽1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SWEEPING_BEAM",
+      "title_zh": "灰机 wiki：扫荡射线",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%89%AB%E8%8D%A1%E5%B0%84%E7%BA%BF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

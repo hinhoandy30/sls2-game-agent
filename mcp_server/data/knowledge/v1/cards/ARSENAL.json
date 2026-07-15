@@ -1,0 +1,34 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ARSENAL",
+  "name_zh": "武器库",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你生成一张牌，就获得1点力量。",
+  "mechanics_zh": [
+    "每当你生成一张牌，就获得1点力量。"
+  ],
+  "tags": [
+    "能力",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：固有。每当你生成一张牌，就获得1点力量。",
+    "changes_zh": [
+      "效果从 [每当你生成一张牌，就获得1点力量。] 变为 [固有。每当你生成一张牌，就获得1点力量。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ARSENAL",
+      "title_zh": "灰机 wiki：武器库",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AD%A6%E5%99%A8%E5%BA%93",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

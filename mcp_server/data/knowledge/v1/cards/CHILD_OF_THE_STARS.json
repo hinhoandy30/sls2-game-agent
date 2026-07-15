@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CHILD_OF_THE_STARS",
+  "name_zh": "群星之子",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "每当你花费1点辉星时，每花费一点1点辉星，获得2点格挡。",
+  "mechanics_zh": [
+    "每当你花费1点辉星时，每花费一点1点辉星，获得2点格挡。"
+  ],
+  "tags": [
+    "能力",
+    "格挡",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：每当你花费1点辉星时，每花费一点1点辉星，获得3点格挡。",
+    "changes_zh": [
+      "效果从 [每当你花费1点辉星时，每花费一点1点辉星，获得2点格挡。] 变为 [每当你花费1点辉星时，每花费一点1点辉星，获得3点格挡。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CHILD_OF_THE_STARS",
+      "title_zh": "灰机 wiki：群星之子",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BE%A4%E6%98%9F%E4%B9%8B%E5%AD%90",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

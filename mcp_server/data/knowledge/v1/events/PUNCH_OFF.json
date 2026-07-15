@@ -1,0 +1,26 @@
+{
+  "schema_version": "sts2-event-knowledge.v1",
+  "kind": "event",
+  "event_id": "PUNCH_OFF",
+  "name_zh": "重拳出击",
+  "act_ids": [
+    "UNDERDOCKS"
+  ],
+  "summary_zh": "重拳出击事件，出现于第一阶段暗港场景；前置条件：当前楼层数不小于6。",
+  "flow_facts_zh": [
+    "出现阶段：第一阶段暗港场景。",
+    "前置条件：当前楼层数不小于6。",
+    "选项：我能打两个；结果/详情：和它们战斗以得到更好的奖励；备注：更好的奖励为：小怪战斗奖励（金币、概率掉落药水、一组卡牌奖励）、遗物、药水。",
+    "选项：顺走；结果/详情：将一张受伤加入到你的牌组。获得一件随机遗物；备注：卡牌：受伤。",
+    "选项：战斗；后续页面：本事件。",
+    "选项：顺走。"
+  ],
+  "sources": [
+    {
+      "ref": "huijiwiki:event:PUNCH_OFF",
+      "title_zh": "灰机 wiki：重拳出击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%8D%E6%8B%B3%E5%87%BA%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

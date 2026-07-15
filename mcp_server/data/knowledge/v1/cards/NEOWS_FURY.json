@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "NEOWS_FURY",
+  "name_zh": "涅奥之怒",
+  "character_ids": [
+    "EVENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Special",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成10点伤害。将你弃牌堆中的至多2张牌放入你的手牌。消耗。",
+  "mechanics_zh": [
+    "造成10点伤害。",
+    "将你弃牌堆中的至多2张牌放入你的手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成14点伤害。将你弃牌堆中的至多3张牌放入你的手牌。消耗。",
+    "changes_zh": [
+      "效果从 [造成10点伤害。将你弃牌堆中的至多2张牌放入你的手牌。消耗。] 变为 [造成14点伤害。将你弃牌堆中的至多3张牌放入你的手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:NEOWS_FURY",
+      "title_zh": "灰机 wiki：涅奥之怒",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%B6%85%E5%A5%A5%E4%B9%8B%E6%80%92",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

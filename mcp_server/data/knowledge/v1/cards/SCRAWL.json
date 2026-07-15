@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SCRAWL",
+  "name_zh": "潦草急就",
+  "character_ids": [
+    "COLORLESS"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "抽牌直到抽满手牌。消耗。",
+  "mechanics_zh": [
+    "抽牌直到抽满手牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：保留。抽牌直到抽满手牌。消耗。",
+    "changes_zh": [
+      "效果从 [抽牌直到抽满手牌。消耗。] 变为 [保留。抽牌直到抽满手牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SCRAWL",
+      "title_zh": "灰机 wiki：潦草急就",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%BD%A6%E8%8D%89%E6%80%A5%E5%B0%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

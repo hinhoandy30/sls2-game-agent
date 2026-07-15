@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "IGNITION",
+  "name_zh": "引火",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "使另一名玩家生成等离子充能球。消耗。",
+  "mechanics_zh": [
+    "使另一名玩家生成等离子充能球。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：使另一名玩家生成等离子充能球。",
+    "changes_zh": [
+      "效果从 [使另一名玩家生成等离子充能球。消耗。] 变为 [使另一名玩家生成等离子充能球。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:IGNITION",
+      "title_zh": "灰机 wiki：引火",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%BC%95%E7%81%AB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

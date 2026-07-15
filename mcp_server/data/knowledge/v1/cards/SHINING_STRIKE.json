@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SHINING_STRIKE",
+  "name_zh": "明耀打击",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Attack",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "造成8点伤害。获得2点辉星。将这张牌放置于你的抽牌堆顶部。",
+  "mechanics_zh": [
+    "造成8点伤害。",
+    "获得2点辉星。",
+    "将这张牌放置于你的抽牌堆顶部。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "抽牌",
+    "辉星"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：造成11点伤害。获得2点辉星。将这张牌放置于你的抽牌堆顶部。",
+    "changes_zh": [
+      "效果从 [造成8点伤害。获得2点辉星。将这张牌放置于你的抽牌堆顶部。] 变为 [造成11点伤害。获得2点辉星。将这张牌放置于你的抽牌堆顶部。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SHINING_STRIKE",
+      "title_zh": "灰机 wiki：明耀打击",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%98%8E%E8%80%80%E6%89%93%E5%87%BB",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

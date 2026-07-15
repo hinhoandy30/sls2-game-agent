@@ -1,0 +1,38 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "DOMINATE",
+  "name_zh": "主宰",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "给予1层易伤。敌人身上每有一层易伤，就获得1点力量。消耗。",
+  "mechanics_zh": [
+    "给予1层易伤。",
+    "敌人身上每有一层易伤，就获得1点力量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "消耗",
+    "易伤",
+    "力量"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：给予2层易伤。敌人身上每有一层易伤，就获得1点力量。消耗。",
+    "changes_zh": [
+      "效果从 [给予1层易伤。敌人身上每有一层易伤，就获得1点力量。消耗。] 变为 [给予2层易伤。敌人身上每有一层易伤，就获得1点力量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:DOMINATE",
+      "title_zh": "灰机 wiki：主宰",
+      "url": "https://sts2.huijiwiki.com/wiki/%E4%B8%BB%E5%AE%B0",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

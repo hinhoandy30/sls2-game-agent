@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SERPENT_FORM",
+  "name_zh": "群蛇形态",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "3 能量",
+  "summary_zh": "你每打出一张牌，就对随机一名敌人造成4点伤害。",
+  "mechanics_zh": [
+    "你每打出一张牌，就对随机一名敌人造成4点伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "随机"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：你每打出一张牌，就对随机一名敌人造成6点伤害。",
+    "changes_zh": [
+      "效果从 [你每打出一张牌，就对随机一名敌人造成4点伤害。] 变为 [你每打出一张牌，就对随机一名敌人造成6点伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SERPENT_FORM",
+      "title_zh": "灰机 wiki：群蛇形态",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%BE%A4%E8%9B%87%E5%BD%A2%E6%80%81",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

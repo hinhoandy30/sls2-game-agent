@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "BLUR",
+  "name_zh": "残影",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得5点格挡。你的下一回合开始时格挡不会消失。",
+  "mechanics_zh": [
+    "获得5点格挡。",
+    "你的下一回合开始时格挡不会消失。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得8点格挡。你的下一回合开始时格挡不会消失。",
+    "changes_zh": [
+      "效果从 [获得5点格挡。你的下一回合开始时格挡不会消失。] 变为 [获得8点格挡。你的下一回合开始时格挡不会消失。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:BLUR",
+      "title_zh": "灰机 wiki：残影",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AE%8B%E5%BD%B1",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "CRUELTY",
+  "name_zh": "残酷",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "有易伤状态的敌人额外受到25%的伤害。",
+  "mechanics_zh": [
+    "有易伤状态的敌人额外受到25%的伤害。"
+  ],
+  "tags": [
+    "能力",
+    "伤害",
+    "易伤"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：有易伤状态的敌人额外受到50%的伤害。",
+    "changes_zh": [
+      "效果从 [有易伤状态的敌人额外受到25%的伤害。] 变为 [有易伤状态的敌人额外受到50%的伤害。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:CRUELTY",
+      "title_zh": "灰机 wiki：残酷",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AE%8B%E9%85%B7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

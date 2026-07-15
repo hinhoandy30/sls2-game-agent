@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "REBOOT",
+  "name_zh": "重启",
+  "character_ids": [
+    "DEFECT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Rare",
+  "cost_zh": "0 能量",
+  "summary_zh": "将你的所有未消耗的卡牌重新洗牌放入抽牌堆。抽4张牌。消耗。",
+  "mechanics_zh": [
+    "将你的所有未消耗的卡牌重新洗牌放入抽牌堆。",
+    "抽4张牌。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "抽牌",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：将你的所有未消耗的卡牌重新洗牌放入抽牌堆。抽6张牌。消耗。",
+    "changes_zh": [
+      "效果从 [将你的所有未消耗的卡牌重新洗牌放入抽牌堆。抽4张牌。消耗。] 变为 [将你的所有未消耗的卡牌重新洗牌放入抽牌堆。抽6张牌。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:REBOOT",
+      "title_zh": "灰机 wiki：重启",
+      "url": "https://sts2.huijiwiki.com/wiki/%E9%87%8D%E5%90%AF",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SNAP",
+  "name_zh": "响指",
+  "character_ids": [
+    "NECROBINDER"
+  ],
+  "card_type": "Attack",
+  "rarity": "Common",
+  "cost_zh": "1 能量",
+  "summary_zh": "奥斯提造成7点伤害。给手牌中的一张牌添加保留。",
+  "mechanics_zh": [
+    "奥斯提造成7点伤害。",
+    "给手牌中的一张牌添加保留。"
+  ],
+  "tags": [
+    "攻击",
+    "伤害",
+    "保留",
+    "奥斯提"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：奥斯提造成10点伤害。给手牌中的一张牌添加保留。",
+    "changes_zh": [
+      "效果从 [奥斯提造成7点伤害。给手牌中的一张牌添加保留。] 变为 [奥斯提造成10点伤害。给手牌中的一张牌添加保留。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SNAP",
+      "title_zh": "灰机 wiki：响指",
+      "url": "https://sts2.huijiwiki.com/wiki/%E5%93%8D%E6%8C%87",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

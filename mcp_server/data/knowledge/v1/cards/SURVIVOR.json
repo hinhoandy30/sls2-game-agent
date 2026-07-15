@@ -1,0 +1,35 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "SURVIVOR",
+  "name_zh": "生存者",
+  "character_ids": [
+    "SILENT"
+  ],
+  "card_type": "Skill",
+  "rarity": "Starter",
+  "cost_zh": "1 能量",
+  "summary_zh": "获得8点格挡。丢弃1张牌。",
+  "mechanics_zh": [
+    "获得8点格挡。",
+    "丢弃1张牌。"
+  ],
+  "tags": [
+    "技能",
+    "格挡"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：获得11点格挡。丢弃1张牌。",
+    "changes_zh": [
+      "效果从 [获得8点格挡。丢弃1张牌。] 变为 [获得11点格挡。丢弃1张牌。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:SURVIVOR",
+      "title_zh": "灰机 wiki：生存者",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%94%9F%E5%AD%98%E8%80%85",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

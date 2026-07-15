@@ -1,0 +1,36 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "FORGOTTEN_RITUAL",
+  "name_zh": "被遗忘的仪式",
+  "character_ids": [
+    "IRONCLAD"
+  ],
+  "card_type": "Skill",
+  "rarity": "Uncommon",
+  "cost_zh": "1 能量",
+  "summary_zh": "如果你在本回合消耗过卡牌，则获得3点能量。消耗。",
+  "mechanics_zh": [
+    "如果你在本回合消耗过卡牌，则获得3点能量。",
+    "消耗。"
+  ],
+  "tags": [
+    "技能",
+    "能量",
+    "消耗"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：如果你在本回合消耗过卡牌，则获得41点能量。消耗。",
+    "changes_zh": [
+      "效果从 [如果你在本回合消耗过卡牌，则获得3点能量。消耗。] 变为 [如果你在本回合消耗过卡牌，则获得41点能量。消耗。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:FORGOTTEN_RITUAL",
+      "title_zh": "灰机 wiki：被遗忘的仪式",
+      "url": "https://sts2.huijiwiki.com/wiki/%E8%A2%AB%E9%81%97%E5%BF%98%E7%9A%84%E4%BB%AA%E5%BC%8F",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}

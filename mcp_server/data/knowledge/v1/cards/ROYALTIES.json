@@ -1,0 +1,33 @@
+{
+  "schema_version": "sts2-card-knowledge.v1",
+  "kind": "card",
+  "card_id": "ROYALTIES",
+  "name_zh": "王国资产",
+  "character_ids": [
+    "REGENT"
+  ],
+  "card_type": "Power",
+  "rarity": "Rare",
+  "cost_zh": "1 能量",
+  "summary_zh": "在战斗结束时，获得30金币。",
+  "mechanics_zh": [
+    "在战斗结束时，获得30金币。"
+  ],
+  "tags": [
+    "能力"
+  ],
+  "upgrade": {
+    "summary_zh": "升级后：在战斗结束时，获得40金币。",
+    "changes_zh": [
+      "效果从 [在战斗结束时，获得30金币。] 变为 [在战斗结束时，获得40金币。]。"
+    ]
+  },
+  "sources": [
+    {
+      "ref": "huijiwiki:card:ROYALTIES",
+      "title_zh": "灰机 wiki：王国资产",
+      "url": "https://sts2.huijiwiki.com/wiki/%E7%8E%8B%E5%9B%BD%E8%B5%84%E4%BA%A7",
+      "retrieved_at": "2026-07-14"
+    }
+  ]
+}
