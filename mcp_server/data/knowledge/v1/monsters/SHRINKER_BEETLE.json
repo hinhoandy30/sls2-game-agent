@@ -3,7 +3,9 @@
   "kind": "monster",
   "enemy_id": "SHRINKER_BEETLE",
   "name_zh": "缩小甲虫",
-  "act_ids": ["OVERGROWTH"],
+  "act_ids": [
+    "OVERGROWTH"
+  ],
   "encounter_pool_zh": "繁茂之地前 3 场弱敌池可单独出现；普通池也可与毛虫组合出现。",
   "summary_zh": "首回合施加 Shrink，之后在中等攻击和高伤攻击之间交替。",
   "pattern_zh": "首回合固定使用 Shrinker；之后在 Chomp 和 Stomp 之间交替。",
@@ -21,7 +23,9 @@
       "effect_zh": "造成 13 点伤害；难度 9 时为 14 点。"
     }
   ],
-  "risk_facts_zh": ["首回合的 Shrink 会改变后续玩家攻击牌的价值；具体当前状态以 live powers 为准。"],
+  "risk_facts_zh": [
+    "首回合的 Shrink 会改变后续玩家攻击牌的价值；具体当前状态以 live powers 为准。"
+  ],
   "sources": [
     {
       "ref": "wiki:sts2-shrinker-beetle",

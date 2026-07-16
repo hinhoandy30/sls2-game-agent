@@ -8,11 +8,11 @@
   ],
   "encounter_pool_zh": "荣耀场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
   "summary_zh": "噪音机器人是荣耀场景的普通怪物；基础生命 18-23，进阶生命 19-24。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "pattern_zh": "英文静态数据列出行动：噪音；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "噪音",
+      "effect_zh": "英文静态数据列出该行动；具体效果以 live intent 为准。"
     }
   ],
   "risk_facts_zh": [
@@ -24,6 +24,12 @@
       "title_zh": "灰机 wiki：噪音机器人",
       "url": "https://sts2.huijiwiki.com/wiki/%E5%99%AA%E9%9F%B3%E6%9C%BA%E5%99%A8%E4%BA%BA",
       "retrieved_at": "2026-07-14"
+    },
+    {
+      "ref": "repo:data:eng:monsters",
+      "title_zh": "仓库英文静态怪物数据",
+      "url": "mcp_server/data/eng/monsters.json",
+      "retrieved_at": "2026-07-15"
     }
   ]
 }

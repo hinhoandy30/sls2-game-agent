@@ -4,7 +4,8 @@
   "event_id": "POTION_COURIER",
   "name_zh": "药水快递员",
   "act_ids": [
-    "UNKNOWN"
+    "HIVE",
+    "GLORY"
   ],
   "summary_zh": "药水快递员事件，出现于第二阶段、第三阶段；前置条件：无已知特殊前置条件。",
   "flow_facts_zh": [

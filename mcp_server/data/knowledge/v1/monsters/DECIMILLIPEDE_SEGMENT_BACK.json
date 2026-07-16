@@ -2,25 +2,46 @@
   "schema_version": "sts2-monster-knowledge.v1",
   "kind": "monster",
   "enemy_id": "DECIMILLIPEDE_SEGMENT_BACK",
-  "name_zh": "Decimillipede Segment (Back)",
+  "name_zh": "残杀千足虫（后段）",
   "act_ids": [
-    "UNKNOWN"
+    "HIVE"
   ],
-  "encounter_pool_zh": "未知阶段场景的未知敌池；具体遭遇组合以当前地图和 live state 为准。",
-  "summary_zh": "Decimillipede Segment (Back)是未知阶段场景的未知类型怪物；基础生命 40-46，进阶生命 46-52。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "encounter_pool_zh": "巢穴场景的精英敌池；具体遭遇组合以当前地图和 live state 为准。",
+  "summary_zh": "残杀千足虫（后段）是巢穴场景的精英怪物的后段体节；基础生命 40-46，进阶生命 46-52。",
+  "pattern_zh": "第一体节开局随机使用一招，第二、第三体节依次向后顺延一招，随后各自进入三回合循环。行动状态转移：A-->扭动；A-->胀大；A-->紧缠；胀大-->扭动；扭动-->紧缠；紧缠-->胀大。死亡后按“死亡 -> 接续 -> 随机恢复行动”处理；具体当前行动以 live intent 为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "扭动",
+      "effect_zh": "效果：造成5×2伤害（共10点）；效果进阶9+：造成6×2伤害（共12点）。"
+    },
+    {
+      "name_zh": "胀大",
+      "effect_zh": "效果：造成6点伤害。获得2点力量；效果进阶9+：造成7点伤害。获得2点力量。"
+    },
+    {
+      "name_zh": "紧缠",
+      "effect_zh": "效果：造成8点伤害。给予1层虚弱；效果进阶9+：造成9点伤害。给予1层虚弱。"
+    },
+    {
+      "name_zh": "死亡",
+      "effect_zh": "效果：跳过回合（无行动）；备注：其他体节仍存活时，当前体节生命归零后进入此状态。"
+    },
+    {
+      "name_zh": "接续",
+      "effect_zh": "效果：回复25点生命，随后随机恢复为扭动、胀大或紧缠之一；备注：仅在其他体节仍存活时触发；多人游戏中的回复量会缩放。"
     }
   ],
-  "risk_facts_zh": [],
+  "risk_facts_zh": [
+    "入场状态：接续。",
+    "备注：共3只。",
+    "该怪物存在力量相关行为，后续攻击可能随力量提高。",
+    "该怪物可能施加虚弱，玩家攻击牌价值会受到影响。"
+  ],
   "sources": [
     {
-      "ref": "huijiwiki:monster:DECIMILLIPEDE_SEGMENT_BACK",
-      "title_zh": "灰机 wiki：Decimillipede Segment (Back)",
-      "url": "https://sts2.huijiwiki.com/wiki/Decimillipede%20Segment%20(Back)",
+      "ref": "huijiwiki:monster:DECIMILLIPEDE_SEGMENT",
+      "title_zh": "灰机 wiki：残杀千足虫",
+      "url": "https://sts2.huijiwiki.com/wiki/%E6%AE%8B%E6%9D%80%E5%8D%83%E8%B6%B3%E8%99%AB",
       "retrieved_at": "2026-07-14"
     }
   ]

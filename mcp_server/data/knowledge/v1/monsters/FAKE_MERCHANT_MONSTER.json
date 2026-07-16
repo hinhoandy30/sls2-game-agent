@@ -4,15 +4,15 @@
   "enemy_id": "FAKE_MERCHANT_MONSTER",
   "name_zh": "商人？？？",
   "act_ids": [
-    "UNKNOWN"
+    "EVENT"
   ],
-  "encounter_pool_zh": "未知阶段场景的普通敌池；具体遭遇组合以当前地图和 live state 为准。",
-  "summary_zh": "商人？？？是未知阶段场景的普通怪物；基础生命 165，进阶生命 175。",
-  "pattern_zh": "行动规律未知；以 live intent 为准。",
+  "encounter_pool_zh": "事件战斗敌人；不属于普通楼层敌池，具体出现以对应事件或 live state 为准。",
+  "summary_zh": "商人？？？是事件战斗中的特殊怪物；基础生命 165，进阶生命 175。",
+  "pattern_zh": "该条目缺少可验证行动表；具体行动顺序以 live intent 和运行时状态机为准。",
   "moves": [
     {
-      "name_zh": "未知",
-      "effect_zh": "wiki 页面未提供可验证行为表；以 live intent 为准。"
+      "name_zh": "无可验证行动表",
+      "effect_zh": "静态资料未提供可验证行动效果；以 live intent 为准。"
     }
   ],
   "risk_facts_zh": [],

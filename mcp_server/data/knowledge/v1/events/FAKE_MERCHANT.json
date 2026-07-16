@@ -4,7 +4,8 @@
   "event_id": "FAKE_MERCHANT",
   "name_zh": "商人？？？",
   "act_ids": [
-    "UNKNOWN"
+    "HIVE",
+    "GLORY"
   ],
   "summary_zh": "商人？？？事件，出现于第二阶段、第三阶段；前置条件：单人游玩，且玩家至少拥有100金币或拥有污浊药水。",
   "flow_facts_zh": [

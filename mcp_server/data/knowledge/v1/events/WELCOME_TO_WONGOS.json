@@ -4,7 +4,7 @@
   "event_id": "WELCOME_TO_WONGOS",
   "name_zh": "欢迎来到旺购百货",
   "act_ids": [
-    "UNKNOWN"
+    "HIVE"
   ],
   "summary_zh": "欢迎来到旺购百货事件，出现于第二阶段；前置条件：所有玩家至少拥有100金币。",
   "flow_facts_zh": [

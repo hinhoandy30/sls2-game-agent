@@ -4,7 +4,8 @@
   "event_id": "RELIC_TRADER",
   "name_zh": "遗物交换商",
   "act_ids": [
-    "UNKNOWN"
+    "HIVE",
+    "GLORY"
   ],
   "summary_zh": "遗物交换商事件，出现于第二阶段、第三阶段；前置条件：所有玩家至少有 5 件可交易遗物。",
   "flow_facts_zh": [
