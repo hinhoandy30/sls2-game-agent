@@ -197,6 +197,7 @@ class KnowledgeContext:
     run_id: str = "run_unknown"
     refs: list[str] = field(default_factory=list)
     cards: list[dict[str, Any]] = field(default_factory=list)
+    card_priorities: list[dict[str, Any]] = field(default_factory=list)
     monsters: list[dict[str, Any]] = field(default_factory=list)
     events: list[dict[str, Any]] = field(default_factory=list)
     potions: list[dict[str, Any]] = field(default_factory=list)
@@ -208,6 +209,7 @@ class KnowledgeContext:
         return {
             "refs": sorted({str(item) for item in self.refs}),
             "cards": list(self.cards),
+            "card_priorities": list(self.card_priorities),
             "monsters": list(self.monsters),
             "events": list(self.events),
             "potions": list(self.potions),

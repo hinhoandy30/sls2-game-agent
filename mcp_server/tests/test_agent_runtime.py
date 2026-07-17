@@ -72,6 +72,59 @@ def combat_payload(*, actions: list[str], hand: list[dict[str, Any]], enemy_hp: 
     )
 
 
+def write_test_card_fact(root: Path, card_id: str) -> None:
+    cards_dir = root / "cards"
+    cards_dir.mkdir(exist_ok=True)
+    (cards_dir / f"{card_id}.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "sts2-card-knowledge.v1",
+                "kind": "card",
+                "card_id": card_id,
+                "name_zh": card_id,
+                "character_ids": ["IRONCLAD"],
+                "card_type": "Skill",
+                "rarity": "Uncommon",
+                "cost_zh": "1 能量",
+                "summary_zh": "测试卡牌。",
+                "mechanics_zh": ["用于测试。"],
+                "tags": ["测试"],
+                "upgrade": None,
+                "sources": [{"ref": f"test:card:{card_id}", "title_zh": "测试来源", "url": "https://example.com/card", "retrieved_at": "2026-07-17"}],
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+
+def write_test_card_priority(root: Path, card_id: str) -> None:
+    priorities_dir = root / "strategy" / "card_priorities"
+    priorities_dir.mkdir(parents=True, exist_ok=True)
+    (priorities_dir / f"{card_id}.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "sts2-card-priority-strategy.v1",
+                "kind": "card_priority",
+                "strategy_id": f"card-priority.{card_id}.v1",
+                "card_id": card_id,
+                "name_zh": card_id,
+                "character_ids": ["IRONCLAD"],
+                "baseline_priority": "high",
+                "role_tags": ["测试"],
+                "good_when_zh": ["需要测试时。"],
+                "bad_when_zh": ["不需要测试时。"],
+                "pick_vs_skip_zh": ["按测试条件选择。"],
+                "upgrade_priority_zh": "测试。",
+                "notes_zh": ["仅用于测试。"],
+                "sources": [{"ref": f"test:priority:{card_id}", "title_zh": "测试来源", "url": "https://example.com/priority", "retrieved_at": "2026-07-17"}],
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+
+
 class DummyClient:
     def __init__(self, states: list[dict[str, Any]]) -> None:
         self.states = list(states)
@@ -649,6 +702,66 @@ class AgentRuntimeTests(unittest.TestCase):
         self.assertEqual(knowledge.cards[0]["name_zh"], "战斗专注")
         self.assertEqual(knowledge.sources[0]["knowledge_path"], "cards/BATTLE_TRANCE.json")
 
+    def test_knowledge_provider_loads_and_deduplicates_reward_card_priorities(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for card_id in ("ANGER", "BURNING_PACT"):
+                write_test_card_fact(root, card_id)
+                write_test_card_priority(root, card_id)
+            snapshot = GameStateSnapshot.from_raw(
+                state_payload(screen="REWARD", actions=["choose_reward_card"], run={"potions": []}),
+                source="test",
+            )
+            snapshot.state["reward"] = {
+                "cards": [
+                    {"card_id": "BURNING_PACT"},
+                    {"card_id": "ANGER"},
+                    {"card_id": "BURNING_PACT"},
+                ]
+            }
+
+            knowledge = KnowledgeProvider(root_dir=root).for_state(snapshot)
+
+        self.assertEqual([entry["card_id"] for entry in knowledge.cards], ["BURNING_PACT", "ANGER"])
+        self.assertEqual([entry["card_id"] for entry in knowledge.card_priorities], ["BURNING_PACT", "ANGER"])
+        self.assertIn("card_priority:ANGER", knowledge.refs)
+        self.assertIn("card_priority:BURNING_PACT", knowledge.refs)
+        self.assertIn("strategy/card_priorities/ANGER.json", [source["knowledge_path"] for source in knowledge.sources])
+
+    def test_knowledge_provider_keeps_shop_card_fact_when_priority_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_test_card_fact(root, "ANGER")
+            write_test_card_priority(root, "ANGER")
+            write_test_card_fact(root, "BATTLE_TRANCE")
+            snapshot = GameStateSnapshot.from_raw(
+                state_payload(screen="SHOP", actions=["buy_card"], run={"potions": []}),
+                source="test",
+            )
+            snapshot.state["shop"] = {"cards": [{"card_id": "ANGER"}, {"card_id": "BATTLE_TRANCE"}]}
+
+            knowledge = KnowledgeProvider(root_dir=root).for_state(snapshot)
+
+        self.assertEqual([entry["card_id"] for entry in knowledge.cards], ["ANGER", "BATTLE_TRANCE"])
+        self.assertEqual([entry["card_id"] for entry in knowledge.card_priorities], ["ANGER"])
+        self.assertNotIn("card_priority:BATTLE_TRANCE", knowledge.refs)
+
+    def test_knowledge_provider_does_not_load_priority_for_combat_hand_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_test_card_fact(root, "ANGER")
+            write_test_card_priority(root, "ANGER")
+            snapshot = GameStateSnapshot.from_raw(
+                combat_payload(actions=["play_card"], hand=[{"card_id": "ANGER", "index": 0}]),
+                source="test",
+            )
+
+            knowledge = KnowledgeProvider(root_dir=root).for_state(snapshot)
+
+        self.assertEqual([entry["card_id"] for entry in knowledge.cards], ["ANGER"])
+        self.assertEqual(knowledge.card_priorities, [])
+        self.assertNotIn("card_priority:ANGER", knowledge.refs)
+
     def test_validate_knowledge_root_reports_filename_id_mismatch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -774,6 +887,31 @@ class AgentRuntimeTests(unittest.TestCase):
             first.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
             second.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
         )
+
+    def test_equivalent_card_priorities_have_the_same_packet_hash_despite_input_order(self) -> None:
+        snapshot = GameStateSnapshot.from_raw(state_payload(screen="REWARD", actions=["choose_reward_card"]), source="test")
+        first = FakeLLMPolicy('{"action":"skip_reward_cards","reason":"done"}')
+        second = FakeLLMPolicy('{"action":"skip_reward_cards","reason":"done"}')
+        first.decide(
+            snapshot,
+            knowledge=KnowledgeContext(
+                refs=["card_priority:ANGER", "card_priority:BURNING_PACT"],
+                card_priorities=[{"card_id": "ANGER"}, {"card_id": "BURNING_PACT"}],
+            ),
+        )
+        second.decide(
+            snapshot,
+            knowledge=KnowledgeContext(
+                refs=["card_priority:BURNING_PACT", "card_priority:ANGER"],
+                card_priorities=[{"card_id": "BURNING_PACT"}, {"card_id": "ANGER"}],
+            ),
+        )
+
+        self.assertEqual(
+            first.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
+            second.last_prompt["prompt_metadata"]["knowledge_packet_hash"],
+        )
+        self.assertEqual([entry["card_id"] for entry in first.last_prompt["knowledge"]["card_priorities"]], ["ANGER", "BURNING_PACT"])
 
     def test_combat_state_with_only_side_actions_is_not_actionable(self) -> None:
         payload = combat_payload(actions=["save_and_quit", "use_potion", "discard_potion"], hand=[])

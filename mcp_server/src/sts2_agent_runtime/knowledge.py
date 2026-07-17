@@ -153,11 +153,13 @@ class KnowledgeProvider:
         self._monster_cache: dict[str, MonsterKnowledgeFile | None] = {}
         self._event_cache: dict[str, EventKnowledgeFile | None] = {}
         self._card_cache: dict[str, CardKnowledgeFile | None] = {}
+        self._card_priority_cache: dict[str, CardPriorityKnowledgeFile | None] = {}
 
     def for_state(self, state: GameStateSnapshot) -> KnowledgeContext:
         raw = state.state
         refs: list[str] = []
         cards: list[dict[str, Any]] = []
+        card_priorities: list[dict[str, Any]] = []
         monsters: list[dict[str, Any]] = []
         events: list[dict[str, Any]] = []
         sources: list[dict[str, Any]] = []
@@ -182,6 +184,30 @@ class KnowledgeProvider:
                     cards.append(entry.to_prompt_entry())
                     sources.extend(self._source_payloads(entry.sources, "cards", normalized_id))
 
+        choice_cards: list[dict[str, Any]] = []
+        if state.screen == "REWARD":
+            reward = raw.get("reward") if isinstance(raw.get("reward"), dict) else {}
+            choice_cards = [card for card in reward.get("cards") or [] if isinstance(card, dict)]
+        elif state.screen == "SHOP":
+            shop = raw.get("shop") if isinstance(raw.get("shop"), dict) else {}
+            choice_cards = [card for card in shop.get("cards") or [] if isinstance(card, dict)]
+
+        for card in choice_cards:
+            card_id = card.get("card_id") or card.get("id")
+            if not card_id:
+                continue
+            normalized_id = str(card_id)
+            refs.append(f"card:{normalized_id}")
+            card_entry = self._load_card(normalized_id)
+            if card_entry is not None:
+                cards.append(card_entry.to_prompt_entry())
+                sources.extend(self._source_payloads(card_entry.sources, "cards", normalized_id))
+            priority_entry = self._load_card_priority(normalized_id)
+            if priority_entry is not None:
+                refs.append(f"card_priority:{normalized_id}")
+                card_priorities.append(priority_entry.to_prompt_entry())
+                sources.extend(self._source_payloads(priority_entry.sources, "strategy/card_priorities", normalized_id))
+
         run = raw.get("run") if isinstance(raw.get("run"), dict) else {}
         for potion in run.get("potions") or []:
             potion_id = potion.get("potion_id")
@@ -202,6 +228,7 @@ class KnowledgeProvider:
             run_id=state.run_id,
             refs=sorted(set(refs)),
             cards=_deduplicate_entries(cards, "card_id"),
+            card_priorities=_deduplicate_entries(card_priorities, "card_id"),
             monsters=_deduplicate_entries(monsters, "enemy_id"),
             events=_deduplicate_entries(events, "event_id"),
             sources=_deduplicate_entries(sources, "ref"),
@@ -222,6 +249,14 @@ class KnowledgeProvider:
             self._card_cache[card_id] = self._load_json(self._root_dir / "cards" / f"{card_id}.json", CardKnowledgeFile)
         return self._card_cache[card_id]
 
+    def _load_card_priority(self, card_id: str) -> CardPriorityKnowledgeFile | None:
+        if card_id not in self._card_priority_cache:
+            self._card_priority_cache[card_id] = self._load_json(
+                self._root_dir / "strategy" / "card_priorities" / f"{card_id}.json",
+                CardPriorityKnowledgeFile,
+            )
+        return self._card_priority_cache[card_id]
+
     @staticmethod
     def _source_payloads(sources: list[KnowledgeSource], category: str, entry_id: str) -> list[dict[str, Any]]:
         knowledge_path = f"{category}/{entry_id}.json"
@@ -230,8 +265,8 @@ class KnowledgeProvider:
     @staticmethod
     def _load_json(
         path: Path,
-        model_type: type[MonsterKnowledgeFile] | type[EventKnowledgeFile] | type[CardKnowledgeFile],
-    ) -> MonsterKnowledgeFile | EventKnowledgeFile | CardKnowledgeFile | None:
+        model_type: type[MonsterKnowledgeFile] | type[EventKnowledgeFile] | type[CardKnowledgeFile] | type[CardPriorityKnowledgeFile],
+    ) -> MonsterKnowledgeFile | EventKnowledgeFile | CardKnowledgeFile | CardPriorityKnowledgeFile | None:
         if not path.is_file():
             return None
         with path.open(encoding="utf-8") as handle:
