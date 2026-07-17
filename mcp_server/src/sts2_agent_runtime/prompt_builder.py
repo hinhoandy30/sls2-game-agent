@@ -33,6 +33,7 @@ def canonical_knowledge_packet(knowledge: dict[str, Any]) -> dict[str, Any]:
     return {
         "refs": sorted({str(item) for item in knowledge.get("refs", [])}),
         "cards": _sort_entries(list(knowledge.get("cards", [])), "card_id", "id"),
+        "card_priorities": _sort_entries(list(knowledge.get("card_priorities", [])), "card_id", "strategy_id"),
         "monsters": _sort_entries(list(knowledge.get("monsters", [])), "enemy_id", "id"),
         "events": _sort_entries(list(knowledge.get("events", [])), "event_id", "id"),
         "potions": _sort_entries(list(knowledge.get("potions", [])), "potion_id", "id"),

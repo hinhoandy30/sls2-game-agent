@@ -338,6 +338,7 @@ def _knowledge_prompt_payload(knowledge: KnowledgeContext) -> dict[str, Any]:
     return {
         "refs": list(getattr(knowledge, "refs", []) or []),
         "cards": list(getattr(knowledge, "cards", []) or []),
+        "card_priorities": list(getattr(knowledge, "card_priorities", []) or []),
         "monsters": list(getattr(knowledge, "monsters", []) or []),
         "events": list(getattr(knowledge, "events", []) or []),
         "potions": list(getattr(knowledge, "potions", []) or []),
